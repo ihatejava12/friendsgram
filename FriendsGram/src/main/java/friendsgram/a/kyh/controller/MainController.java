@@ -8,7 +8,7 @@ public class MainController {
 	
 	@GetMapping("/main")
 	public String board01() {
-		return "/main/kyh/main";
+		return "/kyh/main/main";
 	}
  
 }
