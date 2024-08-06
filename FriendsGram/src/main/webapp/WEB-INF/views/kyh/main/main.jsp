@@ -1044,7 +1044,7 @@ body {
 		<div class="v147_2187">
 			<div class="v147_2188"></div>
 			<div class="v147_2189">
-				<span class="v147_2190">프리랜서 찾아보기</span>
+				<span class="v147_2190">프리랜서 찾아보기s</span>
 			</div>
 			<span class="v147_2191">원하는 프리랜서를 찾아보세요!</span>
 			<div class="v147_2192"></div>
