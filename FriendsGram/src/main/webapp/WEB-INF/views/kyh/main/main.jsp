@@ -920,6 +920,122 @@ body {
   left: 152px;
   overflow: hidden;
 }
+/* 기본 스타일 */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+}
+
+/* 큰 화면 (데스크탑) */
+@media (min-width: 1024px) {
+  .v147_2186 {
+    width: 100%;
+    height: 1333px;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: relative;
+    box-shadow: 0px 3px 6px rgba(0.07058823853731155, 0.05882352963089943, 0.1568627506494522, 0.11999999731779099);
+    overflow: hidden;
+  }
+  .v147_2187 {
+    width: 100%;
+    height: 587px;
+    background: rgba(12,146,0,1);
+    position: absolute;
+    top: 73px;
+    left: 0px;
+  }
+  .v147_2188 {
+    width: 357px;
+    height: 259px;
+    background: url("../images/v147_2188.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    top: 5687px;
+    left: 1044px;
+    border-radius: 4px;
+  }
+  .v147_2189 {
+    width: 189px;
+    height: 52px;
+    background: rgba(255,255,255,1);
+    position: absolute;
+    top: 333px;
+    left: 1318px;
+    border-radius: 26px;
+  }
+  .v147_2190 {
+    width: 169px;
+    color: rgba(50,56,66,1);
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    font-family: Inter;
+    font-weight: Regular;
+    font-size: 18px;
+    text-align: left;
+  }
+  /* 추가 스타일... */
+}
+
+/* 중간 화면 (태블릿) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .v147_2186 {
+    height: 1000px; /* 예제 조정 */
+  }
+  .v147_2187 {
+    height: 400px; /* 예제 조정 */
+    top: 50px; /* 예제 조정 */
+  }
+  .v147_2188 {
+    width: 300px; /* 예제 조정 */
+    height: 200px; /* 예제 조정 */
+    top: 4000px; /* 예제 조정 */
+    left: 800px; /* 예제 조정 */
+  }
+  .v147_2189 {
+    width: 150px; /* 예제 조정 */
+    height: 40px; /* 예제 조정 */
+    top: 250px; /* 예제 조정 */
+    left: 1000px; /* 예제 조정 */
+  }
+  .v147_2190 {
+    font-size: 16px; /* 예제 조정 */
+  }
+  /* 추가 스타일... */
+}
+
+/* 작은 화면 (모바일) */
+@media (max-width: 767px) {
+  .v147_2186 {
+    height: 800px; /* 예제 조정 */
+  }
+  .v147_2187 {
+    height: 300px; /* 예제 조정 */
+    top: 20px; /* 예제 조정 */
+  }
+  .v147_2188 {
+    width: 100%; /* 예제 조정 */
+    height: auto; /* 예제 조정 */
+    top: 2000px; /* 예제 조정 */
+    left: 0; /* 예제 조정 */
+  }
+  .v147_2189 {
+    width: 100%; /* 예제 조정 */
+    height: auto; /* 예제 조정 */
+    top: 150px; /* 예제 조정 */
+    left: 0; /* 예제 조정 */
+  }
+  .v147_2190 {
+    font-size: 14px; /* 예제 조정 */
+  }
+  /* 추가 스타일... */
+}
+
 </style>
 <title>Document</title>
 </head>
