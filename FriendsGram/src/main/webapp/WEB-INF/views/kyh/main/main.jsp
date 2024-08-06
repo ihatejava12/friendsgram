@@ -1131,7 +1131,7 @@ body {
 				<span class="v147_2249">사용언어</span>
 			</div>
 			<div class="v147_2250">
-				<span class="v147_2251">사용언어</span>
+				<span class="v147_2251">사용언어d</span>
 			</div>
 		</div>
 		<div class="v147_2252">
