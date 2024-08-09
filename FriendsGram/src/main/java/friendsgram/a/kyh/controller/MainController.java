@@ -27,14 +27,14 @@ public class MainController {
 		return new MemberDto();
 	}
 	
-//	@GetMapping("/main")
-//    public String showMainPage(Model model) {
-//        List<NoticeDto> recentNotices = mservice.getRecentMainNotices();
-//        List<Board05Dto> b05 = mservice.getRecentMainBoard05();
-//        model.addAttribute("b05", b05);
-//        model.addAttribute("notices", recentNotices);
-//        return "kyh/main/main"; // JSP 파일의 경로
-//    }
+	@GetMapping("/main")
+    public String showMainPage(Model model) {
+        List<NoticeDto> recentNotices = mservice.getRecentMainNotices();
+        List<Board05Dto> b05 = mservice.getRecentMainBoard05();
+        model.addAttribute("b05", b05);
+        model.addAttribute("notices", recentNotices);
+        return "kyh/main/main"; // JSP 파일의 경로
+    }
 	@RequestMapping("/aa")
 	public String main(@ModelAttribute("user") MemberDto dto) {
 		if(dto.getId() != null) {
