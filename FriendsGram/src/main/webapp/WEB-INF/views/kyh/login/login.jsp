@@ -6,7 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-gg입니다
-
+로그인창입니다.
 </body>
 </html>

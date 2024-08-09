@@ -40,6 +40,9 @@ dependencies {
    	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
    	implementation group: 'org.jsoup', name: 'jsoup', version: '1.17.2'
    	implementation 'org.springframework.boot:spring-boot-starter-mail'
+   	
+   	implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
 tasks.named('test') {

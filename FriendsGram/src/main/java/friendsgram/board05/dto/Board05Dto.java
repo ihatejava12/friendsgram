@@ -1,5 +1,6 @@
 package friendsgram.board05.dto;
 
+
 import java.util.Date;
 
 import lombok.Data;
@@ -18,5 +19,5 @@ public class Board05Dto {
 	private String background;
 	private String company;
 	private String id;
-	
+
 }
