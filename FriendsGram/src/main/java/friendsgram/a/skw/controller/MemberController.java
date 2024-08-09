@@ -181,7 +181,7 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping("/main")
+	@RequestMapping("/mainlogin")
 	public String main(@ModelAttribute("user") MemberDto dto) {
 		if(dto.getId() != null) {
 			return "member/main";
