@@ -10,7 +10,6 @@ public class NoticeDto {
 	private String title;
 	private String content;
 	private Date date;
-
 	private String id;
 
 

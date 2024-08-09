@@ -3,7 +3,7 @@ package friendsgram.admin.dto;
 import lombok.Data;
 
 @Data
-public class ReportDot {
+public class ReportDto {
 	private String report_content;
 	private int r_no;
 	private int num;
