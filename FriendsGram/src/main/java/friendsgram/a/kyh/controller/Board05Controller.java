@@ -1,6 +1,7 @@
 package friendsgram.a.kyh.controller;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,7 @@ public class Board05Controller {
 
     @PostMapping("/board05/write")
     public String write(@ModelAttribute Board05Dto board) {
-        board.setDate(LocalDate.now()); // 현재 날짜를 설정
+        board.setDate(new Date()); // 현재 날짜를 설정
         service.insert(board);
         return "redirect:/board05";
     }
