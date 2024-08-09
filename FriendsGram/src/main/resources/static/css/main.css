@@ -1,0 +1,28 @@
+@charset "utf-8";
+    .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
+}
+
+.logo img {
+  height: 50px; /* Adjust this value as needed */
+  width: auto;
+}
+
+.navigation a {
+  margin-right: 15px;
+  color: #565E6C;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.actions a {
+  margin-left: 10px;
+  color: #0C9200;
+  font-weight: bold;
+  text-decoration: none;
+}

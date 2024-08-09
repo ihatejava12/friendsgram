@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="friendsgram.a.skw.dao.Board04Dao">
+
+	<insert id="insert" parameterType="friendsgram.board04.dto.Board04Dto">
+		insert into board04(id,title, content, regdate)
+		values( #{id}, #{title},#{content},now())
+	</insert>  
+
+	<update id="updateBoard" parameterType="friendsgram.board04.dto.Board04Dto">
+		update board04 set title=#{title} , content=#{content}
+		where no=#{no}
+	</update>
+
+	<update id="addReadCount" parameterType="int">
+		update board04 set readcount = readcount + 1 where no = #{no}
+	</update>
+
+	<delete id="deleteBoard" parameterType="int">
+		delete from board04 where no = #{no}
+	</delete>
+
+	<select id="boardList" parameterType="map" resultType="friendsgram.board04.dto.Board04Dto">
+		<![CDATA[
+		select * from board04 
+		order by regdate desc limit #{start} , #{count}
+ 		]]> <!-- CDATA ==  char 문자로 인식한다 -->
+	</select>
+	<select id="count" resultType="int">
+		select count(*) from board04
+	</select>
+
+	<select id="boardOne" parameterType="int" 
+					resultType="friendsgram.board04.dto.Board04Dto">
+		select * from board04 where no = #{no}
+	</select>
+	<!-- <select id="boardListSearch" parameterType="map" resultType="member.board.dto.BoardDto">
+		select * from board <where><choose>
+		<when test="searchn == 0"> title like concat('%', #{search}, '%')</when>
+		<when test="searchn == 1">content like concat('%', #{search}, '%')</when>
+		<when test="searchn == 2">id like concat('%', #{search}, '%')</when>
+		</choose>
+		</where> order by regdate desc limit #{start}, #{count}
+	</select>
+	<select id="countSearch" resultType="int" parameterType="map">>
+		select count(*) from board <where><choose>
+			<when test="searchn ==0">title like concat('%', #{search}, '%')</when>
+			<when test="searchn ==1">content like concat('%', #{search}, '%')</when>
+			<when test="searchn ==2">id like concat('%', #{search}, '%')</when>
+		</choose>
+		</where>
+	</select>  -->
+</mapper>
