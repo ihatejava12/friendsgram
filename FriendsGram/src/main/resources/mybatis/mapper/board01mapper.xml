@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="friendsgram.a.pth.board01.dao.Board01Dao">
+
+	<select id="board01List" parameterType="map" resultType="friendsgram.board01.dto.Board01Dto">
+		<![CDATA[
+		select * from board01 
+		order by date desc limit #{start} , #{count}
+ 		]]>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from board01
+	</select>
+
+	<select id="selectOne" parameterType="int" resultType="friendsgram.board01.dto.Board01Dto">
+		select * from board01 where b_no01 = #{no}
+	</select>
+
+	<select id="board01ComentList" parameterType="int" resultType="friendsgram.board01.dto.Board01_ComentDto">
+		select * from board01_coment where b_no01 = #{no} order by c_no01 asc
+	</select>
+	
+	<insert id="writeBoard01" parameterType="friendsgram.board01.dto.Board01Dto">
+		insert into board01(title,code,content,date,readcount,id)
+		values(#{title},#{code},#{content},now(),0,#{id})
+	</insert>
+	
+	
+	<insert id="reportboard01" parameterType="friendsgram.admin.dto.ReportDto">
+		insert into report(report_content,r_no,num,id)
+		values(#{report_content},#{r_no},#{num},#{id})
+	</insert>
+	
+	
+	<select id="countSearchBoard01" parameterType="map" resultType="int">
+		select count(*) from board01 
+		<where>
+			<choose>
+				<when test="skil == 'java'">
+					code = #{skil}
+				</when>
+				<when test="skil == 'python'">
+					code = #{skil}
+				</when>
+				<when test="skil == 'html'">
+					code = #{skil}
+				</when>
+				<when test="skil == 'cc'">
+					code = #{skil}
+				</when>
+				<when test="skil == 'database'">
+					code = #{skil}
+				</when>
+				<when test="skil == 'other'">
+					code = #{skil}
+				</when>
+				
+			</choose>
+		
+		</where>
+	</select>
+	
+</mapper>
