@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import friendsgram.a.jhk.service.WordService;
+import friendsgram.a.jhk.service.AdminWordService;
 import friendsgram.admin.dto.WordDto;
 
 @Controller
 public class AdminWordController {
 	
 	@Autowired
-	WordService wservice;
+	AdminWordService wservice;
 	
 	@DeleteMapping("/deleteword")
 	@ResponseBody

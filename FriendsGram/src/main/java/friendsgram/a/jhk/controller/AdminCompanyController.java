@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import friendsgram.a.jhk.service.Corporation_MemberService;
+import friendsgram.a.jhk.service.AdminCorporation_MemberService;
 import friendsgram.member.dto.Corporation_MemberDto;
 
 @Controller
 public class AdminCompanyController {
 
 	@Autowired
-	Corporation_MemberService service;
+	AdminCorporation_MemberService service;
 	
 	@PostMapping("/updateconsent")
 	public String updateConsent(@RequestParam("searchn") int searchn, @RequestParam("id") String id) {

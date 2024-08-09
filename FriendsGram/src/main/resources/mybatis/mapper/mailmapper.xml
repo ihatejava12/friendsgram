@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="friendsgram.a.pth.mail.dao.MailDao">
+
+	<select id="maillist" parameterType="List" resultType="friendsgram.mailham.dto.MailhamDto">
+		select * from mailham where return_man = #{id} limit #{startRow} , #{perpage}
+	</select>
+
+	<select id="count" parameterType="String" resultType="int">
+		select count(*) from mailham where return_man = #{id}
+	</select>
+	
+	<select id="sendmaillist" parameterType="List" resultType="friendsgram.mailham.dto.MailhamDto">
+		select * from mailham where id = #{id} limit #{startRow} , #{perpage}
+	</select>
+	
+	<select id="sendmail_count" parameterType="String" resultType="int">
+		select count(*) from mailham where id = #{id}
+	</select>
+	
+	<select id="oneMailContent" parameterType="int" resultType="friendsgram.mailham.dto.MailhamDto">
+		select * from mailham where m_no = #{no}
+	</select>
+	
+	<delete id="mailDelete" parameterType="int">
+		delete from mailham where m_no = #{no}
+	</delete>
+	
+	
+</mapper>

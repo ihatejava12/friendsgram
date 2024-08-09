@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="friendsgram.a.skw.dao.MemberDao">
+
+	<insert id="insertMem" parameterType="friendsgram.member.dto.MemberDto">
+		insert into member values(#{id},#{password},#{name},#{email},#{birth},#{gender},#{phone},#{consent},default,default,default)
+	</insert>
+	
+
+</mapper>

@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import friendsgram.a.jhk.service.NoticeService;
+import friendsgram.a.jhk.service.AdminNoticeService;
 import friendsgram.admin.dto.NoticeDto;
 
 @Controller
 public class AdminNoticeController {
 
 	@Autowired
-	NoticeService nservice;
+	AdminNoticeService nservice;
 	
 	@PostMapping("/updatenotice")
 	public String updatenotice(@RequestParam("title") String title, @RequestParam("content") String content, @RequestParam("n_no") int n_no) {
