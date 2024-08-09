@@ -12,6 +12,6 @@ public class Question_AnswerDto {
 	private Date date;
 
 	private String id;
-	private int a_no;
+	private int q_no;
 
 }

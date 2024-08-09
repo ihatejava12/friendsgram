@@ -16,6 +16,7 @@ public class Board05Dto {
 	private String salary;
 	private String career_period;
 	private String background;
+	private String company;
 	private String id;
-
+	
 }
