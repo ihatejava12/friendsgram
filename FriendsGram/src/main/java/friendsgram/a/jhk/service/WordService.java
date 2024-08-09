@@ -1,0 +1,29 @@
+package friendsgram.a.jhk.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import friendsgram.a.jhk.dao.WordDao;
+import friendsgram.admin.dto.WordDto;
+
+@Service
+public class WordService {
+	
+	@Autowired
+	WordDao dao;
+	
+	public int deleteWords(List<String> list) {
+		return dao.deleteWords(list);
+	}
+	
+	public int insertWord(String word) {
+		return dao.insertWord(word);
+	}
+	
+	public List<WordDto> allWord(){
+		return dao.allWord();
+	}
+	
+}
