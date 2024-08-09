@@ -23,7 +23,7 @@ public class MemberDto {
 	private boolean consent;
 	private boolean r_consent;
 	private int sanction;
-	
-	
+
+	private int role;
 
 }
