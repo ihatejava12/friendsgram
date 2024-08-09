@@ -7,42 +7,42 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import friendsgram.a.jhk.dao.Board04Dao;
+import friendsgram.a.jhk.dao.AdminBoard03Dao;
 import friendsgram.board01.dto.Board01Dto;
-import friendsgram.board04.dto.Board04Dto;
+import friendsgram.board03.dto.Board03Dto;
 
 @Service
-public class Board04Service {
-
+public class AdminBoard03Service {
+	
 	@Autowired
-	Board04Dao dao;
+	AdminBoard03Dao dao;
 	
-	public int deleteOneBoard04(int b_no04) {
-		return dao.deleteOneBoard04(b_no04);
+	public int deleteOneBoard03(int b_no03) {
+		return dao.deleteOneBoard03(b_no03);
 	}
 	
-	public Board04Dto oneBoard04(int b_no04){
-		return dao.oneBoard04(b_no04);
+	public Board03Dto oneBoard03(int b_no03){
+		return dao.oneBoard03(b_no03);
 	}
 	
-	public List<Board04Dto> findBoard04(int searchn, String search, int start){
+	public List<Board03Dto> findBoard03(int searchn, String search, int start){
 		Map<String,Object> m = new HashMap<String, Object>();
 		m.put("searchn",searchn);
 		m.put("search", search);
 		m.put("start", start);
 		m.put("count", 10);
-		return dao.findBoard04(m);
+		return dao.findBoard03(m);
 	}
 	
-	public int countBoard04(int searchn, String search) {
+	public int countBoard03(int searchn, String search) {
 		Map<String,Object> m = new HashMap<String, Object>();
 		m.put("searchn",searchn);
 		m.put("search", search);
-		return dao.countBoard04(m);
+		return dao.countBoard03(m);
 	}
 	
-	public int deleteBoard04(List<Integer> list) {
-		return dao.deleteBoard04(list);
+	public int deleteBoard03(List<Integer> list) {
+		return dao.deleteBoard03(list);
 	}
 	
 }

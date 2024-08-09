@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import friendsgram.a.jhk.dao.Corporation_MemberDao;
+import friendsgram.a.jhk.dao.AdminCorporation_MemberDao;
 import friendsgram.member.dto.Corporation_MemberDto;
 
 @Service
-public class Corporation_MemberService {
+public class AdminCorporation_MemberService {
 
 	@Autowired
-	Corporation_MemberDao dao;
+	AdminCorporation_MemberDao dao;
 	
 	public int updateConsent(int searchn, String id) {
 		return dao.updateConsent(searchn, id);

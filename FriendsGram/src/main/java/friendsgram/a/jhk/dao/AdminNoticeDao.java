@@ -14,7 +14,7 @@ import org.hibernate.validator.constraints.ParameterScriptAssert;
 import friendsgram.admin.dto.NoticeDto;
 
 @Mapper
-public interface NoticeDao {
+public interface AdminNoticeDao {
 	
 	@Update("update notice set title = #{title}, content = #{content}, date = now() where n_no = #{n_no}")
 	int updateNotice(@Param("title") String title, @Param("content") String content, @Param("n_no") int n_no);

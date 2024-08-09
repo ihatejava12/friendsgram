@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Update;
 import friendsgram.member.dto.Corporation_MemberDto;
 
 @Mapper
-public interface Corporation_MemberDao {
+public interface AdminCorporation_MemberDao {
 	
 	@Select({"<script>",
 				"select * from corporation_member ",

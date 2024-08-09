@@ -7,14 +7,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import friendsgram.a.jhk.dao.NoticeDao;
+import friendsgram.a.jhk.dao.AdminNoticeDao;
 import friendsgram.admin.dto.NoticeDto;
 
 @Service
-public class NoticeService {
+public class AdminNoticeService {
 
 	@Autowired
-	NoticeDao dao;
+	AdminNoticeDao dao;
 	
 	public int updateNotice(String title, String content, int n_no) {
 		return dao.updateNotice(title, content, n_no);

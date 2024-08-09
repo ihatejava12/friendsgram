@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import friendsgram.a.jhk.service.Board01Service;
-import friendsgram.a.jhk.service.Board02Service;
-import friendsgram.a.jhk.service.Board03Service;
-import friendsgram.a.jhk.service.Board04Service;
-import friendsgram.a.jhk.service.Board05Service;
+import friendsgram.a.jhk.service.AdminBoard01Service;
+import friendsgram.a.jhk.service.AdminBoard02Service;
+import friendsgram.a.jhk.service.AdminBoard03Service;
+import friendsgram.a.jhk.service.AdminBoard04Service;
+import friendsgram.a.jhk.service.AdminBoard05Service;
 import friendsgram.board01.dto.Board01Dto;
 import friendsgram.board01.dto.Board01_ComentDto;
 import friendsgram.board02.dto.Board02Dto;
@@ -28,7 +28,7 @@ import friendsgram.board05.dto.Board05Dto;
 public class AdminBoardController {
 
 	@Autowired
-	Board01Service service01;
+	AdminBoard01Service service01;
 	
 	@DeleteMapping("/delete1/{b_no01}")
 	@ResponseBody
@@ -92,7 +92,7 @@ public class AdminBoardController {
 	
 	
 	@Autowired
-	Board02Service service02;
+	AdminBoard02Service service02;
 	
 	@DeleteMapping("/delete2/{b_no02}")
 	@ResponseBody
@@ -156,7 +156,7 @@ public class AdminBoardController {
 	
 	
 	@Autowired
-	Board03Service service03;
+	AdminBoard03Service service03;
 	
 	@DeleteMapping("/delete3/{b_no03}")
 	@ResponseBody
@@ -217,7 +217,7 @@ public class AdminBoardController {
 	
 	
 	@Autowired
-	Board04Service service04;
+	AdminBoard04Service service04;
 	
 	@DeleteMapping("/delete4/{b_no04}")
 	@ResponseBody
@@ -278,7 +278,7 @@ public class AdminBoardController {
 	
 	
 	@Autowired
-	Board05Service service05;
+	AdminBoard05Service service05;
 	
 	@DeleteMapping("/delete5/{b_no05}")
 	@ResponseBody

@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import friendsgram.a.jhk.dao.WordDao;
+import friendsgram.a.jhk.dao.AdminWordDao;
 import friendsgram.admin.dto.WordDto;
 
 @Service
-public class WordService {
+public class AdminWordService {
 	
 	@Autowired
-	WordDao dao;
+	AdminWordDao dao;
 	
 	public int deleteWords(List<String> list) {
 		return dao.deleteWords(list);
