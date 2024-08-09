@@ -7,15 +7,15 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import friendsgram.a.jhk.dao.Board02Dao;
+import friendsgram.a.jhk.dao.AdminBoard02Dao;
 import friendsgram.board02.dto.Board02Dto;
 import friendsgram.board02.dto.Board02_ComentDto;
 
 @Service
-public class Board02Service {
+public class AdminBoard02Service {
 
 	@Autowired
-	Board02Dao dao;
+	AdminBoard02Dao dao;
 	
 	public int deleteOneBoard02(int b_no02) {
 		return dao.deleteOneBoard02(b_no02);

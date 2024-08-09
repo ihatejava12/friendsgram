@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import friendsgram.admin.dto.WordDto;
 
 @Mapper
-public interface WordDao {
+public interface AdminWordDao {
 	
 	@Delete({"<script>",
 				"delete from word where word in ",

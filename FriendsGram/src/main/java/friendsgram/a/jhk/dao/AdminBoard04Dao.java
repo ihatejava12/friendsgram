@@ -11,7 +11,7 @@ import friendsgram.board01.dto.Board01Dto;
 import friendsgram.board04.dto.Board04Dto;
 
 @Mapper
-public interface Board04Dao {
+public interface AdminBoard04Dao {
 	
 	// 해당 게시글 삭제
 		@Delete("delete from board04 where b_no04 = #{b_no04}")

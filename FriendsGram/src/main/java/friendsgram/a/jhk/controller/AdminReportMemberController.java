@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import friendsgram.a.jhk.service.ReportMemberService;
+import friendsgram.a.jhk.service.AdminReportMemberService;
 import friendsgram.member.dto.MemberDto;
 
 @Controller
 public class AdminReportMemberController {
 	
 	@Autowired
-	ReportMemberService reservice;
+	AdminReportMemberService reservice;
 	
 	@PostMapping("/updateReport")
 	public String updateReport(@RequestParam("searchn") int searchn,@RequestParam("reportn") int reportn, @RequestParam("id") String id) {

@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Update;
 import friendsgram.member.dto.MemberDto;
 
 @Mapper
-public interface ReportMemberDao {
+public interface AdminReportMemberDao {
 	
 	@Update("update member set r_consent = #{searchn}, sanction = #{reportn} where id = #{id}")
 	int updateReport(@Param("searchn") int searchn, @Param("reportn") int reportn, @Param("id") String id);
