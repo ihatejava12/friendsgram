@@ -12,9 +12,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class LoginIntercepter implements HandlerInterceptor{
 	
-	public List<String> loginEssential = Arrays.asList("/board/**");
+	public List<String> loginEssential = Arrays.asList("");
 	
-	public List<String> loginInessential = Arrays.asList("/board/list/**", "/board/content/**");
+	public List<String> loginInessential = Arrays.asList("");
 	
 	@Override
 	public boolean

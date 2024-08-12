@@ -87,7 +87,7 @@ a {
             <a href="#">코딩 게시판</a>
             <a href="#">프리랜서 검색</a>
             <a href="#">팀 모집</a>
-            <a href="/skw/board04/list">프리랜서 공고</a>
+            <a href="/list">프리랜서 공고</a>
             <a href="#">취업 공고</a>
         </nav>
         <div class="actions">
@@ -100,7 +100,7 @@ a {
 	<div id="center">
 		<h1>게시글 목록</h1>
 		<div align="right">
-			<a href="/main">main</a><a href="write">새글 등록</a>
+			<a href="/main">main</a><a href="/board04/write">새글 등록</a>
 		</div>
 
 		<c:if test="${count != 0 }">

@@ -11,7 +11,7 @@ import friendsgram.board04.dto.Board04Dto;
 @Mapper
 public interface Board04Dao {
 
-	int insert(Board04Dto dto);
+	int write(Board04Dto dto);
 	List<Board04Dto> boardList(Map<String, Object> m);
 	int count();//전체 글 갯수
 	Board04Dto boardOne(int no);

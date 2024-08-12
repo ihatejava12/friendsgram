@@ -60,13 +60,14 @@
             <a href="#">코딩 게시판</a>
             <a href="#">프리랜서 검색</a>
             <a href="#">팀 모집</a>
-            <a href="/board04/list">프리랜서 공고</a>
+            <a href="/list">프리랜서 공고</a>
             <a href="#">취업 공고</a>
         </nav>
         <div class="actions">
             
             <a class="profile" href="#">프로필</a>
             <a class="messages" href="#">메시지</a>
+            <a href="logout">로그아웃</a>
         </div>
     </header>
     

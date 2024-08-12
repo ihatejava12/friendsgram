@@ -7,6 +7,8 @@
 </head>
 <body>
 <h5>id와 password를 입력하세요</h5>
+<a href="loginform">일반회원</a>
+<a href="corporationloginform">기업회원</a>
 <form:form action="/corlogin" method="post" modelAttribute="command">
 <form:errors element="div"/>
 <table border="1" cellpadding="0" cellspacing="0">				

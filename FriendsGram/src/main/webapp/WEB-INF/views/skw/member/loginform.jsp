@@ -9,6 +9,8 @@
 <h5>id와 password를 입력하세요</h5>
 <form:form action="login" method="post" modelAttribute="command">
 <form:errors element="div"/>
+<label><input type="radio" name="type" value="0" checked/>일반회원</label>
+<label><input type="radio" name="type" value="1"/>기업회원</label>
 <table border="1" cellpadding="0" cellspacing="0">				
 	<tr>
 		<td bgcolor="orange" >아이디</td>

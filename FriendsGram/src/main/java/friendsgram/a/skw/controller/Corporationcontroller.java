@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import friendsgram.a.skw.service.CorporationService;
@@ -23,7 +24,7 @@ import friendsgram.a.skw.service.EmailService;
 import friendsgram.a.vo.EmailVO;
 import friendsgram.member.dto.Corporation_MemberDto;
 
-
+@SessionAttributes("user")
 @Controller
 public class Corporationcontroller {
 	@Autowired
@@ -122,23 +123,7 @@ public class Corporationcontroller {
 		return "skw/corporation/corporationloginform";
 	}
 	
-	@PostMapping("/corlogin")
-	public String corlogin(@ModelAttribute("command") @Validated Corporation_MemberDto dto, BindingResult error, Model m) {
-		System.out.println(dto);
-		
-		
-		if(error.hasErrors()) {
-			return "skw/corporation/corporationloginform";
-		}
-		Corporation_MemberDto resultDto = service.corlogin(dto);
-		if(resultDto == null) {
-			error.reject("nocode", "로그인 실패: 아이디나 비밀번호가 틀림");	
-			return "skw/corporation/corporationloginform";
-		}else {//로그인 성공
-			m.addAttribute("cuser", resultDto);
-		}
-		return "skw//corporation/main";
-	}
+
 	
 	@GetMapping("/corlogout")
 	public String logout(SessionStatus statusCor) {

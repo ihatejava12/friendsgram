@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import friendsgram.a.skw.dao.CorporationDao;
 import friendsgram.member.dto.Corporation_MemberDto;
+import friendsgram.member.dto.LoginDto;
 
 @Service
 public class CorporationService {
@@ -22,7 +23,7 @@ public class CorporationService {
 	public int insertCor(Corporation_MemberDto dto) {
 		return dao.insertCor(dto);
 	}
-	public Corporation_MemberDto corlogin(Corporation_MemberDto dto) {
+	public Corporation_MemberDto corlogin(LoginDto dto) {
 		return dao.corlogin(dto);
 	}
 	public int updateCor(Corporation_MemberDto dto) {
