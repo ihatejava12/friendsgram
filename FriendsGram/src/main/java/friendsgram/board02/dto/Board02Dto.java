@@ -11,7 +11,7 @@ public class Board02Dto {
 	private String join_date;
 	private String content;
 	private Date date;
-	private String join01;
+	private boolean join01;
 	private int volunteer;
 	private int num;
 	private String id;
