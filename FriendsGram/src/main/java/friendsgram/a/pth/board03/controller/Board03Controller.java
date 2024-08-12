@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class Board03Controller {
-	@GetMapping("board03/write")
+	@GetMapping("board03/freelancer")
 	public String board03Write() {
 		// 게시판 글 새로 쓰기
 		
 		
-		return "pth/board03/write";
+		return "pth/board03/freelancer";
 	}
 	
 	@GetMapping("board03/update/{no}")
