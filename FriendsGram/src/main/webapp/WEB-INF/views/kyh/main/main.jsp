@@ -22,7 +22,7 @@
 		</nav>
 		<div class="actions">
 			<a class="login" href="/loginform">로그인</a> <a class="profile" href="/myprofile">프로필</a>
-			<a class="messages" href="#">메시지</a>
+			<a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
 		</div>
 	</header>
 
@@ -39,7 +39,7 @@
 
 		<section class="notice-section">
 			<div class="notices">
-				<h2 class="noticeshead"><a href="#">공지사항</a></h2>
+				<h2 class="noticeshead"><a href="/adminpage/notice">공지사항</a></h2>
 				<div class="notice-list">
 					<c:forEach var="notice" items="${notices}">
 						<div class="notice-item">
@@ -53,7 +53,7 @@
 			</div>
 
 			<div class="board04-posts">
-				<h2 class="board04_head"><a href="#">프리랜서 공고</a></h2>
+				<h2 class="board04_head"><a href="/list">프리랜서 공고</a></h2>
 				<div class="board04-list">
                 <c:forEach var="b04" items="${b04}">
                     <div class="board04-item">
