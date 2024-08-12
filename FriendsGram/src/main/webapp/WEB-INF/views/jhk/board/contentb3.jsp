@@ -9,8 +9,8 @@
 		<ul>
 			<li><a href="/adminpage/board01">게시판 관리</a></li>
 			<li><a href="/adminpage/notice">공지사항</a></li>
-			<li><a href="#">문의사항</a></li>
-			<li><a href="#">광고문의</a></li>
+			<li><a href="/adminpage/questionlist">문의사항</a></li>
+			<li><a href="/adminpage/advertisinglist">광고문의</a></li>
 			<li><a href="#">홈페이지 광고편집</a></li>
 			<li><a href="/adminpage/consent">기업회원 인증 관리</a></li>
 			<li><a href="/adminpage/memberlist">비매너 회원 제재</a></li>

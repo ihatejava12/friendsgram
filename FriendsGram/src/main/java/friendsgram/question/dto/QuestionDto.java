@@ -10,7 +10,7 @@ public class QuestionDto {
 	private String title;
 	private String content;
 	private Date date;
-	private boolean question_type;
+	private int question_type;
 	private boolean request;
 
 	private String id;

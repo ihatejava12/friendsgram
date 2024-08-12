@@ -11,8 +11,8 @@
 		<ul>
 			<li><a href="/adminpage/board01">게시판 관리</a></li>
 			<li><a href="/adminpage/notice">공지사항</a></li>
-			<li><a href="#">문의사항</a></li>
-			<li><a href="#">광고문의</a></li>
+			<li><a href="/adminpage/questionlist">문의사항</a></li>
+			<li><a href="/adminpage/advertisinglist">광고문의</a></li>
 			<li><a href="#">홈페이지 광고편집</a></li>
 			<li><a href="/adminpage/consent">기업회원 인증 관리</a></li>
 			<li><a href="/adminpage/memberlist">비매너 회원 제재</a></li>
@@ -21,6 +21,7 @@
 		</ul>
 	</div>
 	<hr>
+	<div>
 	<form action="/adminpage/memberlist">
 		<select name="searchn">
 			<option value="0">전체</option>
@@ -28,7 +29,7 @@
 			<option value="2">이름</option>
 		</select>
 		<input type="text" placeholder="아이디 혹은 이름을 입려하세요" name="search">
-		<input type="submit">
+		<input type="submit" value="검색">
 	</form>
 	
 	
@@ -56,7 +57,18 @@
 			</c:forEach>
 		</table>
 	</div>
-	
+	<div id="page">
+				<c:if test="${begin > pageNum }">
+					<a href="memberlist?p=${begin-1 }&search=${search}&searchn=${searchn}">[이전]</a>
+				</c:if>
+				<c:forEach begin="${begin }" end="${end}" var="i">
+					<a href="memberlist?p=${i}&search=${search}&searchn=${searchn}">${i}</a>
+				</c:forEach>
+				<c:if test="${end < totalPages }">
+					<a href="memberlist?p=${end+1}&search=${search}&searchn=${searchn}">[다음]</a>
+				</c:if>
+			</div>
+		</div>
 	
 	
 	
