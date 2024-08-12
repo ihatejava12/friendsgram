@@ -21,7 +21,14 @@
 			 <a	href="/list">프리랜서 공고</a> <a href="/board05">취업 공고</a>
 		</nav>
 		<div class="actions">
-			<a class="login" href="/loginform">로그인</a> <a class="profile" href="/myprofile">프로필</a>
+			<c:if test="${user.id != null }">
+			<a class="login" href="/logout">로그아웃</a>
+			</c:if>
+			<c:if test="${user.id == null }">
+			<a class="login" href="/loginform">로그인</a>
+			</c:if>
+			
+			 <a class="profile" href="/myprofile">프로필</a>
 			<a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
 		</div>
 	</header>
