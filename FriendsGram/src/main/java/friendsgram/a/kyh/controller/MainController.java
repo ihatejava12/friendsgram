@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import friendsgram.a.kyh.service.MainService;
 import friendsgram.admin.dto.NoticeDto;
-import friendsgram.board05.dto.Board05Dto;
+import friendsgram.board04.dto.Board04Dto;
 import friendsgram.member.dto.MemberDto;
 
 @Controller
@@ -30,8 +30,8 @@ public class MainController {
 	@GetMapping("/main")
     public String showMainPage(Model model) {
         List<NoticeDto> recentNotices = mservice.getRecentMainNotices();
-        List<Board05Dto> b05 = mservice.getRecentMainBoard05();
-        model.addAttribute("b05", b05);
+        List<Board04Dto> b04 = mservice.getRecentMainBoard04();
+        model.addAttribute("b05", b04);
         model.addAttribute("notices", recentNotices);
         return "kyh/main/main"; // JSP 파일의 경로
     }

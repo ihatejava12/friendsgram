@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import friendsgram.a.kyh.dao.MainDao;
 import friendsgram.admin.dto.NoticeDto;
-import friendsgram.board05.dto.Board05Dto;
+import friendsgram.board04.dto.Board04Dto;
 
 @Service
 public class MainService {
@@ -19,8 +19,8 @@ public class MainService {
         return maindao.mainnotice();
     }
 	
-	public List<Board05Dto> getRecentMainBoard05() {
-        return maindao.mainboard05();
+	public List<Board04Dto> getRecentMainBoard04() {
+        return maindao.mainboard04();
     }
 
 }
