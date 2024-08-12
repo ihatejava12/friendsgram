@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import friendsgram.a.skw.dao.MemberDao;
+import friendsgram.member.dto.LoginDto;
 import friendsgram.member.dto.MemberDto;
 
 @Service
@@ -22,9 +23,14 @@ public class MemberService {
 		public int insertMem(MemberDto dto) {
 			return dao.insertMem(dto);
 		}
-		public MemberDto login(MemberDto dto) {
+//		public MemberDto login(MemberDto dto) {
+//			return dao.login(dto);
+//		}
+		
+		public MemberDto login(LoginDto dto) {
 			return dao.login(dto);
 		}
+		
 		public int updateMem(MemberDto dto) {
 			return dao.updateMem(dto);
 		}

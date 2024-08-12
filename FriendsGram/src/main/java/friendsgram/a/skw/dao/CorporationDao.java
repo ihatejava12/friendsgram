@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import friendsgram.member.dto.Corporation_MemberDto;
+import friendsgram.member.dto.LoginDto;
 
 @Mapper
 public interface CorporationDao {
@@ -17,7 +18,7 @@ public interface CorporationDao {
 	
 	int insertCor(Corporation_MemberDto dto);
 	
-	Corporation_MemberDto corlogin(Corporation_MemberDto dto);
+	Corporation_MemberDto corlogin(LoginDto dto);
 	int updateCor(Corporation_MemberDto dto);
 	int delete_Cor(String id);
 	

@@ -4,9 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="friendsgram.a.skw.dao.Board04Dao">
 
-	<insert id="insert" parameterType="friendsgram.board04.dto.Board04Dto">
-		insert into board04(id,title, content, regdate)
-		values( #{id}, #{title},#{content},now())
+	<insert id="write" parameterType="friendsgram.board04.dto.Board04Dto">
+		insert into board01(title,content,date,join_date,join2,work_type,volunteer,salary,employment_date,employment_start,career_period,id)
+		values(#{title},#{content},now(),#{join_date},#{join2},#{work_type},#{volunteer},#{salary},#{employment_date},#{employment_start},#{career_period},#{id})
 	</insert>  
 
 	<update id="updateBoard" parameterType="friendsgram.board04.dto.Board04Dto">

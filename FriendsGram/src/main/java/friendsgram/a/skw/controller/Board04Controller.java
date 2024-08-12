@@ -35,20 +35,20 @@ public class Board04Controller {
 			return new MemberDto();
 		}
 		
-		@GetMapping("/write")
+		@GetMapping("board04/write")
 		public String writeForm(@ModelAttribute("user") MemberDto dto ) {
 			return "skw/board04/write";
 		}
 		
-		@PostMapping("/write")
-		public String write(@ModelAttribute("board") @Validated Board04Dto dto, BindingResult error) {
+		@PostMapping("board04/write")
+		public String writeForm(@ModelAttribute("board") @Validated Board04Dto dto, BindingResult error) {
 			if(error.hasErrors()) {
 				error.reject("nocode", "제목이 없습니다");
 				return "skw/board04/write";
 			}
 			
-			service.insert(dto);
-			return "redirect:/skw/board04/list";// 글목록
+			service.write(dto);
+			return "skw/board04/list";// 글목록
 		}
 		//요청 page 번호를 받아서 페이지에 맞는 글을 갯수에 맞게 꺼내옴
 		//전체 글 갯수에 맞춰 페이징 처리
@@ -62,9 +62,9 @@ public class Board04Controller {
 			int perPage = 10; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage; // 인덱스 번호
 			
-			List<Board04Dto> boardList = service.boardList(startRow, perPage);
+			List<Board04Dto> board04List = service.boardList(startRow, perPage);
 			
-			m.addAttribute("bList", boardList);
+			m.addAttribute("board04List", board04List);
 
 			int pageNum = 5; // 보여질 페이지 번호 수
 			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); //전체 페이지 수

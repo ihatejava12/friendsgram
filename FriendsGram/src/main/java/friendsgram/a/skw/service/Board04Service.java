@@ -28,8 +28,8 @@ public class Board04Service {
 		return dao.boardList(m);
 	}
 	
-	public int insert(Board04Dto dto) {
-		return dao.insert(dto);
+	public int write(Board04Dto dto) {
+		return dao.write(dto);
 	}
 	public Board04Dto boardOne(int no) {
 		dao.addReadCount(no); // 조회수 증가
