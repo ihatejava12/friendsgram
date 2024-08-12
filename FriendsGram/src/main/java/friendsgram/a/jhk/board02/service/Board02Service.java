@@ -1,4 +1,4 @@
-package friendsgram.a.jhk.board03.service;
+package friendsgram.a.jhk.board02.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import friendsgram.a.jhk.board03.dao.Board02Dao;
+import friendsgram.a.jhk.board02.dao.Board02Dao;
 import friendsgram.board02.dto.Board02Dto;
 import friendsgram.board02.dto.Board02_CodeDto;
 

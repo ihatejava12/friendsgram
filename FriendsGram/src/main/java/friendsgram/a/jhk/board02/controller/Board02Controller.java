@@ -1,4 +1,4 @@
-package friendsgram.a.jhk.board03.controller;
+package friendsgram.a.jhk.board02.controller;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import friendsgram.a.jhk.board03.service.Board02Service;
+import friendsgram.a.jhk.board02.service.Board02Service;
 import friendsgram.board02.dto.Board02Dto;
 import friendsgram.board02.dto.Board02_CodeDto;
 
