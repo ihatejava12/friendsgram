@@ -135,7 +135,7 @@ main {
 }
 
 .job-post {
-    background-color: #00ff00; /* 연초록색 배경 */
+    background-color: #0c9100; /* 연초록색 배경 */
     border-radius: 8px;
     padding: 15px;
     margin-bottom: 15px;
@@ -151,21 +151,21 @@ main {
 }
 
 .job-header h3 {
-    font-size: 18px;
+    font-size: 13px;
     font-weight: bold;
-    color: #3b82f6;
+    color: white;
 }
 
 .job-header p {
     font-size: 14px;
-    color: #6b7280;
+    color: white;
 }
 
-.job-description p {
-    font-size: 16px;
+.job-description p,a {
+    font-size: 18px;
     margin: 10px 0;
     font-weight: bold;
-    color: #1f2937;
+    color: #16191e;
 }
 
 .job-details {
@@ -175,17 +175,23 @@ main {
 }
 
 .tags {
+    margin-top: 10px;
     display: flex;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 5px;
 }
 
-.tag {
-    background-color: #93c5fd;
-    color: white;
-    border-radius: 4px;
-    padding: 3px 8px;
-    font-size: 12px;
+.tags .tag {
+    background-color: #ffcc00; /* 태그의 배경색 */
+    color: #333; /* 텍스트 색상 */
+    padding: 5px 10px; /* 내부 여백 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    font-size: 14px; /* 글씨 크기 */
+    font-weight: bold; /* 글씨 두께 */
+    display: inline-block; /* 태그를 인라인 블록으로 */
 }
+
+
 
 .work-type {
     display: flex;
