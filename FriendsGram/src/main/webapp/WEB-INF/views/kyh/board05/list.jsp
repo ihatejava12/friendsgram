@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,8 +40,13 @@
 					<div class="filter-group">
 						<label for="workType">근무 형태</label> <select id="workType">
 							<option value="all">전체</option>
-							<option value="fulltime">정규직</option>
-							<option value="freelance">프리랜서</option>
+							<option value="서울">서울</option>
+							<option value="경기">경기</option>
+							<option value="인천">인천</option>
+							<option value="강원도">강원도</option>
+							<option value="충청도">충청도</option>
+							<option value="전라도">전라도</option>
+							<option value="경상도">경상도</option>
 						</select>
 					</div>
 					<div class="filter-group">
@@ -68,18 +74,29 @@
 					<div class="job-header">
 						<h3>${board.company}</h3>
 						<!-- 회사명 -->
-						<p>작성일: ${board.date}</p>
+						<p>
+							작성일:
+							<fmt:formatDate value="${board.date}" pattern="yyyy-MM-dd" />
+						</p>
 					</div>
 					<div class="job-description">
-						<p>${board.title}</p>
+						<p>
+							<a href="/board05/join" style="text-decoration: none;">${board.title}</a>
+						</p>
 					</div>
+
 					<div class="job-details">
-						<p>${board.work_area}| 경력기간: ${board.career_period}년</p>
+						<p>${board.work_area}|경력기간:${board.career_period}년</p>
 						<!-- 지역 및 경력 기간 -->
+
+						<!-- 사용 언어 태그 -->
+						
+						
 						<div class="tags">
-							<span class="tag">JAVA</span> <span class="tag">PYTHON</span> <span
-								class="tag">HTML</span>
-						</div>
+               				 <c:forEach var="code" items="${board.codes}">
+                   				 <span class="tag">${code}</span>
+                			</c:forEach>
+            			</div>
 						<div class="work-type">
 							<c:if test="${board.work_type == true}">
 								<span class="work-type-tag red">상주</span>

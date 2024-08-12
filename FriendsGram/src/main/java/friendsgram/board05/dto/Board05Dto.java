@@ -2,6 +2,7 @@ package friendsgram.board05.dto;
 
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -19,5 +20,5 @@ public class Board05Dto {
 	private String background;
 	private String company;
 	private String id;
-
+	private List<String> codes; // 새로 추가된 필드
 }

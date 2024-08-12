@@ -6,14 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css?family=Inter&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Epilogue&display=swap"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Lexend&display=swap"
-	rel="stylesheet">
-<link href="/css/main.css" rel="stylesheet">
+<link href="/css/kyh/main.css" rel="stylesheet">
 <title>프렌즈그램</title>
 </head>
 <body>
@@ -24,8 +17,8 @@
 			</a>
 		</div>
 		<nav class="navigation">
-			<a href="#">코딩 게시판</a>  <a href="#">팀 모집</a> <a href="#">프리랜서 검색</a>
-			 <a	href="#">프리랜서 공고</a> <a href="/board05">취업 공고</a>
+			<a href="board01/main">코딩 게시판</a>  <a href="board02/main">팀 모집</a> <a href="#">프리랜서 검색</a>
+			 <a	href="/board04/list">프리랜서 공고</a> <a href="/board05">취업 공고</a>
 		</nav>
 		<div class="actions">
 			<a class="login" href="#">로그인</a> <a class="profile" href="#">프로필</a>
@@ -59,15 +52,15 @@
 				</div>
 			</div>
 
-			<div class="board05-posts">
-				<h2 class="board05_head"><a href="#">프리랜서 공고</a></h2>
-				<div class="board05-list">
-                <c:forEach var="b05" items="${b04}">
-                    <div class="board05-item">
-                        <div class="b05_header">
-                            <h3 class="board05_title"><a href="#">${b04.title}</a></h3>
+			<div class="board04-posts">
+				<h2 class="board04_head"><a href="#">프리랜서 공고</a></h2>
+				<div class="board04-list">
+                <c:forEach var="b04" items="${b04}">
+                    <div class="board04-item">
+                        <div class="b04_header">
+                            <h3 class="board04_title"><a href="#">${b04.title}</a></h3>
                         </div>
-                        <div class="b05_details">
+                        <div class="b04_details">
                             <p>예상 금액: ${b04.salary}</p>
                             <p>시작 예정일: ${b04.employment_start}</p>
                             <p>예상 기간: ${b04.employment_date}</p>
