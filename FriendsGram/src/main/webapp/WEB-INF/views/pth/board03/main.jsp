@@ -61,7 +61,7 @@
         </div>
         <nav class="navigation">
             <a href="/board01/main">코딩 게시판</a>
-            <a href="#">프리랜서 검색</a>
+            <a href="/board03/main">프리랜서 검색</a>
             <a href="#">팀 모집</a>
             <a href="#">프리랜서 공고</a>
             <a href="#">취업 공고</a>
@@ -69,7 +69,7 @@
         <div class="actions">
             <a class="login" href="#">로그인</a>
             <a class="profile" href="#">프로필</a>
-            <a class="messages" href="#">메시지</a>
+           <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
         </div>
     </header>
 </div>
