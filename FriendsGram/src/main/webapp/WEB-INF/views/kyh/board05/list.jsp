@@ -40,6 +40,13 @@
 					<div class="filter-group">
 						<label for="workType">근무 형태</label> <select id="workType">
 							<option value="all">전체</option>
+							<option value="상주">상주</option>
+							<option value="원격">원격</option>
+						</select>
+					</div>
+					<div class="filter-group">
+						<label for="region">지역</label> <select id="region">
+							<option value="all">전체</option>
 							<option value="서울">서울</option>
 							<option value="경기">경기</option>
 							<option value="인천">인천</option>
@@ -47,13 +54,6 @@
 							<option value="충청도">충청도</option>
 							<option value="전라도">전라도</option>
 							<option value="경상도">경상도</option>
-						</select>
-					</div>
-					<div class="filter-group">
-						<label for="region">지역</label> <select id="region">
-							<option value="all">전체</option>
-							<option value="seoul">서울</option>
-							<option value="busan">부산</option>
 						</select>
 					</div>
 				</div>
