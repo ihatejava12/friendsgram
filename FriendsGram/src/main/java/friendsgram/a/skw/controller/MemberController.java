@@ -40,7 +40,7 @@ public class MemberController {
 	
 	@GetMapping("/findpw")
 	public String findpw() {
-		return "member/findpw";
+		return "skw/member/findpw";
 	}
 	@GetMapping("/findpwresult")
 	public String findpwresult(@ModelAttribute("command") MemberDto dto, BindingResult errors, @RequestParam("email") String email) {
@@ -50,7 +50,7 @@ public class MemberController {
 		
 		if(count == 0) { //id 또는 name 틀림
 			errors.reject("nocode", "아이디나 이름이 틀렸습니다.");
-			return "login/findpw";
+			return "skw/login/findpw";
 		}else { // 이메일 전송, loginform으로 이동
 			EmailVO e = new EmailVO();
 			
@@ -71,7 +71,7 @@ public class MemberController {
 			}
 		}
 		
-		return "member/loginform";
+		return "skw/member/loginform";
 	}
 	
 	private String createNewPassword() {
@@ -107,7 +107,7 @@ public class MemberController {
 	
 	@GetMapping("/insert")
 	public String joinform() {
-		return "member/joinform";
+		return "skw/member/joinform";
 	}
 	
 	@GetMapping("/idCheck")
@@ -125,7 +125,7 @@ public class MemberController {
 	
 	@GetMapping("/loginform")
 	public String loginform() {
-		return "member/loginform";
+		return "skw/member/loginform";
 	}
 	
 	@PostMapping("/login")
@@ -134,7 +134,7 @@ public class MemberController {
 		
 		
 		if(error.hasErrors()) {
-			return "member/loginform";
+			return "skw/member/loginform";
 		}
 		MemberDto resultDto = service.login(dto);
 		if(resultDto == null) {
@@ -154,7 +154,7 @@ public class MemberController {
 	
 	@GetMapping("/update")
 	public String updateform() {
-		return "member/updateform";
+		return "skw/member/updateform";
 	}
 	
 	@PutMapping("/update")
@@ -166,7 +166,7 @@ public class MemberController {
 	@GetMapping("/delete")
 	public String deleteform(@RequestParam(value="result",required = false) String result, Model m) {
 		m.addAttribute("result",result);
-		return "member/deleteform";
+		return "skw/member/deleteform";
 	}
 	
 	@DeleteMapping("/delete")
@@ -186,7 +186,7 @@ public class MemberController {
 		if(dto.getId() != null) {
 			return "member/main";
 		}else {
-			return "member/loginform";
+			return "skw/member/loginform";
 		}
 	}   
 }

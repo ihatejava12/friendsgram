@@ -6,7 +6,313 @@
 </head>
 <body>
  <style>
- 	@charset "utf-8";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  position: fixed; /* 헤더를 화면에 고정 */
+  top: 0; /* 화면 상단에 위치 */
+  left: 0; /* 화면 왼쪽에 위치 */
+  width: 100%; /* 화면 너비에 맞게 설정 */
+  z-index: 1000; /* 다른 요소 위에 보이도록 설정 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+	 margin-top: 80px; /* 헤더 높이만큼의 여백 추가 */
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+.navigation a {
+  margin-right: 15px;
+  color: #565E6C;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.actions a {
+  margin-left: 10px;
+  color: #0C9200;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+main {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures full viewport height is covered */
+  margin: 0;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+.main-content {
+  max-width: 100vw;
+  width: 100%;
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  
+}
+
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0C9200; /* 초록색 배경 */
+  color: white;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.hero-image {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  justify-content: center; /* 이미지를 중앙에 위치 */
+  max-height: 100%;
+}
+
+.hero-image img {
+  width: 100%; /* 이미지 너비를 컨테이너에 맞춤 */
+  height: 100%; /* 이미지 높이를 컨테이너에 맞춤 */
+  object-fit: cover; /* 이미지가 컨테이너를 가득 채우도록 조정하되, 비율은 유지 */
+  border-radius: 10px 0px 0px 10px;; /* 이미지의 모서리를 둥글게 하지 않음 */
+}
+
+
+.hero-text {
+  flex: 1;
+  max-width: 50%;
+  padding-left: 20px;
+}
+
+.hero-text h1 {
+  font-size: 36px; /* 크기 유지 */
+  margin-bottom: 20px;
+}
+
+
+.cta-button {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #0C9200;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.notice-section {
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+  justify-content: center; /* 요소들을 가운데 정렬 */
+  align-items: center; /* 수직 방향으로도 중앙 정렬 */
+}
+/* 공지사항 헤더 스타일 */
+.noticeshead a {
+    text-decoration: none; /* a 태그의 기본 밑줄 제거 */
+    color: inherit; /* 부모 요소의 텍스트 색상을 상속 */
+    transition: color 0.3s; /* 마우스를 올렸을 때 부드럽게 색상 변화 */
+}
+
+.noticeshead a:hover {
+    color: #007bff; /* 마우스를 올렸을 때 색상 변경 */
+}
+
+
+
+.notices {
+  width: 30%; /* 더 작게 조정 */
+}
+
+.board05-posts {
+  width: 66%; /* 더 크게 조정 */
+}
+
+.notice-item {
+    display: flex; /* 수평 배치를 위한 flexbox 사용 */
+    justify-content: space-between; /* 두 요소 사이의 공간을 자동으로 조정 */
+    align-items: center; /* 수직 중앙 정렬 */
+    margin-bottom: 10px; /* 항목 간의 여백 추가 */
+     border-bottom: 1px solid #ccc; /* 구분선 추가 */
+    padding-bottom: 10px; /* 구분 */
+}
+
+.notice-item h3 {
+    margin: 0; /* 제목의 여백 제거 */
+    flex-grow: 1; /* 제목이 가능한 한 많은 공간을 차지하도록 설정 */
+}
+
+.notice-item p {
+    margin: 0; /* 날짜의 여백 제거 */
+    text-align: left; /* 오른쪽 정렬 */
+    flex-shrink: 0; /* 날짜 크기가 줄어들지 않도록 설정 */
+}
+.notice-date {
+    color: #333;
+    white-space: nowrap;
+    text-align: left; /* 왼쪽 정렬 */
+    font-size: 0.9em; /* 폰트 크기 조정 (선택 사항) */
+    margin-top: 5px; /* 제목과 날짜 사이의 간격 */
+}
+
+
+
+.notice-list, .board05-list {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  height: 330px;
+}
+
+.notice-title {
+    flex-grow: 1;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s, background-color 0.3s; /* 색상과 배경색 전환 효과 추가 */
+}
+
+.notice-content {
+    display: flex;
+    justify-content: space-between; /* 제목과 날짜 사이 간격 */
+    width: 100%;
+}
+
+.notice-title:hover {
+    text-decoration: underline; /* 밑줄 추가로 강조 표시 */
+    color: #007bff; /* 강조할 때 텍스트 색상 변경 */
+    background-color: #e0e0e0; /* 강조할 때 배경색 변경 */
+}
+.notice-date {
+    color: #333;
+    white-space: nowrap;
+    text-align: left; /* 왼쪽 정렬 */
+    font-size: 0.9em; /* 폰트 크기 조정 (선택 사항) */
+    margin-top: 5px; /* 제목과 날짜 사이의 간격 */
+}
+
+/* 프리랜서 공고 헤더 스타일 */
+.board05_head a {
+    text-decoration: none; /* a 태그의 기본 밑줄 제거 */
+    color: inherit; /* 부모 요소의 텍스트 색상을 상속 */
+    transition: color 0.3s; /* 마우스를 올렸을 때 부드럽게 색상 변화 */
+}
+
+.board05_head a:hover {
+    color: #007bff; /* 마우스를 올렸을 때 색상 변경 */
+}
+.board05_head {
+    margin-bottom: 10px; /* 섹션 제목과 목록 사이의 여백 */
+    padding-left: 20px; /* 왼쪽에 패딩 추가 */
+    display: flex; /* 플렉스 박스 사용 */
+    align-items: center; /* 수직 중앙 정렬 */
+    height: 20px; /* 높이 설정 */
+}
+
+.board05_title a {
+    text-decoration: none; /* a 태그의 기본 밑줄 제거 */
+    color: inherit; /* 부모 요소의 텍스트 색상을 상속 */
+    transition: color 0.3s; /* 마우스를 올렸을 때 부드럽게 색상 변화 */
+}
+
+.board05_title a:hover {
+    color: #007bff; /* 마우스를 올렸을 때 색상 변경 */
+}
+
+.board05-posts {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.board05-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+}
+
+.b05_header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.b05_details p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.b05_details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.b05_details p {
+    width: calc(33.33% - 10px); /* 세 개의 열로 나누기 */
+    margin-right: 10px;
+}
+
+
+.footer {
+  background-color: rgba(30, 33, 40, 0.68);
+  color: white;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: auto; /* 푸터가 페이지의 끝에 위치하도록 설정 */
+  position: relative; /* 포지션 속성을 고정하지 않음 */
+}
+
+.footer-links a {
+  margin-right: 15px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.company-info p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+
+
+@charset "utf-8";
     .header {
   display: flex;
   justify-content: space-between;
@@ -35,15 +341,6 @@
   text-decoration: none;
 }
 
-@media (max-width: 768px) {
-  .hero-section {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .hero-image img {
-    margin-top: 20px;
-  }
  </style>
  
  <header class="header">

@@ -35,24 +35,24 @@ public class Board04Controller {
 			return new MemberDto();
 		}
 		
-		@GetMapping("/board04/write")
+		@GetMapping("/write")
 		public String writeForm(@ModelAttribute("user") MemberDto dto ) {
-			return "board04/write";
+			return "skw/board04/write";
 		}
 		
-		@PostMapping("/board04/write")
+		@PostMapping("/write")
 		public String write(@ModelAttribute("board") @Validated Board04Dto dto, BindingResult error) {
 			if(error.hasErrors()) {
 				error.reject("nocode", "제목이 없습니다");
-				return "board04/write";
+				return "skw/board04/write";
 			}
 			
 			service.insert(dto);
-			return "redirect:/board04/list";// 글목록
+			return "redirect:/skw/board04/list";// 글목록
 		}
 		//요청 page 번호를 받아서 페이지에 맞는 글을 갯수에 맞게 꺼내옴
 		//전체 글 갯수에 맞춰 페이징 처리
-		@GetMapping("/board04/list")
+		@GetMapping("/list")
 		public String list(@RequestParam(name="p", defaultValue = "1") int page, Model m ) {
 			
 			//글이 있는지 체크
@@ -81,7 +81,7 @@ public class Board04Controller {
 			
 			}
 			m.addAttribute("count", count);
-			return "board04/list";
+			return "/skw/board04/list";
 		}
 		
 		@GetMapping("board04/content/{no}")
@@ -90,14 +90,14 @@ public class Board04Controller {
 			m.addAttribute("dto", dto);
 			
 			
-			return "board04/content";
+			return "skw/board04/content";
 		}
 		
 		@GetMapping("board04/update/{no}")
 		public String updateForm(@PathVariable("no") int no, Model m) {
 			Board04Dto dto = service.boardOne(no);
 			m.addAttribute("dto", dto);
-			return "board04/updateForm";
+			return "skw/board04/updateForm";
 		}
 		
 		@PutMapping("/board04/update")
@@ -107,14 +107,14 @@ public class Board04Controller {
 			// "reditect:/board/content/"+dto.getNo();
 		}
 		
-		@DeleteMapping("/board04/delete")
+		@DeleteMapping("/skw/board04/delete")
 		@ResponseBody
 		public int delete(@RequestParam("no") int no) {
 			int i = service.deleteBoard(no); 
 			return i;
 		}
 		
-		@GetMapping("/board04/search")
+		@GetMapping("/skw/board04/search")
 		public String search(@RequestParam("searchn") int searchn, @RequestParam("search") String search, @RequestParam(name = "p", defaultValue = "1") int page, Model m) {
 			
 			int count = service.countSearch(searchn, search);
@@ -150,7 +150,7 @@ public class Board04Controller {
 			m.addAttribute("searchn", searchn);
 			m.addAttribute("search", search);
 			
-			return "board04/search";
+			return "skw/board04/search";
 		}
 		
 

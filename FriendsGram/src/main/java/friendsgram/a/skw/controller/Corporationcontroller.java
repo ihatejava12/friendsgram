@@ -38,7 +38,7 @@ public class Corporationcontroller {
 	
 	@GetMapping("/findCorpw")
 	public String findpw() {
-		return "corporation/findpw";
+		return "skw/corporation/findpw";
 	}
 	@GetMapping("/findCorpwresult")
 	public String findpwresult(@ModelAttribute("command") Corporation_MemberDto dto, BindingResult errors, @RequestParam("email") String email) {
@@ -48,7 +48,7 @@ public class Corporationcontroller {
 		
 		if(count == 0) { //id 또는 name 틀림
 			errors.reject("nocode", "아이디나 이름이 틀렸습니다.");
-			return "corporation/findpw";
+			return "skw/corporation/findpw";
 		}else { // 이메일 전송, loginform으로 이동
 			EmailVO e = new EmailVO();
 			
@@ -69,7 +69,7 @@ public class Corporationcontroller {
 			}
 		}
 		
-		return "corporation/coporationloginform";
+		return "skw/corporation/coporationloginform";
 	}
 	
 	private String createNewPassword() {
@@ -102,7 +102,7 @@ public class Corporationcontroller {
 	
 	@GetMapping("/corporationinsert")
 	public String corporationjoinform() {
-		return "corporation/corporationjoinform";
+		return "skw/corporation/corporationjoinform";
 	}
 	@GetMapping("/coridCheck")
 	@ResponseBody
@@ -114,12 +114,12 @@ public class Corporationcontroller {
 	@PostMapping("/insertCor")
 	public String insert(@Validated Corporation_MemberDto dto) {
 		service.insertCor(dto);
-		return "/corporation/corporationloginform";
+		return "/skw/corporation/corporationloginform";
 	}
 	
 	@GetMapping("/corporationloginform")
 	public String loginform() {
-		return "corporation/corporationloginform";
+		return "skw/corporation/corporationloginform";
 	}
 	
 	@PostMapping("/corlogin")
@@ -128,16 +128,16 @@ public class Corporationcontroller {
 		
 		
 		if(error.hasErrors()) {
-			return "corporation/corporationloginform";
+			return "skw/corporation/corporationloginform";
 		}
 		Corporation_MemberDto resultDto = service.corlogin(dto);
 		if(resultDto == null) {
 			error.reject("nocode", "로그인 실패: 아이디나 비밀번호가 틀림");	
-			return "corporation/corporationloginform";
+			return "skw/corporation/corporationloginform";
 		}else {//로그인 성공
 			m.addAttribute("cuser", resultDto);
 		}
-		return "/corporation/main";
+		return "skw//corporation/main";
 	}
 	
 	@GetMapping("/corlogout")
@@ -148,19 +148,19 @@ public class Corporationcontroller {
 	
 	@GetMapping("/updateCor")
 	public String updateform() {
-		return "corporation/updateform";
+		return "skw/corporation/updateform";
 	}
 	
 	@PutMapping("/updateCor")
 	public String updateCor(@ModelAttribute("user") Corporation_MemberDto dto) {
 		service.updateCor(dto);
-		return "redirect:corporation/main";
+		return "redirect:skw/corporation/main";
 	}
 	
 	@GetMapping("/deleteCor")
 	public String deleteform(@RequestParam(value="result",required = false) String result, Model m) {
 		m.addAttribute("result",result);
-		return "corporation/deleteform";
+		return "skw/corporation/deleteform";
 	}
 	
 	@DeleteMapping("/deleteCor")
@@ -178,9 +178,9 @@ public class Corporationcontroller {
 	@RequestMapping("/Cormain")
 	public String main(@ModelAttribute("user") Corporation_MemberDto dto) {
 		if(dto.getId() != null) {
-			return "corporation/main";
+			return "skw/corporation/main";
 		}else {
-			return "corporation/coporationloginform";
+			return "skw/corporation/coporationloginform";
 		}
 	}   
 }
