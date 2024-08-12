@@ -1,4 +1,4 @@
-package friendsgram.a.jhk.board03.dao;
+package friendsgram.a.jhk.board02.dao;
 
 import java.util.List;
 import java.util.Map;
