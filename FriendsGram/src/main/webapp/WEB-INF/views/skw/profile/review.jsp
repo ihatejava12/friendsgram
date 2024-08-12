@@ -5,11 +5,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<!--  bList begin end count pageNum totalPages -->
+<title>글 목록</title>
+<style>
+#center {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table {
+	border: 1px solid black;
+	width: 700px;
+	border-collapse: collapse;
+}
+
+th {border: 1px solid black;
+	background-color: orange;
+	width: 150px;
+}
+td{border: 1px solid black;}
+a {
+	margin: 10px auto;
+}
+
+#page {
+	text-align: center;
+}
+</style>
 </head>
 <body>
- <style>
+
+<style>
  	@charset "utf-8";
     .header {
   display: flex;
@@ -53,23 +80,30 @@
  <header class="header">
         <div class="logo">
             <a href="/main">
-                <img src="img/logo.png" alt="프렌즈그램 로고" class="logo-image"/>
+                <img src="../img/logo.png" alt="프렌즈그램 로고" class="logo-image"/>
             </a>
         </div>
         <nav class="navigation">
             <a href="#">코딩 게시판</a>
             <a href="#">프리랜서 검색</a>
             <a href="#">팀 모집</a>
-            <a href="/board04/list">프리랜서 공고</a>
+            <a href="/list">프리랜서 공고</a>
             <a href="#">취업 공고</a>
         </nav>
         <div class="actions">
             
-            <a class="profile" href="#">프로필</a>
+            <a class="profile" href="myprofile">프로필</a>
             <a class="messages" href="#">메시지</a>
+            <a class="logout" href="logout">로그아웃</a>
         </div>
     </header>
-    
-    
+	<div id="center">
+		<h1>개인페이지 작성중</h1>
+		<a href="/myprofile">나의 정보</a>
+		<a href="/info">이력서</a>
+		<a href="/review">나의 리뷰</a>
+		
+		
+	</div>
 </body>
 </html>
