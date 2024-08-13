@@ -12,9 +12,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class LoginIntercepter implements HandlerInterceptor{
 	
-	public List<String> loginEssential = Arrays.asList("");
+	public List<String> loginEssential = Arrays.asList("/**");
 	
-	public List<String> loginInessential = Arrays.asList("");
+	public List<String> loginInessential = Arrays.asList("/main","/login","/loginform");
 	
 	@Override
 	public boolean
@@ -26,7 +26,7 @@ public class LoginIntercepter implements HandlerInterceptor{
 	if(dto != null && dto.getId() != null) {
 		return true;
 	}else {
-		response.sendRedirect("/main");
+		response.sendRedirect("/loginform");
 		return false;
 	}
 	}

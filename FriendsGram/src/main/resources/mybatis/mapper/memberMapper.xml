@@ -8,5 +8,9 @@
 		insert into member values(#{id},#{password},#{name},#{email},#{birth},#{gender},#{phone},#{consent},default,default,default)
 	</insert>
 	
-
+	<update id="updateMem" parameterType="friendsgram.member.dto.MemberDto">
+	update member
+	set email = #{email}, phone = #{phone}
+	where id=#{id} 
+	</update>
 </mapper>

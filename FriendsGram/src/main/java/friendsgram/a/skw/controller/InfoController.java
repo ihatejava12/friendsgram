@@ -7,9 +7,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import friendsgram.a.skw.service.InfoService;
+import friendsgram.a.skw.service.MemberService;
 import friendsgram.member.dto.MemberDto;
 import friendsgram.member.dto.Member_InfoDto;
 
@@ -18,6 +20,9 @@ import friendsgram.member.dto.Member_InfoDto;
 public class InfoController {
 	@Autowired
 	InfoService service;
+	
+	@Autowired
+	MemberService mservice;
 
 	@ModelAttribute("user")
 	public MemberDto getDto() {
@@ -27,6 +32,12 @@ public class InfoController {
 	@GetMapping("/myprofile")
 	public String myprofile(@ModelAttribute("user") MemberDto dto) {
 		return "skw/profile/myprofile";
+	}
+	
+	@PutMapping("/update")
+	public String update(@ModelAttribute("user") MemberDto dto) {
+		mservice.updateMem(dto);
+		return "redirect:/main";
 	}
 
 	@GetMapping("/info")

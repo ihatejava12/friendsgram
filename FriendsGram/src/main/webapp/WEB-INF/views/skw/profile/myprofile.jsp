@@ -102,8 +102,36 @@ a {
 		<a href="/myprofile">나의 정보</a>
 		<a href="/info">이력서</a>
 		<a href="/review">나의 리뷰</a>
-		
-		
 	</div>
+	<form action="update" method="post" id="myprofile">
+	<input type="hidden" name="_method" value="put">
+	<h2>${user.id}님의 개인페이지</h2>
+	
+	<table>
+	<tr><td>아이디:</td><td>${user.id}</td></tr>
+	<tr><td>이름:</td><td>${user.name}</td></tr>
+	<tr><td>비밀번호:</td><td><input name="password" type="password" id="password""></td></tr><br/>
+	<tr><td>이메일:</td><td><input name="email" id="email" value="${user.email}"></td></tr>
+	<tr><td>생년월일:</td><td>${user.birth}</td></tr>
+	<tr><td>성별:</td><td>${user.gender}</td></tr>
+	<tr><td>휴대폰:</td><td><input name="phone" id="phone" value="${user.phone}"></td></tr>
+	
+	<tr><td colspan="2"><input type="submit" value="수정"></td></tr>
+	</table>
+	</form>
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+	
+	$(function(){
+	$("#updateform").submit(function(){
+		if(!$("#password").val()){
+			alert("비밀번호를 입력해야 합니다.");
+			return false;
+			}
+		});
+	})
+
+	</script>
 </body>
 </html>

@@ -136,7 +136,7 @@ public class MemberController {
 			MemberDto resultDto = service.login(dto);
 			if (resultDto == null) {
 				error.reject("nocode", "로그인 실패: 아이디나 비밀번호가 틀림");
-				return "member/test";
+				return "skw/member/loginform";
 			} else {// 로그인 성공
 				m.addAttribute("user", resultDto);// 세션에 저장
 				System.out.println(resultDto);
@@ -158,19 +158,18 @@ public class MemberController {
 	@GetMapping("/logout")
 	public String logout(SessionStatus status) {
 		status.setComplete();
-		return "redirect:/";
-	}
-
-	@GetMapping("/update")
-	public String updateform() {
-		return "skw/member/updateform";
-	}
-
-	@PutMapping("/update")
-	public String update(@ModelAttribute("user") MemberDto dto) {
-		service.updateMem(dto);
 		return "redirect:/main";
 	}
+
+	/*
+	 * @GetMapping("/update") public String updateform() { return
+	 * "skw/member/updateform"; }
+	 */
+
+	/*
+	 * @PutMapping("/update") public String update(@ModelAttribute("user") MemberDto
+	 * dto) { service.updateMem(dto); return "redirect:/main"; }
+	 */
 
 	@GetMapping("/delete")
 	public String deleteform(@RequestParam(value = "result", required = false) String result, Model m) {
