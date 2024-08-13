@@ -11,17 +11,26 @@
 <body>
 	<header class="header">
 		<div class="logo">
-			<a href="/main"> <img src="/images/logo.png" alt="프렌즈그램 로고"
+			<a href="/main"> <img src="images/logo.png" alt="프렌즈그램 로고"
 				class="logo-image" />
 			</a>
 		</div>
 		<nav class="navigation">
-			<a href="#">코딩 게시판</a> <a href="#">팀 모집</a> <a href="#">프리랜서 검색</a> <a
-				href="#">프리랜서 공고</a> <a href="/board05">취업 공고</a>
+			<a href="board01/main">코딩 게시판</a> <a href="board02/main">팀 모집</a> <a
+				href="board03/main">프리랜서 검색</a> <a href="/list">프리랜서 공고</a> <a
+				href="/board05">취업 공고</a>
 		</nav>
 		<div class="actions">
-			<a class="login" href="#">로그인</a> <a class="profile" href="#">프로필</a>
-			<a class="messages" href="#">메시지</a>
+			<c:if test="${user.id != null }">
+				<a class="login" href="/logout">로그아웃</a>
+			</c:if>
+			<c:if test="${user.id == null }">
+				<a class="login" href="/loginform">로그인</a>
+			</c:if>
+
+			<a class="profile" href="/myprofile">프로필</a> <a class="messages"
+				href="/mail"
+				onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
 		</div>
 	</header>
 
@@ -32,9 +41,12 @@
 					<div class="filter-group">
 						<label for="language">개발언어</label> <select id="language">
 							<option value="all">전체</option>
-							<option value="java">Java</option>
-							<option value="python">Python</option>
+							<option value="java">JAVA</option>
+							<option value="python">PYTHON</option>
 							<option value="html">HTML</option>
+							<option value="c">C</option>
+							<option value="database">DATABASE</option>
+							<option value="other">기타</option>
 						</select>
 					</div>
 					<div class="filter-group">
@@ -64,9 +76,11 @@
 			</div>
 
 			<div class="write-button-container">
-				<button class="write-button">
-					<a href="/board05/write">글쓰기</a>
-				</button>
+				<c:if test="${user.role == 3 }">
+					<button class="write-button">
+						<a href="/board05/write">글쓰기</a>
+					</button>
+				</c:if>
 			</div>
 
 			<c:forEach var="board" items="${board05List}">
@@ -86,17 +100,17 @@
 					</div>
 
 					<div class="job-details">
-						<p>${board.work_area}|경력기간:${board.career_period}년</p>
+						<p>${board.work_area}|경력기간:${board.career_period}년|학력:${board.background }</p>
 						<!-- 지역 및 경력 기간 -->
 
 						<!-- 사용 언어 태그 -->
-						
-						
+
+
 						<div class="tags">
-               				 <c:forEach var="code" items="${board.codes}">
-                   				 <span class="tag">${code}</span>
-                			</c:forEach>
-            			</div>
+							<c:forEach var="code" items="${board.codes}">
+								<span class="tag">${code}</span>
+							</c:forEach>
+						</div>
 						<div class="work-type">
 							<c:if test="${board.work_type == true}">
 								<span class="work-type-tag red">상주</span>
@@ -140,6 +154,9 @@
 		<div class="footer-links">
 			<a href="#">프리랜서 이용약관</a> <a href="#">고객센터</a> <a href="#">개인정보
 				처리방침</a> <a href="#">광고문의</a>
+			<c:if test="${ user.role == 2 || user.role == 1}">
+				<a href="/adminpage/board01">관리자</a>
+			</c:if>
 		</div>
 		<div class="company-info">
 			<p>(주)프렌즈그램(대표이사: 전재민)</p>
