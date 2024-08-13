@@ -6,7 +6,7 @@
 <html>
 <head>
 <!--  bList begin end count pageNum totalPages -->
-<title>글 목록</title>
+<title>이력서 작성</title>
 <style>
 #center {
 	width: 700px;
@@ -106,16 +106,15 @@ a {
 	<h3>이력서 작성중</h3>
 	<form action="insertInfo" method="post" id="infowrite">
 		<table>
-      <tr><td>이름</td><td><input name="name" id="name">
-      <tr><td>생년월일</td><td><input name="birth" placeholder="yyyyMMdd"></td></tr>
-      <tr><td>나이</td><td><input name="age" id="age"></td></tr>
-      <tr><td>성별 : <input type="radio" name="gender" value="m">남자
-					<input type="radio" name="gender" value="f">여자</td></tr>
+      <tr><td>이름 : </td><td>${user.name}</td></tr>
+      <tr><td>생년월일 : </td><td><input name="birth" placeholder="yyyy-MM-dd"></td></tr>
+      <tr><td>나이 : </td><td><input name="age" id="age"></td></tr>
+      <tr><td>성별 : </td><td>${user.gender}</td></tr>
 	  <tr><td>전화번호 : <input type="text" name="phone"></td></tr>			
-      <tr><td>email<input name="email" id="email"></td><td>
-       <tr><td>주소</td><td><input name="address" id="address">
+      <tr><td>email : <input name="email" id="email"></td><td>
+       <tr><td>주소 :</td><td><input name="address" id="address">
                <input type="button" id="addbtn" value="우편번호 검색" onclick="addPost()"></td></tr>
-      <tr><td>자기소개서</td><td><input type="text" name="content" id="content"></td></tr>
+      <tr><td>자기소개서 :</td><td><input type="text" name="content" id="content"></td></tr>
 	  <tr><td>학교명<input name="school_name" id="school_name"></td><td>
 	  <tr><td>학교 기간<input name="school_period" id="school_period"></td><td>
 	  <tr><td>학교 전공<input name="school_major" id="school_major"></td><td>
