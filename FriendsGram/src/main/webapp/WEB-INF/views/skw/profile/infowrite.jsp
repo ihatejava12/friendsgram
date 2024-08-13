@@ -92,9 +92,10 @@ a {
         </nav>
         <div class="actions">
             
+            <a class="logout" href="logout">로그아웃</a>
             <a class="profile" href="myprofile">프로필</a>
             <a class="messages" href="#">메시지</a>
-            <a class="logout" href="logout">로그아웃</a>
+            
         </div>
     </header>
 	<div id="center">
@@ -107,11 +108,11 @@ a {
 	<form action="insertInfo" method="post" id="infowrite">
 		<table>
       <tr><td>이름 : </td><td>${user.name}</td></tr>
-      <tr><td>생년월일 : </td><td><input name="birth" placeholder="yyyy-MM-dd"></td></tr>
+      <tr><td>생년월일 : </td><td>${user.birth}</td></tr>
       <tr><td>나이 : </td><td><input name="age" id="age"></td></tr>
       <tr><td>성별 : </td><td>${user.gender}</td></tr>
-	  <tr><td>전화번호 : <input type="text" name="phone"></td></tr>			
-      <tr><td>email : <input name="email" id="email"></td><td>
+	  <tr><td>전화번호 : ${user.gender}</td></tr>			
+      <tr><td>email : ${user.gender}</td><td>
        <tr><td>주소 :</td><td><input name="address" id="address">
                <input type="button" id="addbtn" value="우편번호 검색" onclick="addPost()"></td></tr>
       <tr><td>자기소개서 :</td><td><input type="text" name="content" id="content"></td></tr>

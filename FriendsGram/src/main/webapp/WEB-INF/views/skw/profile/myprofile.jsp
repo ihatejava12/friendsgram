@@ -92,9 +92,10 @@ a {
         </nav>
         <div class="actions">
             
+            <a class="logout" href="logout">로그아웃</a>
             <a class="profile" href="myprofile">프로필</a>
             <a class="messages" href="#">메시지</a>
-            <a class="logout" href="logout">로그아웃</a>
+            
         </div>
     </header>
 	<div id="center">
@@ -110,7 +111,7 @@ a {
 	<table>
 	<tr><td>아이디:</td><td>${user.id}</td></tr>
 	<tr><td>이름:</td><td>${user.name}</td></tr>
-	<tr><td>비밀번호:</td><td><input name="password" type="password" id="password""></td></tr><br/>
+	<tr><td>비밀번호:</td><td><input name="password" type="password" id="password"></td></tr><br/>
 	<tr><td>이메일:</td><td><input name="email" id="email" value="${user.email}"></td></tr>
 	<tr><td>생년월일:</td><td>${user.birth}</td></tr>
 	<tr><td>성별:</td><td>${user.gender}</td></tr>
@@ -124,7 +125,7 @@ a {
 	<script>
 	
 	$(function(){
-	$("#updateform").submit(function(){
+	$("#myprofile").submit(function(){
 		if(!$("#password").val()){
 			alert("비밀번호를 입력해야 합니다.");
 			return false;
