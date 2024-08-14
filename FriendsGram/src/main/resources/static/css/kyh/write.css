@@ -1,0 +1,161 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  position: fixed; /* 헤더를 화면에 고정 */
+  top: 0; /* 화면 상단에 위치 */
+  left: 0; /* 화면 왼쪽에 위치 */
+  width: 100%; /* 화면 너비에 맞게 설정 */
+  z-index: 1000; /* 다른 요소 위에 보이도록 설정 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+	 margin-top: 80px; /* 헤더 높이만큼의 여백 추가 */
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+.navigation a {
+  margin-right: 15px;
+  color: #565E6C;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.actions a {
+  margin-left: 10px;
+  color: #0C9200;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+main {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures full viewport height is covered */
+  margin: 0;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+main {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center; /* 중앙에 정렬 */
+  align-items: center; /* 수직으로 중앙에 정렬 */
+  flex-direction: column;
+  min-height: calc(100vh - 100px); /* 푸터와 헤더를 제외한 공간을 채우기 위해 계산된 높이 */
+  margin: 0 auto; /* 수평 중앙 정렬 */
+  padding: 20px;
+  background-color: #f5f5f5; /* 배경색 추가 */
+}
+
+form {
+  background-color: #ffffff; /* 폼 배경색 */
+  padding: 20px; /* 내부 여백 */
+  border-radius: 10px; /* 모서리를 둥글게 */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  max-width: 600px; /* 최대 너비 */
+  width: 100%; /* 반응형 너비 */
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: inline-block; /* 라벨을 블록 형태로 변환 */
+}
+
+form input[type="text"],
+form select,
+form textarea {
+  width: 100%; /* 입력 필드가 폼 너비를 채우도록 */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+form input[type="radio"],
+form input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+form input[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+#programming_language {
+  margin-bottom: 15px;
+}
+
+#programming_language label {
+  display: block; /* 체크박스 라벨을 블록 형태로 변환하여 세로로 정렬 */
+  margin-bottom: 5px;
+}
+
+#other-input {
+  margin-top: 5px;
+}
+
+textarea {
+  height: 150px; /* 텍스트 영역의 기본 높이 */
+}
+
+
+
+.footer {
+  background-color: rgba(30, 33, 40, 0.68);
+  color: white;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: auto; /* 푸터가 페이지의 끝에 위치하도록 설정 */
+  position: relative; /* 포지션 속성을 고정하지 않음 */
+}
+
+.footer-links a {
+  margin-right: 15px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.company-info p {
+  margin-top: 10px;
+  font-size: 14px;
+}

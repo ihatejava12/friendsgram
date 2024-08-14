@@ -1,0 +1,178 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  position: fixed; /* 헤더를 화면에 고정 */
+  top: 0; /* 화면 상단에 위치 */
+  left: 0; /* 화면 왼쪽에 위치 */
+  width: 100%; /* 화면 너비에 맞게 설정 */
+  z-index: 1000; /* 다른 요소 위에 보이도록 설정 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+	 margin-top: 80px; /* 헤더 높이만큼의 여백 추가 */
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+.navigation a {
+  margin-right: 15px;
+  color: #565E6C;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.actions a {
+  margin-left: 10px;
+  color: #0C9200;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+main {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures full viewport height is covered */
+  margin: 0;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 20px auto; /* 상하로 20px의 여백, 좌우는 auto로 가운데 정렬 */
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 1200px; /* 최대 너비 설정으로 양옆에 여백 확보 */
+  width: 100%; /* 화면이 작아지면 컨테이너가 화면 크기에 맞게 줄어듦 */
+}
+
+
+/* 콘텐츠 영역 스타일 */
+.content {
+  width: 70%;
+}
+
+.company {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px; /* 버튼들 사이의 간격 설정 */
+}
+
+.action-buttons .button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block; /* 버튼을 인라인 블록으로 설정 */
+}
+
+.action-buttons .button:hover {
+    background-color: #0056b3; /* 버튼 호버 시 색상 */
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.tags {
+  margin-bottom: 20px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #e0e0e0;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.details {
+  margin-bottom: 20px;
+}
+
+.details dt {
+  font-weight: bold;
+}
+
+.details dd {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+/* 사이드바 스타일 */
+.sidebar {
+  width: 25%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.button {
+  display: block;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+.footer {
+  background-color: rgba(30, 33, 40, 0.68);
+  color: white;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: auto; /* 푸터가 페이지의 끝에 위치하도록 설정 */
+  position: relative; /* 포지션 속성을 고정하지 않음 */
+}
+
+.footer-links a {
+  margin-right: 15px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.company-info p {
+  margin-top: 10px;
+  font-size: 14px;
+}
