@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import friendsgram.a.kyh.service.Board05Service;
 import friendsgram.board05.dto.Board05Dto;
 
+@SessionAttributes("user")
 @Controller
 public class Board05Controller {
 
