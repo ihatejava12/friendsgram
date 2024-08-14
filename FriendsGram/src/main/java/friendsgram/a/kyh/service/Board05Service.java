@@ -61,15 +61,46 @@ public class Board05Service {
         return dao.selectList(start, count);
     }
 
-    public Board05Dto selectOne(int no) {
-        return dao.selectOne(no);
+    public Board05Dto selectOne(int b_no05) {
+        Board05Dto board = dao.selectOne(b_no05);
+        if (board != null) {
+            List<String> codes = dao.selectCodesByBoardNo(b_no05);
+            board.setCodes(codes);
+        }
+        return board;
     }
 
-    public int update(Board05Dto dto) {
-        return dao.update(dto);
+    public int update(Board05Dto dto, List<String> programmingLanguages) {
+        int result = dao.update(dto);
+        
+        if (result > 0) {
+            // 기존 코드를 삭제하고 새로운 코드 목록을 삽입합니다.
+            dao.deleteCodesByBoardNo(dto.getB_no05());
+            saveProgrammingLanguages(dto.getB_no05(), programmingLanguages);
+        }
+
+        return result;
     }
 
     public int delete(int no) {
         return dao.delete(no);
     }
+    
+    public List<Board05Dto> searchBoards(String language, String workType, String region, String keyword, int start, int count) {
+        List<Board05Dto> boards = dao.searchBoards(language, workType, region, keyword, start, count);
+
+        for (Board05Dto board : boards) {
+            List<String> codes = dao.selectCodesByBoardNo(board.getB_no05());
+            board.setCodes(codes);  // 각 board에 대한 코드 리스트를 설정
+        }
+
+        return boards;
+    }
+    
+    // 전체 검색 결과 수를 계산하는 메서드
+    public int countBoards(String language, String workType, String region, String keyword) {
+        return dao.countBoards(language, workType, region, keyword);
+    }
+    
+    
 }
