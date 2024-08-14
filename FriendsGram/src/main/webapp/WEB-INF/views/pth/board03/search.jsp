@@ -81,38 +81,38 @@
 <h1 style="color: black;" align="center"> 우수 프리랜서를 만나보세요</h1>
 <br>
 <div align="center">
-<form action="/board03/search" method="get">
+<form action="/board03/search">
 <select name="work_type">
 	<option>근무 형태</option>
-	<option value="-1">전체</option>
-	<option value="0">원격</option>
-	<option value="1">상주</option>
+	<option value="-1" ${work_type == -1?"selected":""}>전체</option>
+	<option value="0" ${work_type == 0?"selected":""}>원격</option>
+	<option value="1" ${work_type == 1?"selected":""}>상주</option>
 </select>
 
 <select name="skil">
 	<option>개발 언어</option>
-	<option value="all">전체</option>
-	<option value="java">JAVA</option>
-	<option value="python">PYTHON</option>
-	<option value="html">HTML</option>
-	<option value="c">C</option>
-	<option value="database">DATABASE</option>
-	<option value="other">기타</option>
+	<option value="all" ${skil == 'all'?"selected":""}>전체</option>
+	<option value="java" ${skil == 'java'?"selected":""}>JAVA</option>
+	<option value="python" ${skil == 'python'?"selected":""}>PYTHON</option>
+	<option value="html" ${skil == 'html'?"selected":""}>HTML</option>
+	<option value="c" ${skil == 'c'?"selected":""}>C</option>
+	<option value="database" ${skil == 'database'?"selected":""}>DATABASE</option>
+	<option value="other" ${skil == 'other'?"selected":""}>기타</option>
 </select>
 
 <select name="career">
 	<option>경력 기간</option>
-	<option value="-2">전체</option>
-	<option value="-1">경력 없음</option>
-	<option value="0">1년 이하</option>
-	<option value="1">1년</option>
-	<option value="2">2년</option>
-	<option value="3">3년</option>
-	<option value="4">4년</option>
-	<option value="5">5년</option>
-	<option value="6">6년</option>
-	<option value="7">7년</option>
-	<option value="8">8년 이상</option>
+	<option value="-2" ${career == -2?"selected":""}>전체</option>
+	<option value="-1" ${career == -1?"selected":""}>경력 없음</option>
+	<option value="0" ${career == 0?"selected":""}>1년 이하</option>
+	<option value="1" ${career == 1?"selected":""}>1년</option>
+	<option value="2" ${career == 2?"selected":""}>2년</option>
+	<option value="3" ${career == 3?"selected":""}>3년</option>
+	<option value="4" ${career == 4?"selected":""}>4년</option>
+	<option value="5" ${career == 5?"selected":""}>5년</option>
+	<option value="6" ${career == 6?"selected":""}>6년</option>
+	<option value="7" ${career == 7?"selected":""}>7년</option>
+	<option value="8" ${career == 8?"selected":""}>8년 이상</option>
 </select>
 
 <button>프리랜서 찾기</button>
