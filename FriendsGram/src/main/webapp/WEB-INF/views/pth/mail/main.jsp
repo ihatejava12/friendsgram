@@ -19,7 +19,7 @@
 		</div>
 		
 		<div class="mailright" style="border:1px dashed lightgreen; width:98%; height:98%; margin: 5px;">
-			<span>(user.id) 님의 받은 편지함입니다.</span> <br><br>
+			<span>${user.name} 님의 받은 편지함입니다.</span> <br><br>
 			<button>삭제</button> <br><hr>
 			
 			<table class="maillist">
