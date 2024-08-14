@@ -115,13 +115,13 @@ public class Corporationcontroller {
 	@PostMapping("/insertCor")
 	public String insert(@Validated Corporation_MemberDto dto) {
 		service.insertCor(dto);
-		return "/skw/corporation/corporationloginform";
+		return "redirect:/loginform";
 	}
 	
-	@GetMapping("/corporationloginform")
-	public String loginform() {
-		return "skw/corporation/corporationloginform";
-	}
+	/*
+	 * @GetMapping("/corporationloginform") public String loginform() { return
+	 * "skw/corporation/corporationloginform"; }
+	 */
 	
 
 	

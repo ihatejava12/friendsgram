@@ -25,7 +25,7 @@
 		<td colspan="2" align="center">
 			<input type="submit" value="로그인">
 			<a href="insert">회원 가입</a>
-			<a href="corporationinsert">기업회원 가입</a>
+			<a href="/corporationinsert">기업회원 가입</a>
 			<a href="findpw">비번찾기</a>
 		</td>  
 	</tr>

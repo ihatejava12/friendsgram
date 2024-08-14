@@ -106,14 +106,14 @@ a {
 	</div>
 	<h3>이력서 작성중</h3>
 	<form action="insertInfo" method="post" id="infowrite">
-	<input type="hidden" name="_method" value="put">
+	
 		<table>
-      <tr><td>이름 : </td><td>${user.name}</td></tr>
-      <tr><td>생년월일 : </td><td>${user.birth}</td></tr>
+      <tr><td>이름 : </td><td><input name="name" value="${user.name}"></td></tr>
+      <tr><td>생년월일 : </td><td><input name="birth" value="${user.birth}"></td></tr>
       <tr><td>나이 : </td><td><input name="age" id="age"></td></tr>
-      <tr><td>성별 : </td><td>${user.gender}</td></tr>
-	  <tr><td>전화번호 : </td><td>${user.phone}</td></tr>			
-      <tr><td>email : </td><td>${user.email}</td><td>
+      <tr><td>성별 : </td><td><input name="gender" value="${user.gender}"></td></tr>
+	  <tr><td>전화번호 : </td><td><input name="phone" value="${user.phone}"></td></tr>			
+      <tr><td>email : </td><td><input name="email" value="${user.email}"></td><td>
        <tr><td>주소 : </td><td><input name="address" id="address">
                <input type="button" id="addbtn" value="우편번호 검색" onclick="addPost()"></td></tr>
       <tr><td>자기소개서 : </td><td><textarea name="content" id="content"></textarea></td></tr>
@@ -125,7 +125,7 @@ a {
 	  <tr><td>경력 담당업무 : </td><td><input name="career_role" id="career_role"></td><td>
 	  <tr><td>자격증 이름 : </td><td><input name="certificate_name" id="certificate_name"></td><td>
 	  <tr><td>자격증 취득일자 : </td><td><input name="certificate_date" id="certificate_date"></td><td>
-   		
+   		<input type="hidden" name="id" value="${user.id }">
       <tr><td><input type="submit" value="등록"></td><td><input type="button" value="취소"></td></tr>
    </table>
 	</form>
