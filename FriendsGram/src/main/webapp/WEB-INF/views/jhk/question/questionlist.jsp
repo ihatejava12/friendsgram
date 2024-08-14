@@ -45,10 +45,7 @@
 		<c:forEach items="${qlist}" var="question">
 			<tr>
 				<td>${question.q_no}</td>
-				
-				<%-- <c:if test="${question.request == false}">
-					<td><a href="/question/writeanswer/${question.q_no}">${question.title}</a></td>
-				</c:if> --%>
+
 				<td><a href="/onequestion/${question.q_no}">${question.title}</a></td>
 				
 				<td><fmt:formatDate value="${question.date}" dateStyle="short"/></td>
@@ -74,8 +71,7 @@
 					
 				</c:if>
 				<c:if test="${question.request == true}">
-					<td><a href="/question/answer/${question.q_no}">답변보기</a></td>
-					<td><button onclick="window.open('/question/answer/${question.q_no}', '_blank', 'width=700, height=600, top=50, left=50, scrollbars=yes')">답변보기</button></td>
+					<td><button onclick="window.open('/question/answer/${question.q_no}', '_blank', 'width=810, height=600, top=50, left=50, scrollbars=yes')">답변보기</button></td>
 				</c:if>
 			</tr>
 		</c:forEach>			

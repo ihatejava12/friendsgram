@@ -35,8 +35,6 @@
 	$(function(){
 		$(".report").click(function(){
 			alert("신고 완료되었습니다.");
-		
-			
 		})
 	})
 	
