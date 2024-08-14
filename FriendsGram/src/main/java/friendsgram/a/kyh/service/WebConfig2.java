@@ -15,3 +15,4 @@ public class WebConfig2 implements WebMvcConfigurer {
 //                .addPathPatterns("/**") // 모든 경로에 인터셉터 적용
 //                .excludePathPatterns("/main","/login", "/error","/css/**", "/js/**", "/images/**"); // 로그인 페이지와 에러 페이지는 제외
 //    }
+}
