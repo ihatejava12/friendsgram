@@ -70,8 +70,8 @@ public interface Board05Dao {
                                      @Param("start") int start,
                                      @Param("count") int count);
 
-    @Select("SELECT * FROM board05 WHERE b_no05 = #{no}")
-    Board05Dto selectOne(int no);
+    @Select("SELECT * FROM board05 WHERE b_no05 = #{b_no05}")
+    Board05Dto selectOne(int b_no05);
     
     @Update("UPDATE board05 SET title = #{title}, content = #{content}, work_type = #{work_type}, work_area = #{work_area}, salary = #{salary}, " +
             "career_period = #{career_period}, background = #{background}, company = #{company}, id = #{id} WHERE b_no05 = #{b_no05}")
@@ -81,7 +81,75 @@ public interface Board05Dao {
     int delete(int no);
     
     
+    
     // 언어 내용 목록에 넣을 sql
     @Select("SELECT code FROM board05_code WHERE b_no05 = #{b_no05}")
     List<String> selectCodesByBoardNo(int b_no05);
+    
+    @Delete("DELETE FROM board05_code WHERE b_no05 = #{b_no05}")
+    int deleteCodesByBoardNo(int b_no05);
+    
+    // 검색 DAO
+    @Select("<script>" +
+            "SELECT DISTINCT b.* " +
+            "FROM board05 b " +
+            "LEFT JOIN board05_code c ON b.b_no05 = c.b_no05 " +
+            "WHERE 1=1 " +  
+            "<if test='language != null and language != \"all\"'>" +
+            "AND c.code = #{language} " +
+            "</if>" +
+            "<if test='workType != null and workType != \"all\"'>" +
+            "AND b.work_type = <choose>" +
+            "<when test='workType == \"상주\"'>true</when>" +
+            "<when test='workType == \"원격\"'>false</when>" +
+            "</choose> " +
+            "</if>" +
+            "<if test='region != null and region != \"all\"'>" +
+            "AND b.work_area = #{region} " +
+            "</if>" +
+            "<if test='keyword != null and !keyword.isEmpty()'>" +
+            "AND (b.title LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR b.company LIKE CONCAT('%', #{keyword}, '%')) " +
+            "</if>" +
+            "ORDER BY b_no05 DESC " +  
+            "LIMIT #{start}, #{count}" +  // 페이징 추가
+            "</script>")
+    List<Board05Dto> searchBoards(
+        @Param("language") String language,
+        @Param("workType") String workType,
+        @Param("region") String region,
+        @Param("keyword") String keyword,
+        @Param("start") int start,
+        @Param("count") int count
+    );
+
+    @Select("<script>" +
+            "SELECT COUNT(DISTINCT b.b_no05) " +
+            "FROM board05 b " +
+            "LEFT JOIN board05_code c ON b.b_no05 = c.b_no05 " +
+            "WHERE 1=1 " +  
+            "<if test='language != null and language != \"all\"'>" +
+            "AND c.code = #{language} " +
+            "</if>" +
+            "<if test='workType != null and workType != \"all\"'>" +
+            "AND b.work_type = <choose>" +
+            "<when test='workType == \"상주\"'>true</when>" +
+            "<when test='workType == \"원격\"'>false</when>" +
+            "</choose> " +
+            "</if>" +
+            "<if test='region != null and region != \"all\"'>" +
+            "AND b.work_area = #{region} " +
+            "</if>" +
+            "<if test='keyword != null and !keyword.isEmpty()'>" +
+            "AND (b.title LIKE CONCAT('%', #{keyword}, '%') " +
+            "OR b.company LIKE CONCAT('%', #{keyword}, '%')) " +
+            "</if>" +
+            "</script>")
+    int countBoards(
+        @Param("language") String language,
+        @Param("workType") String workType,
+        @Param("region") String region,
+        @Param("keyword") String keyword
+    );
+    
 }

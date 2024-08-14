@@ -25,15 +25,18 @@ public class LoginIntercepter implements HandlerInterceptor{
 
 	    if (user instanceof MemberDto) {
 	        MemberDto member = (MemberDto) user;
-	        // 일반회원 처리 로직
+	        if (member.getId() != null) {
+	            return true;
+	        }
 	    } else if (user instanceof Corporation_MemberDto) {
 	        Corporation_MemberDto corporationMember = (Corporation_MemberDto) user;
-	        // 기업회원 처리 로직
-	    } else {
-	        // 로그인되지 않은 경우
-	        response.sendRedirect("/login");
-	        return false;
+	        if (corporationMember.getId() != null) {
+	            return true;
+	        }
 	    }
-	    return true;
+
+	    // 로그인되지 않은 경우
+	    response.sendRedirect("/loginform");
+	    return false;
 	}
 }
