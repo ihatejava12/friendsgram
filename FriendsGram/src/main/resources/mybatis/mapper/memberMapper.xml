@@ -5,7 +5,7 @@
 <mapper namespace="friendsgram.a.skw.dao.MemberDao">
 
 	<insert id="insertMem" parameterType="friendsgram.member.dto.MemberDto">
-		insert into member values(#{id},#{password},#{name},#{email},#{birth},#{gender},#{phone},#{consent},default,default,default)
+		insert into member values(#{id},#{password},#{name},#{email},#{birth},#{gender},#{phone},#{consent},0,0,default)
 	</insert>
 	
 	<update id="updateMem" parameterType="friendsgram.member.dto.MemberDto">

@@ -49,12 +49,12 @@ public class InfoController {
 		return "skw/profile/review";
 	}
 	@GetMapping("/infowrite")
-	public String infowrite(@ModelAttribute("user") MemberDto dto ) {
+	public String writeinfo(@ModelAttribute("user") MemberDto dto ) {
 		return "skw/profile/infowrite";
 	}
 	
-	@PostMapping("/insertInfo")
-	public String write(@ModelAttribute("info") @Validated Member_InfoDto dto, BindingResult error) {
+	@PostMapping("/insertinfo")
+	public String infowrite(@ModelAttribute("user") @Validated Member_InfoDto dto, BindingResult error) {
 		if(error.hasErrors()) {
 			error.reject("nocode", "제목이 없습니다");
 			return "skw/profile/infowrite";

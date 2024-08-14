@@ -106,27 +106,27 @@ a {
 	</div>
 	<h3>이력서 작성중</h3>
 	<form action="insertInfo" method="post" id="infowrite">
+	<input type="hidden" name="_method" value="put">
 		<table>
       <tr><td>이름 : </td><td>${user.name}</td></tr>
       <tr><td>생년월일 : </td><td>${user.birth}</td></tr>
       <tr><td>나이 : </td><td><input name="age" id="age"></td></tr>
       <tr><td>성별 : </td><td>${user.gender}</td></tr>
-	  <tr><td>전화번호 : ${user.gender}</td></tr>			
-      <tr><td>email : ${user.gender}</td><td>
-       <tr><td>주소 :</td><td><input name="address" id="address">
+	  <tr><td>전화번호 : </td><td>${user.phone}</td></tr>			
+      <tr><td>email : </td><td>${user.email}</td><td>
+       <tr><td>주소 : </td><td><input name="address" id="address">
                <input type="button" id="addbtn" value="우편번호 검색" onclick="addPost()"></td></tr>
-      <tr><td>자기소개서 :</td><td><input type="text" name="content" id="content"></td></tr>
-	  <tr><td>학교명<input name="school_name" id="school_name"></td><td>
-	  <tr><td>학교 기간<input name="school_period" id="school_period"></td><td>
-	  <tr><td>학교 전공<input name="school_major" id="school_major"></td><td>
-	  <tr><td>경력 회사명<input name="career_nme" id="career_nme"></td><td>
-	  <tr><td>경력 기간<input name="career_period" id="career_period"></td><td>
-	  <tr><td>경력 담당업무<input name="career_role" id="career_role"></td><td>
-	  <tr><td>자격증 이름<input name="certificate_name" id="certificate_name"></td><td>
-	  <tr><td>자격증 취득일자<input name="certificate_date" id="certificate_date"></td><td>
+      <tr><td>자기소개서 : </td><td><textarea name="content" id="content"></textarea></td></tr>
+	  <tr><td>학교명 : </td><td><input name="school_name" id="school_name"></td><td>
+	  <tr><td>학교 기간 : </td><td><input name="school_period" id="school_period"></td><td>
+	  <tr><td>학교 전공 : </td><td><input name="school_major" id="school_major"></td><td>
+	  <tr><td>경력 회사명 : </td><td><input name="career_nme" id="career_nme"></td><td>
+	  <tr><td>경력 기간 : </td><td><input name="career_period" id="career_period"></td><td>
+	  <tr><td>경력 담당업무 : </td><td><input name="career_role" id="career_role"></td><td>
+	  <tr><td>자격증 이름 : </td><td><input name="certificate_name" id="certificate_name"></td><td>
+	  <tr><td>자격증 취득일자 : </td><td><input name="certificate_date" id="certificate_date"></td><td>
    		
-      <tr><td><input type="submit" value="등록"></td></tr>
-      <tr><td><input type="button" value="취소"></td></tr>
+      <tr><td><input type="submit" value="등록"></td><td><input type="button" value="취소"></td></tr>
    </table>
 	</form>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
