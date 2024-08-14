@@ -80,59 +80,14 @@
 <h1 style="color: black;" align="center">동료처럼 믿고 맡길 수 있는 </h1>
 <h1 style="color: black;" align="center"> 우수 프리랜서를 만나보세요</h1>
 <br>
-<div align="center">
-<form action="/board03/search" method="get">
-<select name="work_type">
-	<option>근무 형태</option>
-	<option value="-1">전체</option>
-	<option value="0">원격</option>
-	<option value="1">상주</option>
-</select>
 
-<select name="skil">
-	<option>개발 언어</option>
-	<option value="all">전체</option>
-	<option value="java">JAVA</option>
-	<option value="python">PYTHON</option>
-	<option value="html">HTML</option>
-	<option value="c">C</option>
-	<option value="database">DATABASE</option>
-	<option value="other">기타</option>
-</select>
-
-<select name="career">
-	<option>경력 기간</option>
-	<option value="-2">전체</option>
-	<option value="-1">경력 없음</option>
-	<option value="0">1년 이하</option>
-	<option value="1">1년</option>
-	<option value="2">2년</option>
-	<option value="3">3년</option>
-	<option value="4">4년</option>
-	<option value="5">5년</option>
-	<option value="6">6년</option>
-	<option value="7">7년</option>
-	<option value="8">8년 이상</option>
-</select>
-
-<button>프리랜서 찾기</button>
-</form>
-</div>
 </div>
 
-<div id="content" align="center">
-<!-- 프리랜서들 정보, blist에서 하나씩 꺼내와서 출력  -->
-<!-- 총 프리랜서 수, count  -->
-	<c:forEach items="${blist}" var="freelancer">
-	
-	
-	<div id="${freelancer.b_no03 }" onclick="content(this)" class="free" id="${freelancer.b_no03 }" style="border:thin solid black; height:150px; padding:20px;">
-		
-		
-		<!--  프리랜서 정보 1개 -->
-		<div style="float:left; width:10%;"><img src="/img/PTH.jpg" style="width:50px"></div> 
-		<div style="float:left;" align="left"><span> ${freelancer.name}</span> 
-		<c:if test="${freelancer.work_type == 0}">
+<!--  freelancer 라는 이름으로 Board03Dto 객체 하나 받아옴 -->
+
+<div class="main" style="float:left; margin: 30px;">
+<span>${freelancer.name }</span> 
+<c:if test="${freelancer.work_type == 0}">
 			원격 가능
 		</c:if>
 		<c:if test="${freelancer.work_type == 1}">
@@ -141,7 +96,7 @@
 		<c:if test="${freelancer.work_type == 2}">
 			원격,상주 가능
 		</c:if>
-		 <br><br>
+		<br>
 		 경력 
 		<c:if test="${freelancer.career == -1 }">
 		없음
@@ -174,9 +129,6 @@
 		8년 이상
 		</c:if>
 		
-		
-		<br><br>
-		
 		<!--  보유개발언어 스킬 나열 -->
 		<!--  skillist 라는 이름으로 모든 Board03_SkilDto 객체 list 가져왔음 -->
 		<div id="skils">
@@ -187,42 +139,21 @@
 				</c:if>
 			</c:forEach>
 		</div>
+		<br>
+		상세소개
+		<p>${freelancer.content}</p>
 		
-		</div>
-		
-		<div>
-			자기소개<br>
-			<textarea style="width:300px; height:100px;" readOnly> ${freelancer.content } </textarea>
-		</div>
-		
-	
-	</div>
-	
-	</c:forEach>
 </div>
 
 
-<div id="page" align="center">
-				<c:if test="${begin > pageNum }">
-					<a href=#>[이전]</a>
-				</c:if>
-				<c:forEach begin="${begin }" end="${end}" var="i">
-					<a href="/board03/main?p=${i }">${i}</a>
-				</c:forEach>
-				<c:if test="${end < totalPages }">
-					<a href=#>[다음]</a>
-				</c:if>
-			</div>
+<div class="sub" style="float:left; margin: 30px;">
+	해당 프리랜서가 마음에 드시나요?
 
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	
-function content(free){
-	var no = free.id;
-	var link = "/board03/content/"+no;
-	location.href = link;
-}
 
 </script>
 

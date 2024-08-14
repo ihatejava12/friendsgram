@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="friendsgram.a.pth.board03.dao.Board03Dao">
+
+	<select id="countFreelancer">
+		select count(*) from board03
+	</select>
+	
+	
+	<insert id="newFreelancer" parameterType="friendsgram.board03.dto.Board03Dto">
+		insert into board03(b_no03,content,portfolio,career,id,work_type,work_date,date,name,phone,email)
+		values(#{b_no03},#{content},#{portfolio},#{career},#{id},#{work_type},#{work_date},now(),#{name},#{phone},#{email})
+	</insert>
+	
+	<insert id="b_no03_skil" parameterType="map">
+		insert into board03_skil(b_no03,skil)
+		values(#{b_no03}, #{skil})
+	</insert>
+	
+	
+	<select id="board03List" parameterType="map" resultType="friendsgram.board03.dto.Board03Dto">
+		<![CDATA[
+		select * from board03 
+		order by date desc limit #{start} , #{count}
+ 		]]>
+	</select>
+	
+	
+	<select id="skilList">
+		select * from board03_skil
+	</select>
+	
+	
+	<select id="selectOne" parameterType="int" resultType="friendsgram.board03.dto.Board03Dto">
+		select * from board03 where b_no03 = #{no}
+	</select>
+	
+	
+	<select id="searchBoard03List" parameterType="map" resultType="friendsgram.board03.dto.Board03Dto">
+		select * from board03 
+		<where>
+			<choose>
+				<when test="work_type == -1">
+					and work_type is not null
+				</when>
+				<when test="work_type == 0">
+					and work_type = 0 or work_type = 2
+				</when>
+				<when test="work_type == 1">
+					and work_type = 1 or work_type = 2
+				</when>
+			</choose>
+			
+			<choose>
+				<when test="career == -2">
+					and career is not null
+				</when>
+				<when test="career == -1">
+					and career = -1
+				</when>
+				<when test="career == 0">
+					and career = 0
+				</when>
+				<when test="career == 1">
+					and career = 1
+				</when>
+				<when test="career == 2">
+					and career = 2
+				</when>
+				<when test="career == 3">
+					and career = 3
+				</when>
+				<when test="career == 4">
+					and career = 4
+				</when>
+				<when test="career == 5">
+					and career = 5
+				</when>
+				<when test="career == 6">
+					and career = 6
+				</when>
+				<when test="career == 7">
+					and career = 7
+				</when>
+				<when test="career == 8">
+					and career = 8
+				</when>
+			</choose>
+			and b_no03 in 
+			<foreach collection='searchb_no03List' index='index' item='no' open='(' close=')' separator=','>
+				#{no}
+			</foreach>
+		</where>
+		order by date desc limit #{start} , #{count}
+	</select>
+	
+	
+	<select id="searchBoard03SkilList" parameterType="string" resultType="int">
+		select distinct b_no03 from board03_skil 
+		<where>
+			<choose>
+				<when test="skil == 'all'">
+					and skil is not null
+				</when>
+				<when test="skil != 'all'">
+					and skil = #{skil}
+				</when>
+				
+			</choose>
+		</where>
+	</select>
+	
+</mapper>

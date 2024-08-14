@@ -79,24 +79,26 @@
 <h3 style="color: black;" align="center"> 프리랜서로 등록하고 딱맞는 프로젝트/의뢰를 받아보세요.</h3>
 <br>
 </div>
-<form>
+<form method="post">
 
 		<input type="hidden" name="id" value="pth"/>
 		<!--   로그인 완성되면, value 에 {user.id} 이런식으로 들어갈 예정 -->
 		
 	<div align="center">
 		이름 : <input name="name"/><br>
-		이메일 : <input type="email" name="email"/><br>
+		이메일 : <input type="text" name="email"/><br>
 		연락처 : <input name="phone"/><br>
 		근무형태 : 
 			<label><input type="radio" name="work_type" value="0"/>원격</label>
 			<label><input type="radio" name="work_type" value="1"/>상주</label>
 			<label><input type="radio" name="work_type" value="2"/>모두 가능</label>
 			<br>
-		사용 가능한 개발 언어
+		사용 가능한 개발 언어 <input type="text" id="skil"/> <button class="add" onclick="return false;">추가</button>
+		<div id="manyskil"></div><br>
 		<br>
-		경력: <select>
-				<option value="">경력 없음</option>
+		
+		경력: <select name="career">
+				<option value="-1">경력 없음</option>
 				<option value="0">1년 이하</option>
 				<option value="1">1년</option>
 				<option value="2">2년</option>
@@ -109,17 +111,36 @@
 			</select> <br>
 		프로젝트 시작 가능일 : <input type="date" name="work_date"/>
 		<br>
-		자기소개: <textarea></textarea><br>
+		자기소개: <textarea name="content"></textarea><br>
 		
 		포트폴리오 <br>
-		<textarea></textarea>
+		<textarea name="portfolio"></textarea>
 		<br>
-		<button>프리랜서 등록하기</button>
+		<button type="submit">프리랜서 등록하기</button>
 	</div>
 
 </form>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
 
+	$(function(){
+		$(".add").click(function(){
+			var skil = $("#skil").val();
+			if(skil == ""){return false;}
+			$("#manyskil").append(`<span class="\${skil}" style="border: 1px solid black; margin: 2px;"><input name="skil" value="\${skil}"/>
+			<button type="button" class="delete" id="\${skil}" >X</button></span>`);
+			$("#skil").val("");
+		})
+
+		
+		 $(document).on("click", "button[class='delete']",function(){
+			var id = $(this).attr("id");
+			console.log(id);
+			$("."+id).remove();
+		})
+	})
+</script>
 
 </body>
 </html>
