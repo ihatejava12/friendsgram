@@ -18,7 +18,7 @@
 		<input type="hidden" name="id" value="pth"/>
 		
 		<p><span>글 제목</span> <span>${content.title }</span></p>
-		<p><span>신고자</span>	<span>(세션에 저장된 user.id)</span></p>
+		<p><span>신고자</span>	<span>${user.id }</span></p>
 		<p>신고사유</p>
 		<label><input type="radio" name="report_content" value="욕설"/>욕설</label><br>
 		<label><input type="radio" name="report_content" value="도배"/>도배</label><br>
@@ -35,8 +35,6 @@
 	$(function(){
 		$(".report").click(function(){
 			alert("신고 완료되었습니다.");
-		
-			
 		})
 	})
 	
