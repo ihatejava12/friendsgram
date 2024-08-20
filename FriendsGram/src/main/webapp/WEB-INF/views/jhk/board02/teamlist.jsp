@@ -11,12 +11,14 @@
 		<tr>
 			<th>신청일자</th>
 			<th>지원자</th>
+			<th>신청한 언어</th>
 			<th>참여 여부</th>
 		</tr>
 		<c:forEach items="${tlist}" var="team">
 			<tr>
 				<td><fmt:formatDate value="${team.date}" dateStyle="short"/></td>
 				<td>${team.id}</td>
+				<td>${team.code}</td>
 				<td>
 					<input type="checkbox" name="request" value="${team.id}">
 				</td>

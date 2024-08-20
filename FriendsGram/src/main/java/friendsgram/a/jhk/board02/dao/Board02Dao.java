@@ -18,6 +18,10 @@ import friendsgram.board02.dto.Board02_JoinDto;
 @Mapper
 public interface Board02Dao {
 	
+	// 코드 DB에 저장하기
+	@Insert("insert into board02_code values (#{code}, #{b_no02})")
+	int insertCode(@Param("code") String code, @Param("b_no02") int b_no02);
+	
 	// 신고
 	@Insert("insert into report (report_content, r_no, num, id, co_no) values (#{report_content}, #{r_no}, #{num}, #{id}, #{co_no})")
 	int board02Report(ReportDto dto);
@@ -40,7 +44,7 @@ public interface Board02Dao {
 	int insertTeam(@Param("id") String id, @Param("b_no02") int b_no02);
 	
 	// 신청자들 리스트를 뽑아온다
-	@Select("select * from board02_join where b_no02 = #{b_no02}")
+	@Select("select * from board02_join where b_no02 = #{b_no02} order by code")
 	List<Board02_JoinDto> teamList(int b_no02);
 	
 	// 해당글에 신청한 아이디들을 뽑아온다.
@@ -48,8 +52,8 @@ public interface Board02Dao {
 	int countJoin(@Param("b_no02") int b_no02, @Param("id") String id);
 	
 	// 신청 버튼을 눌렀을때 신청자 대기테이블에 저장되게 한다.
-	@Insert("insert into board02_join (date, request, id, b_no02) values (now(), 0, #{id}, #{b_no02})")
-	int joinTeam(@Param("id") String id, @Param("b_no02") int b_no02);
+	@Insert("insert into board02_join (date, request, id, b_no02, code) values (now(), 0, #{id}, #{b_no02}, #{code})")
+	int joinTeam(@Param("id") String id, @Param("b_no02") int b_no02, @Param("code") String code);
 
 	// 00시가 되었을 때 현재 날짜보다 모집 기간 날짜 값이 작다면 모집 상태를 자동으로 변경해준다.
 	@Update("update board02 set join01 = 1 where now() > join_date and join01 = 0")

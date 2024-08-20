@@ -125,7 +125,7 @@ main {
 					</tr>
 					<tr>
 						<td>모집기간</td>
-						<td><input type='date' id='currentDate'/> ~ <input type="date" name="join_date"></td>
+						<td><input type='date' id='currentDate' data-placeholder="등록일"/> ~ <input type="date" name="join_date" id="join_date"></td>
 					</tr>
 					<tr>
 						<td>내용</td>
@@ -142,18 +142,14 @@ main {
 							<a href="/board02/main">돌아가기</a>
 							<button type="submit">등록하기</button>
 						</td>
+					</tr>
+					<tr>
+						<td>개발 언어<input type="text" id="code"><input type="button" id="add" value="추가"></td>
+						
+						<td><div id="langs"></div></td>
 					</tr>	
 				</table>
 				</form>
-				<div id="select_lang">
-				<table border="1">
-					<tr>
-						<td>개발 언어<input type="text" id="code" name="code"><input type="button" id="add" value="추가"></td>
-						
-						<td><div id="langs"></div></td>
-					</tr>
-				</table>
-				</div>
 			</fieldset>
 	</div>
 	
@@ -176,17 +172,25 @@ main {
 	<script>
 		$(function(){
 			
-			$("#add").on('click', function(){
-				let code = $("#code").val();
-				let b_no02 = ${b_no02};
-				
-				$("#langs").append(`\${code}<input type='button' class="delete" value="X"><input type='hidden' name="lang" value="\${code}">`)
-				$("#code").val("");
-			})
-			
-			
-			
-			
+		    $("#join_date").on("change", function() {
+		        let currentDate = $("#currentDate").val();
+		        let joinDate = $(this).val();
+
+		        if (joinDate < currentDate) {
+		            alert("기입한 날짜가 등록일보다 빠를 수 없습니다.");
+		        	$(this).val("");
+		    	}
+		   	})
+		    
+		   	$("#add").on('click', function(){
+		   		let code = $("#code").val();
+		   		$("#langs").append(`<span id="\${code}">\${code}<input type="button" class="delete" value="X"><input type="hidden" name="code" value="\${code}"></span>`)
+		   		$("#code").val("");
+		   	})
+		   	
+		   	$("#langs").on('click','.delete', function(){
+		   		$(this).parent().remove();
+		   	})
 			
 		})
 	</script>
