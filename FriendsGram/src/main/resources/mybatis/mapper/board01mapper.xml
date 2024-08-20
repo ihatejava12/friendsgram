@@ -20,7 +20,7 @@
 	</select>
 
 	<select id="board01ComentList" parameterType="int" resultType="friendsgram.board01.dto.Board01_ComentDto">
-		select * from board01_coment where b_no01 = #{no} order by c_no01 asc
+		select * from board01_coment where b_no01 = #{no} order by ref asc, c_no01 asc
 	</select>
 	
 	<insert id="writeBoard01" parameterType="friendsgram.board01.dto.Board01Dto">
@@ -48,9 +48,6 @@
 				<when test="skil == 'html'">
 					code = #{skil}
 				</when>
-				<when test="skil == 'cc'">
-					code = #{skil}
-				</when>
 				<when test="skil == 'database'">
 					code = #{skil}
 				</when>
@@ -62,5 +59,49 @@
 		
 		</where>
 	</select>
+	
+	
+	<insert id="writeBoard01Coment" parameterType="friendsgram.board01.dto.Board01_ComentDto">
+		insert into board01_coment(coment,date,id,b_no01,ref,ref_level)
+		values(#{coment},now(),#{id}, #{b_no01}, #{ref}, #{ref_level}  )
+	</insert>
+	
+	
+	<select id="selectMaxComentNumber" resultType="int">
+		select Max(c_no01) from board01_coment
+	</select>
+	
+	
+	<update id="updateComentRef" parameterType="map">
+		update board01_coment
+		set ref = #{c_no01}
+		where id = #{id} and coment = #{coment} and c_no01 = #{c_no01}
+	</update>
+	
+	
+	<delete id="deleteComent" parameterType="int">
+		delete from board01_coment
+		where c_no01 = #{no}
+	</delete>
+	
+	
+	<select id="selectOneComent" parameterType="int" resultType="friendsgram.board01.dto.Board01_ComentDto">
+		select * from board01_coment where c_no01 = #{no}
+	</select>
+	
+	
+	<select id="findComentRef" parameterType="int" resultType="int">
+		select count(*) from board01_coment 
+		where ref = #{ref}
+	</select>
+	
+	
+	
+	<update id="updateDeleteComent" parameterType="int">
+		update board01_coment
+		set coment = '삭제된 댓글입니다.'
+		where c_no01 = #{no}
+	</update>
+	
 	
 </mapper>

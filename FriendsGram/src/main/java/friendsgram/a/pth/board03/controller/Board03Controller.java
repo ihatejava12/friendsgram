@@ -139,8 +139,8 @@ public class Board03Controller {
 		m.addAttribute("skillist",skillist);
 		
 		
-		int count = searchfreelancerList.size();
-		m.addAttribute("count",count);
+		int count = board03service.countsearchBoard03List(work_type, searchb_no03List, career);
+		m.addAttribute("count",count);// 현재 검색조건에 맞는 프리랜서 수 전제
 		
 		int pageNum = 5;//보여질 페이지 개수 1 2 3 4 5 <다음> 이런식으로
 		int totalPages = count / perpage + (count % perpage > 0 ? 1 : 0); //전체 페이지 수

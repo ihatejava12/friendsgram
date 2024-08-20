@@ -63,4 +63,57 @@ public class Board01Service {
 		return board01dao.countSearchBoard01(m);
 	}
 	
+	
+	
+	//댓글 등록
+	public int writeBoard01Coment(Board01_ComentDto coment) {
+		return board01dao.writeBoard01Coment(coment);
+	}
+	
+	
+	// 가장 최신 댓글 번호 가져옴
+	public int selectMaxComentNumber() {
+		return board01dao.selectMaxComentNumber();
+	}
+	
+	
+	// ref 댓글 그룹번호 update
+	public int updateComentRef(String id, String coment01, int c_no01) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("id", id);
+		m.put("coment", coment01);
+		m.put("c_no01", c_no01);
+		
+		
+		return board01dao.updateComentRef(m);
+	}
+	
+	
+	
+	
+	// 댓글 번호 받아와서, 해당 댓글 DB에서 삭제
+	public int deleteComent(int no) {
+		return board01dao.deleteComent(no);
+	}
+	
+	
+	
+	// 댓글 번호 받아와서, 해당 댓글 1개 정보 꺼내옴
+	public	Board01_ComentDto selectOneComent(int no) {
+		return board01dao.selectOneComent(no);
+	}
+	
+	
+	// 댓글 1개의 ref값 받아와서, 해당 ref랑 같은 댓글이 몇개 있는지
+	public	int findComentRef(int ref) {
+			return board01dao.findComentRef(ref);
+		}
+	
+	
+	// 삭제말고 업데이트 삭제해야하는 댓글
+	public	int updateDeleteComent(int no) {
+		return board01dao.updateDeleteComent(no);
+	}
+	
+	
 }
