@@ -17,6 +17,7 @@
 			<li><a href="/adminpage/memberlist">비매너 회원 제재</a></li>
 			<li><a href="/adminpage/adminlist">관리자 등급 권한 관리</a></li>
 			<li><a href="/adminpage/wordlist">금지어 추가 및 관리</a></li>
+			<li><a href="/adminpage/reportlist">신고 상황</a></li>
 		</ul>
 	</div>
 	<div>

@@ -20,6 +20,16 @@ public class Board02Service {
 	@Autowired
 	Board02Dao dao;
 	
+	public List<Board02_CodeDto> pickCode(int b_no02){
+		return dao.codeList(b_no02);
+	}
+	
+	public void insertCode(List<String> code, int b_no02) {
+		for(int i = 0; i < code.size(); i ++) {
+			dao.insertCode(code.get(i), b_no02);
+		}
+	}
+	
 	public int board02Report(ReportDto dto) {
 		return dao.board02Report(dto);
 	}
@@ -51,8 +61,8 @@ public class Board02Service {
 		return dao.countJoin(b_no02, id);
 	}
 	
-	public int joinTeam(String id, int b_no02) {
-		return dao.joinTeam(id, b_no02);
+	public int joinTeam(String id, int b_no02, String code) {
+		return dao.joinTeam(id, b_no02, code);
 	}
 	
 	@Scheduled(cron = "0 0 0 * * *")

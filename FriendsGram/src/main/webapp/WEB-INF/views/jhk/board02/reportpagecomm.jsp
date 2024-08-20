@@ -11,13 +11,13 @@
 			<h3>게시글/댓글 신고하기</h3>
 
 			<form method="post" action="/board02/report">
-				<input type="hidden" name="r_no" value="${list.b_no02}" /> 
-				<input type="hidden" name="num" value="${list.num}" /> 
+				<input type="hidden" name="r_no" value="${dto.b_no02}" /> 
+				<input type="hidden" name="num" value="${dto.num}" /> 
 				<input type="hidden" name="id" value="${user.id}" />
+				<input type="hidden" name="co_no" value="${dto.c_no02}" />
 				
-
 				<p>
-					<span>글 제목 : ${list.title}</span>
+					<span>댓글 내용 : ${dto.coment}</span>
 				</p>
 				<p>
 					<span>신고자 : ${user.id}</span>
