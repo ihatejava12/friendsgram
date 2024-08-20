@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +45,40 @@ public class Board01Controller {
 	}
 	
 	
+	@GetMapping("board01/coment/write")
+	public String board01ComentWrite(@ModelAttribute("coment")Board01_ComentDto coment, Model m) {
+		
+		int no = coment.getB_no01();
+		
+		if(coment.getRef() == 0) {// 대댓글이 아니라, 새로운 댓글일 경우. ref가 0임. ref_level 0 임
+		
+			// 댓글 insert
+			board01service.writeBoard01Coment(coment);
+			// 방금 insert한 댓글의 c_no01 번호 가져옴(가장 큰 번호일테니 Max)
+			int c_no01 = board01service.selectMaxComentNumber();
+		
+			String id = coment.getId();
+			String coment01 = coment.getComent();
+		
+			// 방금 insert한 댓글에 ref 를 c_no01 과 똑같게 바로 업데이트
+			board01service.updateComentRef(id, coment01, c_no01);
+		
+		
+		
+		}else {// 대댓글일 경우, ref가 값이 이미 존재함. ref_level 이 1임
+			board01service.writeBoard01Coment(coment);
+		}
+		
+		return "redirect:/board01/content/"+no;
+		
+	
+	
+	}
+	
+	
+	
+	
+	
 	@GetMapping("board01/update/{no}")
 	public String board01Update(@PathVariable("no")int no) {
 		// 게시판 글번호 받아와서, 해당 글 정보, DB에서 수정
@@ -58,6 +93,31 @@ public class Board01Controller {
 		
 		return "pth/board01/delete";
 	}
+	
+	
+	// 댓글 번호 받아와서 해당 댓글 삭제
+	@GetMapping("/board01/coment/delete/{no}/{bno}")
+	public String board01ComentDelete(@PathVariable("no")int no, @PathVariable("bno")int bno) {
+			
+		Board01_ComentDto oneComent = board01service.selectOneComent(no);
+		int ref_level = oneComent.getRef_level();
+		int ref = oneComent.getRef();
+		
+		int count = board01service.findComentRef(ref);// 해당 댓글의 ref 값이랑 같은 댓글이 몇개 있는지 
+		if(ref_level == 0 && count > 1) {
+			// 대댓글이 1개이상 달려있는 댓글 이라는 뜻
+			// 삭제하면 댓글정렬에 문제가 생기기때문에, 업데이트로 내용을 바꾼다
+			board01service.updateDeleteComent(no);
+			
+		}else {// 그냥 삭제해도 되는 댓글일 경우, DB에서 바로 삭제
+				board01service.deleteComent(no);
+		}
+		
+		return "redirect:/board01/content/"+bno;
+	}
+	
+	
+	
 	
 	@GetMapping("board01/main")
 	public String board01Main(@RequestParam(name="p", defaultValue="1")int page, Model m) {
@@ -127,8 +187,12 @@ public class Board01Controller {
 	
 	@GetMapping("/board01/search")
 	public String board01Search(@RequestParam("skil")String skil, @RequestParam("category")String category, 
-			@RequestParam("search")String search, Model m) {
+			@RequestParam("search")String search, @RequestParam("addskil")String addskil
+			,Model m) {
 		// 검색 버튼 클릭시, 개발언어, (작성자,제목,내용) 등 정보 가져와서 그걸로 검색한 글 목록 표시
+		if(skil == "other") {// 기타를 눌러서 직접 입력했을 경우 
+			skil = addskil;		
+		}
 		
 		int count = board01service.countSearchBoard01(skil, category, search);
 		m.addAttribute("count",count);

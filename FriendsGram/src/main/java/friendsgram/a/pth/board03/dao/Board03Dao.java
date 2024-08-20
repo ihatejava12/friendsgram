@@ -30,6 +30,10 @@ public interface Board03Dao {
 	
 	List<Board03Dto> searchBoard03List(Map<String,Object> m);
 	
+	int countsearchBoard03List(Map<String,Object> m);
+	
+	
+	
 	
 	List<Integer> searchBoard03SkilList(String skil);
 	

@@ -79,6 +79,19 @@ public class Board03Service {
 	}
 
 	
+	public int countsearchBoard03List(int work_type,List<Integer> searchb_no03List, int career){
+		Map<String, Object> m = new HashMap<String,Object>();
+		m.put("work_type", work_type);
+		m.put("searchb_no03List", searchb_no03List);
+		m.put("career", career);
+		
+		
+		return board03dao.countsearchBoard03List(m);
+	}
+	
+	
+	
+	
 	
 	public List<Integer> searchBoard03SkilList(String skil){
 		return board03dao.searchBoard03SkilList(skil);
