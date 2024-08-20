@@ -132,12 +132,11 @@
 					});
 				})
 				
-				$(".comm_comm").on('click', function(){
+				$(".comm_comm").one('click', function(){
 					let id = $(this).attr("data-target");
 					let no = $(this).attr("title")
 					let s_id = '#'+no;
-					alert(s_id);
-					$(s_id).append(`<input type="text" value=@\${id}><input type="button" id="${comm.c_no02}" value="추가">`)
+					$(s_id).after(`<input name="coment" type="text" value=@\${id}><input type="button" id="${comm.c_no02}" value="추가">`)
 
 				})
 				
