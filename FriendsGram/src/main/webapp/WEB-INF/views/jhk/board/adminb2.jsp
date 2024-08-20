@@ -36,7 +36,7 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 18px;
+    font-size: 24px;
     text-align: center;
 }
 
