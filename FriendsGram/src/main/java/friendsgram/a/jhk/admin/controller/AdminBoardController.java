@@ -16,6 +16,7 @@ import friendsgram.a.jhk.admin.service.AdminBoard02Service;
 import friendsgram.a.jhk.admin.service.AdminBoard03Service;
 import friendsgram.a.jhk.admin.service.AdminBoard04Service;
 import friendsgram.a.jhk.admin.service.AdminBoard05Service;
+import friendsgram.a.jhk.board02.service.Board02CommService;
 import friendsgram.board01.dto.Board01Dto;
 import friendsgram.board01.dto.Board01_ComentDto;
 import friendsgram.board02.dto.Board02Dto;
@@ -30,6 +31,14 @@ public class AdminBoardController {
 	@Autowired
 	AdminBoard01Service service01;
 	
+	@DeleteMapping("/deletecomm01/{ref}")
+	@ResponseBody
+	public String deleteComm(@PathVariable("ref") int ref) {
+		service01.deleteComm(ref);
+		
+		return "";
+	}
+	
 	@DeleteMapping("/delete1/{b_no01}")
 	@ResponseBody
 	public String delete1(@PathVariable("b_no01") int b_no01) {
@@ -41,9 +50,8 @@ public class AdminBoardController {
 	public String adminPageB11(@PathVariable("b_no01") int b_no01, Model m) {
 		Board01Dto blist1 = service01.oneBoard01(b_no01);
 		m.addAttribute("blist1", blist1);
-		
-		List<Board01_ComentDto> clist1 = service01.oneComent(b_no01);
-		m.addAttribute("clist1", clist1);
+		List<Board01_ComentDto> comlist = service01.selectComm(b_no01);
+		m.addAttribute("clist", comlist);
 		
 		return "/jhk/board/contentb1";
 	}
@@ -94,6 +102,17 @@ public class AdminBoardController {
 	@Autowired
 	AdminBoard02Service service02;
 	
+	@Autowired
+	Board02CommService cservice;
+	
+	@DeleteMapping("/deletecomm02/{ref}")
+	@ResponseBody
+	public String deleteComm2(@PathVariable("ref") int ref) {
+		service02.deleteComm2(ref);
+		
+		return "";
+	}
+	
 	@DeleteMapping("/delete2/{b_no02}")
 	@ResponseBody
 	public String delete2(@PathVariable("b_no02") int b_no02) {
@@ -106,8 +125,8 @@ public class AdminBoardController {
 		Board02Dto blist2 = service02.oneBoard02(b_no02);
 		m.addAttribute("blist2", blist2);
 		
-		List<Board02_ComentDto> clist2 = service02.oneComent(b_no02);
-		m.addAttribute("clist2", clist2);
+		List<Board02_ComentDto> clist2 = cservice.selectComm(b_no02);
+		m.addAttribute("clist", clist2);
 		
 		return "/jhk/board/contentb2";
 	}

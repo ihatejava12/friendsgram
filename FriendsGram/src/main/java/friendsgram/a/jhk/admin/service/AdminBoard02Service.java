@@ -17,16 +17,16 @@ public class AdminBoard02Service {
 	@Autowired
 	AdminBoard02Dao dao;
 	
+	public int deleteComm2(int ref) {
+		return dao.deleteComm2(ref);
+	}
+	
 	public int deleteOneBoard02(int b_no02) {
 		return dao.deleteOneBoard02(b_no02);
 	}
 	
 	public Board02Dto oneBoard02(int b_no02){
 		return dao.oneBoard02(b_no02);
-	}
-	
-	public List<Board02_ComentDto> oneComent(int b_no02) {
-		return dao.oneComent02(b_no02);
 	}
 	
 	public List<Board02Dto> findBoard02(int searchn, String search, int start){

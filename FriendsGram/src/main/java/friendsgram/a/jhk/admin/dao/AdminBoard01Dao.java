@@ -13,6 +13,14 @@ import friendsgram.board01.dto.Board01_ComentDto;
 @Mapper
 public interface AdminBoard01Dao {
 	
+	// 해당 댓글1 삭제
+	@Delete("delete from board01_coment where ref = #{ref}")
+	int deleteComm(int ref);
+	
+	// 해당 게시글1 댓글 리스트
+	@Select("select * from board01_coment where b_no01 = #{b_no01} order by ref desc")
+	List<Board01_ComentDto> selectComm(int b_no01);
+	
 	// 해당 게시글 삭제
 	@Delete("delete from board01 where b_no01 = #{b_no01}")
 	int deleteOneBoard01(int b_no01);
@@ -20,12 +28,6 @@ public interface AdminBoard01Dao {
 	// 해당 게시글
 	@Select("select * from board01 where b_no01 = #{b_no01}")
 	Board01Dto oneBoard01(int b_no01);
-	
-	// 해당 게시글 댓글 삭제
-	
-	// 해당 게시글 댓글
-	@Select("select * from board01_coment where b_no01 = #{b_no01}")
-	List<Board01_ComentDto> oneComent01(int b_no01);
 	
 	// board01 게시글 찾기
 	@Select({"<script>",

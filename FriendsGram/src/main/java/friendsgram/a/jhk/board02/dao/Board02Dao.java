@@ -14,9 +14,18 @@ import friendsgram.admin.dto.ReportDto;
 import friendsgram.board02.dto.Board02Dto;
 import friendsgram.board02.dto.Board02_CodeDto;
 import friendsgram.board02.dto.Board02_JoinDto;
+import friendsgram.board02.dto.Board02_TeamDto;
 
 @Mapper
 public interface Board02Dao {
+	
+	// 확정된 팀 리스트 뽑아오기
+	@Select("select * from board02_team where b_no02 = #{b_no02}")
+	List<Board02_TeamDto> tList(int b_no02);
+	
+	// 확정된 팀 모집 상태 모집완료로 업데이트하기
+	@Update("update board02 set join01 = 1 where b_no02 = #{b_no02}")
+	int updateJoinstate(int b_no02);
 	
 	// 코드 DB에 저장하기
 	@Insert("insert into board02_code values (#{code}, #{b_no02})")
