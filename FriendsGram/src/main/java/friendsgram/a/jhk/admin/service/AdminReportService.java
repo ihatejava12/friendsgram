@@ -18,20 +18,20 @@ public class AdminReportService {
 	@Autowired
 	AdminReportDao dao;
 	
-	public Board02_ComentDto selectBC2(int b_no02, int c_no02) {
-		return dao.selectBC2(b_no02, c_no02);
+	public Board02_ComentDto selectBC2(int r_no, int co_no) {
+		return dao.selectBC2(r_no, co_no);
 	}
 	
-	public Board01_ComentDto selectBC1(int b_no01, int c_no01) {
-		return dao.selectBC1(b_no01, c_no01);
+	public Board01_ComentDto selectBC1(int r_no, int co_no) {
+		return dao.selectBC1(r_no, co_no);
 	}
 	
-	public Board02Dto selectB2(int b_no02) {
-		return dao.selectB2(b_no02);
+	public Board02Dto selectB2(int r_no) {
+		return dao.selectB2(r_no);
 	}
 	
-	public Board01Dto selectB1(int b_no01) {
-		return dao.selectB1(b_no01);
+	public Board01Dto selectB1(int r_no) {
+		return dao.selectB1(r_no);
 	}
 	
 	public List<ReportDto> reportList() {
