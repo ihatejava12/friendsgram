@@ -18,12 +18,10 @@ public class Board02CommController {
 	Board02CommService service;
 	
 	@PostMapping("/insert/comm2")
-	public void insertComm2(@RequestParam("coment") String coment, @RequestParam("ref") int ref, @RequestParam("id") String id, @RequestParam("b_no02") int b_no02) {
+	public String insertComm2(@RequestParam("coment") String coment, @RequestParam("ref") int ref, @RequestParam("id") String id, @RequestParam("b_no02") int b_no02) {
 		service.insertComm2(coment, ref, id, b_no02);
-		System.out.println(coment);
-		System.out.println(ref);
-		System.out.println(id);
-		System.out.println(b_no02);
+		
+		return "";
 	}
 	
 	@GetMapping("/reportcoment/{c_no02}")
@@ -34,11 +32,18 @@ public class Board02CommController {
 		return "/jhk/board02/reportpagecomm";
 	}
 	
+	@GetMapping("/deletecomm03/{ref}")
+	public String deleteComm03(@PathVariable("ref") int ref) {
+		service.deleteRef(ref);
+		
+		return "";
+	}
+	
 	@GetMapping("/deletecomm02/{c_no02}")
 	public String deleteComm02(@PathVariable("c_no02") int c_no02) {
 		service.deleteComm02(c_no02);
 		
-		return "redirect:/board02content/{b_no02}";
+		return "";
 	}
 	
 	@PostMapping("/insertcomm02")

@@ -9,5 +9,6 @@ public class ReportDto {
 	private int num;
 	private String id;
 	private int co_no;
+	private String content;
 
 }

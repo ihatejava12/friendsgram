@@ -13,6 +13,9 @@ import friendsgram.board02.dto.Board02_ComentDto;
 @Mapper
 public interface AdminBoard02Dao {
 	
+		@Delete("delete from board02_coment where ref = #{ref}")
+		int deleteComm2(int ref);
+	
 	// 해당 게시글 삭제
 		@Delete("delete from board02 where b_no02 = #{b_no02}")
 		int deleteOneBoard02(int b_no02);
@@ -21,12 +24,6 @@ public interface AdminBoard02Dao {
 		@Select("select * from board02 where b_no02 = #{b_no02}")
 		Board02Dto oneBoard02(int b_no02);
 		
-		// 해당 게시글 댓글 삭제
-		
-		// 해당 게시글 댓글
-		@Select("select * from board02_coment where b_no02 = #{b_no02}")
-		List<Board02_ComentDto> oneComent02(int b_no02);
-
 	// board02 게시글 찾기
 		@Select({"<script>",
 					"select * from board02",

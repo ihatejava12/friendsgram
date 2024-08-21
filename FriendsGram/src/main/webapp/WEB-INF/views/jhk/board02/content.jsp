@@ -19,7 +19,7 @@
 			</tr>
 			<tr>
 				<td>작성자</td><!-- value칸에는 나중에 세션에 저장되어 있는 아이디를 불러오게 만들거임 -->
-				<td><input name="id" value="${dto.id}" readonly></td>
+				<td><a href="/viewreview/${dto.id}" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">${dto.id}</a></td>
 			</tr>
 			<tr>
 				<td>모집 기간</td>
@@ -84,7 +84,12 @@
 				</c:if>
 			</c:if>
 			<c:if test="${user.id == dto.id}">
-				<button onclick="window.open('/teamlist/${dto.b_no02}', '_blank', 'width=450, height=600, top=50, left=50, scrollbars=yes')">신청자보기</button>
+				<c:if test="${dto.join01 == true}">
+					<button onclick="window.open('/teamlist/${dto.b_no02}', '_blank', 'width=450, height=600, top=50, left=50, scrollbars=yes')">신청자보기</button>
+				</c:if>
+				<c:if test="${dto.join01 == false}">
+					<button>확정완료</button>
+				</c:if>
 			</c:if>
 		</c:if>
 		<hr>
@@ -93,16 +98,35 @@
 		</c:if>
 		<hr>
 		<c:forEach items="${commlist}" var="comm">
+		<c:if test="${comm.ref_level != 1}">
       		<fieldset>
-	      		<span title="${comm.c_no02}" class="comm_comm" data-target="${comm.id}" >${comm.id} / <fmt:formatDate value="${comm.date}" dateStyle="short"/></span>
+	      		<span title="${comm.c_no02}" id="${comm.ref_level}" class="comm_comm" data-target="${comm.id}" >${comm.id} / <fmt:formatDate value="${comm.date}" dateStyle="short"/>
 	      		<button onclick="window.open('/reportcoment/${comm.c_no02}', '_blank', 'width=500,height=600, top=50, left=50, scrollbars=yes')">신고하기</button>
 	      		<c:if test="${comm.id == user.id}">
 	      			<input type="button" class="delete" id="${comm.c_no02}" value="삭제">
 	      		</c:if> 
-	      		<div>${comm.coment}</div>
-	      		<span id="${comm.c_no02}"></span>
-	      		<span id="add_add_comm"></span>
+	      		<div>${comm.coment}</div></span>
+	      		<span class="${comm.c_no02}"></span>
       		</fieldset>
+      	</c:if>
+      	<c:if test="${comm.ref_level == 1}">
+      		<fieldset>
+      			<div style="float:left; height:50px; margin-right: 10px;">
+				<span class="icon">
+				<img src="/img/level.gif" width="${comm.ref_level * 10}">	
+				<img src="/img/re.gif" alt="답변" />
+				</span>
+				</div>
+	      		<span title="${comm.c_no02}" id="${comm.ref_level}" class="comm_comm" data-target="${comm.id}">${comm.id} / <fmt:formatDate value="${comm.date}" dateStyle="short"/></span>
+	      		<button onclick="window.open('/reportcoment/${comm.c_no02}', '_blank', 'width=500,height=600, top=50, left=50, scrollbars=yes')">신고하기</button>
+	      		<c:if test="${comm.id == user.id}">
+	      			<input type="button" class="delete" id="${comm.c_no02}" name="${comm.ref_level}" value="삭제">
+	      		</c:if> 
+	      		<div>${comm.coment}</div>
+	      		<span class="${comm.c_no02}"></span>
+      		</fieldset>
+      	</c:if>
+      	
 		</c:forEach>
 		
 		
@@ -124,20 +148,53 @@
 				})
 				
 				$(".delete").click(function(){
+					let ref_level = $(this).attr("name");
 					let c_no02 = $(this).attr("id");
-					$.ajax({url:"/deletecomm02/"+c_no02,
+					let ref = $(this).attr("id");
+					
+					if(ref_level == 1){
+						$.ajax({url:"/deletecomm02/"+c_no02,
+								method:"get"
+						}).always(function(){
+							location.reload();
+						});
+					} else {
+						$.ajax({url:"/deletecomm03/"+ref,
 							method:"get"
 					}).always(function(){
 						location.reload();
 					});
+					}
 				})
 				
+				let s_id = '';
+				
 				$(".comm_comm").one('click', function(){
+					let ref_level = $(this).attr("id");
+					
+					if(ref_level == 0){
+					
 					let id = $(this).attr("data-target");
 					let no = $(this).attr("title")
-					let s_id = '#'+no;
-					$(s_id).after(`<input name="coment" type="text" value=@\${id}><input type="button" id="${comm.c_no02}" value="추가">`)
-
+					s_id = '.'+no;
+					$(s_id).append(`<input name="coment" type="text" value=@\${id}><input type="button" class="add_coment" value="추가">`)
+					} else {
+						alert("불가능합니다")
+						$(s_id).remove();
+					}
+				})
+				
+				$("fieldset").on('click', '.add_coment', function(){
+					let id = "${user.id}";
+					let b_no02 = ${dto.b_no02};
+					let ref = $(this).parent().attr('class');
+					let coment = $(this).prev().val();
+					$.ajax({url:"/insert/comm2",
+							data:"id="+id+"&b_no02="+b_no02+"&ref="+ref+"&coment="+coment,
+							method:"post"
+						}).always(function(){
+							location.reload();
+						})
 				})
 				
 			})

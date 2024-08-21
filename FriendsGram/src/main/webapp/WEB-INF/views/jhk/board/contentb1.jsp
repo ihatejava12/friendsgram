@@ -224,19 +224,32 @@ table th {
 	</span>
 	</table>
 	
-
-	<div>
-   		<div>
-   			<c:forEach items="${clist1}" var="comm">
-      			<div title="${comm.c_no01}">
-      			<div>${comm.id} / <fmt:formatDate value="${comm.date}" dateStyle="short"/></div>
-      			<div>${comm.coment} 
-      			<button class="dbtn" id="${comm.c_no01}">삭제</button>   
-      			</div>
-     	 		</div>
-   			</c:forEach>
-   		</div>
-	</div>
+	<c:forEach items="${clist}" var="comm">
+		<c:if test="${comm.ref_level == 0}">
+			<fieldset>
+				<span>
+					${comm.id} / <fmt:formatDate value="${comm.date}" dateStyle="short"/> <input type="button" class="delete" id="${comm.ref}" value="삭제">
+					<div>${comm.coment}</div>
+				</span>
+			</fieldset>
+		</c:if>
+		<c:if test="${comm.ref_level == 1}">
+			<fieldset>
+				<div style="float:left; height:50px; margin-right: 10px;">
+				<span class="icon">
+				<img src="/img/level.gif" width="${comm.ref_level * 10}">	
+				<img src="/img/re.gif" alt="답변" />
+				</span>
+				</div>
+				<span>
+					${comm.id} / <fmt:formatDate value="${comm.date}" dateStyle="short"/> <input type="button" class="delete" id="${comm.ref}" value="삭제">
+					<div>${comm.coment}</div>
+				</span>
+			</fieldset>
+		</c:if>
+		
+	</c:forEach>	
+	
 	</main>
 	
 	<footer class="footer">
@@ -254,6 +267,7 @@ table th {
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(function(){
+			
 			$("#delete").on("click", function(){
 				let no = ${blist1.b_no01};
 				$.ajax({url:"/delete1/"+no,
@@ -262,6 +276,16 @@ table th {
 					location.href='/adminpage/board01';
 				})
 			})
+			
+			$(".delete").click(function(){
+				let ref = $(this).attr("id");
+				$.ajax({url:"/deletecomm01/"+ref,
+						method:"delete"
+				}).always(function(){
+					location.reload();
+				});
+			})
+			
 		})
 	</script>
 </body>

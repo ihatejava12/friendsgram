@@ -5,7 +5,6 @@
 <html>
 <head>
 <style>
-<style>
 
 * {
   box-sizing: border-box;
@@ -117,10 +116,6 @@ main {
 		<div id="headcontent" align="center">
 			<h2>팀 모집 게시판</h2>
 		<form action="main">
-			<!-- <label><input type="radio" name="searchn" value="0" class="start_radio" checked> 전체</label>
-			<label><input type="radio" name="searchn" value="1" class="start_radio"> 작성자</label>
-			<label><input type="radio" name="searchn" value="2" class="start_radio"> 기간</label>
-			<label><input type="radio" name="searchn" value="3" class="start_radio"> 코드</label> -->
 			<select name="searchn" id="searchn">
 				<option value="0">전체</option>
 				<option value="1">작성자</option>
@@ -128,9 +123,6 @@ main {
 				<option value="3">코드</option>
 			</select>
 
-			<!-- <span id="id" style="display:none"><input name="search"></span>
-			<span id="date" style="display:none"><input type="date" name="search"></span> -->
-			
 			<span id="append"></span>
 			
 			<input type="submit" value="검색"/>
@@ -142,13 +134,14 @@ main {
 					<button>새글 쓰기</button>
 				</form>
 			</c:if>
-			<table>
+			<table border="1">
 				<tr>
 					<th>제목</th>
 					<th>모집기간</th>
 					<th>작성일</th>
 					<th>모집자 수</th>
 					<th>모집 상태</th>
+					<th>확정 팀원</th>
 				</tr>
 				<c:forEach items="${blist}" var="list">
 					<tr>
@@ -162,6 +155,10 @@ main {
 						</c:if>
 						<c:if test="${list.join01 == true}">
 							<td>모집 완료</td>
+						</c:if>
+						
+						<c:if test="${list.join01 == true}">
+							<td><button onclick="window.open('/reviewteam/${list.b_no02}', '_blank', 'width=450, height=600, top=50, left=50, scrollbars=yes')">보기</button></td>
 						</c:if>
 					</tr>
 				</c:forEach>
