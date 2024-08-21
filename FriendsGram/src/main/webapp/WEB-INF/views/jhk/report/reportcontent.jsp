@@ -28,7 +28,7 @@
 	<c:if test="${b2 != null}">
 		<fieldset>
 			<div>
-				<h3>코딩 게시판 신고글</h3>
+				<h3>모집 게시판 신고글</h3>
 					
 					<p>
 						<span>글 제목 : ${b2.title}</span>
@@ -47,7 +47,7 @@
 	<c:if test="${bc1 != null}">
 		<fieldset>
 			<div>
-				<h3>코딩 게시판 신고글</h3>
+				<h3>코딩 게시판 댓글 신고글</h3>
 	
 					<p>
 						<span>글 내용 : ${bc1.coment}</span>
@@ -63,7 +63,7 @@
 	<c:if test="${bc2 != null}">
 		<fieldset>
 			<div>
-				<h3>코딩 게시판 신고글</h3>
+				<h3>모집 게시판 댓글 신고글</h3>
 	
 					<p>
 						<span>글 내용 : ${bc2.coment}</span>

@@ -84,10 +84,10 @@
 				</c:if>
 			</c:if>
 			<c:if test="${user.id == dto.id}">
-				<c:if test="${dto.join01 == true}">
+				<c:if test="${dto.join01 == false}">
 					<button onclick="window.open('/teamlist/${dto.b_no02}', '_blank', 'width=450, height=600, top=50, left=50, scrollbars=yes')">신청자보기</button>
 				</c:if>
-				<c:if test="${dto.join01 == false}">
+				<c:if test="${dto.join01 == true}">
 					<button>확정완료</button>
 				</c:if>
 			</c:if>

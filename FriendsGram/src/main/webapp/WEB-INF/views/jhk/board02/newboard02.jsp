@@ -135,7 +135,7 @@ main {
 					</tr>
 					<tr>
 						<td>지원자 수</td>
-						<td ><input type="number" name="volunteer"></td>
+						<td ><input type="number" name="volunteer" min="1"></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
