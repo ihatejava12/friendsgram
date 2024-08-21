@@ -15,4 +15,5 @@ public class Board01_ComentDto {
 	private int b_no01;
 	private int ref;
 	private int ref_level;
+	private int comentlike;
 }

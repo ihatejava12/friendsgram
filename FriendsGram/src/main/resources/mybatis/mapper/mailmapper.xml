@@ -29,4 +29,11 @@
 	</delete>
 	
 	
+	
+	<insert id="sendNewMail" parameterType="friendsgram.mailham.dto.MailhamDto">
+		insert into mailham(return_man, title, content, date, id)
+		values( #{return_man}, #{title}, #{content}, now(), #{id} )
+	</insert>
+	
+	
 </mapper>

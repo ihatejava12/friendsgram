@@ -63,6 +63,20 @@ public class Board01Service {
 		return board01dao.countSearchBoard01(m);
 	}
 	
+	// 게시판 검색 조건 선택해서, 실제로 가져올 10개의 글 목록
+	public List<Board01Dto> SearchBoard01(String skil, String category, String search, int startRow, int perpage){
+		Map<String, Object> m = new HashMap<>();
+		m.put("skil", skil);
+		m.put("category", category);
+		m.put("search", search);
+		m.put("start", startRow);
+		m.put("count", perpage);
+		
+		
+		return board01dao.SearchBoard01(m);
+	}
+	
+	
 	
 	
 	//댓글 등록
@@ -114,6 +128,60 @@ public class Board01Service {
 	public	int updateDeleteComent(int no) {
 		return board01dao.updateDeleteComent(no);
 	}
+	
+	
+	// id와 댓글 고유번호 받아와서, 추천 Table에 해당 조합이 있는지 없는지 리턴
+	public int trueFalseComentLike(String id, int c_no01) {
+		Map<String, Object> m = new HashMap<>();	
+		m.put("id", id);
+		m.put("c_no01", c_no01);
+		return board01dao.trueFalseComentLike(m);
+	}
+	
+	// id와 댓글 고유번호 받아와서, 추천 Table에 추가
+	public	int comentLikeConfirm(String id, int c_no01) {
+		Map<String, Object> m = new HashMap<>();
+		m.put("id", id);
+		m.put("c_no01", c_no01);		
+		return board01dao.comentLikeConfirm(m);
+		}
+	
+	// 댓글 고유번호 받아와서, 해당 댓글의 추천 수 리턴
+	public	int findComentLikeNumber(int c_no01) {
+		return board01dao.findComentLikeNumber(c_no01);
+	}
+	
+	// 댓글 고유번호 받아와서, 해당 댓글의 추천수 1 증가
+	public	int addComentLikeNumber(int c_no01) {
+		return board01dao.addComentLikeNumber(c_no01);
+	}
+	
+	// 글 1개 클릭할때, 조회수 1 증가
+	public	int checkOnedayRead(int no, String id, String clickdate) {
+		Map<String, Object> m = new HashMap<>();
+		m.put("id", id);
+		m.put("no", no);
+		m.put("clickdate", clickdate);
+		return board01dao.checkOnedayRead(m);
+	}
+	
+	// 글 1개 클릭시, 조건 만족했을 경우 조회수 +1 
+	public	int addReadCount(int no) {
+		return board01dao.addReadCount(no);
+	}
+	
+	// 글 1개 클릭시, 조건 만족했을 경우, board01_readcount table에 record추가
+	public	int insertReadCountTable(int no, String id, String clickdate) {
+		Map<String, Object> m = new HashMap<>();
+		m.put("id", id);
+		m.put("no", no);
+		m.put("clickdate", clickdate);
+		return board01dao.insertReadCountTable(m);
+	}
+	
+	
+	
+	
 	
 	
 }

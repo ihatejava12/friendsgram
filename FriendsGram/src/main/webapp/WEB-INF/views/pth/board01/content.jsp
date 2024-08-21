@@ -231,6 +231,7 @@ td {
 <div>
 	<button><a class="report" href="/board01/report/${content.b_no01}" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">신고하기</a></button>
 </div>
+<br>
 <hr>
 
 <div class="articlecoment">
@@ -257,12 +258,14 @@ td {
 				</span>
 				</div>
 			</c:if>
-		<div >
-		<p>${coment.id } (<fmt:formatDate value="${coment.date }" type="both" dateStyle="short" timeStyle="default"/>) <button>추천</button> <button>신고</button></p>
+		<div class="comentcontent">
+		<p>${coment.id } (<fmt:formatDate value="${coment.date }" type="both" dateStyle="short" timeStyle="default"/> 
+		<button class="like">${coment.comentlike} 추천 </button> <button>신고</button> </p>
 		<br>
 		<span>${coment.coment }</span>   <span><button class="writeAnser" id="${coment.c_no01}">답글</button></span>
 			<c:if test="${coment.id == user.id }">
-				<button><a href="/board01/coment/delete/${coment.c_no01}/${coment.b_no01}" style="text-decoration:none" return false; >삭제</a></button>
+				<button><a href="/board01/coment/delete/${coment.c_no01}/${coment.b_no01}" 
+				style="text-decoration:none" return false; >삭제</a></button>
 			</c:if>
 		<br>
 		<br>
@@ -323,9 +326,42 @@ td {
 			let no = $(this).attr("id");
 			$("."+no).show();
 			
-		})
+		})//writeAnser click end
 		
 	
+		$(".like").on("click",function(){
+			let like = "${coment.comentlike}";
+			let c_no01 = $(this).closest(".comentcontent").find("button[class='writeAnser']:eq(0)").attr("id");
+			let id =  "${user.id}";
+			
+			$.ajax({
+				url: "/board01/coment/like",
+				data: "id="+id+"&c_no01="+c_no01,
+				method: "get"		
+			}).done(function(data){
+				if(data == '0'){
+					if(confirm("이 댓글을 추천하시겠습니까?")){
+						$.ajax({
+							url: "/board01/coment/likeconfirm",
+							data: "id="+id+"&c_no01="+c_no01,
+							method:"get"
+						}).done(function(data){
+							location.reload();
+						})
+					}
+					
+				}else{alert("이미 추천한 댓글입니다.");}
+			});
+			
+			
+			
+			
+		
+		})
+		
+		
+		
+		
 	})
 	
 

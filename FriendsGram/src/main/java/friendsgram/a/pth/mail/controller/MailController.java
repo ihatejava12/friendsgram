@@ -6,14 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import friendsgram.a.pth.mail.service.MailService;
 import friendsgram.board01.dto.Board01Dto;
 import friendsgram.mailham.dto.MailhamDto;
+import friendsgram.member.dto.Corporation_MemberDto;
+import friendsgram.member.dto.MemberDto;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
+@SessionAttributes("user")
 @Controller
 public class MailController {
 	
@@ -22,8 +30,20 @@ public class MailController {
 	
 	
 	@GetMapping("/mail")
-	public String mailhamOpen(@RequestParam(name="p", defaultValue="1")int page,Model m) {
-		String id = "pth";
+	public String mailhamOpen(@RequestParam(name="p", defaultValue="1")int page,Model m
+			, @ModelAttribute("user") Object member ) {
+		
+		String id = null;
+		if( member instanceof MemberDto ) {
+			MemberDto m_member = (MemberDto)member;
+			id = m_member.getId();
+		
+		}else if( member instanceof Corporation_MemberDto ) {
+			Corporation_MemberDto c_member = (Corporation_MemberDto)member;
+			id = c_member.getId();
+		}
+	
+		System.out.println("id:" + id);
 		
 		int perpage = 5; // 한페이지에 5개의 메일 보여줄거임
 		int startRow = (page-1)*perpage;
@@ -71,10 +91,28 @@ public class MailController {
 	}
 	
 	
-	@GetMapping("/mail/sendlist")
-	public String sendmaillist(@RequestParam(name="p", defaultValue="1")int page,Model m) {
+	@GetMapping("/mail/write/newmail")
+	public String writeNewmail(@ModelAttribute("mail")MailhamDto mail) {
 		
-		String id = "pth";
+		mailservice.sendNewMail(mail);
+		
+		return "pth/mail/writeconfirm";
+	}
+	
+	
+	@GetMapping("/mail/sendlist")
+	public String sendmaillist(@RequestParam(name="p", defaultValue="1")int page,Model m
+			,@ModelAttribute("user") Object member) {
+		
+		String id = null;
+		if( member instanceof MemberDto ) {
+			MemberDto m_member = (MemberDto)member;
+			id = m_member.getId();
+		
+		}else if( member instanceof Corporation_MemberDto ) {
+			Corporation_MemberDto c_member = (Corporation_MemberDto)member;
+			id = c_member.getId();
+		}
 		
 		int perpage = 5; // 한페이지에 5개의 메일 보여줄거임
 		int startRow = (page-1)*perpage;
