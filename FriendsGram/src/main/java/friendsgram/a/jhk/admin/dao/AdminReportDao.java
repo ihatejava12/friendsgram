@@ -16,20 +16,20 @@ import friendsgram.board02.dto.Board02_ComentDto;
 public interface AdminReportDao {
 	
 	// co_no != 0, num = 1
-	@Select("select * from board02_coment where b_no02 = #{b_no02} and c_no02 = #{c_no02}")
-	Board02_ComentDto selectBC2(@Param("b_no02") int b_no02, @Param("c_no02") int c_no02);
+	@Select("select * from report where r_no = #{b_no02} and co_no = #{c_no02}")
+	Board02_ComentDto selectBC2(@Param("r_no") int r_no, @Param("co_no") int co_no);
 	
 	// co_no != 0, num = 0
-	@Select("select * from board01_coment where b_no01 = #{b_no01} and c_no01 = #{c_no01}")
-	Board01_ComentDto selectBC1(@Param("b_no01") int b_no01, @Param("c_no01") int c_no01);
+	@Select("select * from report where r_no = #{b_no01} and co_no = #{c_no01}")
+	Board01_ComentDto selectBC1(@Param("r_no") int r_no, @Param("co_no") int co_no);
 	
 	// co_no = 0, num = 1
-	@Select("select * from board02 where b_no02 = #{b_no02}")
-	Board02Dto selectB2(int b_no02);
+	@Select("select * from report where r_no = #{b_no02} and co_no = 0")
+	Board02Dto selectB2(int r_no);
 	
 	// co_no = 0, num = 0
-	@Select("select * from board01 where b_no01 = #{b_no01}")
-	Board01Dto selectB1(int b_no01);
+	@Select("select * from report where r_no = #{b_no01} and co_no = 0")
+	Board01Dto selectB1(int r_no);
 	
 	@Select("select * from report")
 	List<ReportDto> reportList();

@@ -14,6 +14,7 @@
 				<input type="hidden" name="r_no" value="${list.b_no02}" /> 
 				<input type="hidden" name="num" value="${list.num}" /> 
 				<input type="hidden" name="id" value="${user.id}" />
+				<input type="hidden" name="content" value="${list.content}" />
 				
 
 				<p>

@@ -32,7 +32,7 @@ public interface Board02Dao {
 	int insertCode(@Param("code") String code, @Param("b_no02") int b_no02);
 	
 	// 신고
-	@Insert("insert into report (report_content, r_no, num, id, co_no) values (#{report_content}, #{r_no}, #{num}, #{id}, #{co_no})")
+	@Insert("insert into report (report_content, r_no, num, id, co_no, content) values (#{report_content}, #{r_no}, #{num}, #{id}, #{co_no}, #{content})")
 	int board02Report(ReportDto dto);
 	
 	// 글 삭제
