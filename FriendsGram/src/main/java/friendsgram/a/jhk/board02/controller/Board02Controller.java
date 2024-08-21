@@ -33,6 +33,13 @@ public class Board02Controller {
 	@Autowired
 	Board02CommService cservice;
 	
+	@GetMapping("/reviewteam/{b_no02}")
+	public String reviewTeam(@PathVariable("b_no02") int b_no02, Model m) {
+		m.addAttribute("tlist", service.tList(b_no02));
+		
+		return "/jhk/review/teamlist";
+	}
+	
 	@GetMapping("/pickcode/{b_no02}")
 	public String pickCode(@PathVariable("b_no02") int b_no02, Model m) {
 		List<Board02_CodeDto> picklist = service.pickCode(b_no02);
@@ -40,7 +47,7 @@ public class Board02Controller {
 		Board02Dto dto = service.board02Content(b_no02);
 		m.addAttribute("list", dto);
 		
-		return "jhk/board02/pickcode";
+		return "/jhk/board02/pickcode";
 	}
 	
 	@PostMapping("/board02/report")
@@ -68,6 +75,7 @@ public class Board02Controller {
 	@ResponseBody
 	public int makeTeam(@RequestParam("list") List<String> list, @RequestParam("b_no02") int b_no02) {
 		service.makeTeam(list, b_no02);
+		service.updateJoinstate(b_no02);
 		
 		return 1;
 	}

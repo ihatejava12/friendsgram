@@ -13,12 +13,21 @@ import friendsgram.admin.dto.ReportDto;
 import friendsgram.board02.dto.Board02Dto;
 import friendsgram.board02.dto.Board02_CodeDto;
 import friendsgram.board02.dto.Board02_JoinDto;
+import friendsgram.board02.dto.Board02_TeamDto;
 
 @Service
 public class Board02Service {
 
 	@Autowired
 	Board02Dao dao;
+	
+	public List<Board02_TeamDto> tList(int b_no02){
+		return dao.tList(b_no02);
+	}
+	
+	public int updateJoinstate(int b_no02) {
+		return dao.updateJoinstate(b_no02);
+	}
 	
 	public List<Board02_CodeDto> pickCode(int b_no02){
 		return dao.codeList(b_no02);
@@ -90,7 +99,6 @@ public class Board02Service {
 		m.put("content", content);
 		m.put("volunteer", volunteer);
 		m.put("id", id);
-		System.out.println(dao.maxNum());
 		return dao.writeBoard(m);
 	}
 	

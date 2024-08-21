@@ -24,11 +24,11 @@ public class Board02CommService {
 		return dao.selectOneComm(c_no02);
 	}
 	
+	public int deleteRef(int ref) {
+		return dao.deleteRef(ref);
+	}
+	
 	public int deleteComm02(int c_no02) {
-		/*
-		 * if(dao.selectLevel(c_no02) == 1) { return dao.deleteComm02(c_no02); } else {
-		 * return dao.deleteComm02(c_no02); }
-		 */
 		return dao.deleteComm02(c_no02);
 	}
 	
