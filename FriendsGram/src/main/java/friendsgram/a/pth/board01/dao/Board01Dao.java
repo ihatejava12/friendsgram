@@ -26,6 +26,9 @@ public interface Board01Dao {
 	int countSearchBoard01(Map<String,Object> m);
 	
 	
+	List<Board01Dto> SearchBoard01(Map<String, Object> m);
+	
+	
 	
 	// 댓글 등록
 	int writeBoard01Coment(Board01_ComentDto coment);
@@ -55,5 +58,26 @@ public interface Board01Dao {
 	// 삭제말고 업데이트 삭제해야하는 댓글
 	int updateDeleteComent(int no);
 	
+	
+	// id와 댓글 고유번호 받아와서, 추천 Table에 해당 조합이 있는지 없는지 리턴
+	int trueFalseComentLike(Map<String,Object> m);
+	
+	// id와 댓글 고유번호 받아와서, 추천 Table에 추가
+	int comentLikeConfirm(Map<String,Object> m);
+	
+	// 댓글 고유번호 받아와서, 해당 댓글의 추천 수 리턴
+	int findComentLikeNumber(int c_no01);
+	
+	// 댓글 고유번호 받아와서, 해당 댓글의 추천수 1 증가
+	int addComentLikeNumber(int c_no01);
+	
+	// 글 1개 클릭할때, id, 글번호, clickdate 세개 받아와서, 해당 record가 있는지 없는지 확인
+	int checkOnedayRead(Map<String, Object> m);
+	
+	// 글 1개 클릭시, 조건 만족했을 경우 조회수 +1 
+	int addReadCount(int no);
+	
+	// 글 1개 클릭시, 조건 만족했을 경우, board01_readcount table에 record추가
+	int insertReadCountTable(Map<String, Object> m);
 	
 }

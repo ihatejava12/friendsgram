@@ -271,11 +271,11 @@ main {
 		</c:if>
 		
 		
-		<br><br>
+		<br>
 		
 		<!--  보유개발언어 스킬 나열 -->
 		<!--  skillist 라는 이름으로 모든 Board03_SkilDto 객체 list 가져왔음 -->
-		<div id="skils">
+		<div id="skils" style="width:300px; height:50px; float:left;">
 			보유 개발 스킬 <br>
 			<c:forEach items="${skillist }" var="skil">
 				<c:if test="${skil.b_no03 == freelancer.b_no03 }">
@@ -286,9 +286,9 @@ main {
 		
 		</div>
 		
-		<div>
+		<div style="float:left;">
 			자기소개<br>
-			<textarea style="width:300px; height:100px;" readOnly> ${freelancer.content } </textarea>
+			<div style="width:300px; height:100px; border:1px solid black;"> ${freelancer.content } </div>
 		</div>
 		
 	

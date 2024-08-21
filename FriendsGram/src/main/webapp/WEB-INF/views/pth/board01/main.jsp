@@ -190,7 +190,7 @@ td {
 <div id="headcontent" align="center">
 	<h2>코딩 게시판</h2>
 	
-	<form method="get" action="/board01/search">
+	<form method="get" action="/board01/searchcontent">
 	<select id="selectskil" name="skil">
 		<option value="">개발 언어</option>
 		<option value="java">JAVA</option>
@@ -206,7 +206,8 @@ td {
 		<option value="title">제목</option>
 		<option value="content">내용</option>
 		<option value="all">제목+내용</option>
-	</select>	
+	</select>
+		
 		<input name="search" type="text" placeholder="검색어를 입력해주세요">
 		<input type="submit" value="검색"/>
 	</form>

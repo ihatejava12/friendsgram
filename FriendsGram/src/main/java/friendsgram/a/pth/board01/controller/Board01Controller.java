@@ -1,5 +1,6 @@
 package friendsgram.a.pth.board01.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -12,14 +13,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import friendsgram.a.pth.board01.service.Board01Service;
 import friendsgram.admin.dto.ReportDto;
 import friendsgram.board01.dto.Board01Dto;
 import friendsgram.board01.dto.Board01_ComentDto;
 import friendsgram.board01.dto.Coment_LikeDto;
+import friendsgram.member.dto.Corporation_MemberDto;
+import friendsgram.member.dto.MemberDto;
 
-
+@SessionAttributes("user")
 @Controller
 public class Board01Controller {
 	
@@ -70,12 +74,29 @@ public class Board01Controller {
 		}
 		
 		return "redirect:/board01/content/"+no;
-		
-	
 	
 	}
 	
+	@ResponseBody
+	@GetMapping("board01/coment/like")
+	String truefalseComentLike(@RequestParam("id")String id, @RequestParam("c_no01")int c_no01) {
+		// id와 댓글 고유번호 가져가서, 추천 Table에 해당 조합이 있는지 확인 True / False
+		int i = board01service.trueFalseComentLike(id, c_no01);
+		// 이미 사용자가 그 댓글을 추천을 했다면 1,  한적이 없다면 0 
+		
+		return i+"";
+	}
 	
+	@ResponseBody
+	@GetMapping("board01/coment/likeconfirm")
+	public String comentLikeConfirm(@RequestParam("id")String id, @RequestParam("c_no01")int c_no01) {
+		// id와 댓글 고유번호 받아와서, 추천 Table에 추가
+		board01service.comentLikeConfirm(id, c_no01);
+		// 해당 댓글의 like수 +1 
+		board01service.addComentLikeNumber(c_no01);
+		
+		return "y";
+	}
 	
 	
 	
@@ -154,7 +175,32 @@ public class Board01Controller {
 	}
 	
 	@GetMapping("board01/content/{no}")
-	public String board01Content(@PathVariable("no")int no, Model m) {
+	public String board01Content(@PathVariable("no")int no, Model m, @ModelAttribute("user")Object member) {
+		// 글 조회수 +1
+		//board01service.addReadCount(no);
+		
+		Date newdate = new Date();
+		SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd");
+		String clickdate = simple.format(newdate);
+		
+		String id = null;
+		if( member instanceof MemberDto ) {
+			MemberDto m_member = (MemberDto)member;
+			id = m_member.getId();
+		
+		}else if( member instanceof Corporation_MemberDto ) {
+			Corporation_MemberDto c_member = (Corporation_MemberDto)member;
+			id = c_member.getId();
+		}
+		
+		int check = board01service.checkOnedayRead(no, id, clickdate);
+		// check = 1이면 이미 오늘 한번 이 글을 클릭했음. 0 이면 오늘 처음
+		// check = 0 일때만, 조회수 1 증가
+		if(check == 0 ) {
+			board01service.insertReadCountTable(no, id, clickdate);// readcount Table에 record 추가했음
+			board01service.addReadCount(no);// 조회수 1증가
+			}
+		
 		// 게시판 글 1개 클릭 할 경우, DB에서 글정보,댓글정보 가져와서 화면에 뿌려줌
 		Board01Dto content = board01service.selectOne(no);
 		m.addAttribute("content",content);
@@ -162,6 +208,9 @@ public class Board01Controller {
 		// 댓글정보도 가져와서 view로 넘겨줘야함
 		List<Board01_ComentDto> comentlist = board01service.board01ComentList(no);
 		m.addAttribute("comentlist",comentlist);
+		
+		
+		
 		return "pth/board01/content";
 	}
 	
@@ -185,17 +234,42 @@ public class Board01Controller {
 	}
 	
 	
-	@GetMapping("/board01/search")
+	@GetMapping("/board01/searchcontent")
 	public String board01Search(@RequestParam("skil")String skil, @RequestParam("category")String category, 
 			@RequestParam("search")String search, @RequestParam("addskil")String addskil
-			,Model m) {
+			,@RequestParam(name="p", defaultValue="1")int page, Model m) {
+		System.out.println(search);
+		
 		// 검색 버튼 클릭시, 개발언어, (작성자,제목,내용) 등 정보 가져와서 그걸로 검색한 글 목록 표시
-		if(skil == "other") {// 기타를 눌러서 직접 입력했을 경우 
+		if(skil.equals("other")) {// 기타를 눌러서 직접 입력했을 경우 
 			skil = addskil;		
 		}
 		
 		int count = board01service.countSearchBoard01(skil, category, search);
-		m.addAttribute("count",count);
+		m.addAttribute("count",count);// 검색조건으로 찾은 모든 글의 개수. 페이징에 이용할거임 
+		
+		// 한 페이지에 10개 글만 보여줄거라서, 10개를 따로 뽑아와야함
+		if(count > 0) {
+			int perpage = 10; // 한페이지에 10개의 글 보여줄거임
+			int startRow = (page-1)*perpage;
+		
+			List<Board01Dto> board01list = board01service.SearchBoard01(skil, category, search, startRow, perpage);
+			m.addAttribute("blist",board01list);
+			
+			int pageNum = 5;//보여질 페이지 개수 1 2 3 4 5 <다음> 이런식으로
+			int totalPages = count / perpage + (count % perpage > 0 ? 1 : 0); //전체 페이지 수
+			
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum -1;
+			if(end > totalPages) {
+				end = totalPages;//없는 페이지 번호가 나오지 않도록
+			}
+			 m.addAttribute("begin", begin);
+			 m.addAttribute("end", end);
+			 m.addAttribute("pageNum", pageNum);
+			 m.addAttribute("totalPages", totalPages);
+		
+		}
 		
 		return "pth/board01/search";
 	}

@@ -41,5 +41,11 @@ public class MailService {
 	public int mailDelete(int no) {
 		return maildao.mailDelete(no);
 	}
+	
+	
+	// mail 보내기
+	public int sendNewMail(MailhamDto mail) {
+		return maildao.sendNewMail(mail);
+	}
 
 }

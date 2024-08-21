@@ -40,25 +40,92 @@
 		<where>
 			<choose>
 				<when test="skil == 'java'">
-					code = #{skil}
+					and code = #{skil}
 				</when>
 				<when test="skil == 'python'">
-					code = #{skil}
+					and code = #{skil}
 				</when>
 				<when test="skil == 'html'">
-					code = #{skil}
+					and code = #{skil}
 				</when>
 				<when test="skil == 'database'">
-					code = #{skil}
+					and code = #{skil}
 				</when>
-				<when test="skil == 'other'">
-					code = #{skil}
-				</when>
+				<otherwise>
+					and code = #{skil}
+				</otherwise>
 				
 			</choose>
 		
+			<choose>
+				<when test="category == 'title'">
+					<if test="search != '' ">
+						and title like CONCAT('%',#{search},'%')
+					</if>
+				</when>
+				<when test="category == 'content' and search != '' ">
+					<if test="search != '' ">
+						and content likeCONCAT('%',#{search},'%')
+					</if>
+				</when>
+				<when test="category == 'all'">
+					<if test="search != '' ">
+						and  ( title like CONCAT('%',#{search},'%') or content like CONCAT('%',#{search},'%') )
+					</if>
+				</when>
+					
+			</choose>
+		
+		
 		</where>
 	</select>
+	
+	
+	<select id="SearchBoard01" parameterType="map" resultType="friendsgram.board01.dto.Board01Dto">
+		select * from board01 
+		<where>
+			<choose>
+				<when test="skil == 'java'">
+					and code = #{skil}
+				</when>
+				<when test="skil == 'python'">
+					and code = #{skil}
+				</when>
+				<when test="skil == 'html'">
+					and code = #{skil}
+				</when>
+				<when test="skil == 'database'">
+					and code = #{skil}
+				</when>
+				<otherwise>
+					and code = #{skil}
+				</otherwise>
+				
+			</choose>
+		
+			<choose>
+				<when test="category == 'title'">
+					<if test="search != '' ">
+						and title like CONCAT('%',#{search},'%')
+					</if>
+				</when>
+				<when test="category == 'content' and search != '' ">
+					<if test="search != '' ">
+						and content likeCONCAT('%',#{search},'%')
+					</if>
+				</when>
+				<when test="category == 'all'">
+					<if test="search != '' ">
+						and  ( title like CONCAT('%',#{search},'%') or content like CONCAT('%',#{search},'%') )
+					</if>
+				</when>
+					
+			</choose>	
+		</where>
+		order by date desc limit #{start} , #{count}
+		
+	</select>
+	
 	
 	
 	<insert id="writeBoard01Coment" parameterType="friendsgram.board01.dto.Board01_ComentDto">
@@ -102,6 +169,47 @@
 		set coment = '삭제된 댓글입니다.'
 		where c_no01 = #{no}
 	</update>
+	
+	<select id="trueFalseComentLike" parameterType="map" resultType="int">
+		select count(*) from board01_coment_like
+		where id = #{id} and c_no01 = #{c_no01}
+	</select>
+	
+	<insert id="comentLikeConfirm" parameterType="map">
+		insert into board01_coment_like(id, c_no01)
+		values(#{id}, #{c_no01} )
+	</insert>
+	
+	<select id="findComentLikeNumber" parameterType="int" resultType="int">
+		select count(*) from board01_coment_like
+		where c_no01 = #{c_no01}
+	</select>
+	
+	<update id="addComentLikeNumber" parameterType="int">
+		update board01_coment
+		set comentlike = comentlike + 1
+		where c_no01 = #{c_no01}
+	</update>
+	
+	<select id="checkOnedayRead" parameterType="map" resultType="int">
+		select count(*) from board01_readcount
+		where id = #{id} and b_no01 = #{no} and clickdate = #{clickdate}
+	</select>
+	
+	<update id="addReadCount" parameterType="int">
+		update board01
+		set readcount = readcount + 1
+		where b_no01 = #{no}
+	</update>
+	
+	<insert id="insertReadCountTable" parameterType="map">
+		insert into board01_readcount(id, b_no01, clickdate)
+		values(#{id}, #{no}, #{clickdate} )
+	</insert>
+	
+	
+	
+	
 	
 	
 </mapper>

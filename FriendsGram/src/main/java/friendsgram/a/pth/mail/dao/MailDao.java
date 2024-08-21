@@ -20,4 +20,10 @@ public interface MailDao {
 	
 	//쪽지 번호 받아와서 DB에서 delete
 	int mailDelete(int no);
+	
+	
+	int sendNewMail(MailhamDto mail);
+	
+	
+	
 }
