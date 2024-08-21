@@ -61,7 +61,7 @@ public class InfoController {
 		
 		
 	@GetMapping("/infock")
-	public String infock(@ModelAttribute("user") MemberDto dto) {
+	public String infock(@ModelAttribute("user") MemberDto dto, @Validated Member_InfoDto mdto) {
 		return "skw/profile/infock";
 	}
 }

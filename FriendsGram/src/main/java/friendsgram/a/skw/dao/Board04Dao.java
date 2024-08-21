@@ -14,10 +14,10 @@ public interface Board04Dao {
 	int write(Board04Dto dto);
 	List<Board04Dto> boardList(Map<String, Object> m);
 	int count();//전체 글 갯수
-	Board04Dto boardOne(int no);
+	Board04Dto boardOne(int b_no04);
 	int updateBoard(Board04Dto dto);
-	int deleteBoard(int no);
-	int addReadCount(int no); //조회수 증가
+	int deleteBoard(int b_no04);
+	int addReadCount(int b_no04); //조회수 증가
 	
 	/*
 	 * List<BoardDto> boardListSearch(Map<String, Object> m); int

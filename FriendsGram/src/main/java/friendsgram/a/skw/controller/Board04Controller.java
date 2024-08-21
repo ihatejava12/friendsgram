@@ -1,26 +1,32 @@
 package friendsgram.a.skw.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import friendsgram.a.pth.mail.service.MailService;
+import friendsgram.a.skw.service.Board04JoinService;
 import friendsgram.a.skw.service.Board04Service;
 import friendsgram.board04.dto.Board04Dto;
-import friendsgram.member.dto.MemberDto;
-
+import friendsgram.board04.dto.Board04_JoinDto;
+import friendsgram.member.dto.Corporation_MemberDto;
 
 	@SessionAttributes("user")
 	@Controller
@@ -28,30 +34,24 @@ public class Board04Controller {
 		@Autowired
 		Board04Service service;
 		
+		@Autowired
+		MailService mservice;
 		
+		@Autowired
+		Board04JoinService joinservice;
 		
-		@ModelAttribute("user")
-		public MemberDto getDto() {
-			return new MemberDto();
-		}
-		
-		@GetMapping("board04/write")
-		public String writeForm(@ModelAttribute("user") MemberDto dto ) {
+		@GetMapping("/board04/write")
+		public String writeForm(@ModelAttribute("user") Corporation_MemberDto cdto) {
 			return "skw/board04/write";
 		}
 		
-		@PostMapping("board04/write")
-		public String writeForm(@ModelAttribute("board") @Validated Board04Dto dto, BindingResult error) {
-			if(error.hasErrors()) {
-				error.reject("nocode", "제목이 없습니다");
-				return "skw/board04/write";
+		@PostMapping("/board04/write")
+		public String writeForm(@ModelAttribute("user") Corporation_MemberDto cdto, @Validated Board04Dto dto) {
+			service.write(dto);
+			dto.setDate(new Date());
+				return "redirect:/list";
 			}
 			
-			service.write(dto);
-			return "skw/board04/list";// 글목록
-		}
-		//요청 page 번호를 받아서 페이지에 맞는 글을 갯수에 맞게 꺼내옴
-		//전체 글 갯수에 맞춰 페이징 처리
 		@GetMapping("/list")
 		public String list(@RequestParam(name="p", defaultValue = "1") int page, Model m ) {
 			
@@ -62,9 +62,9 @@ public class Board04Controller {
 			int perPage = 10; // 한 페이지에 보일 글의 갯수
 			int startRow = (page - 1) * perPage; // 인덱스 번호
 			
-			List<Board04Dto> board04List = service.boardList(startRow, perPage);
+			List<Board04Dto> board04List = service.boardList(startRow);
 			
-			m.addAttribute("board04List", board04List);
+			m.addAttribute("board04list", board04List);
 
 			int pageNum = 5; // 보여질 페이지 번호 수
 			int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); //전체 페이지 수
@@ -84,33 +84,47 @@ public class Board04Controller {
 			return "/skw/board04/list";
 		}
 		
-		@GetMapping("board04/content/{no}")
-		public String content(@ModelAttribute("user")MemberDto user, @PathVariable("no") int no, Model m) {
-			Board04Dto dto = service.boardOne(no);
+		@GetMapping("/board04/join")
+	    public String join() {
+	        return "skw/board04/join";
+	    }
+		
+		@PostMapping("/board04/join")
+		 public ResponseEntity<?> joinBoard04(@RequestBody Board04_JoinDto board04JoinDto) {
+	        try {
+	        	joinservice.saveJoinInfo(board04JoinDto);
+	            return ResponseEntity.ok().body(new ResponseMessage(true, "지원이 완료되었습니다."));
+	        } catch (Exception e) {
+	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessage(false, "지원에 실패했습니다."));
+	        }
+		}
+
+	
+		@GetMapping("/board04/content/{b_no04}")
+		public String content(@PathVariable("b_no04") int b_no04, Model m) {
+			Board04Dto dto = service.boardOne(b_no04);
 			m.addAttribute("dto", dto);
-			
-			
 			return "skw/board04/content";
 		}
 		
-		@GetMapping("board04/update/{no}")
-		public String updateForm(@PathVariable("no") int no, Model m) {
-			Board04Dto dto = service.boardOne(no);
+		@GetMapping("/board04/updateform/{b_no04}")
+		public String updateForm(@PathVariable("b_no04") int b_no04, Model m) {
+			Board04Dto dto = service.boardOne(b_no04);
 			m.addAttribute("dto", dto);
-			return "skw/board04/updateForm";
+			return "skw/board04/updateform";
 		}
 		
-		@PutMapping("/board04/update")
-		public String update(Board04Dto dto) {
+		@PostMapping("/board04/update/{b_no04}")
+		public String update(@PathVariable("b_no04") int b_no04, @ModelAttribute Board04Dto dto) {
 			service.updateBoard(dto);
-			return "redirect:list";
+			return "redirect:/list";
 			// "reditect:/board/content/"+dto.getNo();
 		}
 		
-		@DeleteMapping("/skw/board04/delete")
+		@DeleteMapping("/board04/delete/{b_no04}")
 		@ResponseBody
-		public int delete(@RequestParam("no") int no) {
-			int i = service.deleteBoard(no); 
+		public int delete(@PathVariable("b_no04") int b_no04) {
+			int i = service.deleteBoard(b_no04); 
 			return i;
 		}
 		

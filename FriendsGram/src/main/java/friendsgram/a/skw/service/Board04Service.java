@@ -19,11 +19,11 @@ public class Board04Service {
 		return dao.count();
 	}
 	
-	public List<Board04Dto> boardList(int start, int perPage){
+	public List<Board04Dto> boardList(int start){
 		
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("start", start);
-		m.put("count", perPage);
+		m.put("count", 10);
 		
 		return dao.boardList(m);
 	}
@@ -31,15 +31,15 @@ public class Board04Service {
 	public int write(Board04Dto dto) {
 		return dao.write(dto);
 	}
-	public Board04Dto boardOne(int no) {
-		dao.addReadCount(no); // 조회수 증가
-		return dao.boardOne(no);
+	public Board04Dto boardOne(int b_no04) {
+		
+		return dao.boardOne(b_no04);
 	}
 	public int updateBoard(Board04Dto dto) {
 		return dao.updateBoard(dto);
 	}
-	public int deleteBoard(int no) {
-		return dao.deleteBoard(no);
+	public int deleteBoard(int b_no04) {
+		return dao.deleteBoard(b_no04);
 	}
 	
 	public List<Board04Dto> boardListSearch(int searchn, String search, int start, int perPage){
