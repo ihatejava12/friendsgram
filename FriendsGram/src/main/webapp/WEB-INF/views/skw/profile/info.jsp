@@ -101,7 +101,7 @@ a {
 		<h1>개인페이지 작성중</h1>
 		<a href="/myprofile">나의 정보</a>
 		<a href="/info">이력서</a>
-		<a href="/review">나의 리뷰</a>
+		<a href="/review/review">나의 리뷰</a>
 	</div>
 </body>
 			<a href="/infowrite">이력서 작성</a>
