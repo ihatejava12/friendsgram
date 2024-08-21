@@ -209,7 +209,6 @@ td {
 			<option value="java">JAVA</option>
 			<option value="python">PYTHON</option>
 			<option value="html">HTML</option>
-			<option value="c">C</option>
 			<option value="database">DATABASE</option>
 			<option value="other">기타</option>
 		</select>

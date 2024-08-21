@@ -8,6 +8,9 @@
 
 <style>
 
+
+
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -190,7 +193,6 @@ td {
 		<option value="java">JAVA</option>
 		<option value="python">PYTHON</option>
 		<option value="html">HTML</option>
-		<option value="c">C</option>
 		<option value="database">DATABASE</option>
 		<option value="other">기타</option>
 	</select>
@@ -208,7 +210,7 @@ td {
 <hr>
 
 <div align="right">
-	<button><a href="/board01/main">목록</a></button> <button>글쓰기</button>
+	<button><a href="/board01/main">목록</a></button> <button><a href="/board01/write">글쓰기</a></button>
 </div>
 
 <hr>
@@ -235,18 +237,66 @@ td {
 <b>댓글</b>
 <!--  comentlist 라는 이름으로 댓글 리스트 가져옴 -->
 	<c:forEach items="${comentlist }" var="coment">
-		<div style="border-bottom:1px solid black;">
+		
+		<c:if test="${coment.coment == '삭제된 댓글입니다.' }">
+			<div style="width:100%; height:40px; border-bottom:1px solid black;">
+				${coment.coment }
+			</div>
+		</c:if>
+		
+		<c:if test="${coment.coment != '삭제된 댓글입니다.' }">
+		<div style="border-bottom:1px solid black; ">
+		<br>
+		
+			<c:if test="${coment.ref_level > 0 }">
+			<!-- 지금 꺼내온 댓글이 대댓글 이라면  -->
+				<div style="float:left; height:100px; margin-right: 10px;">
+				<span class="icon">
+				<img src="/img/level.gif" width="${coment.ref_level * 10}">	
+				<img src="/img/re.gif" alt="답변" />
+				</span>
+				</div>
+			</c:if>
+		<div >
 		<p>${coment.id } (<fmt:formatDate value="${coment.date }" type="both" dateStyle="short" timeStyle="default"/>) <button>추천</button> <button>신고</button></p>
-		<span>${coment.coment }</span>   <span><button>답글</button></span>
+		<br>
+		<span>${coment.coment }</span>   <span><button class="writeAnser" id="${coment.c_no01}">답글</button></span>
+			<c:if test="${coment.id == user.id }">
+				<button><a href="/board01/coment/delete/${coment.c_no01}/${coment.b_no01}" style="text-decoration:none" return false; >삭제</a></button>
+			</c:if>
+		<br>
+		<br>
 		</div>
+		
+		<form class="${coment.c_no01} " style="display:none;" action="/board01/coment/write">
+		
+		<input name="id" value="${user.id }" type="hidden"/>
+		<input name="b_no01" value="${content.b_no01 }" type="hidden"/>
+		<input name="ref_level" value="1" type="hidden"/>
+		<input name="ref" value="${coment.ref}" type="hidden"/>
+		
+		<input class="${coment.c_no01} " name="coment" type="text" style="width:700px; height:80px; display:none;"/> 
+		<button class="${coment.c_no01} " style="display:none;" >등록</button>
+		
+		</form>
+		</div>
+		
+		</c:if>
 	</c:forEach>
 </div>
 <br>
 
+<form action="/board01/coment/write" class="newcoment">
 <div class="comentwrite">
-	<p>작성자 id</p>
-	<textarea>댓글 작성 댓글 작성</textarea><button>등록</button>
+	<input name="id" value="${user.id }" type="hidden"/>
+	<input name="b_no01" value="${content.b_no01 }" type="hidden"/>
+	<input name="ref_level" value="0" type="hidden"/>
+	<p>${user.name }</p>
+	<input name="coment" type="text" style="width:90%; height:80px;"/> <button>등록</button>
 </div>
+
+</form>
+
 
 </div>
 
@@ -260,5 +310,28 @@ td {
          <p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
       </div>
    </footer>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+	$(function(){
+		
+		$(".writeAnser").on("click",function(){
+			$("form[class]").hide();
+			let no = $(this).attr("id");
+			$("."+no).show();
+			
+		})
+		
+	
+	})
+	
+
+
+</script>
+
+
 
 </body>

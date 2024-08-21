@@ -1,8 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>프리랜서 검색 내부</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<div>
@@ -30,30 +31,18 @@
 	</div>
 	<hr>
 	<table border="1">
-	<tr><td>작성자</td><td>${blist3.id}</td>
-	<tr><td>내용</td><td>${blist3.content}</td>
-	<tr><td>경력기간</td><td>${blist3.career}</td>
-	<tr><td>포토폴리오</td><td>${blist3.portfolio}</td>
-	<tr><td colspan="2" align="right">
-	<a href="/adminpage/board03">목록으로 이동</a>
-	<span id="delete">
-		<input type="button" value="삭제">
-	</span>
+		<tr>
+			<th>신고 내용</th>
+			<th>아이디</th>
+			<th>해당 글보기</th>
+		</tr>
+		<c:forEach items="${rlist}" var="list">
+			<tr>
+				<td>${list.report_content}</a></td>
+				<td>${list.id}</td>
+				<td><button onclick="window.open('/adminreportboard/${list.num}/${list.r_no}/${list.co_no}', '_blank', 'width=500,height=600, top=50, left=50, scrollbars=yes')">바로가기</button></td>
+			</tr>
+		</c:forEach>
 	</table>
-	<hr>
-	
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-		$(function(){
-			$("#delete").on("click", function(){
-				let no = ${blist3.b_no03};
-				$.ajax({url:"/delete3/"+no,
-					method:"delete"
-				}).done(function(){
-					location.href='/adminpage/board03';
-				})
-			})
-		})
-	</script>
 </body>
 </html>

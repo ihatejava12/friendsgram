@@ -189,16 +189,18 @@ td {
 <div id="allcontent">
 <div id="headcontent" align="center">
 	<h2>코딩 게시판</h2>
+	
 	<form method="get" action="/board01/search">
-	<select name="skil">
+	<select id="selectskil" name="skil">
 		<option value="">개발 언어</option>
 		<option value="java">JAVA</option>
 		<option value="python">PYTHON</option>
 		<option value="html">HTML</option>
-		<option value="cc">C</option>
 		<option value="database">DATABASE</option>
 		<option value="other">기타</option>
 	</select>
+	
+	<input id="addskil" name="addskil" style="display:none;" size="10"/>
 	
 	<select name="category">
 		<option value="title">제목</option>
@@ -271,6 +273,31 @@ td {
          <p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
       </div>
    </footer>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+	$(function(){
+		
+		
+		$("#selectskil").change(function(){
+			if($("#selectskil").val() == 'other'){
+				$("#addskil").show();
+			}
+		})
+
+
+			
+		})	
+	
+	
+	
+
+</script>
+
+
 
 </body>
 

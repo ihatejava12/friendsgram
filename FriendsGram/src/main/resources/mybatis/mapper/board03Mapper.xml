@@ -38,6 +38,67 @@
 	</select>
 	
 	
+	<select id="countsearchBoard03List" parameterType="map" resultType="int">
+		select count(*) from board03 
+		<where>
+			<choose>
+				<when test="work_type == -1">
+					and work_type is not null
+				</when>
+				<when test="work_type == 0">
+					and work_type = 0 or work_type = 2
+				</when>
+				<when test="work_type == 1">
+					and work_type = 1 or work_type = 2
+				</when>
+			</choose>
+			
+			<choose>
+				<when test="career == -2">
+					and career is not null
+				</when>
+				<when test="career == -1">
+					and career = -1
+				</when>
+				<when test="career == 0">
+					and career = 0
+				</when>
+				<when test="career == 1">
+					and career = 1
+				</when>
+				<when test="career == 2">
+					and career = 2
+				</when>
+				<when test="career == 3">
+					and career = 3
+				</when>
+				<when test="career == 4">
+					and career = 4
+				</when>
+				<when test="career == 5">
+					and career = 5
+				</when>
+				<when test="career == 6">
+					and career = 6
+				</when>
+				<when test="career == 7">
+					and career = 7
+				</when>
+				<when test="career == 8">
+					and career = 8
+				</when>
+			</choose>
+			and b_no03 in 
+			<foreach collection='searchb_no03List' index='index' item='no' open='(' close=')' separator=','>
+				#{no}
+			</foreach>
+		</where>
+		
+	</select>
+	
+	
+	
+	
 	<select id="searchBoard03List" parameterType="map" resultType="friendsgram.board03.dto.Board03Dto">
 		select * from board03 
 		<where>

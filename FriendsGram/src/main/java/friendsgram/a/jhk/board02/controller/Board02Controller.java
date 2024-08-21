@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import friendsgram.a.jhk.board02.service.Board02CommService;
 import friendsgram.a.jhk.board02.service.Board02Service;
 import friendsgram.admin.dto.ReportDto;
 import friendsgram.board02.dto.Board02Dto;
 import friendsgram.board02.dto.Board02_CodeDto;
+import friendsgram.board02.dto.Board02_ComentDto;
 import friendsgram.board02.dto.Board02_JoinDto;
 import friendsgram.member.dto.MemberDto;
 
@@ -27,6 +29,19 @@ public class Board02Controller {
 	
 	@Autowired
 	Board02Service service;
+	
+	@Autowired
+	Board02CommService cservice;
+	
+	@GetMapping("/pickcode/{b_no02}")
+	public String pickCode(@PathVariable("b_no02") int b_no02, Model m) {
+		List<Board02_CodeDto> picklist = service.pickCode(b_no02);
+		m.addAttribute("picklist", picklist);
+		Board02Dto dto = service.board02Content(b_no02);
+		m.addAttribute("list", dto);
+		
+		return "jhk/board02/pickcode";
+	}
 	
 	@PostMapping("/board02/report")
 	public String board02Report(ReportDto dto) {
@@ -67,10 +82,9 @@ public class Board02Controller {
 	}
 	
 	@PostMapping("/jointeam")
-	@ResponseBody
-	public String joinTeam(@RequestParam("id") String id, @RequestParam("b_no02") int b_no02) {
-		service.joinTeam(id, b_no02);
-		return "";
+	public String joinTeam(@RequestParam("id") String id, @RequestParam("b_no02") int b_no02, @RequestParam("code") String code) {
+		service.joinTeam(id, b_no02, code);
+		return "/jhk/board02/close";
 	}
 	
 	@PostMapping("/updateboard02")
@@ -102,6 +116,9 @@ public class Board02Controller {
 		m.addAttribute("cjoin", cjoin);
 		int countteam = service.countTeam(b_no02);
 		m.addAttribute("countteam", countteam);
+		List<Board02_ComentDto> commlist = cservice.selectComm(b_no02);
+		m.addAttribute("commlist", commlist);
+		
 		
 		return "/jhk/board02/content";
 	}
@@ -109,10 +126,12 @@ public class Board02Controller {
 	@PostMapping("/writeboard02")
 	public String writeBoard02(@RequestParam("title") String title, @RequestParam("join_date") String join_date, 
 							   @RequestParam("content") String content, @RequestParam("volunteer") int volunteer, 
-							   @RequestParam("id") String id, @RequestParam(value="code", defaultValue="", required=false) String code,
-							   @RequestParam("b_no02") int b_no02) {
+							   @RequestParam("id") String id, @RequestParam("b_no02") int b_no02, 
+							   @RequestParam("code") List<String> code) {
+		System.out.println(code);
 		service.writeBoard02(title, join_date, content, volunteer, id);
 		service.insertTeam(id, b_no02);
+		service.insertCode(code, b_no02);
 		
 		return "redirect:/board02/main";
 	}

@@ -11,5 +11,6 @@ public class Board02_JoinDto {
 	private boolean request;
 	private String id;
 	private int b_no02;
+	private String code;
 
 }
