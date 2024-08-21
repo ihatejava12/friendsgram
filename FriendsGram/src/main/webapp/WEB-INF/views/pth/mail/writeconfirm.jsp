@@ -19,23 +19,8 @@
 		</div>
 		
 		<div class="mailright" style="border:1px dashed lightgreen; width:98%; height:98%; margin: 5px;">
-			<span> ${ user.name} 님의 새쪽지쓰기 입니다.</span> <br><br>
-			<form action="/mail/write/newmail">
-			<table class="mailwrite">
-				<tr>
-					<td>아이디</td> <td><input name="return_man" type="text"></td>
-				</tr>
-				<tr>
-					<td>제목</td> <td><input name="title" type="text"></td>
-				</tr>
-				<tr>
-					<td>내용</td> <td> <input name="content" style="width:450px; height:250px;"/></td>
-				</tr>
-			</table>
-			<input type="hidden" name="id" value="${user.id }"/>
-			<button>쪽지보내기</button>
-			</form>
-		</div>
+				
+				쪽지를 보냈습니다.
 	
 	</div> 
 </body>
