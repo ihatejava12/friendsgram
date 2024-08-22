@@ -176,8 +176,11 @@ main {
 </div>
 
 <!--  freelancer 라는 이름으로 Board03Dto 객체 하나 받아옴 -->
+<div class="articlemain" style="margin-left: auto; margin-right: auto; width:1000px;">
 
-<div class="main" style="float:left; margin: 30px;">
+<div class="main" style="float:left; margin: 15px; width:600px; border: 1px solid black;">
+
+<div class="introduce" style="margin:15px;">
 <span>${freelancer.name }</span> 
 <c:if test="${freelancer.work_type == 0}">
 			원격 가능
@@ -220,10 +223,11 @@ main {
 		<c:if test="${freelancer.career == 8 }">
 		8년 이상
 		</c:if>
+		</div>
 		
 		<!--  보유개발언어 스킬 나열 -->
 		<!--  skillist 라는 이름으로 모든 Board03_SkilDto 객체 list 가져왔음 -->
-		<div id="skils">
+		<div id="skils" style="margin:15px;">
 			보유 개발 스킬 <br>
 			<c:forEach items="${skillist }" var="skil">
 				<c:if test="${skil.b_no03 == freelancer.b_no03 }">
@@ -232,14 +236,18 @@ main {
 			</c:forEach>
 		</div>
 		<br>
+		<div style="margin:15px;">
 		상세소개
 		<p>${freelancer.content}</p>
+		</div>
 		
 </div>
 
 
-<div class="sub" style="float:left; margin: 30px;">
-	해당 프리랜서가 마음에 드시나요?
+<div class="sub" style="float:left; margin: 15px; width:200px;">
+	해당 프리랜서가 마음에 드시나요?<br>
+	<button> 협업 제의하기 </button>
+</div>
 
 </div>
 

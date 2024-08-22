@@ -221,6 +221,15 @@ td {
 </div>
 <hr>
 
+<p>
+<c:if test="${user.id == content.id}">
+<button>수정</button>   
+
+<button class="deletearticle">삭제</button>
+</c:if>
+</p>
+
+
 <div class="articlemain">
 	<h2>${content.title }</h2>
 	<br><br><br><br>
@@ -352,13 +361,15 @@ td {
 					
 				}else{alert("이미 추천한 댓글입니다.");}
 			});
-			
-			
-			
-			
-		
 		})
 		
+		$(".deletearticle").click(function(){
+			if(confirm("삭제하시곘습니까?")){
+				location.href="/board01/delete/${content.b_no01}"
+			}else{
+				return false;
+			}
+		})
 		
 		
 		

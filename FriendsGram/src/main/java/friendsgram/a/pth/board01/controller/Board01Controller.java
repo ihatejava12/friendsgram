@@ -111,6 +111,8 @@ public class Board01Controller {
 	@GetMapping("board01/delete/{no}")
 	public String board01Delete(@PathVariable("no")int no) {
 		// 게시판 글번호 받아와서, 해당 글 DB에서 삭제
+		board01service.deleteBoard01Article(no);
+		
 		
 		return "pth/board01/delete";
 	}
@@ -149,7 +151,7 @@ public class Board01Controller {
 		int count = board01service.count();
 		
 		if(count > 0) {
-			int perpage = 10; // 한페이지에 10개의 글 보여줄거임
+			int perpage = 30; // 한페이지에 10개의 글 보여줄거임
 			int startRow = (page-1)*perpage;
 		
 			List<Board01Dto> board01list =  board01service.board01List(startRow, perpage);
@@ -173,6 +175,95 @@ public class Board01Controller {
 		
 		return "pth/board01/main";
 	}
+	
+	
+	// 전체 글 중 내가 쓴 글 목록
+	@GetMapping("board01/myarticle")
+	public String findMyarticleboard01(@ModelAttribute("user") Object member,@RequestParam(name="p", defaultValue="1")int page
+			,Model m) {
+		String id = null;
+		if( member instanceof MemberDto ) {
+			MemberDto m_member = (MemberDto)member;
+			id = m_member.getId();
+		
+		}else if( member instanceof Corporation_MemberDto ) {
+			Corporation_MemberDto c_member = (Corporation_MemberDto)member;
+			id = c_member.getId();
+		}
+		
+		int count = board01service.countMyarticleboard01(id);
+		
+		if(count > 0) {
+			int perpage = 30; // 한페이지에 10개의 글 보여줄거임
+			int startRow = (page-1)*perpage;
+			
+			List<Board01Dto> board01list = board01service.listMyarticleboard01(id, startRow, perpage);
+			m.addAttribute("blist",board01list);
+			
+			int pageNum = 5;//보여질 페이지 개수 1 2 3 4 5 <다음> 이런식으로
+			int totalPages = count / perpage + (count % perpage > 0 ? 1 : 0); //전체 페이지 수
+			
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum -1;
+			if(end > totalPages) {
+				end = totalPages;//없는 페이지 번호가 나오지 않도록
+			}
+			 m.addAttribute("begin", begin);
+			 m.addAttribute("end", end);
+			 m.addAttribute("pageNum", pageNum);
+			 m.addAttribute("totalPages", totalPages);
+		}
+		m.addAttribute("count", count);
+		
+		return "pth/board01/myarticle";
+	}
+	
+	@GetMapping("board01/mycoment")
+	public String findMycomentboard01(@ModelAttribute("user") Object member,
+			@RequestParam(name="p", defaultValue="1")int page
+			,Model m) {
+		
+		String id = null;
+		if( member instanceof MemberDto ) {
+			MemberDto m_member = (MemberDto)member;
+			id = m_member.getId();
+		
+		}else if( member instanceof Corporation_MemberDto ) {
+			Corporation_MemberDto c_member = (Corporation_MemberDto)member;
+			id = c_member.getId();
+		}// id 값 저장
+		
+		int count = board01service.numberofarticleHavingmyComent(id);// 내가 쓴 댓글이 있는 글의 총 개수
+		if(count > 0) {
+			int perpage = 30; // 한페이지에 10개의 글 보여줄거임
+			int startRow = (page-1)*perpage;
+			
+			List<Integer> numlist = board01service.listofArticleHavingmyComent(id);
+			// 내가 쓴 댓글이 있는 글 번호(b_no01) list 가져옴
+			List<Board01Dto> board01list = board01service.board01listOfArticleHavingmyComent(numlist, startRow, perpage);
+			m.addAttribute("blist",board01list);
+			
+			int pageNum = 5;//보여질 페이지 개수 1 2 3 4 5 <다음> 이런식으로
+			int totalPages = count / perpage + (count % perpage > 0 ? 1 : 0); //전체 페이지 수
+			
+			int begin = (page - 1) / pageNum * pageNum + 1;
+			int end = begin + pageNum -1;
+			if(end > totalPages) {
+				end = totalPages;//없는 페이지 번호가 나오지 않도록
+			}
+			 m.addAttribute("begin", begin);
+			 m.addAttribute("end", end);
+			 m.addAttribute("pageNum", pageNum);
+			 m.addAttribute("totalPages", totalPages);
+			}
+		
+			m.addAttribute("count",count);	
+		
+		return "pth/board01/mycoment";
+	}
+	
+	
+	
 	
 	@GetMapping("board01/content/{no}")
 	public String board01Content(@PathVariable("no")int no, Model m, @ModelAttribute("user")Object member) {
@@ -250,7 +341,7 @@ public class Board01Controller {
 		
 		// 한 페이지에 10개 글만 보여줄거라서, 10개를 따로 뽑아와야함
 		if(count > 0) {
-			int perpage = 10; // 한페이지에 10개의 글 보여줄거임
+			int perpage = 30; // 한페이지에 10개의 글 보여줄거임
 			int startRow = (page-1)*perpage;
 		
 			List<Board01Dto> board01list = board01service.SearchBoard01(skil, category, search, startRow, perpage);

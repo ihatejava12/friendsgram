@@ -80,4 +80,25 @@ public interface Board01Dao {
 	// 글 1개 클릭시, 조건 만족했을 경우, board01_readcount table에 record추가
 	int insertReadCountTable(Map<String, Object> m);
 	
+	
+	// id 받아와서, 해당 id가 쓴 글의 총 개수 
+	int countMyarticleboard01(String id);
+	
+	// id 받아와서, 해당 id가 쓴 글, perpage 개수만큼만 list로 리턴
+	List<Board01Dto> listMyarticleboard01(Map<String,Object> m);
+	
+	
+	// id 받아와서, 내가 쓴 댓글이 1개라도 있는, 글번호(b_no01) 의 개수를 리턴
+	int numberofarticleHavingmyComent(String id);
+	
+	// id 받아와서, 내가 쓴 댓글이 1개라도 있는, 글번호(b_no01) 의 list 를 리턴
+	List<Integer> listofArticleHavingmyComent(String id);
+	
+	// 내가쓴 댓글이 있는 글번호(b_no01) list 받아와서, board01Dto list 리턴
+	List<Board01Dto> board01listOfArticleHavingmyComent(Map<String,Object> m);
+	
+	// 게시글 글번호(b_no01) 받아와서 해당 글 1개, DB에서 삭제
+	int deleteBoard01Article(int no);
+	
+	
 }

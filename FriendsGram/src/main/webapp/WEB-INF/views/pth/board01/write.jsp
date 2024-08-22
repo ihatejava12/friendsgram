@@ -199,7 +199,7 @@ td {
 
 <hr>
 
-<form method="post">
+<form method="post" id="writeform">
 	<div class="head">
 		<input type="hidden" name="id" value="${user.id}"/>
 		<!--   로그인 완성되면, value 에 {user.id} 이런식으로 들어갈 예정 -->
@@ -213,14 +213,17 @@ td {
 			<option value="other">기타</option>
 		</select>
 	
-		<span>제목</span> <input type="text" name="title"/>
+		<span>제목</span> <input type="text" name="title" id="title"/>
 	</div>
 	<hr>
-	 <div class="content">
- 		<textarea style="width: 100%; height:500px;" name="content"></textarea>
+	
+	 <div class="content" id="smarteditor">
+ 		<textarea id="editorTxt" name="content" cols="40" rows="10"
+			placeholder="내용을 입력해주세요" style="width:100%; height:400px;">
+			</textarea>
  	</div>
 
-	<input type="submit" value="작성 완료"/>
+	<input type="submit" value="작성 완료" id="save"/>
 </form>
 
 </div>
@@ -237,6 +240,42 @@ td {
          <p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
       </div>
    </footer>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script>
+    let oEditors = [];
+
+    smartEditor = function() {
+      console.log("Naver SmartEditor")
+      nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "editorTxt",
+        sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+        fCreator: "createSEditor2"
+      })
+    };
+
+   $(document).ready(function(){
+  
+      smartEditor()
+      
+      $("#save").click(function(){
+    	var title = $("#title").val();
+  		if(title == ""){
+  			alert("제목을 입력하세요")
+  			return false;
+  		}
+    	  oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", []);
+    	  //                          이게 ifame에 있는 내용을 textarea 로 옮기는 역할
+    	  $("#writeform").submit();
+      });
+      
+    })
+  </script>
+
+
 
 
 </body>

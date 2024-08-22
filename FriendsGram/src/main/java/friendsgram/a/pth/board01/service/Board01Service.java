@@ -180,6 +180,44 @@ public class Board01Service {
 	}
 	
 	
+	// id 받아와서, 해당 id가 쓴 글의 총 개수 
+	public int countMyarticleboard01(String id) {
+			return board01dao.countMyarticleboard01(id);
+		}
+	
+	// id 받아와서, 해당 id가 쓴 글, perpage 개수만큼만 list로 리턴
+	public	List<Board01Dto> listMyarticleboard01(String id, int startRow, int perpage){
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("id", id);
+		m.put("start", startRow);
+		m.put("count",perpage);
+		return board01dao.listMyarticleboard01(m);
+		}
+	
+	// id 받아와서, 내가 쓴 댓글이 1개라도 있는, 글번호(b_no01) 의 개수를 리턴
+	public	int numberofarticleHavingmyComent(String id) {
+		return board01dao.numberofarticleHavingmyComent(id);
+	}
+	
+	// id 받아와서, 내가 쓴 댓글이 1개라도 있는, 글번호(b_no01) 의 list 를 리턴
+	public	List<Integer> listofArticleHavingmyComent(String id){
+		return board01dao.listofArticleHavingmyComent(id);
+	}
+	
+	// 내가쓴 댓글이 있는 글번호(b_no01) list 받아와서, board01Dto list 리턴
+	public	List<Board01Dto> board01listOfArticleHavingmyComent(List<Integer> numlist, int startRow, int perpage){
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("numlist", numlist);
+		m.put("start", startRow);
+		m.put("count",perpage);
+		return board01dao.board01listOfArticleHavingmyComent(m);
+	}
+	
+	
+	// 게시글 글번호(b_no01) 받아와서 해당 글 1개, DB에서 삭제
+	public	int deleteBoard01Article(int no) {
+		return board01dao.deleteBoard01Article(no);
+	}
 	
 	
 	

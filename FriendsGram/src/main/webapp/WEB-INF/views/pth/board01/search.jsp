@@ -222,7 +222,7 @@ td {
 <hr>
 
 <div align="left">
-	<button>전체</button> <button>내 글</button> <button>내 댓글</button>
+	<button><a href="/board01/main">전체</a></button> <button><a href="/board01/myarticle">내 글</a></button> <button><a href="/board01/mycoment">내 댓글</a></button>
 </div>
 <hr>
 

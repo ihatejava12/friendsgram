@@ -208,6 +208,40 @@
 	</insert>
 	
 	
+	<select id="countMyarticleboard01" parameterType="String" resultType="int">
+		select count(*) from board01
+		where id = #{id}
+	</select>
+	
+	<select id="listMyarticleboard01" parameterType="map" resultType="friendsgram.board01.dto.Board01Dto">
+		select * from board01
+		where id = #{id}
+		order by date desc limit #{start} , #{count}
+	</select>
+	
+	<select id="numberofarticleHavingmyComent" parameterType="String" resultType="int">
+		select count(distinct b_no01) from board01_coment 
+		where id = #{id}
+	</select>
+	
+	<select id="listofArticleHavingmyComent" parameterType="String" resultType="int">
+		select distinct b_no01 from board01_coment
+		where id = #{id}
+	</select>
+	
+	<select id="board01listOfArticleHavingmyComent" parameterType="map" resultType="friendsgram.board01.dto.Board01Dto">
+		select * from board01
+		where b_no01 in 
+		<foreach collection="numlist" index='index' item='no' open='(' close=')' separator=','>
+			#{no}
+		</foreach>
+		order by date desc limit #{start}, #{count}
+	</select>
+	
+	<delete id="deleteBoard01Article" parameterType="int">
+		delete from board01
+		where b_no01 = #{no}
+	</delete>
 	
 	
 	
