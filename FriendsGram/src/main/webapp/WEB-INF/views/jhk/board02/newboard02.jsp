@@ -29,8 +29,14 @@ html, body {
   height: 100%;
   margin: 0;
 }
+
 body {
     margin-top: 80px; /* 헤더 높이만큼의 여백 추가 */
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
 .logo img {
@@ -53,14 +59,128 @@ body {
 }
 
 main {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensures full viewport height is covered */
   margin: 0;
   overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+#allcontent {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #4CAF50;
+  color: #fff;
+  font-weight: bold;
+}
+
+input[type="text"], input[type="date"], input[type="number"], textarea {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+input[type="button"], button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+}
+
+input[type="button"]:hover, button:hover {
+  background-color: #45a049;
+}
+
+.buttons-container {
+  text-align: center; /* 버튼들을 가운데 정렬 */
+  margin-top: 20px;
+}
+
+.buttons-container a.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.buttons-container a.button:hover {
+  background-color: #45a049;
+}
+
+#code {
+  width: calc(70% - 22px); /* "추가" 버튼 옆에 배치할 수 있게 입력칸 크기 조정 */
+}
+
+#add {
+  width: calc(30% - 10px); /* "추가" 버튼 크기 조정 */
+  margin-left: 10px; /* 입력칸과 "추가" 버튼 사이의 간격 조정 */
+}
+
+#langs span {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-right: 5px;
+  margin-top: 5px;
+  font-size: 0.9rem;
+}
+
+#langs span .delete {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 2px 5px;
+  margin-left: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#langs span .delete:hover {
+  background-color: #c82333;
 }
 
 .footer {
@@ -81,6 +201,10 @@ main {
   color: white;
   text-decoration: none;
   font-weight: bold;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
 }
 
 .company-info p {
@@ -137,17 +261,25 @@ main {
 						<td>지원자 수</td>
 						<td ><input type="number" name="volunteer" min="1"></td>
 					</tr>
+					
 					<tr>
-						<td colspan="2" align="center">
-							<a href="/board02/main">돌아가기</a>
-							<button type="submit">등록하기</button>
+						<td>개발 언어</td>
+						<td>
+							<input type="text" id="code">
+							<input type="button" id="add" value="추가">
+						</td>
+					</tr>	
+					<tr>
+						<td colspan="2">
+							<div id="langs"></div>
 						</td>
 					</tr>
 					<tr>
-						<td>개발 언어<input type="text" id="code"><input type="button" id="add" value="추가"></td>
-						
-						<td><div id="langs"></div></td>
-					</tr>	
+						<td colspan="2" class="buttons-container">
+							<a href="/board02/main" class="button">돌아가기</a>
+							<button type="submit">등록하기</button>
+						</td>
+					</tr>
 				</table>
 				</form>
 			</fieldset>
