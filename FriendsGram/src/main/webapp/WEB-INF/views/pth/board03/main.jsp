@@ -145,6 +145,9 @@ main {
 
 </style>
 </head>
+
+
+
 <body>
 <div>
  <header class="header">
@@ -177,16 +180,16 @@ main {
 <h1 style="color: black;" align="center"> 우수 프리랜서를 만나보세요</h1>
 <br>
 <div align="center">
-<form action="/board03/search" method="get">
-<select name="work_type">
-	<option>근무 형태</option>
+<form action="/board03/search" method="get" onsubmit="return validate();">
+<select class="work1" name="work_type">
+	<option value="not">근무 형태</option>
 	<option value="-1">전체</option>
 	<option value="0">원격</option>
 	<option value="1">상주</option>
 </select>
 
-<select name="skil">
-	<option>개발 언어</option>
+<select class="skil1" name="skil">
+	<option value="not">개발 언어</option>
 	<option value="all">전체</option>
 	<option value="java">JAVA</option>
 	<option value="python">PYTHON</option>
@@ -196,8 +199,8 @@ main {
 	<option value="other">기타</option>
 </select>
 
-<select name="career">
-	<option>경력 기간</option>
+<select class="career1" name="career">
+	<option value="not">경력 기간</option>
 	<option value="-2">전체</option>
 	<option value="-1">경력 없음</option>
 	<option value="0">1년 이하</option>
@@ -211,7 +214,7 @@ main {
 	<option value="8">8년 이상</option>
 </select>
 
-<button>프리랜서 찾기</button>
+<button class="notnull">프리랜서 찾기</button>
 </form>
 </div>
 </div>
@@ -331,6 +334,27 @@ function content(free){
 	var link = "/board03/content/"+no;
 	location.href = link;
 }
+
+function validate(){
+		let skil = $(".skil1").val();
+		let work = $(".work1").val();
+		let career = $(".career1").val();
+		
+		if(work == "not"){
+			alert("검색 조건을 설정하세요.")
+			return false;
+		}
+		if( skil == "not"){
+			alert("검색 조건을 설정하세요.")
+			return false;
+		}
+		if( career == "not"){
+			alert("검색 조건을 설정하세요.")
+			return false;
+		}
+}		
+
+
 
 </script>
 

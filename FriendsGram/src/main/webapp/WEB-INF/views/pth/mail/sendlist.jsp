@@ -20,6 +20,10 @@
 		
 		<div class="mailright" style="border:1px dashed lightgreen; width:98%; height:98%; margin: 5px;">
 			<span>${user.name } 님의 보낸 편지함입니다.</span> <br><br>
+			<c:if test="${comentcount == 0 }">
+				보낸 쪽지가 없습니다.
+			</c:if>
+			<c:if test="${comentcount != 0 }">
 			<button>삭제</button> <br><hr>
 			
 			<table class="maillist">
@@ -46,7 +50,7 @@
 					<a href="/mail?p=${end+1}">[다음]</a>
 				</c:if>
 			</div>
-			
+			</c:if>
 		</div>
 	
 	</div> 

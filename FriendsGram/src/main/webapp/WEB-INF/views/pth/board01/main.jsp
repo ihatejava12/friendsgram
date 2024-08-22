@@ -92,9 +92,9 @@ main {
 }
 
 
-
-
-
+a{
+	text-decoration: none;
+}
 
 
 
@@ -133,20 +133,19 @@ main {
 }
 
 table {
-	border: 1px solid black;
-	width: 700px;
+	border: none;
+	width: 100%;
 	border-collapse: collapse;
 }
 
-th {
-	border: 1px solid black;
-	background-color: lightgray;
-	width: 150px;
+th{
+	text-align:center;
 }
 
-td {
-	border: 1px solid black;
+tr{
+ border-bottom: 1px solid #ddd;
 }
+
 
 #allcontent {
 	margin: auto 15% 
@@ -186,10 +185,10 @@ td {
  
 </div>
 <hr>
-<div id="allcontent">
-<div id="headcontent" align="center">
-	<h2>코딩 게시판</h2>
-	
+
+<div id="headcontent" align="center" style="height: 200px; padding: 40px;">
+	<h1>코딩 게시판</h1>
+	 <br><br>
 	<form method="get" action="/board01/searchcontent">
 	<select id="selectskil" name="skil">
 		<option value="">개발 언어</option>
@@ -214,7 +213,7 @@ td {
 </div>
 
 <hr>
-
+<div id="allcontent">
 <div align="right">
 	<button><a href="/board01/main">목록</a></button> <button><a href="/board01/write">글쓰기</a></button>
 </div>
@@ -222,22 +221,22 @@ td {
 <hr>
 
 <div align="left">
-	<button>전체</button> <button>내 글</button> <button>내 댓글</button>
+	<button><a href="/board01/main">전체</a></button> <button><a href="/board01/myarticle">내 글</a></button> <button><a href="/board01/mycoment">내 댓글</a></button>
 </div>
 <hr>
 
 <div>
 <c:if test="${count != 0}">
-	<table style="width:100%;">
-		<tr><th>번호</th><th>개발언어</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th></tr>
+	<table>
+		<tr><th style="width:10%;">번호</th><th style="width:15%;">개발언어</th><th style="width:40%;">제목</th><th style="width:15%;">작성자</th><th style="width:10%;">작성일</th><th style="width:10%;">조회수</th></tr>
 		<c:forEach items="${blist }" var="board">
 			<tr>
-				<td>${board.b_no01 }</td>
-				<td>${board.code }</td>
+				<td style="text-align:center;">${board.b_no01 }</td>
+				<td style="text-align:center;">${board.code }</td>
 				<td><a href="content/${board.b_no01}">${board.title }</a></td>
-				<td>${board.id }</td>
-				<td><fmt:formatDate value="${board.date }" dateStyle="short"/></td>
-				<td>${board.readcount }</td>
+				<td style="text-align:center;">${board.id }</td>
+				<td style="text-align:center;"><fmt:formatDate value="${board.date }" dateStyle="short" /></td>
+				<td style="text-align:center;">${board.readcount }</td>
 			</tr>
 		
 		</c:forEach>
@@ -264,7 +263,7 @@ td {
 
 </div>
 
-<footer class="footer">
+<footer class="footer" role="contentinfo">
       <div class="footer-links">
          <a href="#">프리랜서 이용약관</a> <a href="#">고객센터</a> <a href="#">개인정보
             처리방침</a> <a href="#">광고문의</a><c:if test="${ user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>

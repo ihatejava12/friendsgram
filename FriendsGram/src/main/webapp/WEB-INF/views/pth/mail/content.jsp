@@ -19,7 +19,7 @@
 		</div>
 		
 		<div class="mailright" style="border:1px dashed lightgreen; width:98%; height:98%; margin: 5px;">
-			<span>(user.id) 님의 쪽지보기입니다.</span> <br><br>
+			<span>${user.name} 님의 쪽지보기입니다.</span> <br><br>
 			<!--  onemail 라는 이름으로 mail 1개 정보 가져옴 -->
 			
 			<table>
