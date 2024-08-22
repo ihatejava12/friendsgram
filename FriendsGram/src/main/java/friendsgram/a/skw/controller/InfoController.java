@@ -46,7 +46,7 @@ public class InfoController {
 	}
 	@GetMapping("/review")
 	public String review(@ModelAttribute("user") MemberDto dto) {
-		return "skw/profile/review";
+		return "skw/review/review";
 	}
 	@GetMapping("/infowrite")
 	public String writeinfo(@ModelAttribute("user") MemberDto dto ) {

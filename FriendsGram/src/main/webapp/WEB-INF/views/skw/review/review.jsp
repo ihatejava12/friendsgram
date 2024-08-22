@@ -211,7 +211,7 @@ td {
 		<h1>나의 리뷰 관리</h1>
 		<a href="/myprofile">나의 정보</a>
 		<a href="/info">이력서</a>
-		<a href="/review">나의 리뷰</a>
+		<a href="/review/review">나의 리뷰</a>
 		</div>
 	</main>
 	
