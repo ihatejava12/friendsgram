@@ -47,14 +47,14 @@ a {
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
-					<th>조회수</th>
+					
 				</tr>
-				<c:forEach items="${bList}" var="board">
+				<c:forEach items="${board04list}" var="board">
 					<tr>
-						<td><a href ="content/${board.no}">${board.title}</a></td>
+						<td><a href ="content/${board.b_no04}">${board.title}</a></td>
 						<td>${board.id }</td>
-						<td><fmt:formatDate value="${board.regdate }" dateStyle="short"/> </td>
-						<td>${board.readcount }</td>
+						<td><fmt:formatDate value="${board.date}" dateStyle="short"/> </td>
+						
 					</tr>
 				</c:forEach>
 			</table>

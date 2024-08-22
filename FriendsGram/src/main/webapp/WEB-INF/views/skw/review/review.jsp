@@ -1,13 +1,42 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Write</title>
+<!--  bList begin end count pageNum totalPages -->
+<title>나의 리뷰관리</title>
 <style>
+#center {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
 
+table {
+	border: 1px solid black;
+	width: 700px;
+	border-collapse: collapse;
+}
 
+th {border: 1px solid black;
+	background-color: orange;
+	width: 150px;
+}
+td{border: 1px solid black;}
+a {
+	margin: 10px auto;
+}
+
+#page {
+	text-align: center;
+}
+</style>
+</head>
+<body>
+
+<style>
 
 * {
   box-sizing: border-box;
@@ -158,13 +187,13 @@ td {
 <body>
 	<header class="header">
 		<div class="logo">
-			<a href="/main"> <img src="../images/logo.png" alt="프렌즈그램 로고"
+			<a href="/main"> <img src="/images/logo.png" alt="프렌즈그램 로고"
 				class="logo-image" />
 			</a>
 		</div>
 		<nav class="navigation">
-			<a href="board01/main">코딩 게시판</a>  <a href="board02/main">팀 모집</a> <a href="board03/main">프리랜서 검색</a>
-			 <a	href="/list">프리랜서 공고</a> <a href="/board05">취업 공고</a>
+			<a href="/board01/main">코딩 게시판</a>  <a href="/board02/main">팀 모집</a> <a href="/board03/main">프리랜서 검색</a>
+			<a href="/list">프리랜서 공고</a> <a href="/board05">취업 공고</a>
 		</nav>
 		<div class="actions">
 			<c:if test="${user.id != null }">
@@ -173,66 +202,22 @@ td {
 			<c:if test="${user.id == null }">
 			<a class="login" href="/loginform">로그인</a>
 			</c:if>
-			
-			 <a class="profile" href="/myprofile">프로필</a>
+			<a class="profile" href="/myprofile">프로필</a>
 			<a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
 		</div>
 	</header>
-	
-	
 	<main>
-<form action="/board04/write" method="post">
-
-    <label for="id">아이디 : </label>
-    <input type="text" id="id" name="id" value="${user.id}"><br>
-
-    <label for="title">제목 : </label>
-    <input type="text" id="title" name="title"><br>
-
-    <label for="work_type">근무 형태 : </label>
-    <input type="radio" id="out" name="work_type" value="true">
-    <label for="out">원격</label>
-    <input type="radio" id="in" name="work_type" value="false">
-    <label for="in">상주</label><br>
-
-    <div id="code">언어 : 
-    <label><input type="checkbox" name="code" value="java">JAVA</label><br>
-    <label><input type="checkbox" name="code" value="python">PYTHON</label><br>
-	</div>
-
-    <label for="salary">급여 : </label>
-    <input type="text" id="salary" name="salary">원<br>
-
-    <label for="career_period">경력 기간:</label>
-    <input type="text" id="career_period" name="career_period">년<br>
-
-    <label for="content">내용:</label>
-    <textarea id="content" name="content"></textarea><br>
-	
-	<label for="join_date">모집기간</label>
-    <input type="text" id="join_date" name="join_date"><br>
-	
-	<label for="join02">모집상태</label>
-    <input type="radio" id="Recruiting" name="join02" value="true">
-    <label for="out">모집중</label>
-    <input type="radio" id="Recruitment completed" name="join02" value="false">
-    <label for="in">모집완</label><br>
-	
-	<label for="volunteer">모집자수</label>
-    <input type="text" id="volunteer" name="volunteer"><br>
-	
-	<label for="employment_date">기간</label>
-    <input type="text" id="employment_date" name="employment_date"><br>
+	<div id="center">
+		<h1>나의 리뷰 관리</h1>
+		<a href="/myprofile">나의 정보</a>
+		<a href="/info">이력서</a>
+		<a href="/review/review">나의 리뷰</a>
+		</div>
+	</main>
 	
 	
-	<label for="employment_start">시작일</label>
-    <input type="text" id="employment_start" name="employment_start"><br>
-    
-    <input type="submit" value="확인">
-</form>
-</main>
-
-<footer class="footer">
+	
+	<footer class="footer">
 		<div class="footer-links">
 			<a href="#">프리랜서 이용약관</a> <a href="#">고객센터</a> <a href="#">개인정보
 				처리방침</a> <a href="#">광고문의</a><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
@@ -242,8 +227,5 @@ td {
 			<p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
 		</div>
 	</footer>
-
-
 </body>
-
 </html>

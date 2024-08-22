@@ -46,24 +46,22 @@ public class InfoController {
 	}
 	@GetMapping("/review")
 	public String review(@ModelAttribute("user") MemberDto dto) {
-		return "skw/profile/review";
+		return "skw/review/review";
 	}
 	@GetMapping("/infowrite")
-	public String infowrite(@ModelAttribute("user") MemberDto dto ) {
+	public String writeinfo(@ModelAttribute("user") MemberDto dto ) {
 		return "skw/profile/infowrite";
 	}
 	
 	@PostMapping("/insertInfo")
-	public String write(@ModelAttribute("info") @Validated Member_InfoDto dto, BindingResult error) {
-		if(error.hasErrors()) {
-			error.reject("nocode", "제목이 없습니다");
-			return "skw/profile/infowrite";
+	public String infowrite(@ModelAttribute("user") MemberDto dto ,@Validated Member_InfoDto mdto) {
+			service.insertInfo(mdto);
+			return "redirect:/info";
 		}
-		service.insertInfo(dto);
-		return "skw/profile/infock";
-	}
+		
+		
 	@GetMapping("/infock")
-	public String infock(@ModelAttribute("user") MemberDto dto) {
+	public String infock(@ModelAttribute("user") MemberDto dto, @Validated Member_InfoDto mdto) {
 		return "skw/profile/infock";
 	}
 }

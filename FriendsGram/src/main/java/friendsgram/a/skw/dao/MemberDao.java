@@ -13,7 +13,7 @@ import friendsgram.member.dto.MemberDto;
 @Mapper
 public interface MemberDao {
 
-	String id_Check(String id);
+	// String id_Check(String id);
 	int insertMem(MemberDto dto);
 	
 //	@Select("select * from member where id=#{id} and password=#{password}")
