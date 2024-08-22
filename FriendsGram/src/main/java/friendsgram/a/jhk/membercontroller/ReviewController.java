@@ -33,12 +33,18 @@ public class ReviewController {
 	@GetMapping("/viewreview/{id}")
 	public String viewReview(@PathVariable("id") String subjects, Model m) {
 		List<Member_ReviewDto> rto = service.reviewList(subjects);
-		m.addAttribute("relist", rto);
-		m.addAttribute("subjects", subjects);
-		int star = service.avgScore(subjects);
-		m.addAttribute("star", star);
+		if(rto.isEmpty()) {
 		
-		return "/jhk/review/list";
+			return "/jhk/review/list1";
+
+		} else {
+			m.addAttribute("relist", rto);
+			m.addAttribute("subjects", subjects);
+			int star = service.avgScore(subjects);
+			m.addAttribute("star", star);
+			
+			return "/jhk/review/list";
+		}
 	}
 	
 	@PostMapping("/insertreview")

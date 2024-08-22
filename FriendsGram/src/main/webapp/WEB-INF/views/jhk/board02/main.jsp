@@ -32,6 +32,11 @@ html, body {
 }
 body {
     margin-top: 80px; /* 헤더 높이만큼의 여백 추가 */
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
 .logo img {
@@ -54,14 +59,124 @@ body {
 }
 
 main {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensures full viewport height is covered */
   margin: 0;
   overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+#allcontent {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+#headcontent h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#headcontent form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+#search-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#searchn {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+#append input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #4CAF50;
+  color: #fff;
+  font-weight: bold;
+}
+
+td a {
+  color: #333;
+  text-decoration: none;
+}
+
+td a:hover {
+  text-decoration: underline;
+}
+
+#page a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+#page a:hover {
+  text-decoration: underline;
 }
 
 .footer {
@@ -82,6 +197,10 @@ main {
   color: white;
   text-decoration: none;
   font-weight: bold;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
 }
 
 .company-info p {
@@ -113,27 +232,29 @@ main {
    <main>
 
 	<div id="allcontent">
-		<div id="headcontent" align="center">
-			<h2>팀 모집 게시판</h2>
-		<form action="main">
-			<select name="searchn" id="searchn">
-				<option value="0">전체</option>
-				<option value="1">작성자</option>
-				<option value="2">기간</option>
-				<option value="3">코드</option>
-			</select>
-
-			<span id="append"></span>
-			
-			<input type="submit" value="검색"/>
-		</form>
+		<div id="headcontent">
+			<h2 align="center">팀 모집 게시판</h2>
+			<div id="search-container">
+				<form action="main">
+					<select name="searchn" id="searchn">
+						<option value="0">전체</option>
+						<option value="1">작성자</option>
+						<option value="2">기간</option>
+						<option value="3">코드</option>
+					</select>
+	
+					<span id="append"></span>
+					
+					<input type="submit" value="검색"/>
+				</form>
+				<c:if test="${user.id != null}">
+					<form action="/newboard02">
+						<button>새글 쓰기</button>
+					</form>
+				</c:if>
+			</div>
 		</div>
 		<div>
-			<c:if test="${user.id != null}">
-				<form action="/newboard02">
-					<button>새글 쓰기</button>
-				</form>
-			</c:if>
 			<table border="1">
 				<tr>
 					<th>제목</th>
@@ -158,7 +279,7 @@ main {
 						</c:if>
 						
 						<c:if test="${list.join01 == true}">
-							<td><button onclick="window.open('/reviewteam/${list.b_no02}', '_blank', 'width=450, height=600, top=50, left=50, scrollbars=yes')">보기</button></td>
+							<td><button onclick="window.open('/reviewteam/${list.b_no02}', '_blank', 'width=500, height=450, top=50, left=50, scrollbars=yes')">보기</button></td>
 						</c:if>
 					</tr>
 				</c:forEach>
@@ -207,9 +328,6 @@ main {
         } else if(startSetting == 3){
             $("#append").html('<input name="search">');
         }
-		
-
-
 	});
 	</script>
 </body>
