@@ -38,7 +38,9 @@
         <input type="text" id="title" name="title" value="${dto.title}" required><br>
         <label for="company">회사:</label>
          <input type="text" name="company" value="${dto.company}" required>
-
+        <label for="id">작성자:</label>
+         <input type="text" name="id" value="${dto.id}" required readonly>
+		
         
 
          <label for="career_period">경력 기간:</label>

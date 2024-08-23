@@ -37,10 +37,6 @@
 	<div>
 		<h3>문의하기</h3>
 		<a href="/question">목록</a>
-		<c:if test="${user.id == qcontent.id }">
-			<a>수정</a>
-			<a>삭제</a>
-		</c:if>
 	</div>
 	<div>
 	<table border="1">
@@ -60,6 +56,17 @@
 			<td>내용</td>
 			<td>
 			${qcontent.content}
+			</td>
+		</tr>
+		<tr>
+			<td>답변</td>
+			<td>
+				<c:if test="${qcontent.request == false }">
+					답변 대기중
+				</c:if>
+				<c:if test="${qcontent.request == true }">
+					${qacontent.content }
+				</c:if>
 			</td>
 		</tr>
 		

@@ -33,14 +33,16 @@
 	</header>
 	
 	<main>
-		<form action="/question/search" method="get">
-		    <input type="text" name="keyword" placeholder="검색어를 입력하세요">
+		<form action="/question" method="get">
+		    <input type="text" name="search" value="${search}" placeholder="검색어를 입력하세요">
 		    <button type="submit">검색</button>
 		</form>
 		<botton>
 			<a href="/question/write">문의하기</a>
 		</botton>
+			
 		<div>
+		<c:if test="${count != 0 }">
 			<table>
 				<tr>
 					<th>문의번호</th>
@@ -48,7 +50,6 @@
 					<th>제목</th>
 					<th>작성일</th>
 					<th>작성자</th>
-					<th>조회수</th>
 					<th>답변여부</th>
 				</tr>
 				<c:forEach var="qlist" items="${qlist }">
@@ -62,7 +63,6 @@
 			            <td><a href="/question/${qlist.q_no}">${qlist.title }</a></td>
 			            <td><fmt:formatDate value="${qlist.date }" pattern="yyyy-MM-dd" /></td>
 			            <td>${qlist.id }</td>
-			            <td>###</td>
 			            <td>
 						    <c:if test="${qlist.request == true}">답변완료</c:if>
 						    <c:if test="${qlist.request == false}">접수완료</c:if>
@@ -70,8 +70,28 @@
 			        </tr>
 		    	</c:forEach>
 			</table>
-		</div>
+				<div id="page">
+    <c:if test="${begin > 1}">
+        <a href="question?p=${begin-1}">[이전]</a>
+    </c:if>
+    <c:forEach begin="${begin}" end="${end}" var="i">
+        <a href="question?p=${i}" class="${i == param.p ? 'current-page' : ''}">${i}</a>
+    </c:forEach>
+    <c:if test="${end < totalPages}">
+        <a href="question?p=${end+1}">[다음]</a>
+    </c:if>
+</div>
+				</c:if>
+				
+				<c:if test="${count == 0 }">
+					아직 입력한 글이 없습니다.
+				</c:if>
+
+			</div>
+			<br><br>
 	</main>
+		
+	
 	
 	<footer class="footer">
 		<div class="footer-links">
