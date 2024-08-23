@@ -236,17 +236,42 @@ main {
 			</c:forEach>
 		</div>
 		<br>
+		
+		<div style="margin:15px;">
+			프로젝트 시작 가능일 : <fmt:formatDate value="${freelancer.work_date }" pattern="yyyy-MM-dd"/>
+		</div>
+		
+		<br>
 		<div style="margin:15px;">
 		상세소개
 		<p>${freelancer.content}</p>
 		</div>
+		
+		<br>
+		
+		<div style="margin:15px;">
+			이력서 및 포트폴리오
+			
+			
+			
+			<div onclick="portfolio(this)" id="${freelancer.portfolio }" style="width:150px; height:80px; background-image: url(${freelancer.portfolio});
+			background-size: cover;
+			background-position:center">
+			</div>	
+				<c:if test="${freelancer.portfolio != '' }">
+				<a href="/board03/portfolio/download?path=${freelancer.portfolio }">포트폴리오 다운로드</a>
+				</c:if>
+			
+		</div>
+		
 		
 </div>
 
 
 <div class="sub" style="float:left; margin: 15px; width:200px;">
 	해당 프리랜서가 마음에 드시나요?<br>
-	<button> 협업 제의하기 </button>
+	<button> <a class="messages" href="/mail/writeTofreelancer/${freelancer.id}" 
+         onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">협업 제의하기</a> </button>
 </div>
 
 </div>
@@ -266,6 +291,12 @@ main {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	
+	
+	function portfolio(path){
+		var path = path.id;
+		var link = "/board03/portfolio?path="+ path;
+		window.open(link,"_blank","width=1000, height= 800");
+	}
 
 </script>
 

@@ -85,10 +85,16 @@ public class MailController {
 	@GetMapping("/mail/write")
 	public String mailWrite() {
 		
-		
-		
 		return "pth/mail/write";
 	}
+	
+	@GetMapping("/mail/writeTofreelancer/{id}")
+	public String mailWriteTofreelancer(@PathVariable("id")String id,Model m) {
+		m.addAttribute("freelancerid",id);
+		
+		return "pth/mail/writeTofreelancer";
+	}
+	
 	
 	
 	@GetMapping("/mail/write/newmail")

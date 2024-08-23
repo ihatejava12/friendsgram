@@ -170,9 +170,9 @@ main {
 <h3 style="color: black;" align="center"> 프리랜서로 등록하고 딱맞는 프로젝트/의뢰를 받아보세요.</h3>
 <br>
 </div>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 
-		<input type="hidden" name="id" value="pth"/>
+		<input type="hidden" name="id" value="${user.id}"/>
 		<!--   로그인 완성되면, value 에 {user.id} 이런식으로 들어갈 예정 -->
 		
 	<div align="center">
@@ -204,13 +204,15 @@ main {
 		<br>
 		자기소개: <textarea name="content"></textarea><br>
 		
-		포트폴리오 <br>
-		<textarea name="portfolio"></textarea>
+		
+		
+		포트폴리오 
+		<input name="file" type="file"/>
 		<br>
 		<button type="submit">프리랜서 등록하기</button>
 	</div>
 
-</form>
+</form>	
 
   <footer class="footer">
       <div class="footer-links">

@@ -26,7 +26,7 @@
 				<tr><td>${onemail.id }</td><td><fmt:formatDate value="${onemail.date }" type="both" 
 				dateStyle="default" timeStyle="short"/></td></tr>
 				<tr><td>제목</td><td>${onemail.title }</td></tr>
-				<tr><td>내용</td><td>${onemail.content }</td></tr>
+				<tr><td>내용</td><td><div style="overflow:auto;">${onemail.content }</div></td></tr>
 			</table>
 			
 			<button class="maildelete" id="${onemail.m_no }">삭제</button>
