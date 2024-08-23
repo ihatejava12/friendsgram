@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  position: fixed; /* 헤더를 화면에 고정 */
+  top: 0; /* 화면 상단에 위치 */
+  left: 0; /* 화면 왼쪽에 위치 */
+  width: 100%; /* 화면 너비에 맞게 설정 */
+  z-index: 1000; /* 다른 요소 위에 보이도록 설정 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+	 margin-top: 80px; /* 헤더 높이만큼의 여백 추가 */
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+.navigation a {
+  margin-right: 15px;
+  color: #565E6C;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.actions a {
+  margin-left: 10px;
+  color: #0C9200;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+main {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures full viewport height is covered */
+  margin: 0;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+.footer {
+  background-color: rgba(30, 33, 40, 0.68);
+  color: white;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: auto; /* 푸터가 페이지의 끝에 위치하도록 설정 */
+  position: relative; /* 포지션 속성을 고정하지 않음 */
+}
+
+.footer-links a {
+  margin-right: 15px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.company-info p {
+  margin-top: 10px;
+  font-size: 14px;
+}

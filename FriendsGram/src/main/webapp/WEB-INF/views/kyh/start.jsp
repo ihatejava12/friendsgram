@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="/css/kyh/start.css" rel="stylesheet">
 </head>
 <body>
 	<header class="header">
@@ -36,7 +37,7 @@
 	
 	<footer class="footer">
 		<div class="footer-links">
-			<a href="#">프리랜서 이용약관</a> <a href="#">고객센터</a> <a href="#">개인정보
+			<a href="#">프리랜서 이용약관</a> <a href="/question">고객센터</a> <a href="#">개인정보
 				처리방침</a> <a href="#">광고문의</a><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
 		</div>
 		<div class="company-info">
