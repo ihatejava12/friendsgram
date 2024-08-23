@@ -47,32 +47,26 @@
 	
 	    <div>
 	        <label for="content">내용:</label>
-	        <textarea id="content" name="content" rows="10" cols="30" readonly></textarea>
-
-<script>
-    const content = `
+	        <textarea id="content" name="content" rows="10" cols="30" readonly>
 이력서
-이름: ${dto.name}<br>
-생년월일: ${dto.birth}<br>
-나이: ${dto.age}<br>
-성별: ${dto.gender}<br>
-전화번호: ${dto.phone}<br>
-email: ${dto.email}<br>
-주소: ${dto.address}<br><br>
-자기소개서: ${dto.content}<br>
-학교명: ${dto.school_name}<br>
-학교 기간: ${dto.school_period}<br>
-학교 전공: ${dto.school_major}<br>
-경력 회사명: ${dto.career_nme}<br>
-경력 기간: ${dto.career_period}<br>
-경력 담당업무: ${dto.career_role}<br>
-자격증 이름: ${dto.certificate_name}<br>
+이름: ${dto.name}
+생년월일: ${dto.birth}
+나이: ${dto.age}
+성별: ${dto.gender}
+전화번호: ${dto.phone}
+email: ${dto.email}
+주소: ${dto.address}
+
+자기소개서: ${dto.content}
+학교명: ${dto.school_name}
+학교 기간: ${dto.school_period}
+학교 전공: ${dto.school_major}
+경력 회사명: ${dto.career_nme}
+경력 기간: ${dto.career_period}
+경력 담당업무: ${dto.career_role}
+자격증 이름: ${dto.certificate_name}
 자격증 취득일자: ${dto.certificate_date}
-`;
-
-    document.getElementById('content').value = content.replace(/<br>/g, '\n');
-</script>
-
+			</textarea>
 	    </div>
 	
 	    <div>
