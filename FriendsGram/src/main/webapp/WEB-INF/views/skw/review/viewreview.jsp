@@ -250,11 +250,18 @@ td {
 </section>
 
 <script>
-function reportReview(mrNo) {
-    if (confirm('이 리뷰를 신고하시겠습니까?')) {
+function reportReview(mr_no) {
+    var reportContent = prompt('신고 사유를 입력해 주세요:');
+    var reportedBy = '${user.id}'; // 현재 로그인된 사용자 ID (로그인된 사용자 정보가 제공된다고 가정)
+
+    if (reportContent && confirm('이 리뷰를 신고하시겠습니까?')) {
         $.ajax({
-            url: '/reportreview/' + mrNo,
-            type: 'POST', // 신고는 POST 요청을 사용할 수 있습니다.
+            url: '/reportreview/' + mr_no,
+            type: 'POST',
+            data: {
+                report_content: reportContent,
+                reportedBy: reportedBy
+            },
             success: function(response) {
                 alert('리뷰가 신고되었습니다.');
                 location.reload(); // 신고 후 페이지를 새로고침하여 업데이트
@@ -311,17 +318,18 @@ function reportReview(mrNo) {
 <script>
 function deleteReview(mr_no) {
     if (confirm('정말로 이 리뷰를 삭제하시겠습니까?')) {
-        $.ajax({
-            url: '/deletereview/' + mr_no,
-            type: 'DELETE',
-            success: function(response) {
-                alert('리뷰가 삭제되었습니다.');
-                location.reload(); // 삭제 후 페이지를 새로고침하여 업데이트
-            },
-            error: function(xhr, status, error) {
-                alert('삭제 중 오류가 발생했습니다.');
-            }
-        });
+    	$.ajax({
+    	    url: '/review/deletereview/' + mr_no,
+    	    type: 'DELETE',
+    	    success: function(response) {
+    	        alert('리뷰가 삭제되었습니다.');
+    	        location.reload();
+    	    },
+    	    error: function(xhr, status, error) {
+    	        alert('삭제 중 오류가 발생했습니다.');
+    	        console.error('Error details:', xhr.responseText);  // 오류 세부 정보 로그
+    	    }
+    	});
     }
 }
 </script>

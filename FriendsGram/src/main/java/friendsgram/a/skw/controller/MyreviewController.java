@@ -3,16 +3,22 @@ package friendsgram.a.skw.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import friendsgram.a.skw.service.MyreviewService;
+import friendsgram.a.skw.service.ReportService;
+import friendsgram.admin.dto.ReportDto;
 import friendsgram.member.dto.MemberDto;
 import friendsgram.member.dto.Member_ReviewDto;
 
@@ -22,6 +28,9 @@ public class MyreviewController {
 
     @Autowired
     private MyreviewService reviewService;
+    
+    @Autowired
+    private ReportService reportService; // ReportService는 신고를 처리하는 서비스
 
     @GetMapping("/review/{subjects}")
     public String review(
@@ -62,11 +71,11 @@ public class MyreviewController {
     }
 		
 	    // 리뷰 수정 페이지로 이동
-	    @GetMapping("/editreview{mr_no}")
-	    public String editReview(@RequestParam("mr_no") int mr_no, Model model) {
+	    @GetMapping("/editreview/{mr_no}")
+	    public String editReview(@PathVariable("mr_no") int mr_no, Model model) {
 	    	Member_ReviewDto review = reviewService.getReviewById(mr_no);
 	        model.addAttribute("review", review);
-	        return "editReview";
+	        return "skw/review/editReview";
 	    }
 
 	    // 리뷰 수정 처리
@@ -75,6 +84,42 @@ public class MyreviewController {
 	                               @RequestParam("score") int score,
 	                               @RequestParam("content") String content) {
 	        reviewService.updateReview(mr_no, score, content);
-	        return "redirect:/mypage";  // 수정 후 마이페이지로 리다이렉트
+	        return "redirect:/myprofile";
 	    }
+	    // 리뷰 삭제 처리
+	    @DeleteMapping("/review/deletereview/{mr_no}")
+	    public @ResponseBody ResponseEntity<?> deleteReview(@PathVariable("mr_no") int mr_no) {
+	        try {
+	            reviewService.deleteReview(mr_no);
+	            return ResponseEntity.ok().body("리뷰가 삭제되었습니다.");
+	        } catch (Exception e) {
+	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("삭제 중 오류가 발생했습니다.");
+	        }
+	    }
+	     // 신고 처리 메소드
+	        @PostMapping("/reportreview/{mr_no}")
+	        @ResponseBody
+	        public ResponseEntity<String> reportReview(
+	                @PathVariable("mr_no") int mr_no,
+	                @RequestParam("report_content") String reportContent,
+	                @RequestParam("reportedBy") String reportedBy) {
+
+	            ReportDto reportDto = new ReportDto();
+	            reportDto.setReport_content(reportContent);
+	            reportDto.setR_no(mr_no);
+	            reportDto.setId(reportedBy);
+
+	            try {
+	                reportService.insertReport(reportDto);
+	                return ResponseEntity.ok("리뷰가 신고되었습니다.");
+	            } catch (Exception e) {
+	            	 e.printStackTrace();
+	                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("신고 중 오류가 발생했습니다.");
+	            }
+	        }
+	    
+	    
+
 	}
+
+

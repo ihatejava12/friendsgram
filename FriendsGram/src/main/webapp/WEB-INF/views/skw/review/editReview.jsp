@@ -181,7 +181,37 @@ td {
 #headcontent{
 	background-color: lightgreen;
 }
+
+
 </style>
+
+ <style>
+    .star-rating {
+      display: flex;
+    }
+
+    .star {
+      appearance: none;
+      padding: 1px;
+    }
+
+    .star::after {
+      content: '☆';
+      color: #FAE100;
+      font-size: 30px;
+    }
+
+    .star:hover::after,
+    .star:has(~ .star:hover)::after,
+    .star:checked::after,
+    .star:has(~ .star:checked)::after {
+      content: '★';
+    }
+
+    .star:hover ~ .star::after {
+      content: '☆';
+    }
+  </style>
 
 </head>
 <body>
@@ -211,21 +241,20 @@ td {
 		<h1>나의 리뷰 관리</h1>
 		<a href="/myprofile">나의 정보</a>
 		<a href="/info">이력서</a>
-		<a href="/review">나의 리뷰</a>
+		<a href="/review/${user.id}">나의 리뷰</a>
 		</div>
 		
 	 <form action="/updatereview" method="post">
         <input type="hidden" name="mr_no" value="${review.mr_no}" />
-
-        <label for="score">별점:</label>
-        <select name="score" id="score">
-            <option value="1" ${review.score == 1 ? 'selected' : ''}>★</option>
-            <option value="2" ${review.score == 2 ? 'selected' : ''}>★ ★</option>
-            <option value="3" ${review.score == 3 ? 'selected' : ''}>★ ★ ★</option>
-            <option value="4" ${review.score == 4 ? 'selected' : ''}>★ ★ ★ ★</option>
-            <option value="5" ${review.score == 5 ? 'selected' : ''}>★ ★ ★ ★ ★</option>
-        </select>
-
+        
+      <div class="star-rating">
+				<input type="radio" name="score" class="star" value="1">
+				<input type="radio" name="score" class="star" value="2">
+				<input type="radio" name="score" class="star" value="3">
+				<input type="radio" name="score" class="star" value="4">
+				<input type="radio" name="score" class="star" value="5">
+			</div>
+        
         <label for="content">내용:</label>
         <textarea name="content" id="content" rows="5" cols="30">${review.content}</textarea>
 

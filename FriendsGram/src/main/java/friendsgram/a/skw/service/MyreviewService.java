@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import friendsgram.a.skw.dao.MyreviewDao;
+import friendsgram.admin.dto.ReportDto;
 import friendsgram.member.dto.Member_ReviewDto;
 
 @Service
@@ -40,7 +42,23 @@ public class MyreviewService {
     public List<Member_ReviewDto> writereviewList(String id) {
         return reviewDao.writereviewList(id);
     }
-}
+
+
+    @Transactional
+    public void deleteReview(int mr_no) {
+        reviewDao.deleteReview(mr_no);
+    }
+
+/*
+ * @Transactional public void reportReview(int mrNo, String reportContent,
+ * String reportedBy) { ReportDto reportDto = new ReportDto();
+ * reportDto.setR_no(mrNo); reportDto.setReport_content(reportContent);
+ * reportDto.setId(reportedBy); reportDto.setCo_no(0); // 관련 정보 ID가 필요하다면 적절한 값을
+ * 설정합니다. reportDto.setContent(""); // 추가적인 내용이 필요하다면 적절한 값을 설정합니다.
+ * 
+ * ReportDto.insertReport(reportDto); }
+ */
+} 
 /*
  * package friendsgram.a.skw.service;
  * 
