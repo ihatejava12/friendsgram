@@ -239,7 +239,7 @@ td a:hover {
 					<select name="searchn" id="searchn">
 						<option value="0">전체</option>
 						<option value="1">작성자</option>
-						<option value="2">기간</option>
+						<option value="2">모집 마감기간</option>
 						<option value="3">코드</option>
 					</select>
 	
@@ -324,7 +324,7 @@ td a:hover {
 		if(startSetting == 1){
             $("#append").html('<input name="search">');
         }else if(startSetting == 2){
-            $("#append").html('<input type="date" name="search">까지 하는 프로젝트');
+            $("#append").html('<input type="date" name="search">&nbsp;&nbsp;&nbsp;');
         } else if(startSetting == 3){
             $("#append").html('<input name="search">');
         }
