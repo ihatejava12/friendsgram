@@ -208,6 +208,24 @@ td {
     </div>
 </main>
 
+
+<footer class="footer">
+    <div class="footer-links">
+        <a href="#">프리랜서 이용약관</a>
+        <a href="#">고객센터</a>
+        <a href="#">개인정보 처리방침</a>
+        <a href="#">광고문의</a>
+        <c:if test="${user != null && (user.role == 2 || user.role == 1)}">
+            <a href="/adminpage/board01">관리자</a>
+        </c:if>
+    </div>
+    <div class="company-info">
+        <p>(주)프렌즈그램(대표이사: 전재민)</p>
+        <p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
+    </div>
+</footer>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(function(){
@@ -248,10 +266,9 @@ $(function(){
         };
 
         $.ajax({
-            url: '/board04/join',
-            type: 'POST',
+            url: '/board04/join?b_no04='+boardNo+'&id='+userId,
+            type: 'get',
             contentType: 'application/json',
-            data: JSON.stringify(data),
             beforeSend: function(xhr, settings) {
                 // i.hasContent와 i.data가 올바르게 정의되었는지 확인
                 var i = {
@@ -275,23 +292,6 @@ $(function(){
         });
     });
 });
-
 </script>
-
-<footer class="footer">
-    <div class="footer-links">
-        <a href="#">프리랜서 이용약관</a>
-        <a href="#">고객센터</a>
-        <a href="#">개인정보 처리방침</a>
-        <a href="#">광고문의</a>
-        <c:if test="${user != null && (user.role == 2 || user.role == 1)}">
-            <a href="/adminpage/board01">관리자</a>
-        </c:if>
-    </div>
-    <div class="company-info">
-        <p>(주)프렌즈그램(대표이사: 전재민)</p>
-        <p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
-    </div>
-</footer>
 </body>
 </html>
