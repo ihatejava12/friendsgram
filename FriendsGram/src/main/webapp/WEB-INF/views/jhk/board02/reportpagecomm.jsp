@@ -15,6 +15,7 @@
 				<input type="hidden" name="num" value="${dto.num}" /> 
 				<input type="hidden" name="id" value="${user.id}" />
 				<input type="hidden" name="co_no" value="${dto.c_no02}" />
+				<input type="hidden" name="content" value="${dto.coment}">
 				
 				<p>
 					<span>댓글 내용 : ${dto.coment}</span>

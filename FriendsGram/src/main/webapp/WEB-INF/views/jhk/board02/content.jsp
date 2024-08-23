@@ -305,7 +305,7 @@ fieldset div {
                 <fieldset>
                     <span title="${comm.c_no02}" id="${comm.ref_level}" class="comm_comm" data-target="${comm.id}">
                         ${comm.id} / <fmt:formatDate value="${comm.date}" dateStyle="short"/>
-                        <button onclick="window.open('/reportcoment/${comm.c_no02}', '_blank', 'width=500,height=600, top=50, left=50, scrollbars=yes')">신고하기</button>
+                        <button onclick="window.open('/reportcoment/${comm.c_no02}', '_blank', 'width=500,height=600, top=50, left=50, scrollbars=yes') ">신고하기</button>
                         <c:if test="${comm.id == user.id}">
                             <input type="button" class="delete" id="${comm.c_no02}" value="삭제">
                         </c:if> 
@@ -386,7 +386,6 @@ fieldset div {
                     let s_id = '.' + no;
                     $(s_id).append('<input name="coment" type="text" value="@' + id + '"><input type="button" class="add_coment" value="추가">');
                 } else {
-                    alert("불가능합니다");
                 }
             });
 

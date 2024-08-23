@@ -52,6 +52,8 @@ public class Board02Controller {
 	
 	@PostMapping("/board02/report")
 	public String board02Report(ReportDto dto) {
+		System.out.println(dto);
+		
 		service.board02Report(dto);
 		
 		return "/jhk/board02/close";

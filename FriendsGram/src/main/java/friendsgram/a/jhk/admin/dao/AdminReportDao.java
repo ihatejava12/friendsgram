@@ -16,22 +16,22 @@ import friendsgram.board02.dto.Board02_ComentDto;
 public interface AdminReportDao {
 	
 	// co_no != 0, num = 1
-	@Select("select * from report where r_no = #{b_no02} and co_no = #{c_no02}")
-	Board02_ComentDto selectBC2(@Param("r_no") int r_no, @Param("co_no") int co_no);
+	@Select("select * from report where r_no = #{r_no} and co_no = #{co_no} and num = #{num}")
+	List<ReportDto> selectBC2(@Param("r_no") int r_no, @Param("co_no") int co_no, @Param("num") int num);
 	
 	// co_no != 0, num = 0
-	@Select("select * from report where r_no = #{b_no01} and co_no = #{c_no01}")
-	Board01_ComentDto selectBC1(@Param("r_no") int r_no, @Param("co_no") int co_no);
+	@Select("select * from report where r_no = #{r_no} and co_no = #{co_no} and num = #{num}")
+	List<ReportDto> selectBC1(@Param("r_no") int r_no, @Param("co_no") int co_no, @Param("num") int num);
 	
 	// co_no = 0, num = 1
-	@Select("select * from report where r_no = #{b_no02} and co_no = 0")
-	Board02Dto selectB2(int r_no);
+	@Select("select * from report where r_no = #{r_no} and co_no = 0 and num = #{num}")
+	List<ReportDto> selectB2(int r_no, @Param("num") int num);
 	
 	// co_no = 0, num = 0
-	@Select("select * from report where r_no = #{b_no01} and co_no = 0")
-	Board01Dto selectB1(int r_no);
+	@Select("select * from report where r_no = #{r_no} and co_no = 0 and num = #{num}")
+	List<ReportDto> selectB1(int r_no, @Param("num") int num);
 	
-	@Select("select * from report")
+	@Select("select * from report order by num")
 	List<ReportDto> reportList();
 	
 }

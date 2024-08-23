@@ -23,20 +23,24 @@ public class AdminReportController {
 	
 	@GetMapping("/adminreportboard/{num}/{r_no}/{co_no}")
 	public String adminReportoBoard01(@PathVariable("num") int num, @PathVariable("r_no") int r_no, @PathVariable(name="co_no", required = false) int co_no, Model m) {
+		System.out.println(num);
+		System.out.println(r_no);
+		System.out.println(co_no);
+		
 		if(co_no == 0) {
 			if(num == 0) {
-				Board01Dto b1 = service.selectB1(r_no);
+				List<ReportDto> b1 = service.selectB1(r_no, num);
 				m.addAttribute("b1", b1);
 			} else if (num == 1) {
-				Board02Dto b2 = service.selectB2(r_no);
+				List<ReportDto> b2 = service.selectB2(r_no, num);
 				m.addAttribute("b2", b2);
 			}
-		} else if (co_no != 0) {
+		} else if (co_no != 0){
 			if(num == 0) {
-				Board01_ComentDto bc1 = service.selectBC1(r_no, co_no);
+				List<ReportDto> bc1 = service.selectBC1(r_no, co_no, num);
 				m.addAttribute("bc1", bc1);
 			} else if (num == 1) {
-				Board02_ComentDto bc2 = service.selectBC2(r_no, co_no);
+				List<ReportDto> bc2 = service.selectBC2(r_no, co_no, num);
 				m.addAttribute("bc2", bc2);
 			}
 		}

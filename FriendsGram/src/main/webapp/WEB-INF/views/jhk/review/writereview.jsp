@@ -14,7 +14,7 @@
 
     .star::after {
       content: '☆';
-      color: hsl(60, 80%, 45%);
+      color: #FAE100;
       font-size: 30px;
     }
 
