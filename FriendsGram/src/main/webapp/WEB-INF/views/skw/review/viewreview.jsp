@@ -6,7 +6,7 @@
 <html>
 <head>
 <!--  bList begin end count pageNum totalPages -->
-<title>이력서 확인</title>
+<title>나의 리뷰관리</title>
 <style>
 #center {
 	width: 700px;
@@ -208,33 +208,124 @@ td {
 	</header>
 	<main>
 	<div id="center">
-		<h1>이력서 확인</h1>
+		<h1>나의 리뷰 관리</h1>
 		<a href="/myprofile">나의 정보</a>
 		<a href="/info">이력서</a>
 		<a href="/review/${user.id}">나의 리뷰</a>
 		</div>
-		<form action="update" method="post" id="infock">
-		<input type="hidden" name="_method" value="put">
-		<h2>${user.id}님의 이력서</h2>
-		<table>
 		
-		<tr><td>이름:</td><td>${user.name}</td></tr>
-		
-		<tr><td>생년월일:</td><td>${user.birth}</td></tr>
-		
-		<tr><td>나이:</td><td>${mdto.age}</td></tr>
-		
-		<tr><td>이메일:</td><td><input name="email" id="email" value="${user.email}"></td></tr>
-		
-		<tr><td>성별:</td><td>${user.gender}</td></tr>
-		<tr><td>휴대폰:</td><td><input name="phone" id="phone" value="${user.phone}"></td></tr>
-		
-		</table>
-	</form>
+<h1>${user.name}님의 리뷰</h1>
+
+<!-- 내가 받은 리뷰 리스트 -->
+<section>
+    <h2>내가 받은 리뷰 리스트</h2>
+    <c:forEach items="${relist}" var="rlist">
+        <c:if test="${rlist.subjects eq subjects}">
+            <fieldset style="width:350px; margin-bottom: 20px; padding: 10px; border: 2px solid #ccc;">
+                <legend>리뷰 작성자: ${rlist.id}</legend>
+                <span>작성일: <fmt:formatDate value="${rlist.date}" dateStyle="short"/></span>
+                
+                <div>
+                    <c:if test="${rlist.score == 1}">
+                        <h4>별점: ★</h4>
+                    </c:if>
+                    <c:if test="${rlist.score == 2}">
+                        <h4>별점: ★ ★</h4>
+                    </c:if>
+                    <c:if test="${rlist.score == 3}">
+                        <h4>별점: ★ ★ ★</h4>
+                    </c:if>
+                    <c:if test="${rlist.score == 4}">
+                        <h4>별점: ★ ★ ★ ★</h4>
+                    </c:if>
+                    <c:if test="${rlist.score == 5}">
+                        <h4>별점: ★ ★ ★ ★ ★</h4>
+                    </c:if>
+                </div>
+                <div>내용: ${rlist.content}</div>
+                 <button onclick="reportReview('${rlist.mr_no}')">신고하기</button>
+            </fieldset>
+        </c:if>
+    </c:forEach>
+</section>
+
+<script>
+function reportReview(mrNo) {
+    if (confirm('이 리뷰를 신고하시겠습니까?')) {
+        $.ajax({
+            url: '/reportreview/' + mrNo,
+            type: 'POST', // 신고는 POST 요청을 사용할 수 있습니다.
+            success: function(response) {
+                alert('리뷰가 신고되었습니다.');
+                location.reload(); // 신고 후 페이지를 새로고침하여 업데이트
+            },
+            error: function(xhr, status, error) {
+                alert('신고 중 오류가 발생했습니다.');
+            }
+        });
+    }
+}
+</script>
+
+<!-- 내가 쓴 리뷰 리스트 -->
+<section>
+    <h2>내가 작성한 리뷰 리스트</h2>
+   <c:forEach items="${welist}" var="wlist">
+    
+    
+    <c:if test="${wlist.id eq id}">
+        <fieldset style="width:350px; margin-bottom: 20px; padding: 10px; border: 2px solid #f4b400;">
+            <legend>내가 작성한 리뷰</legend>
+            <span>작성일: <fmt:formatDate value="${wlist.date}" dateStyle="short"/></span>
+            <button onclick="window.location.href='/editreview/${wlist.mr_no}'">수정하기</button>
+             <button onclick="deleteReview('${wlist.mr_no}')">삭제하기</button>
+            <div>
+                <c:if test="${wlist.score == 1}">
+                    <h4>별점: ★</h4>
+                </c:if>
+                <c:if test="${wlist.score == 2}">
+                    <h4>별점: ★ ★</h4>
+                </c:if>
+                <c:if test="${wlist.score == 3}">
+                    <h4>별점: ★ ★ ★</h4>
+                </c:if>
+                <c:if test="${wlist.score == 4}">
+                    <h4>별점: ★ ★ ★ ★</h4>
+                </c:if>
+                <c:if test="${wlist.score == 5}">
+                    <h4>별점: ★ ★ ★ ★ ★</h4>
+                </c:if>
+            </div>
+            <div>내용: ${wlist.content}</div>
+        </fieldset>
+    </c:if>
+</c:forEach>
+    
+    <!-- 비어있을 경우에 대한 경고 메시지 -->
+<c:if test="${empty welist}">
+    <p>내가 작성한 리뷰가 없습니다.</p>
+    </c:if>
+</section>
+	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function deleteReview(mr_no) {
+    if (confirm('정말로 이 리뷰를 삭제하시겠습니까?')) {
+        $.ajax({
+            url: '/deletereview/' + mr_no,
+            type: 'DELETE',
+            success: function(response) {
+                alert('리뷰가 삭제되었습니다.');
+                location.reload(); // 삭제 후 페이지를 새로고침하여 업데이트
+            },
+            error: function(xhr, status, error) {
+                alert('삭제 중 오류가 발생했습니다.');
+            }
+        });
+    }
+}
+</script>
 	</main>
-	
-	
-	
 	
 	<footer class="footer">
 		<div class="footer-links">
