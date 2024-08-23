@@ -46,11 +46,11 @@
 
 		<section class="notice-section">
 			<div class="notices">
-				<h2 class="noticeshead"><a href="/adminpage/notice">공지사항</a></h2>
+				<h2 class="noticeshead"><a href="/noticemain">공지사항</a></h2>
 				<div class="notice-list">
 					<c:forEach var="notice" items="${notices}">
 						<div class="notice-item">
-							<h3 class="notice-content"><a href="#" class="notice-title">${notice.title}</a> </h3>
+							<h3 class="notice-content"><a class="notice-title">${notice.title}</a> </h3>
 								<p class="notice-date"><fmt:formatDate value="${notice.date}" pattern="yyyy-MM-dd" /></p>
 							
 

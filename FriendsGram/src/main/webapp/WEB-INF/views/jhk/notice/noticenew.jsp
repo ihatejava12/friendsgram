@@ -216,6 +216,9 @@ input[type="submit"]#save:hover {
 input[type="submit"]#save:focus {
     outline: none; /* 포커스 시 경계 제거 */
 }
+#smart_editor2{
+	width: 90%;
+}  
 </style>
 <title>새로운 공지사항 작성</title>
 </head>
@@ -253,7 +256,11 @@ input[type="submit"]#save:focus {
                         </tr>
                         <tr>
                             <td>내용</td>
-                            <td><textarea name="content" id="editorTxt" placeholder="내용을 입력해주세요" rows="20" cols="70"></textarea></td>
+                            <td>
+	                            <div class="content" id="smarteditor">
+	                            	<textarea name="content" id="editorTxt" placeholder="내용을 입력해주세요" rows="20" cols="50" style="width:100%"></textarea>
+	                            </div>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="submit" id="save" value="새글 등록"></td>
@@ -273,5 +280,32 @@ input[type="submit"]#save:focus {
             </div>
         </footer>
     </div>
+    
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script>
+     let oEditors = []
+
+    smartEditor = function() {
+      console.log("Naver SmartEditor")
+      nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "editorTxt",
+        sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+        fCreator: "createSEditor2"
+      })
+    } 
+
+    $(document).ready(function() {
+  
+      smartEditor() 
+      
+      $("#save").click(function(){
+    	  oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", []);
+    	  $("#writeform").submit();
+      });
+      
+    })
+  </script>
 </body>
 </html>
