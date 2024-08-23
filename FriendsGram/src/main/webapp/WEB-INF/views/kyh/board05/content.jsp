@@ -74,10 +74,11 @@
                     <dd>${dto.content}</dd>
                 </dl>
             </div>
+            
             <div class="sidebar">
                 <h2>${dto.company}</h2>
                 <p>${dto.company}에 지원 하시겠습니까?</p>
-                <a href="#" class="button">지원하기</a>
+                <a href="/board05/post/${b_no05}" class="button">지원하기</a>
             </div>
         </div>
     </main>

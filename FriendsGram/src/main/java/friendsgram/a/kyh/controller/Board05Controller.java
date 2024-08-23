@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import friendsgram.a.kyh.service.Board05Service;
 import friendsgram.board05.dto.Board05Dto;
+import friendsgram.mailham.dto.MailhamDto;
+import friendsgram.member.dto.MemberDto;
+import friendsgram.member.dto.Member_InfoDto;
 
 @SessionAttributes("user")
 @Controller
@@ -105,6 +108,12 @@ public class Board05Controller {
         return "redirect:/board05/content/" + no; // 수정 후 게시글 보기로 리다이렉트
     }
     
+    @GetMapping("/board05/delete/{b_no05}")
+    public String delete(@PathVariable("b_no05") int b_no05) {
+        service.delete(b_no05);
+        return "redirect:/board05"; // 삭제 후 목록 페이지로 리다이렉트
+    }
+    
     //검색
     @GetMapping("/board05/search")
     public String searchBoards(
@@ -139,6 +148,32 @@ public class Board05Controller {
 
         return "kyh/board05/list";  // 검색 결과를 보여줄 JSP 페이지
     }
+    
+    @GetMapping("/board05/post/{b_no05}")
+    public String post(@ModelAttribute("user") MemberDto user, @PathVariable("b_no05") int b_no05, Model m) {
+        // user 객체에서 id를 가져와서 서비스 메서드에 전달
+        Member_InfoDto minfo = service.minfo(user.getId());
+        Board05Dto cpdto = service.cpdto(b_no05);
+        
+        m.addAttribute("cpdto", cpdto);
+        m.addAttribute("dto", minfo);
+        return "kyh/board05/post";
+    }
+    
+    @PostMapping("/board05/post/{b_no05}")
+    public String sendResume(@ModelAttribute MailhamDto mdto, 
+                             @PathVariable("b_no05") int b_no05,  // URL 경로의 값을 정수로 매핑
+                             Model m) {
+        int result = service.b_05post(mdto);
+        if (result > 0) {
+            m.addAttribute("message", "이력서가 성공적으로 전송되었습니다.");
+        } else {
+            m.addAttribute("message", "이력서 전송에 실패하였습니다.");
+        }
+        return "redirect:/board05/content/" + b_no05;
+    }
+
+
 
 
     

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import friendsgram.a.kyh.dao.Board05Dao;
 import friendsgram.board05.dto.Board05Dto;
 import friendsgram.board05.dto.Board05_CodeDto;
+import friendsgram.mailham.dto.MailhamDto;
+import friendsgram.member.dto.Member_InfoDto;
 
 @Service
 public class Board05Service {
@@ -102,5 +104,15 @@ public class Board05Service {
         return dao.countBoards(language, workType, region, keyword);
     }
     
+    public int b_05post(MailhamDto mdto) {
+        return dao.b_05post(mdto);
+    }
     
+    public Member_InfoDto minfo(String id) {
+    	return dao.minfo(id);
+    }
+    
+    public Board05Dto cpdto(int b_no05) {
+    	return dao.cpdto(b_no05);
+    }
 }
