@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import friendsgram.a.pth.mail.service.MailService;
+import friendsgram.a.skw.model.ResponseMessage;
 import friendsgram.a.skw.service.Board04JoinService;
 import friendsgram.a.skw.service.Board04Service;
 import friendsgram.board04.dto.Board04Dto;
@@ -83,22 +84,6 @@ public class Board04Controller {
 			m.addAttribute("count", count);
 			return "/skw/board04/list";
 		}
-		
-		@GetMapping("/board04/join")
-	    public String join() {
-	        return "skw/board04/join";
-	    }
-		
-		@PostMapping("/board04/join")
-		 public ResponseEntity<?> joinBoard04(@RequestBody Board04_JoinDto board04JoinDto) {
-	        try {
-	        	joinservice.saveJoinInfo(board04JoinDto);
-	            return ResponseEntity.ok().body(new ResponseMessage(true, "지원이 완료되었습니다."));
-	        } catch (Exception e) {
-	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseMessage(false, "지원에 실패했습니다."));
-	        }
-		}
-
 	
 		@GetMapping("/board04/content/{b_no04}")
 		public String content(@PathVariable("b_no04") int b_no04, Model m) {
@@ -167,5 +152,10 @@ public class Board04Controller {
 			return "skw/board04/search";
 		}
 		
-
+		 @PostMapping("/board04/join")
+		    public ResponseMessage join(@RequestBody JoinRequest joinRequest) {
+		        boolean result = joinservice.join(joinRequest.getB_no04(), joinRequest.getId());
+		        return new ResponseMessage(result ? "지원이 완료되었습니다." : "지원에 실패했습니다.");
+		
+		 }
 }
