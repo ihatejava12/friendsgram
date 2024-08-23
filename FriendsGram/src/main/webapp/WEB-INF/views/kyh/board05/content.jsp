@@ -36,8 +36,10 @@
             <div class="content">
             	<div class="company">${dto.company}
                     <div class="action-buttons" style="display: inline-block; float: right;">
+                    <c:if test="${user.id == dto.id }">
                         <a href="/board05/edit/${dto.b_no05}" class="button">수정</a>
                         <a href="/board05/delete/${dto.b_no05}" class="button">삭제</a>
+                    </c:if>
                         <a href="/board05" class="button">목록</a>
                     </div>
                 </div>
@@ -82,7 +84,7 @@
 	
 	<footer class="footer">
 		<div class="footer-links">
-			<a href="#">프리랜서 이용약관</a> <a href="#">고객센터</a> <a href="#">개인정보
+			<a href="#">프리랜서 이용약관</a> <a href="/question">고객센터</a> <a href="#">개인정보
 				처리방침</a> <a href="#">광고문의</a><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
 		</div>
 		<div class="company-info">
