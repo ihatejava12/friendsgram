@@ -242,6 +242,7 @@ td {
 		<a href="/myprofile">나의 정보</a>
 		<a href="/info">이력서</a>
 		<a href="/review/${user.id}">나의 리뷰</a>
+		<a href="/myquestion">문의 사항 보기</a>
 		</div>
 		
 	 <form action="/updatereview" method="post">

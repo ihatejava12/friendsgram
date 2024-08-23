@@ -152,9 +152,10 @@ public class Board04Controller {
 			return "skw/board04/search";
 		}
 		
-		 @PostMapping("/board04/join")
-		    public ResponseMessage join(@RequestBody JoinRequest joinRequest) {
-		        boolean result = joinservice.join(joinRequest.getB_no04(), joinRequest.getId());
+		 @ResponseBody
+		 @GetMapping("/board04/join")
+		    public ResponseMessage join(@RequestParam("b_no04")int b_no04,@RequestParam("id")String id) {
+		        boolean result = joinservice.join(b_no04, id);
 		        return new ResponseMessage(result ? "지원이 완료되었습니다." : "지원에 실패했습니다.");
 		
 		 }
