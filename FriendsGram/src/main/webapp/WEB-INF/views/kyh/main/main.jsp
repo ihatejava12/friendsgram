@@ -46,7 +46,7 @@
 
 		<section class="notice-section">
 			<div class="notices">
-				<h2 class="noticeshead"><a href="/adminpage/notice">공지사항</a></h2>
+				<h2 class="noticeshead"><a href="/noticemain">공지사항</a></h2>
 				<div class="notice-list">
 					<c:forEach var="notice" items="${notices}">
 						<div class="notice-item">

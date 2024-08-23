@@ -21,6 +21,45 @@ public class AdminNoticeController {
 	@Autowired
 	AdminNoticeService nservice;
 	
+	@GetMapping("/noticecontent/{n_no}")
+	public String noticeContent(@PathVariable("n_no") int n_no, Model m) {
+		NoticeDto nlist = nservice.noticeContent(n_no);
+		m.addAttribute("nlist", nlist);
+		
+		return "/jhk/notice/onenotice";
+	}
+	
+	@GetMapping("/noticemain")
+	public String noticeMain(@RequestParam(name="p", defaultValue = "1") int page, Model m) {
+		
+		int count = nservice.noticeCount();
+		if(count > 0) {
+		
+		int perPage = 10; // 한 페이지에 보일 글의 갯수
+		int startRow = (page - 1) * perPage;
+		
+		List<NoticeDto> nlist = nservice.noticeList(startRow);
+		m.addAttribute("nlist", nlist);
+
+		int pageNum = 10;
+		int totalPages = count / perPage + (count % perPage > 0 ? 1 : 0); //전체 페이지 수
+		
+		int begin = (page - 1) / pageNum * pageNum + 1;
+		int end = begin + pageNum -1;
+		if(end > totalPages) {
+			end = totalPages;
+		}
+		 m.addAttribute("begin", begin);
+		 m.addAttribute("end", end);
+		 m.addAttribute("pageNum", pageNum);
+		 m.addAttribute("totalPages", totalPages);
+		
+		}
+		m.addAttribute("count", count);
+		
+		return "/jhk/notice/noticemain";
+	}
+	
 	@PostMapping("/updatenotice")
 	public String updatenotice(@RequestParam("title") String title, @RequestParam("content") String content, @RequestParam("n_no") int n_no) {
 		nservice.updateNotice(title, content, n_no);
