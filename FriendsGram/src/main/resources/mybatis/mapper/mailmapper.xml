@@ -5,7 +5,7 @@
 <mapper namespace="friendsgram.a.pth.mail.dao.MailDao">
 
 	<select id="maillist" parameterType="List" resultType="friendsgram.mailham.dto.MailhamDto">
-		select * from mailham where return_man = #{id} limit #{startRow} , #{perpage} order by date desc
+		select * from mailham where return_man = #{id} order by date desc limit #{startRow} , #{perpage}
 	</select>
 
 	<select id="count" parameterType="String" resultType="int">
@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id="sendmaillist" parameterType="List" resultType="friendsgram.mailham.dto.MailhamDto">
-		select * from mailham where id = #{id} limit #{startRow} , #{perpage} order by date desc
+		select * from mailham where id = #{id} order by date desc limit #{startRow} , #{perpage}
 	</select>
 	
 	<select id="sendmail_count" parameterType="String" resultType="int">
