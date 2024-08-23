@@ -95,7 +95,7 @@ public interface Board02Dao {
 						"<choose>",
 							"<when test=\"searchn == 1\"> id = #{search} </when>",
 							"<when test=\"searchn == 2\"> join_date &lt;= #{search} </when>",
-							"<when test=\"searchn == 3\"> b_no02 in (select b_no02 from board02_code where code = #{search}) </when>",
+							"<when test=\"searchn == 3\"> b_no02 in (select b_no02 from board02_code where code like concat('%', #{search}, '%')) </when>",
 						"</choose>",
 					"</where>",
 				"order by join01, b_no02 desc limit #{start}, #{count}",
@@ -108,7 +108,7 @@ public interface Board02Dao {
 				"<choose>",
 					"<when test=\"searchn == 1\"> id = #{search} </when>",
 					"<when test=\"searchn == 2\"> join_date &lt;= #{search} </when>",
-					"<when test=\"searchn == 3\"> b_no02 in (select b_no02 from board02_code where code = #{search}) </when>",
+					"<when test=\"searchn == 3\"> b_no02 in (select b_no02 from board02_code where code like concat('%', #{search}, '%')) </when>",
 				"</choose>",
 			"</where>",
 	 "</script>"})

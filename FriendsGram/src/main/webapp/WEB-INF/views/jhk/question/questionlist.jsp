@@ -287,8 +287,7 @@ table td a:hover {
 									</c:otherwise>
 								</c:choose>
 								<c:if test="${question.request == true}">
-									<td><button
-											onclick="window.open('/question/answer/${question.q_no}', '_blank', 'width=810, height=600, top=50, left=50, scrollbars=yes')">답변보기</button></td>
+									<td><button onclick="window.open('/question/answer/${question.q_no}', '_blank', 'width=810, height=600, top=50, left=50, scrollbars=yes')">답변보기</button></td>
 								</c:if>
 								<c:if test="${question.request == false}">
 									<td></td>
