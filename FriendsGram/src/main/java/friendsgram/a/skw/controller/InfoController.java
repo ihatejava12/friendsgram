@@ -2,7 +2,6 @@ package friendsgram.a.skw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -44,10 +43,7 @@ public class InfoController {
 	public String info(@ModelAttribute("user") MemberDto dto) {
 		return "skw/profile/info";
 	}
-	@GetMapping("/review")
-	public String review(@ModelAttribute("user") MemberDto dto) {
-		return "skw/review/review";
-	}
+	
 	@GetMapping("/infowrite")
 	public String writeinfo(@ModelAttribute("user") MemberDto dto ) {
 		return "skw/profile/infowrite";
