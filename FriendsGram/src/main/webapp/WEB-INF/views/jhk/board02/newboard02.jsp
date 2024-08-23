@@ -114,6 +114,28 @@ input[type="text"], input[type="date"], input[type="number"], textarea {
   margin-bottom: 10px;
 }
 
+/* 제목 입력칸과 내용 입력칸의 border 제거 */
+input[name="title"] {
+    border: none; /* 실선 제거 */
+    padding: 8px; /* 입력란에 여백 추가 */
+    width: 100%; /* 입력란이 부모 요소의 너비를 채우도록 설정 */
+    box-sizing: border-box; /* padding이 너비에 포함되도록 설정 */
+    font-size: 16px; /* 글자 크기 */
+    font-family: Arial, sans-serif; /* 글꼴 */
+}
+
+/* 내용 입력란의 실선 제거 및 크기 조정 */
+textarea[name="content"] {
+    border: none; /* 실선 제거 */
+    padding: 8px; /* 입력란에 여백 추가 */
+    width: 100%; /* 입력란이 부모 요소의 너비를 채우도록 설정 */
+    min-height: 200px; /* 최소 높이 설정 */
+    box-sizing: border-box; /* padding과 border가 너비에 포함되도록 설정 */
+    resize: vertical; /* 세로 방향으로만 크기 조정 가능하도록 설정 */
+    font-size: 16px; /* 글자 크기 */
+    font-family: Arial, sans-serif; /* 글꼴 */
+}
+
 input[type="button"], button {
   padding: 10px 20px;
   background-color: #4CAF50;
@@ -254,7 +276,7 @@ input[type="button"]:hover, button:hover {
 					<tr>
 						<td>내용</td>
 						<td>
-			        	<textarea name="content" id="editorTxt" rows="20" cols="10" placeholder="내용을 입력해주세요" style="width: 700px"></textarea>
+			        	<textarea name="content" id="editorTxt" rows="20" cols="80" placeholder="내용을 입력해주세요"></textarea>
 						</td>
 					</tr>
 					<tr>
