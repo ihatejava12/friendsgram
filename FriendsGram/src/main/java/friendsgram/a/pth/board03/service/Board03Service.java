@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import friendsgram.a.pth.board03.dao.Board03Dao;
 import friendsgram.board01.dto.Board01Dto;
 import friendsgram.board03.dto.Board03Dto;
+import friendsgram.board03.dto.Board03PortfolioDto;
 import friendsgram.board03.dto.Board03_SkilDto;
 
 @Service
@@ -98,8 +99,14 @@ public class Board03Service {
 	}
 	
 	
+	// portfolio 파일 Dto 받아와서 DB에 저장
+	public	int portfolioFileInsert(Board03PortfolioDto portfolio) {
+		return board03dao.portfolioFileInsert(portfolio);
+	}
 	
-	
-	
+	// path 받아와서 board03portfolio 객체 하나 받아옴
+	public	Board03PortfolioDto fileOneportfolio(String path) {
+		return board03dao.fileOneportfolio(path);
+	}
 	
 }

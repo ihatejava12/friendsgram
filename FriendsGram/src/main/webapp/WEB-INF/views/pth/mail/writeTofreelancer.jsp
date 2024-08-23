@@ -23,10 +23,10 @@
 			<form action="/mail/write/newmail">
 			<table class="mailwrite">
 				<tr>
-					<td>받는 사람</td> <td><input name="return_man" type="text"></td>
+					<td>받는 사람</td> <td><input name="return_man" type="text" value="${freelancerid}"  readonly></td>
 				</tr>
 				<tr>
-					<td>제목</td> <td><input name="title" type="text"></td>
+					<td>제목</td> <td><input name="title" type="text" value="프리랜서 협업제의" readonly></td>
 				</tr>
 				<tr>
 					<td>내용</td> <td> <input name="content" style="width:450px; height:250px;"/></td>

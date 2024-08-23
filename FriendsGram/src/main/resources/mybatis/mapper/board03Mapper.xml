@@ -173,4 +173,16 @@
 		</where>
 	</select>
 	
+	
+	<insert id="portfolioFileInsert" parameterType="friendsgram.board03.dto.Board03PortfolioDto">
+		insert into board03portfolio
+		values(#{id}, #{name}, #{path}, #{filesize}, #{description}  )
+	</insert>
+	
+	<select id="fileOneportfolio" parameterType="String" resultType="friendsgram.board03.dto.Board03PortfolioDto">
+		select * from board03portfolio
+		where path = #{path}
+	</select>
+	
+	
 </mapper>

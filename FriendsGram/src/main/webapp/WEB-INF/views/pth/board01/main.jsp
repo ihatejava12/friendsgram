@@ -8,6 +8,13 @@
 
 <style>
 
+
+
+
+
+
+
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -186,12 +193,17 @@ tr{
 </div>
 <hr>
 
+<main>
 <div id="headcontent" align="center" style="height: 200px; padding: 40px;">
 	<h1>코딩 게시판</h1>
 	 <br><br>
 	<form method="get" action="/board01/searchcontent">
+	<div class="search-container">
+			        <div class="search-filters">
+			            <div class="filter-group">
+			            <label for="selectskil">개발언어</label>
 	<select id="selectskil" name="skil">
-		<option value="">개발 언어</option>
+		<option value="all">전체</option>
 		<option value="java">JAVA</option>
 		<option value="python">PYTHON</option>
 		<option value="html">HTML</option>
@@ -200,15 +212,21 @@ tr{
 	</select>
 	
 	<input id="addskil" name="addskil" style="display:none;" size="10"/>
+	</div>
 	
-	<select name="category">
+	 <div class="filter-group">
+	 <label for="selectcategory">검색 기준</label>
+	<select id="selectcategory" name="category">
 		<option value="title">제목</option>
 		<option value="content">내용</option>
 		<option value="all">제목+내용</option>
 	</select>
-		
+		</div>
+		</div>
 		<input name="search" type="text" placeholder="검색어를 입력해주세요">
 		<input type="submit" value="검색"/>
+		
+		</div>
 	</form>
 </div>
 
@@ -262,6 +280,9 @@ tr{
 </div>
 
 </div>
+</main>
+
+
 
 <footer class="footer" role="contentinfo">
       <div class="footer-links">
