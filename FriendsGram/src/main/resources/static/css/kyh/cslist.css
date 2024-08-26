@@ -4,26 +4,27 @@
   padding: 0;
 }
 
-.header {
-  position: fixed; /* 헤더를 화면에 고정 */
-  top: 0; /* 화면 상단에 위치 */
-  left: 0; /* 화면 왼쪽에 위치 */
-  width: 100%; /* 화면 너비에 맞게 설정 */
-  z-index: 1000; /* 다른 요소 위에 보이도록 설정 */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #fff;
-  box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
-}
-
 html, body {
   height: 100%;
   margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  background-color: #f4f6f9; /* 배경색을 연한 그레이로 설정 */
 }
-body {
-	 margin-top: 80px; /* 헤더 높이만큼의 여백 추가 */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #ffffff;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .logo img {
@@ -32,32 +33,148 @@ body {
 }
 
 .navigation a {
-  margin-right: 15px;
-  color: #565E6C;
+  margin-right: 20px;
+  color: #4A4A4A;
   font-weight: bold;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+  color: #007bff; /* 링크에 마우스를 올렸을 때 색상 변화 */
 }
 
 .actions a {
-  margin-left: 10px;
+  margin-left: 15px;
   color: #0C9200;
   font-weight: bold;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.actions a:hover {
+  color: #0056b3; /* 링크에 마우스를 올렸을 때 색상 변화 */
+}
+
+body {
+  margin-top: 80px; /* 헤더 높이만큼의 여백 추가 */
 }
 
 main {
-  font-family: 'Inter', sans-serif;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto; /* 상하 여백 추가 */
+  background-color: #ffffff;
+  padding: 30px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+form input[type="text"] {
+  width: calc(100% - 120px);
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+form button:hover {
+  background-color: #0056b3; /* 버튼에 마우스를 올렸을 때 색상 변화 */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button a {
+  color: white;
+  text-decoration: none;
+}
+
+button a:hover {
+  text-decoration: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #e1e1e1;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: #007bff;
+  color: #ffffff;
+  font-weight: bold;
   font-size: 14px;
-  line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ensures full viewport height is covered */
-  margin: 0;
-  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+td {
+  background-color: #f9f9f9;
+}
+
+td a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+td a:hover {
+  text-decoration: underline;
+}
+
+#page {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#page a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+#page a:hover {
+  text-decoration: underline;
+}
+
+.current-page {
+  color: #0056b3;
+  text-decoration: underline;
 }
 
 .footer {
-  background-color: rgba(30, 33, 40, 0.68);
+  background-color: #333333;
   color: white;
   padding: 30px 20px;
   display: flex;
@@ -65,15 +182,19 @@ main {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: auto; /* 푸터가 페이지의 끝에 위치하도록 설정 */
-  position: relative; /* 포지션 속성을 고정하지 않음 */
+  margin-top: auto;
 }
 
 .footer-links a {
-  margin-right: 15px;
+  margin-right: 20px;
   color: white;
   text-decoration: none;
   font-weight: bold;
+  transition: text-decoration 0.3s ease;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
 }
 
 .company-info p {

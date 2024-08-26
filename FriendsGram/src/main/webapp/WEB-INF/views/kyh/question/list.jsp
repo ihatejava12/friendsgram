@@ -37,9 +37,9 @@
 		    <input type="text" name="search" value="${search}" placeholder="검색어를 입력하세요">
 		    <button type="submit">검색</button>
 		</form>
-		<botton>
+		<button>
 			<a href="/question/write">문의하기</a>
-		</botton>
+		</button>
 			
 		<div>
 		<c:if test="${count != 0 }">
