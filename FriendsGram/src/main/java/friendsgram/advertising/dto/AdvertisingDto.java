@@ -17,5 +17,6 @@ public class AdvertisingDto {
 	private boolean request;
 
 	private String id;
+	private String filename;
 
 }

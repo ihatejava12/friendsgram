@@ -134,6 +134,22 @@ main {
 .free {
 	margin: 20px;
 }
+
+#skils button {
+	background-color: #f0f0f0; /* 버튼 스타일 추가 */
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 5px 10px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+#skils button:hover {
+	background-color: #e0e0e0;
+}
+
+
 </style>
 </head>
 <body>
@@ -176,7 +192,7 @@ main {
 				<div class="search-container"
 					style="display: flex; flex-wrap: nowrap; justify-content: center;">
 					<div class="filter-group" style="margin: 10px;">
-						<label for="selectwork1">근무 형태</label><br> 
+						<label for="selectwork1"><font size="2">근무 형태</font></label><br> 
 						<select 
 							id="selectwork1" class="work1" name="work_type">
 							<option value="-1" ${work_type == -1?"selected":"" }>전체</option>
@@ -186,7 +202,7 @@ main {
 					</div>
 
 					<div class="filter-group" style="margin: 10px;">
-						<label for="selectskil1">개발 언어</label><br> <select
+						<label for="selectskil1"><font size="2">개발 언어</font></label><br> <select
 							id="selectskil1" class="skil1 selectskil" name="skil">
 							<option value="all" ${skil == 'all'?"selected":"" }>전체</option>
 							<option value="java" ${skil == 'java'?"selected":"" }>JAVA</option>
@@ -200,7 +216,7 @@ main {
 					</div>
 
 					<div class="filter-group" style="margin: 10px;">
-						<label for="selectcareer1">경력 기간</label><br> <select
+						<label for="selectcareer1"><font size="2">경력 기간</font></label><br> <select
 							id="selectcareer1" class="career1" name="career">
 							<option value="-2">전체</option>
 							<option value="-1">경력 없음</option>
@@ -217,7 +233,8 @@ main {
 					</div>
 					
 					
-					<button class="notnull" style="height:40px; margin:10px;">프리랜서 찾기</button>
+					<button class="notnull" style="height: 30px; margin-top: 20px; margin-left:20px;">
+				프리랜서 찾기</button>
 					
 				</div>
 			</form>
@@ -225,7 +242,7 @@ main {
 	</div>
 
 
-	<main>
+	<main style="background-color:#f9f9f9;">
 		<div id="content" align="center">
 			<!-- 프리랜서들 정보, blist에서 하나씩 꺼내와서 출력  -->
 			<!-- 총 프리랜서 수, count  -->
@@ -234,7 +251,8 @@ main {
 
 				<div id="${freelancer.b_no03 }" onclick="content(this)" class="free"
 					id="${freelancer.b_no03 }"
-					style="border: thin solid black; height: 150px; padding: 20px; display: flex;">
+					style="border: thin solid #e0e0e0; border-radius:10px; height: 180px; 
+					padding: 20px; display: flex; background-color:white; ">
 
 
 					<!--  프리랜서 정보 1개 -->
@@ -242,18 +260,17 @@ main {
 						<img src="/img/PTH.jpg" style="width: 50px">
 					</div>
 					<div style="float: left;" align="left">
-						<span> ${freelancer.name}</span>
+						<span> <font size="4">${freelancer.name}</font></span>
 						<c:if test="${freelancer.work_type == 0}">
-			원격 가능
+			<font size="2">원격 가능</font>
 		</c:if>
 						<c:if test="${freelancer.work_type == 1}">
-			상주 가능
+			<font size="2">상주 가능</font>
 		</c:if>
 						<c:if test="${freelancer.work_type == 2}">
-			원격,상주 가능
+			<font size="2">원격, 상주 가능</font>
 		</c:if>
-						<br>
-						<br> 경력
+						<div style="margin-top:10px; margin-bottom:10px;"> 경력 
 						<c:if test="${freelancer.career == -1 }">
 		없음
 		</c:if>
@@ -284,9 +301,8 @@ main {
 						<c:if test="${freelancer.career == 8 }">
 		8년 이상
 		</c:if>
+</div>
 
-
-						<br>
 					
 
 						<!--  보유개발언어 스킬 나열 -->
@@ -303,9 +319,10 @@ main {
 					</div>
 
 					<div style="float: left;">
-						자기소개<br>
-						<div style="width: 300px; height: 100px; border: 1px solid black;">
-							${freelancer.content }</div>
+						
+						<div style="width: 300px; height: 130px; border-left: 1px solid #e0e0e0;
+						 background-color:white;">
+							<font size="2">${freelancer.content } </font></div>
 					</div>
 
 

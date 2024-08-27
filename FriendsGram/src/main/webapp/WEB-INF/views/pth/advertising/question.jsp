@@ -6,6 +6,10 @@
 <head>
 <title>FreindsGram</title>
 <style>
+.free {
+	border-radius: 10px;
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -128,18 +132,12 @@ main {
 
 #content {
 	align: center;
-	margin: auto 15%;
+	margin: 30px auto;
 }
 
 .free {
 	margin: 20px;
 }
-
-
-a {
-	text-decoration: none;
-}
-
 
 #skils button {
 	background-color: #f0f0f0; /* 버튼 스타일 추가 */
@@ -154,10 +152,11 @@ a {
 #skils button:hover {
 	background-color: #e0e0e0;
 }
-
-
 </style>
 </head>
+
+
+
 <body>
 	<div>
 		<header class="header">
@@ -184,150 +183,52 @@ a {
 					onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
 			</div>
 		</header>
-
-	</div>
-
-	<div id="headcontent" style="height: 200px; padding: 40px;">
-		<h1 style="color: black;" align="center">동료처럼 믿고 맡길 수 있는</h1>
-		<h1 style="color: black;" align="center">우수 프리랜서를 만나보세요</h1>
-		<br>
-
-	</div>
-
-
+	
 	<main style="background-color:#f9f9f9;">
-		<!--  freelancer 라는 이름으로 Board03Dto 객체 하나 받아옴 -->
-		<div class="articlemain"
-			style="margin-left: auto; margin-right: auto; width: 1100px; ">
-
-			<div class="main"
-				style="float: left; margin: 20px; width: 600px; border: thin solid #e0e0e0; padding:20px;
-				border-radius:10px; background-color:white;">
-
-				<div class="introduce" style="margin: 15px;">
-					<h3><span><font size="4">${freelancer.name }</font></span></h3>
-					</div>
-					
-					<div style="margin: 15px;">
-					
-					<c:if test="${freelancer.work_type == 0}">
-			원격 가능
-		</c:if>
-					<c:if test="${freelancer.work_type == 1}">
-			상주 가능
-		</c:if>
-					<c:if test="${freelancer.work_type == 2}">
-			원격,상주 가능
-		</c:if>
-		
-					</div>
-					<div style="margin-left: 15px; margin-bottom:30px;">
-		
-					 경력
-					<c:if test="${freelancer.career == -1 }">
-		없음
-		</c:if>
-					<c:if test="${freelancer.career == 0 }">
-		1년 이하
-		</c:if>
-					<c:if test="${freelancer.career == 1 }">
-		1년
-		</c:if>
-					<c:if test="${freelancer.career == 2 }">
-		2년
-		</c:if>
-					<c:if test="${freelancer.career == 3 }">
-		3년
-		</c:if>
-					<c:if test="${freelancer.career == 4 }">
-		4년
-		</c:if>
-					<c:if test="${freelancer.career == 5 }">
-		5년
-		</c:if>
-					<c:if test="${freelancer.career == 6 }">
-		6년
-		</c:if>
-					<c:if test="${freelancer.career == 7 }">
-		7년
-		</c:if>
-					<c:if test="${freelancer.career == 8 }">
-		8년 이상
-		</c:if>
-		
-		
-		
-		
-				</div>
-
-
-				<!--  보유개발언어 스킬 나열 -->
-				<!--  skillist 라는 이름으로 모든 Board03_SkilDto 객체 list 가져왔음 -->
-				<div id="skils" style="margin: 15px;">
-					<font size="3"><b>보유 개발 스킬</b></font> <br><br>
-					<c:forEach items="${skillist }" var="skil">
-						<c:if test="${skil.b_no03 == freelancer.b_no03 }">
-							<button type="button">${skil.skil }</button>
-						</c:if>
-					</c:forEach>
-				</div>
-				<br>
-
-				<div style="margin: 15px;">
-					<font size="3"><b> 프로젝트 시작 가능일 : 
-					<fmt:formatDate value="${freelancer.work_date }"
-						pattern="yyyy-MM-dd" /></b></font>
-				</div>
-
-				<br>
-				<div style="margin: 15px;">
-					<font size="3"><b>상세소개</b></font>
-					<p>${freelancer.content}</p>
-				</div>
-
-				<br>
-
-				<div style="margin: 15px;">
-					<font size="3"><b>이력서 및 포트폴리오</b></font>
-
-
-
-					<div onclick="portfolio(this)" id="${freelancer.portfolio }" 
-						style="width:150px; height:80px; background-image: url(${freelancer.portfolio});
-			background-size: cover;
-			background-position:center;">
-					</div>
-					<c:if test="${freelancer.portfolio != '' }">
-						<a
-							href="/board03/portfolio/download?path=${freelancer.portfolio }">포트폴리오
-							다운로드</a>
-					</c:if>
-
-				</div>
-
-
+	
+		<div class="mainArticle" style="padding:40px;  
+		border: thin solid #e0e0e0; width:900px; margin:20px auto;
+		background-color:white;">
+			
+			<form method="post" enctype="multipart/form-data"
+			 onsubmit="return formsubmit()">
+			<h2>광고 문의 페이지</h2>
+			
+			<input type="hidden" name="id" value="${user.id }"/>
+			
+			<div style="margin: 15px 0px;">회사명 &nbsp;&nbsp;&nbsp;<input size="40" name="company" value="${user.company }" readonly
+			style="height: 30px;"/></div>
+			
+			
+			<div style="margin: 15px 0px;">이메일 &nbsp;&nbsp;&nbsp;<input style="height: 30px;" size="40" id="email" type="text" name="email"/> </div>
+			
+			<div style="margin: 15px 0px;">전화번호 <input style="height: 30px;" size="40" id="company_number" type="text" name="company_number"/> </div>
+			
+			<div style="margin: 15px 0px;">제목 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="height: 30px;" size="40" id="title" type="text" name="title"/></div>
+			
+			<div style="margin: 15px 0px;">첨부파일 <input style="height: 30px;" id="file" name="file" type="file"/>
+						
+			
 			</div>
-
-
-			<div class="sub" style="float: left; margin: 15px; width: 400px; height: 300px; padding: 30px;
-			border: thin solid #e0e0e0; border-radius:10px; background-color:white;">
-				<font size="4"><b>이 프리랜서와 함께 일하고 싶다면!</b></font><br>
-				<div style="margin-top:20px; margin-bottom:40px;">
-					메시지를 통해 협업 의사를 전달해보세요.<br>
-					메시지와 함께 프리랜서에게 알람이 전달됩니다.
-				</div>
-				<button style="width:300px; height:40px;" class="/mail/writeTofreelancer/${freelancer.id}"
-				onclick="buttonclick()">
-					협업 제의하기</a>
-				</button>
+			
+			<div>내용 <br>
+				<textarea id="editorTxt" name="content" cols="100;" rows="30;"
+				style="resize:none; "></textarea>
 			</div>
-
+			
+			<button>문의 하기</button>
+			
+			</form>
 		</div>
-
-
+	
+	
+	
 	</main>
-
-
+	
+	
+	
+	
+	</div>
 
 
 	<footer class="footer">
@@ -345,19 +246,65 @@ a {
 	</footer>
 
 
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+	
 	<script>
-		function portfolio(path) {
-			var path = path.id;
-			var link = "/board03/portfolio?path=" + path;
-			window.open(link, "_blank", "width=1000, height= 800");
-		}
-		
-		
-		function buttonclick(){
-			var url = $("button[class]").attr("class");
-			window.open(url, '_blank', 'width=780, height=480')
-		}
+	 let oEditors = [];
+
+	    smartEditor = function() {
+	      console.log("Naver SmartEditor")
+	      nhn.husky.EZCreator.createInIFrame({
+	        oAppRef: oEditors,
+	        elPlaceHolder: "editorTxt",
+	        sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+	        fCreator: "createSEditor2"
+	      })
+	    };
+
+	   $(document).ready(function(){
+	  
+	      smartEditor()
+	      
+	      $("#save").click(function(){
+	    	var title = $("#title").val();
+	  		if(title == ""){
+	  			alert("제목을 입력하세요")
+	  			return false;
+	  		}
+	    	  oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", []);
+	    	  //                          이게 ifame에 있는 내용을 textarea 로 옮기는 역할
+	    	  $("#writeform").submit();
+	      });
+	      
+	    })
+	    
+	    
+	   
+	     function formsubmit(){
+		   var email = $("#email").val();
+		   var title = $("#title").val();
+		   var company_number = $("#company_number").val();
+		   var editorTxt = $("#editorTxt").val();
+		   
+		   if(email == ""){
+			   alert("이메일을 입력해주세요");
+			   return false;			   
+		   }
+		   if(title == ""){
+			   alert("제목을 입력해주세요");
+			   return false;
+		   }
+		   if(company_number == ""){
+			   alert("전화번호를 입력해주세요");
+			   return false; 
+		   }else{
+			   
+			   return true;
+		   }
+	   }
+	    
 	</script>
 
 
