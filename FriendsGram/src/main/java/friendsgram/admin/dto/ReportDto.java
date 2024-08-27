@@ -10,5 +10,6 @@ public class ReportDto {
 	private String id;
 	private int co_no;
 	private String content;
+	private int report_num;
 
 }

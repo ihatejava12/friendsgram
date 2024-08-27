@@ -273,7 +273,7 @@ button:focus {
                                 <td>${list.report_content}</td>
                                 <td>${list.id}</td>
                                 <td><button
-                                        onclick="window.open('/adminreportboard/${list.num}/${list.r_no}/${list.co_no}', '_blank', 'width=500,height=600, top=50, left=50, scrollbars=yes')">바로가기</button></td>
+                                        onclick="window.open('/adminreportboard/${list.num}/${list.co_no}/${list.report_num}', '_blank', 'width=500,height=600, top=50, left=50, scrollbars=yes')">바로가기</button></td>
                             </tr>
                         </c:forEach>
                     </tbody>

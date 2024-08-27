@@ -23,5 +23,6 @@ public class Corporation_MemberDto {
 	private boolean consent;
 	private int company_consent;
 	private int role;
+	private String detail_address;
 
 }

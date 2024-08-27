@@ -52,8 +52,6 @@ public class Board02Controller {
 	
 	@PostMapping("/board02/report")
 	public String board02Report(ReportDto dto) {
-		System.out.println(dto);
-		
 		service.board02Report(dto);
 		
 		return "/jhk/board02/close";
@@ -116,18 +114,41 @@ public class Board02Controller {
 	
 	@GetMapping("/board02content/{b_no02}")
 	public String board02Content(@ModelAttribute("user") MemberDto user, @PathVariable("b_no02") int b_no02, Model m) {
-		String id = user.getId();
+		String uid = user.getId();
 		
 		Board02Dto dto = service.board02Content(b_no02);
 		m.addAttribute("dto", dto);
 		List<Board02_CodeDto> clist = service.codeList(b_no02);
 		m.addAttribute("clist", clist);
-		int cjoin = service.countJoin(b_no02, id);
+		int cjoin = service.countJoin(b_no02, uid);
 		m.addAttribute("cjoin", cjoin);
 		int countteam = service.countTeam(b_no02);
 		m.addAttribute("countteam", countteam);
 		List<Board02_ComentDto> commlist = cservice.selectComm(b_no02);
 		m.addAttribute("commlist", commlist);
+		String id = service.id(b_no02);
+		
+		String name = service.idName(id);
+		int length = name.length();
+		if (length > 2) {
+			String firstName = name.substring(0,1);
+			String lastName = name.substring(length-1, length);
+			String middleName = "";
+			for (int i = 1; i < length-1; i ++) {
+				middleName += "*";
+			}
+			String anonymousName = firstName + middleName + lastName;
+			m.addAttribute("name", anonymousName);
+		} else {
+			String firstName = name.substring(0,1);
+			String middleName = "";
+			for (int i = 1; i < length; i++) {
+				middleName += "*";
+			}
+			String anonymousName = firstName + middleName;
+			m.addAttribute("name", anonymousName);
+		}
+		
 		
 		
 		return "/jhk/board02/content";

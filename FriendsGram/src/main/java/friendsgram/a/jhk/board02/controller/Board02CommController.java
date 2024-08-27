@@ -49,7 +49,8 @@ public class Board02CommController {
 	@PostMapping("/insertcomm02")
 	public String insertPComm(@RequestParam("coment") String coment, @RequestParam("id") String id, @RequestParam("b_no02") int b_no02) {
 		service.insertPComm(coment, id, b_no02);
-		service.updateRef();
+		int c_no02 = service.maxC_no02();
+		service.updateRef(c_no02);
 		
 		return "";
 	}

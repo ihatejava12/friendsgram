@@ -14,12 +14,21 @@ import friendsgram.board02.dto.Board02Dto;
 import friendsgram.board02.dto.Board02_CodeDto;
 import friendsgram.board02.dto.Board02_JoinDto;
 import friendsgram.board02.dto.Board02_TeamDto;
+import friendsgram.member.dto.MemberDto;
 
 @Service
 public class Board02Service {
 
 	@Autowired
 	Board02Dao dao;
+	
+	public String id(int b_no02) {
+		return dao.id(b_no02);
+	}
+	
+	public String idName(String id) {
+		return dao.idName(id);
+	}
 	
 	public List<Board02_TeamDto> tList(int b_no02){
 		return dao.tList(b_no02);

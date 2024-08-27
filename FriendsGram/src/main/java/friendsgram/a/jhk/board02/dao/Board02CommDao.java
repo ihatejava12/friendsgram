@@ -36,9 +36,12 @@ public interface Board02CommDao {
 	@Delete("delete from board02_coment where c_no02 = #{c_no02}")
 	int deleteComm02(int c_no02);
 	
+	@Select("select max(c_no02) from board02_coment")
+	int maxC_no02();
+	
 	// ref를 해당 글번호로 업데이트해준다
-	@Update("update board02_coment set ref = c_no02")
-	int updateRef();
+	@Update("update board02_coment set ref = c_no02 where c_no02 = #{c_no02}")
+	int updateRef(int c_no02);
 	
 	// 부모댓글 작성 (ref를 비워뒀다가 해당 댓글에 대댓글이 달릴때 해당 댓글의 번호로 업데이트 해줄 예정)
 	@Insert("insert into board02_coment (coment, date, ref_level, num, id, b_no02) values (#{coment}, now(), 0, 1, #{id}, #{b_no02})")
