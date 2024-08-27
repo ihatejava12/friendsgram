@@ -1,6 +1,7 @@
 package friendsgram.board04.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -19,5 +20,5 @@ public class Board04Dto {
 	private String employment_start;
 	private String career_period;
 	private String id;
-
+	private List<String> codes;//이부분 추가함
 }

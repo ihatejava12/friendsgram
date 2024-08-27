@@ -5,7 +5,7 @@
 <mapper namespace="friendsgram.a.skw.dao.CorporationDao">
 
 	<insert id="insertCor" parameterType="friendsgram.member.dto.Corporation_MemberDto">
-		insert into Corporation_Member values (#{id}, #{password}, #{name}, #{company}, #{scale}, #{business_number}, #{boss_name}, #{address}, #{email}, #{company_number}, #{consent}, #{company_consent},3)
+		insert into Corporation_Member (id, password, name, company, scale, business_number, boss_name, address, email, company_number, consent, company_consent,role)values (#{id}, #{password}, TRIM(#{name}), #{company}, #{scale}, #{business_number}, #{boss_name}, #{address}, #{email}, #{company_number}, #{consent}, #{company_consent},3)
 	</insert>
 	
 
