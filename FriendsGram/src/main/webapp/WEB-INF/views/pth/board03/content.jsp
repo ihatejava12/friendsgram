@@ -145,7 +145,7 @@ main {
 <div>
  <header class="header">
       <div class="logo">
-         <a href="/main"> <img src="images/logo.png" alt="프렌즈그램 로고"
+         <a href="/main"> <img src="/images/logo.png" alt="프렌즈그램 로고"
             class="logo-image" />
          </a>
       </div>
@@ -175,6 +175,8 @@ main {
 
 </div>
 
+
+<main>
 <!--  freelancer 라는 이름으로 Board03Dto 객체 하나 받아옴 -->
 <div class="articlemain" style="margin-left: auto; margin-right: auto; width:1000px;">
 
@@ -275,6 +277,12 @@ main {
 </div>
 
 </div>
+
+
+</main>
+
+
+
 
 <footer class="footer">
       <div class="footer-links">

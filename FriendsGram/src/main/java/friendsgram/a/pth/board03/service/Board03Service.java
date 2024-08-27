@@ -70,6 +70,9 @@ public class Board03Service {
 	public List<Board03Dto> searchBoard03List(int work_type,List<Integer> searchb_no03List, int career, int startRow,
 			int perpage){
 		Map<String, Object> m = new HashMap<String,Object>();
+		if(searchb_no03List.size() == 0) {
+			searchb_no03List.add(-1);
+		}
 		m.put("work_type", work_type);
 		m.put("searchb_no03List", searchb_no03List);
 		m.put("career", career);
@@ -82,10 +85,13 @@ public class Board03Service {
 	
 	public int countsearchBoard03List(int work_type,List<Integer> searchb_no03List, int career){
 		Map<String, Object> m = new HashMap<String,Object>();
+		if(searchb_no03List.size() == 0) {
+			searchb_no03List.add(-1);
+		}
 		m.put("work_type", work_type);
 		m.put("searchb_no03List", searchb_no03List);
 		m.put("career", career);
-		
+
 		
 		return board03dao.countsearchBoard03List(m);
 	}

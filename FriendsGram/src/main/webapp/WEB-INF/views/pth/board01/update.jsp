@@ -1,9 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>FreindsGram</title>
+<title>FriendsGram</title>
+
 <style>
+
+
 
 * {
   box-sizing: border-box;
@@ -91,7 +96,9 @@ main {
 
 
 
-.hero-image img {
+
+
+ .hero-image img {
     margin-top: 20px;
   }
 
@@ -123,22 +130,40 @@ main {
   text-decoration: none;
 }
 
+table {
+	border: 1px solid black;
+	width: 700px;
+	border-collapse: collapse;
+}
+
+th {
+	border: 1px solid black;
+	background-color: lightgray;
+	width: 150px;
+}
+
+td {
+	border: 1px solid black;
+}
+
+#allcontent {
+	margin: auto 15%;
+}
+
 #headcontent{
 	background-color: lightgreen;
 }
 
-#content{
-	align: center;
-	margin: auto 15%;
+a {
+	text-decoration: none;
 }
 
-.free{
-	margin: 20px;
-}
 
 </style>
+
 </head>
 <body>
+<!--  bList begin end count pageNum totalPages -->
 <div>
  <header class="header">
       <div class="logo">
@@ -164,20 +189,63 @@ main {
    </header>
  
 </div>
+<hr>
 
-<div id="headcontent" style="height: 200px; padding: 40px;">
-<h1 style="color: black;" align="center">프리랜서 등록 </h1>
-<h3 style="color: black;" align="center"> 프리랜서로 등록하고 딱맞는 프로젝트/의뢰를 받아보세요.</h3>
-<br>
+
+<div id="allcontent">
+<div id="headcontent" align="center" style="height:80px;">
+	<h2>코딩 게시판</h2>
+	
+	
+	
 </div>
 
+<hr>
 
-<div>
-	<h3>프리랜서 등록을 축하합니다!</h3>
+<main>
+<div align="right">
+	<button><a href="/board01/main">목록</a></button>
 </div>
 
+<hr>
 
-<footer class="footer">
+<!--  oneArticle 라는 이름으로 글정보 Dto 1개 받아옴  -->
+<form method="post" id="writeform" action="/board01/update/article">
+	<div class="head">
+		<input type="hidden" name="id" value="${oneArticle.id}"/>
+		<input type="hidden" name="b_no01" value="${oneArticle.b_no01}"/>
+		
+		<select id="selectskil" name="code">
+			<option value="all" ${oneArticle.code == 'all'?"selected":"" }>개발 언어:전체</option>
+			<option value="java" ${oneArticle.code == 'java'?"selected":"" }>JAVA</option>
+			<option value="python" ${oneArticle.code == 'python'?"selected":"" }>PYTHON</option>
+			<option value="html" ${oneArticle.code == 'html'?"selected":"" }>HTML</option>
+			<option value="database" ${oneArticle.code == 'database'?"selected":"" }>DATABASE</option>
+			<option value="other" ${oneArticle.code == 'other'?"selected":"" }>직접 입력</option>
+		</select>
+		<input id="addskil" name="addskil" style="display: none;"
+								size="10" />
+	
+		<span>제목</span> <input type="text" name="title" id="title" value="${oneArticle.title }"/>
+	</div>
+	<hr>
+	
+	 <div class="content" id="smarteditor">
+ 		<textarea id="editorTxt" name="content" cols="40" rows="10"
+			placeholder="내용을 입력해주세요" style="width:100%; height:400px;">
+			${oneArticle.title }
+			</textarea>
+ 	</div>
+
+	<input type="submit" value="작성 완료" id="save"/>
+</form>
+
+</div>
+
+</main>
+
+  
+   <footer class="footer">
       <div class="footer-links">
          <a href="#">프리랜서 이용약관</a> <a href="#">고객센터</a> <a href="#">개인정보
             처리방침</a> <a href="#">광고문의</a><c:if test="${ user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
@@ -189,5 +257,54 @@ main {
    </footer>
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script>
+    let oEditors = [];
+
+    smartEditor = function() {
+      console.log("Naver SmartEditor")
+      nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "editorTxt",
+        sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+        fCreator: "createSEditor2"
+      })
+    };
+
+   $(document).ready(function(){
+  
+      smartEditor()
+      
+      $("#save").click(function(){
+    	var title = $("#title").val();
+  		if(title == ""){
+  			alert("제목을 입력하세요")
+  			return false;
+  		}
+    	  oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", []);
+    	  //                          이게 ifame에 있는 내용을 textarea 로 옮기는 역할
+    	  $("#writeform").submit();
+      });
+      
+    })
+    
+    
+    $(function() {
+
+			$("#selectskil").change(function() {
+				if ($("#selectskil").val() == 'other') {
+					$("#addskil").show();
+				}
+			})
+
+		})
+  </script>
+
+
+
+
 </body>
+
+
 </html>

@@ -33,7 +33,7 @@
 </div>
 
 
-	<p>게시글이 작성되었습니다.</p>
+	<p>게시글이 수정되었습니다.</p>
 	<button><a href="/board01/main">목록으로</a></button>
 	
 	
