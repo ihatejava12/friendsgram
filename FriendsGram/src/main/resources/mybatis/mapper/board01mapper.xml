@@ -39,6 +39,9 @@
 		select count(*) from board01 
 		<where>
 			<choose>
+				<when test="skil == 'all'">
+					and code is not null
+				</when>
 				<when test="skil == 'java'">
 					and code = #{skil}
 				</when>
@@ -65,7 +68,7 @@
 				</when>
 				<when test="category == 'content' and search != '' ">
 					<if test="search != '' ">
-						and content likeCONCAT('%',#{search},'%')
+						and content like CONCAT('%',#{search},'%')
 					</if>
 				</when>
 				<when test="category == 'all'">
@@ -85,6 +88,9 @@
 		select * from board01 
 		<where>
 			<choose>
+				<when test="skil == 'all' ">
+					and code is not null
+				</when>	
 				<when test="skil == 'java'">
 					and code = #{skil}
 				</when>
@@ -111,7 +117,7 @@
 				</when>
 				<when test="category == 'content' and search != '' ">
 					<if test="search != '' ">
-						and content likeCONCAT('%',#{search},'%')
+						and content like CONCAT('%',#{search},'%')
 					</if>
 				</when>
 				<when test="category == 'all'">
@@ -244,6 +250,11 @@
 	</delete>
 	
 	
+	<update id="updateBoard01Article" parameterType="friendsgram.board01.dto.Board01Dto">
+		update board01
+		set title=#{title}, code=#{code}, content=#{content}, date = now()
+		where b_no01 = #{b_no01}
+	</update>
 	
 	
 </mapper>

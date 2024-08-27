@@ -142,7 +142,7 @@ main {
 <div>
  <header class="header">
       <div class="logo">
-         <a href="/main"> <img src="images/logo.png" alt="프렌즈그램 로고"
+         <a href="/main"> <img src="/images/logo.png" alt="프렌즈그램 로고"
             class="logo-image" />
          </a>
       </div>
@@ -170,6 +170,9 @@ main {
 <h3 style="color: black;" align="center"> 프리랜서로 등록하고 딱맞는 프로젝트/의뢰를 받아보세요.</h3>
 <br>
 </div>
+
+
+<main>
 <form method="post" enctype="multipart/form-data">
 
 		<input type="hidden" name="id" value="${user.id}"/>
@@ -213,6 +216,11 @@ main {
 	</div>
 
 </form>	
+
+
+</main>
+
+
 
   <footer class="footer">
       <div class="footer-links">

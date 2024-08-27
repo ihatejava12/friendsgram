@@ -243,8 +243,15 @@ public class Board03Controller {
 	// 프리랜서 찾기
 	@GetMapping("board03/search")
 	public String board03Search(@RequestParam("work_type")int work_type,@RequestParam("skil")String skil, 
-			@RequestParam("career")int career, @RequestParam(name="p", defaultValue="1")int page, Model m) {
+			@RequestParam("career")int career, @RequestParam(name="p", defaultValue="1")int page, 
+			@RequestParam("addskil")String addskil, Model m) {
 		// 프리랜서 찾기 버튼 클릭시, 근무 형태(work_type), 개발언어(skil), 경력기간(career) 받아와서 DB에 검색하고 출력
+		
+		if(skil.equals("other")) {// 기타를 눌러서 직접 입력했을 경우 
+			skil = addskil;		
+		}
+		
+		
 		List<Integer> searchb_no03List = board03service.searchBoard03SkilList(skil);
 		
 		int perpage = 10; // 한페이지에 10명 프리랜서 보여줄거임

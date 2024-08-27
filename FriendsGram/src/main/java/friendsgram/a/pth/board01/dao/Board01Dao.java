@@ -100,5 +100,7 @@ public interface Board01Dao {
 	// 게시글 글번호(b_no01) 받아와서 해당 글 1개, DB에서 삭제
 	int deleteBoard01Article(int no);
 	
+	// 게시글 Dto 1개 받아와서, 해당 글 update
+	int updateBoard01Article(Board01Dto article);
 	
 }

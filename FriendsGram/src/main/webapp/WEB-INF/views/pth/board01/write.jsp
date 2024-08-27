@@ -147,12 +147,18 @@ td {
 }
 
 #allcontent {
-	margin: auto 15% 
+	margin: auto 15%;
 }
 
 #headcontent{
 	background-color: lightgreen;
 }
+
+
+a {
+	text-decoration: none;
+}
+
 </style>
 
 </head>
@@ -161,7 +167,7 @@ td {
 <div>
  <header class="header">
       <div class="logo">
-         <a href="/main"> <img src="images/logo.png" alt="프렌즈그램 로고"
+         <a href="/main"> <img src="/images/logo.png" alt="프렌즈그램 로고"
             class="logo-image" />
          </a>
       </div>
@@ -184,15 +190,19 @@ td {
  
 </div>
 <hr>
+
+
 <div id="allcontent">
-<div id="headcontent" align="center">
+<div id="headcontent" align="center" style="height:80px;">
 	<h2>코딩 게시판</h2>
+	
 	
 	
 </div>
 
 <hr>
 
+<main>
 <div align="right">
 	<button><a href="/board01/main">목록</a></button>
 </div>
@@ -204,14 +214,16 @@ td {
 		<input type="hidden" name="id" value="${user.id}"/>
 		<!--   로그인 완성되면, value 에 {user.id} 이런식으로 들어갈 예정 -->
 		
-		<select name="code">
-			<option value="">개발 언어</option>
+		<select id="selectskil" name="code">
+			<option value="all">개발 언어:전체</option>
 			<option value="java">JAVA</option>
 			<option value="python">PYTHON</option>
 			<option value="html">HTML</option>
 			<option value="database">DATABASE</option>
-			<option value="other">기타</option>
+			<option value="other">직접 입력</option>
 		</select>
+		<input id="addskil" name="addskil" style="display: none;"
+								size="10" />
 	
 		<span>제목</span> <input type="text" name="title" id="title"/>
 	</div>
@@ -228,6 +240,7 @@ td {
 
 </div>
 
+</main>
 
   
    <footer class="footer">
@@ -273,6 +286,17 @@ td {
       });
       
     })
+    
+    
+    $(function() {
+
+			$("#selectskil").change(function() {
+				if ($("#selectskil").val() == 'other') {
+					$("#addskil").show();
+				}
+			})
+
+		})
   </script>
 
 

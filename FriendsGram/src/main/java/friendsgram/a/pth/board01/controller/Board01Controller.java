@@ -38,10 +38,14 @@ public class Board01Controller {
 	}
 	
 	@PostMapping("board01/write")
-	public String board01WriteForm(Board01Dto article) {
+	public String board01WriteForm(Board01Dto article,@RequestParam("addskil")String addskil) {
 		
 		int readcount = 0;
 		// date 와 readcount 값 넣어줬음
+		
+		if(article.getCode().equals("other")) {// 기타를 눌러서 직접 입력했을 경우 
+			article.setCode(addskil);		
+		}
 		
 		board01service.writeBoard01(article);
 		
@@ -101,12 +105,25 @@ public class Board01Controller {
 	
 	
 	@GetMapping("board01/update/{no}")
-	public String board01Update(@PathVariable("no")int no) {
+	public String board01Update(@PathVariable("no")int no, Model m) {
 		// 게시판 글번호 받아와서, 해당 글 정보, DB에서 수정
+		Board01Dto oneAtricle = board01service.selectOne(no);
+		m.addAttribute("oneArticle",oneAtricle);
 		
 		
 		return "pth/board01/update";
 	}
+	
+	
+	@PostMapping("board01/update/article")
+	public String board01UpdateArticle(Board01Dto article) {
+		
+		board01service.updateBoard01Article(article);
+		
+		return "pth/board01/updateconfirm";
+	}
+	
+	
 	
 	@GetMapping("board01/delete/{no}")
 	public String board01Delete(@PathVariable("no")int no) {

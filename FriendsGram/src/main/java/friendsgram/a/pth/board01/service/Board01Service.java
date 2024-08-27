@@ -219,7 +219,10 @@ public class Board01Service {
 		return board01dao.deleteBoard01Article(no);
 	}
 	
-	
+	// 게시글 Dto 1개 받아와서, 해당 글 update
+	public	int updateBoard01Article(Board01Dto article) {
+		return board01dao.updateBoard01Article(article);
+	}
 	
 	
 }
