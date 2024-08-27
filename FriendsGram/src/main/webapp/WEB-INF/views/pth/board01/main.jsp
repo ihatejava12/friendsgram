@@ -7,6 +7,11 @@
 <title>FriendsGram</title>
 
 <style>
+
+
+
+
+
 * {
 	box-sizing: border-box;
 	margin: 0;
