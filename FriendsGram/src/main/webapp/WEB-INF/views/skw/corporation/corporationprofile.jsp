@@ -6,7 +6,7 @@
 <html>
 <head>
 <!--  bList begin end count pageNum totalPages -->
-<title>문의사항 리스트</title>
+<title>기업페이지</title>
 <style>
 #center {
 	width: 700px;
@@ -182,125 +182,106 @@ td {
 	background-color: lightgreen;
 }
 
-/* 메인 컨텐츠 스타일 */
-main {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    text-align: center;
-}
+   body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
 
-#center {
-    text-align: center;
-    margin-bottom: 30px;
-}
+    main {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        text-align: center;
+    }
 
-#center h1 {
-    font-size: 3em;
-    color: #4CAF50;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-    margin-bottom: 30px;
-}
+    #center {
+        margin-bottom: 30px;
+    }
 
-#center a {
-    display: inline-block;
-    margin: 0 10px; /* 좌우 간격 조절 */
-    padding: 15px 30px;
-    background-color: #4CAF50;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
+    #center h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #4CAF50;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
 
-#center a:hover {
-    background-color: #45a049;
-    transform: scale(1.1);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
+    #center a {
+        display: inline-block;
+        margin: 10px 15px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
 
-#center a:active {
-    background-color: #3e8e41;
-    transform: scale(1.05);
-}
+    #center a:hover {
+        background-color: #45a049;
+        transform: scale(1.05);
+    }
 
-/* 테이블 스타일 */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 30px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-}
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
 
-th, td {
-    padding: 15px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
+    table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #ddd;
+    }
 
-th {
-    background-color: #4CAF50;
-    color: white;
-    font-weight: bold;
-}
+    table td:first-child {
+        text-align: right;
+        font-weight: bold;
+        color: #666;
+    }
 
-td {
-    color: #333;
-}
+    table td:last-child {
+        text-align: left;
+    }
 
-/* 답변 보기 버튼 스타일 */
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1em;
-    font-weight: bold;
-    cursor: pointer;
-    background-color: #007BFF;
-    color: #fff;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
+    input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 1em;
+    }
 
-button:hover {
-    background-color: #0069d9;
-    transform: scale(1.1);
-}
+    input[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
 
-button:active {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
+    input[type="submit"]:hover {
+        background-color: #45a049;
+        transform: scale(1.05);
+    }
 
-/* 페이지 네비게이션 스타일 */
-#page a {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px 15px;
-    background-color: #4CAF50;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+    input[type="submit"]:active {
+        background-color: #3e8e41;
+        transform: scale(1);
+    }
 
-#page a:hover {
-    background-color: #45a049;
-    transform: scale(1.1);
-}
-
-#page a:active {
-    background-color: #3e8e41;
-    transform: scale(1.05);
-}
 
 </style>
 
@@ -327,61 +308,62 @@ button:active {
             <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
         </div>
     </header>
-	<div id="center">
-		<h1>나의 문의 사항</h1>     
-		<a href="/myprofile">나의 정보</a>
-		<a href="/info">이력서</a>
-		<a href="/review/${user.id}">나의 리뷰</a>
-		<a href="/myquestion">문의 사항 보기</a>
-	</div>
-<body>
-	<main>
-    <table>
-        <tr>
-            <th>글 번호</th>
-            <th>제목</th>
-            <th>작성일</th>
-            <th>구분</th>
-            <th>답변 여부</th>
-        </tr>
-        <c:forEach items="${qlist}" var="list">
-            <tr>
-                <td>${list.q_no}</td>
-                <td>${list.title}</td>
-                <td>${list.date}</td>
-                
-                <c:if test="${list.question_type == 0}">
-                    <td>계정관련 문의</td>
-                </c:if>
-                <c:if test="${list.question_type == 1}">
-                    <td>법적 문제</td>
-                </c:if>
-                <c:if test="${list.question_type == 2}">
-                    <td>기타 문의</td>
-                </c:if>
-                
-                <c:if test="${list.request == true}">
-                    <td><button onclick="window.open('/question/answer/${list.q_no}', '_blank', 'width=810, height=600, top=50, left=50, scrollbars=yes')">답변보기</button></td>
-                </c:if>
-                <c:if test="${list.request == false}">
-                    <td>답변 대기중</td>
-                </c:if>
-            </tr>
-        </c:forEach>
-    </table>
-    
-    <div id="page">
-        <c:if test="${begin > pageNum }">
-            <a href="myquestion?p=${begin-1 }">[이전]</a>
-        </c:if>
-        <c:forEach begin="${begin }" end="${end}" var="i">
-            <a href="myquestion?p=${i}">${i}</a>
-        </c:forEach>
-        <c:if test="${end < totalPages }">
-            <a href="myquestion?p=${end+1}">[다음]</a>
-        </c:if>
+ <main>
+    <div id="center">
+        <h1>기업 페이지 작성중</h1>
+        <a href="/myprofile">나의 정보</a>
+        <a href="/info">이력서</a>
+        <a href="/review/${user.id}">나의 리뷰</a>
+        <a href="/myquestion">문의 사항 보기</a>
     </div>
+
+    <form action="update" method="post" id="myprofile">
+        <input type="hidden" name="_method" value="put">
+        <h2>${user.id}님의 기업 페이지</h2>
+        
+        <table>
+            <tr><td>아이디:</td><td>${user.id}</td></tr>
+            <tr><td>이름:</td><td>${user.name}</td></tr>
+            <tr><td>이름:</td><td>${user.name}</td></tr>
+            <tr><td>비밀번호:</td><td><input name="password" type="password" id="password"></td></tr>
+            <tr><td>이메일:</td><td><input name="email" id="email" value="${user.email}"></td></tr>
+            <tr><td>생년월일:</td><td>${user.birth}</td></tr>
+            <tr><td>성별:</td><td>${user.gender}</td></tr>
+            <tr><td>휴대폰:</td><td><input name="phone" id="phone" value="${user.phone}"></td></tr>
+            <tr><td colspan="2"><input type="submit" value="수정"></td></tr>
+        </table>
+    </form>
 </main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(function() {
+        $("#myprofile").submit(function(event) {
+            event.preventDefault(); // 폼의 기본 제출 동작을 막음
+            
+            if (!$("#password").val()) {
+                alert("비밀번호를 입력해야 합니다.");
+                return false;
+            }
+
+            // AJAX 요청을 통해 폼 데이터를 서버로 전송
+            $.ajax({
+                type: "POST",
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function(response) {
+                    // 성공적으로 제출되었을 때
+                    alert("수정되었습니다.");
+                    // 페이지를 다시 로드하거나, 다른 페이지로 이동할 수 있음
+                    location.reload(); // 페이지 새로고침
+                },
+                error: function() {
+                    alert("수정에 실패했습니다. 다시 시도해 주세요.");
+                }
+            });
+        });
+    });
+</script>
 	
 	<footer class="footer">
 		<div class="footer-links">
@@ -393,5 +375,6 @@ button:active {
 			<p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
 		</div>
 	</footer>
+	
 </body>
 </html>
