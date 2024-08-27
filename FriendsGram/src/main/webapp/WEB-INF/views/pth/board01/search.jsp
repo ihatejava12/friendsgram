@@ -252,22 +252,22 @@ tr {
 				<c:if test="${count != 0}">
 					<table style="width: 100%;">
 						<tr>
-							<th>번호</th>
-							<th>개발언어</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
-							<th>조회수</th>
+							<th style="width: 10%;">번호</th>
+							<th style="width: 15%;">개발언어</th>
+							<th style="width: 40%;">제목</th>
+							<th style="width: 15%;">작성자</th>
+							<th style="width: 10%;">작성일</th>
+							<th style="width: 10%;">조회수</th>
 						</tr>
 						<c:forEach items="${blist }" var="board">
 							<tr>
-								<td>${board.b_no01 }</td>
-								<td>${board.code }</td>
+								<td style="text-align: center;">${board.b_no01 }</td>
+								<td style="text-align: center;">${board.code }</td>
 								<td><a href="content/${board.b_no01}">${board.title }</a></td>
-								<td>${board.id }</td>
-								<td><fmt:formatDate value="${board.date }"
-										dateStyle="short" /></td>
-								<td>${board.readcount }</td>
+								<td style="text-align: center;">${board.id }</td>
+								<td style="text-align: center;"><fmt:formatDate
+										value="${board.date }" dateStyle="short" /></td>
+								<td style="text-align: center;">${board.readcount }</td>
 							</tr>
 
 						</c:forEach>
