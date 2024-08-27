@@ -6,6 +6,22 @@
 <head>
 <title>FreindsGram</title>
 <style>
+
+.filter-group label {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+
+
+.filter-group select,
+.filter-group input {
+  padding: 5px;
+  width: 150px;
+  height: 35px;
+}
+
+
 .free {
 	border-radius: 10px;
 }
@@ -126,9 +142,7 @@ main {
 	text-decoration: none;
 }
 
-#headcontent {
-	background-color: lightgreen;
-}
+
 
 #content {
 	align: center;
@@ -186,7 +200,7 @@ main {
 
 	</div>
 
-	<div id="headcontent" style="height: 200px; padding: 30px;">
+	<div id="headcontent" style="height: 240px; padding: 30px;">
 		<h1 style="color: black;" align="center">동료처럼 믿고 맡길 수 있는</h1>
 		<h1 style="color: black;" align="center">우수 프리랜서를 만나보세요</h1>
 		<br>
