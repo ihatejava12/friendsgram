@@ -6,8 +6,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
 	<c:if test="${b1 != null}">
-	<c:forEach items="${b1}" var="b1">
 		<fieldset>
 			<div>
 				<h3>코딩 게시판 신고글</h3>
@@ -21,10 +21,9 @@
 	
 			</div>
 		</fieldset>
-	</c:forEach>
 	</c:if>
+	
 	<c:if test="${b2 != null}">
-	<c:forEach items="${b3}" var="b2">
 		<fieldset>
 			<div>
 				<h3>모집 게시판 신고글</h3>
@@ -38,10 +37,9 @@
 	
 			</div>
 		</fieldset>
-	</c:forEach>
 	</c:if>
+	
 	<c:if test="${bc1 != null}">
-	<c:forEach items="${bc1}" var="bc1">
 		<fieldset>
 			<div>
 				<h3>코딩 게시판 댓글 신고글</h3>
@@ -55,10 +53,9 @@
 	
 			</div>
 		</fieldset>
-	</c:forEach>
 	</c:if>
+	
 	<c:if test="${bc2 != null}">
-	<c:forEach items="${bc2}" var="bc2">
 		<fieldset>
 			<div>
 				<h3>모집 게시판 댓글 신고글</h3>
@@ -72,7 +69,7 @@
 	
 			</div>
 		</fieldset>
-	</c:forEach>
 	</c:if>
+
 </body>
 </html>

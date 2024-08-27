@@ -18,20 +18,20 @@ public class AdminReportService {
 	@Autowired
 	AdminReportDao dao;
 	
-	public List<ReportDto> selectBC2(int r_no, int co_no, int num) {
-		return dao.selectBC2(r_no, co_no, num);
+	public ReportDto selectBC2(int report_num) {
+		return dao.selectBC2(report_num);
 	}
 	
-	public List<ReportDto> selectBC1(int r_no, int co_no, int num) {
-		return dao.selectBC1(r_no, co_no, num);
+	public ReportDto selectBC1(int report_num) {
+		return dao.selectBC1(report_num);
 	}
 	
-	public List<ReportDto> selectB2(int r_no, int num) {
-		return dao.selectB2(r_no, num);
+	public ReportDto selectB2(int report_num) {
+		return dao.selectB2(report_num);
 	}
 	
-	public List<ReportDto> selectB1(int r_no, int num) {
-		return dao.selectB1(r_no, num);
+	public ReportDto selectB1(int report_num) {
+		return dao.selectB1(report_num);
 	}
 	
 	public List<ReportDto> reportList() {
