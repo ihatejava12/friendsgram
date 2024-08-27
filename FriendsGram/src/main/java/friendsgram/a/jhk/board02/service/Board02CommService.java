@@ -16,6 +16,10 @@ public class Board02CommService {
 	@Autowired
 	Board02CommDao dao;
 	
+	public int maxC_no02() {
+		return dao.maxC_no02();
+	}
+	
 	public int insertComm2(String coment, int ref, String id, int b_no02) {
 		return dao.insertComm2(coment, ref, id, b_no02);
 	}
@@ -32,8 +36,8 @@ public class Board02CommService {
 		return dao.deleteComm02(c_no02);
 	}
 	
-	public int updateRef() {
-		return dao.updateRef();
+	public int updateRef(int c_no02) {
+		return dao.updateRef(c_no02);
 	}
 	
 	public int insertPComm(String coment, String id, int b_no02) {

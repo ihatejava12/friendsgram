@@ -15,9 +15,17 @@ import friendsgram.board02.dto.Board02Dto;
 import friendsgram.board02.dto.Board02_CodeDto;
 import friendsgram.board02.dto.Board02_JoinDto;
 import friendsgram.board02.dto.Board02_TeamDto;
+import friendsgram.member.dto.MemberDto;
 
 @Mapper
 public interface Board02Dao {
+	
+	@Select("select id from board02 where b_no02 = #{b_no02}")
+	String id(int b_no02);
+	
+	// 작성자의 이름값 뽑아오기
+	@Select("select name from member where id = #{id}")
+	String idName(String id);
 	
 	// 확정된 팀 리스트 뽑아오기
 	@Select("select * from board02_team where b_no02 = #{b_no02}")
@@ -93,7 +101,7 @@ public interface Board02Dao {
 				"select * from board02",
 					"<where>",
 						"<choose>",
-							"<when test=\"searchn == 1\"> id = #{search} </when>",
+							"<when test=\"searchn == 1\"> id  in (select id from member where name like concat('%', #{search}, '%')) </when>",
 							"<when test=\"searchn == 2\"> join_date &lt;= #{search} </when>",
 							"<when test=\"searchn == 3\"> b_no02 in (select b_no02 from board02_code where code like concat('%', #{search}, '%')) </when>",
 						"</choose>",
@@ -106,7 +114,7 @@ public interface Board02Dao {
 		"select count(*) from board02",
 			"<where>",
 				"<choose>",
-					"<when test=\"searchn == 1\"> id = #{search} </when>",
+					"<when test=\"searchn == 1\"> id  in (select id from member where name like concat('%', #{search}, '%')) </when>",
 					"<when test=\"searchn == 2\"> join_date &lt;= #{search} </when>",
 					"<when test=\"searchn == 3\"> b_no02 in (select b_no02 from board02_code where code like concat('%', #{search}, '%')) </when>",
 				"</choose>",

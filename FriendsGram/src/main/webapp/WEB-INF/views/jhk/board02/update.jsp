@@ -136,7 +136,7 @@ input[type="button"]:hover, input[type="submit"]:hover, button:hover {
 			</tr>
 			<tr>
 				<td>지원자 수</td>
-				<td><input type="number" name="volunteer" value="${dto.volunteer}"/></td>
+				<td><input type="number" name="volunteer" value="${dto.volunteer}" min="1" /></td>
 			</tr>
 			<tr>
 				<td>중요 코드</td>

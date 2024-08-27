@@ -22,5 +22,6 @@ public class Member_InfoDto {
 	private String certificate_name;
 	private String certificate_date;
 	private String id;
+	private String detail_address;
 
 }
