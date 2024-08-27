@@ -50,7 +50,7 @@
 				<div class="notice-list">
 					<c:forEach var="notice" items="${notices}">
 						<div class="notice-item">
-							<h3 class="notice-content"><a class="notice-title">${notice.title}</a> </h3>
+							<h3 class="notice-content"><a href="/noticecontent/${notice.n_no}" class="notice-title">${notice.title}</a> </h3>
 								<p class="notice-date"><fmt:formatDate value="${notice.date}" pattern="yyyy-MM-dd" /></p>
 							
 
@@ -65,7 +65,7 @@
                 <c:forEach var="b04" items="${b04}">
                     <div class="board04-item">
                         <div class="b04_header">
-                            <h3 class="board04_title"><a href="#">${b04.title}</a></h3>
+                            <h3 class="board04_title"><a href="board04/content/${b04.b_no04}">${b04.title}</a></h3>
                         </div>
                         <div class="b04_details">
                             <p>예상 금액: ${b04.salary}</p>
