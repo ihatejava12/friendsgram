@@ -7,6 +7,13 @@
 <title>FreindsGram</title>
 <style>
 
+/*
+#headcontent{
+background-image: url("/images/board03_image.png");
+}
+*/
+
+
 .filter-group label {
   margin-bottom: 10px;
   font-weight: bold;
@@ -200,7 +207,7 @@ main {
 
 	</div>
 
-	<div id="headcontent" style="height: 240px; padding: 30px;">
+	<div id="headcontent" style="height: 240px; padding: 30px; background-color:#E0F2F1;">
 		<h1 style="color: black;" align="center">동료처럼 믿고 맡길 수 있는</h1>
 		<h1 style="color: black;" align="center">우수 프리랜서를 만나보세요</h1>
 		<br>
@@ -211,7 +218,7 @@ main {
 			<div class="search-container"
 				style="display: flex; flex-wrap: nowrap; justify-content: center;">
 				<div class="filter-group" style="margin: 10px;">
-					<label for="selectwork1"><font size="2">근무 형태</font></label><br> <select
+					<label for="selectwork1"><font size="3">근무 형태</font></label><br> <select
 						id="selectwork1" class="work1" name="work_type">
 						<option value="-1">전체</option>
 						<option value="0">원격</option>
@@ -220,7 +227,7 @@ main {
 				</div>
 
 				<div class="filter-group" style="margin: 10px;">
-					<label for="selectskil1"><font size="2">개발 언어</font></label><br> <select
+					<label for="selectskil1"><font size="3">개발 언어</font></label><br> <select
 						id="selectskil1" class="skil1 selectskil" name="skil">
 						<option value="all">전체</option>
 						<option value="java">JAVA</option>
@@ -233,7 +240,7 @@ main {
 				</div>
 
 				<div class="filter-group" style="margin: 10px;">
-					<label for="selectcareer1"><font size="2">경력 기간</font></label><br> <select
+					<label for="selectcareer1"><font size="3">경력 기간</font></label><br> <select
 						id="selectcareer1" class="career1" name="career">
 						<option value="-2">전체</option>
 						<option value="-1">경력 없음</option>
@@ -269,7 +276,7 @@ main {
 
 				<div id="${freelancer.b_no03 }" onclick="content(this)" class="free"
 					id="${freelancer.b_no03 }"
-					style="border: thin solid #e0e0e0; border-radius:10px; height: 180px; 
+					style="border: thin solid #e0e0e0; border-radius:10px; height: 180px; width:900px;
 					padding: 20px; display: flex; background-color:white; ">
 
 
@@ -277,7 +284,7 @@ main {
 					<div style="float: left; width: 10%; margin-right: 20px;">
 						<img src="/img/PTH.jpg" style="width: 50px">
 					</div>
-					<div style="float: left;" align="left">
+					<div style="float: left; width:370px;" align="left">
 						<span> <font size="4">${freelancer.name}</font></span>
 						<c:if test="${freelancer.work_type == 0}">
 			<font size="2">원격 가능</font>
