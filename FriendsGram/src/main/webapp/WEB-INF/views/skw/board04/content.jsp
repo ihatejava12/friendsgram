@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head>  
 <meta charset="UTF-8">
 <title>${dto.title}</title>
 <style>
@@ -62,8 +62,12 @@ main {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin: 0;
-  overflow-x: hidden;
+  margin: 0 auto;
+  padding: 10px;
+  max-width: 600px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 .footer {
@@ -91,13 +95,9 @@ main {
   font-size: 14px;
 }
 
-.hero-image img {
-  margin-top: 20px;
-}
-
 table {
   border: 1px solid black;
-  width: 700px;
+  width: 100%;
   border-collapse: collapse;
 }
 
@@ -111,12 +111,87 @@ td {
   border: 1px solid black;
 }
 
-#allcontent {
-  margin: auto 15%;
+.action-buttons {
+  text-align: right;
+  margin-bottom: 20px;
 }
 
-#headcontent {
-  background-color: lightgreen;
+.action-buttons .button {
+  margin-left: 10px;
+  padding: 8px 15px;
+  background-color: #4CAF50;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.action-buttons .button:hover {
+  background-color: #45a049;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.details dt {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.details dd {
+  margin: 0 0 15px 0;
+  padding: 0 0 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.work-type, .join02 {
+  margin-bottom: 15px;
+}
+
+.work-type-tag, .join02-tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 0.9em;
+  color: #fff;
+}
+
+.work-type-tag.in {
+  background-color: #4CAF50;
+}
+
+.work-type-tag.out {
+  background-color: #FF5722;
+}
+
+.join02-tag.in {
+  background-color: #9E9E9E;
+}
+
+.join02-tag.out {
+  background-color: #4CAF50;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.button:hover {
+  background-color: #45a049;
 }
 </style>
 </head>
@@ -147,14 +222,16 @@ td {
 <main>
     <div class="main-container">
         <div class="content">
-            <div class="action-buttons" style="display: inline-block; float: right;">
-                <a href="/board04/updateform/${dto.b_no04}" class="button">수정</a>
-                <a href="#" id="${dto.b_no04}" class="button delete-btn">삭제</a>
+            <div class="action-buttons">
+            
+             <c:if test="${user.id == dto.id }">
+                        <a href="/board04/updateform/${dto.b_no04}" class="button">수정</a>
+                        <a href="#" id="${dto.b_no04}" class="button delete-btn">삭제</a>
+                    </c:if>
                 <a href="/list" class="button">목록</a>
             </div>
 
             <div class="title">${dto.title}</div>
-            <div class="tags"></div>
             <dl class="details">
                 <dt>아이디</dt>
                 <dd>${dto.id}</dd>
@@ -201,13 +278,10 @@ td {
                 <dt>시작일</dt>
                 <dd>${dto.employment_start}</dd>
             </dl>
-        </div>
-        <div class="sidebar">
-            <a href="#" id="join-btn" class="button">지원하기</a>
+             <a href="#" id="join-btn" class="button">지원하기</a>
         </div>
     </div>
 </main>
-
 
 <footer class="footer">
     <div class="footer-links">
@@ -224,7 +298,6 @@ td {
         <p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
     </div>
 </footer>
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -269,28 +342,38 @@ $(function(){
             url: '/board04/join?b_no04='+boardNo+'&id='+userId,
             type: 'get',
             contentType: 'application/json',
-            beforeSend: function(xhr, settings) {
-                // i.hasContent와 i.data가 올바르게 정의되었는지 확인
-                var i = {
-                    hasContent: settings.data && settings.data.length > 0,
-                    data: settings.data
-                };
-
-                console.log("i.hasContent:", i.hasContent);
-                console.log("i.data:", i.data);
-
-                // 여기서 추가적인 로직을 수행할 수 있지만, xhr.send를 직접 호출하지 않음.
-                // 필요한 경우, 요청을 취소하려면 false를 반환하거나 xhr.abort()를 사용할 수 있음.
-            },
             success: function(response) {
                 alert(response.message); // 서버로부터 받은 메시지 표시
-                // 필요한 경우, 페이지 리로드 또는 다른 처리
+
+                // 지원 성공 시 이력서 전송
+                sendResume();
             },
             error: function(xhr, status, error) {
                 alert("지원에 실패했습니다.");
             }
         });
     });
+
+    function sendResume() {
+        $.ajax({
+            url: '/board04/post/' + ${dto.b_no04}, // 이력서 전송 URL
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                b_no04: ${dto.b_no04},
+                return_man: "${dto.id}",
+                title: "${dto.title}의 이력서 입니다.",
+                content: "이력서 내용: ...", // 필요한 이력서 내용으로 대체
+                id: "${user.id}"
+            }),
+            success: function(response) {
+                alert("이력서가 성공적으로 전송되었습니다.");
+            },
+            error: function(xhr, status, error) {
+                alert("이력서 전송에 실패했습니다.");
+            }
+        });
+    }
 });
 </script>
 </body>

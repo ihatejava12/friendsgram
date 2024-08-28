@@ -235,7 +235,7 @@ fieldset div {
         </tr>
         <tr>
             <td colspan="2" align="center">
-                <a href="/main">돌아가기</a>
+                <a href="/noticemain">돌아가기</a>
             </td>
         </tr>            
     </table>

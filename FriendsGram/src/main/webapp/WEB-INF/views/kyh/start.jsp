@@ -10,7 +10,7 @@
 <body>
 	<header class="header">
 		<div class="logo">
-			<a href="/main"> <img src="../images/logo.png" alt="프렌즈그램 로고"
+			<a href="/main"> <img src="images/logo.png" alt="프렌즈그램 로고"
 				class="logo-image" />
 			</a>
 		</div>
@@ -38,7 +38,7 @@
 	<footer class="footer">
 		<div class="footer-links">
 			<a href="#">프리랜서 이용약관</a> <a href="/question">고객센터</a> <a href="#">개인정보
-				처리방침</a> <a href="#">광고문의</a><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
+				처리방침</a><c:if test="${user.role == 3 }"><a href="/advertising/question">광고문의</a></c:if><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
 		</div>
 		<div class="company-info">
 			<p>(주)프렌즈그램(대표이사: 전재민)</p>

@@ -40,7 +40,7 @@ public interface AdminCorporation_MemberDao {
 	"</script>"})
 	int countCompany(Map<String, Object> m);
 	
-	@Update("update corporation_member set company_consent = #{searchn} where id = #{id}")
+	@Update("update corporation_member set r_consent = #{searchn} where id = #{id}")
 	int updateConsent(@Param("searchn") int searchn, @Param("id") String id);
 	
 	@Select("select * from corporation_member where id = #{id}")

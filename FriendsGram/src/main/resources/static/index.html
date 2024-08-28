@@ -18,12 +18,10 @@
 			 <a	href="/list">프리랜서 공고</a> <a href="/board05">취업 공고</a>
 		</nav>
 		<div class="actions">
-			<c:if test="${user.id != null }">
-			<a class="login" href="/logout">로그아웃</a>
-			</c:if>
-			<c:if test="${user.id == null }">
+			
+			
 			<a class="login" href="/loginform">로그인</a>
-			</c:if>
+		
 			
 			 <a class="profile" href="/myprofile">프로필</a>
 			<a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
@@ -45,35 +43,14 @@
 			<div class="notices">
 				<h2 class="noticeshead"><a href="/adminpage/notice">공지사항</a></h2>
 				<div class="notice-list">
-					<c:forEach var="notice" items="${notices}">
-						<div class="notice-item">
-							<h3 class="notice-content"><a href="#" class="notice-title">${notice.title}</a> </h3>
-								<p class="notice-date"><fmt:formatDate value="${notice.date}" pattern="yyyy-MM-dd" /></p>
-							
-
-						</div>
-					</c:forEach>
+				
 				</div>
 			</div>
 
 			<div class="board04-posts">
 				<h2 class="board04_head"><a href="/list">프리랜서 공고</a></h2>
 				<div class="board04-list">
-                <c:forEach var="b04" items="${b04}">
-                    <div class="board04-item">
-                        <div class="b04_header">
-                            <h3 class="board04_title"><a href="#">${b04.title}</a></h3>
-                        </div>
-                        <div class="b04_details">
-                            <p>예상 금액: ${b04.salary}</p>
-                            <p>시작 예정일: ${b04.employment_start}</p>
-                            <p>예상 기간: ${b04.employment_date}</p>
-                            <p>상주, 원격: ${b04.work_type ? "상주" : "원격"}</p>
-                            <p>사용 언어: ${b04.b_no04}</p>
-                            <p>${b04.join02 ? "모집중" : "모집완료"}</p>
-                        </div>
-                    </div>
-                </c:forEach>
+              
             </div>
 			</div>
 		</section>
