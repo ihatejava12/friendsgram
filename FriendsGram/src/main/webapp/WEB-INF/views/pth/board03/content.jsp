@@ -187,7 +187,7 @@ a {
 
 	</div>
 
-	<div id="headcontent" style="height: 200px; padding: 40px;">
+	<div id="headcontent" style="height: 200px; padding: 40px; background-color:#E0F2F1;">
 		<h1 style="color: black;" align="center">동료처럼 믿고 맡길 수 있는</h1>
 		<h1 style="color: black;" align="center">우수 프리랜서를 만나보세요</h1>
 		<br>

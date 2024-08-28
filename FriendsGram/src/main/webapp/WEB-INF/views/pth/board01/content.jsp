@@ -7,6 +7,38 @@
 <title>FriendsGram</title>
 
 <style>
+
+button[class='href']{
+	margin-bottom: 15px;
+	padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+#allcontent {
+	width: 60%;
+	margin: 20px auto;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 40px;
+	padding-right: 40px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+}
+
+#headcontent h2 {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	color: #333;
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -139,15 +171,6 @@ td {
 	border: 1px solid black;
 }
 
-#allcontent {
-	margin: auto 15%;
-}
-
-#headcontent {
-	background-color: lightgreen;
-}
-
-
 a {
 	text-decoration: none;
 }
@@ -183,62 +206,65 @@ a {
 		</header>
 
 	</div>
-	<hr>
-	<div id="allcontent">
-		<div id="headcontent" align="center" style="height: 80px;">
-			<h2>코딩 게시판</h2>
 
 
 
-		</div>
+	<main>
 
-		<hr>
+		<div id="allcontent">
+			<div id="headcontent" align="center" style="height: 80px;">
+				<h2 align="center">코딩 게시판</h2>
 
-		<main>
-			<div align="right">
-				<button>
-					<a href="/board01/main">목록</a>
-				</button>
-				<button>
-					<a href="/board01/write">글쓰기</a>
-				</button>
+
 			</div>
 
-			<hr>
+			<div>
+				<div align="left" style="float:left;">
+					<c:if test="${user.id == content.id}">
+						<button class="href">
+							<a href="/board01/update/${content.b_no01 }"><font color="white">수정</font></a>
+						</button>
+
+						<button id="deletearticle" class="href"><font color="white">삭제</font></button>
+					</c:if>
+				</div>
+
+				<div align="right">
+					<button class="href">
+						<a href="/board01/main"><font color="white">목록</font></a>
+					</button>
+					<button class="href">
+						<a href="/board01/write"><font color="white">새글 쓰기</font></a>
+					</button>
+				</div>
+			</div>
+
 			<!--  content 라는 이름으로 글 1개 정보 보냈음 -->
 			<div class="articlehead">
-				<span>${content.id}</span> <span><fmt:formatDate
+			<h2>${content.title }</h2>
+			<hr>
+				<span><b><font size="3">${content.id}</font></b></span> <span><fmt:formatDate
 						value="${content.date }" type="both" dateStyle="short"
 						timeStyle="default" /></span> <span>조회 : ${content.readcount }</span>
 			</div>
-			<hr>
+			
 
-			<p>
-				<c:if test="${user.id == content.id}">
-					<button><a href="/board01/update/${content.b_no01 }">수정</a></button>
 
-					<button class="deletearticle">삭제</button>
-				</c:if>
-			</p>
 
 
 			<div class="articlemain">
-				<h2>${content.title }</h2>
-				<br>
-				<br>
-				<br>
-				<br> <span> ${content.content } </span><br>
-				<br>
-				<br>
+				
+				<br> <br> <br> <span>
+					${content.content } </span><br> <br> <br>
 			</div>
-			<div>
+			<div align="right">
 				<button>
 					<a class="report" href="/board01/report/${content.b_no01}"
 						onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">신고하기</a>
 				</button>
 			</div>
 			<br>
-			<hr>
+			<hr><br>
 
 			<div class="articlecoment">
 				<b>댓글</b>
@@ -247,12 +273,12 @@ a {
 
 					<c:if test="${coment.coment == '삭제된 댓글입니다.' }">
 						<div
-							style="width: 100%; height: 40px; border-bottom: 1px solid black;">
+							style="width: 100%; height: 40px; border-bottom: 1px solid gray;">
 							${coment.coment }</div>
 					</c:if>
 
 					<c:if test="${coment.coment != '삭제된 댓글입니다.' }">
-						<div style="border-bottom: 1px solid black;">
+						<div style="border-bottom: 1px solid gray;">
 							<br>
 
 							<c:if test="${coment.ref_level > 0 }">
@@ -265,25 +291,35 @@ a {
 								</div>
 							</c:if>
 							<div class="comentcontent">
-								<p>${coment.id }
+								<div>
+								<div style="float:left;">
+								<b><font size="3">${coment.id }</font></b>
+									<font size="2">
 									(
 									<fmt:formatDate value="${coment.date }" type="both"
 										dateStyle="short" timeStyle="default" />
-									<button class="like">${coment.comentlike}추천</button>
-									<button>신고</button>
+										)
+										</font>
+									
+									
 
+									
+								</div>
+									<div align="right">
 									<c:if test="${coment.comentlike >= 1 }">
 										<span class="icon"><img src="/img/hot.gif" alt="추천댓글" /></span>
 									</c:if>
-
-								</p>
+									<button class="like">${coment.comentlike}추천</button>
+									<button	>신고</button>
+									</div>
+								</div>
 								<br> <span>${coment.coment }</span> <span><button
 										class="writeAnser" id="${coment.c_no01}">답글</button></span>
 								<c:if test="${coment.id == user.id }">
 									<button>
 										<a
 											href="/board01/coment/delete/${coment.c_no01}/${coment.b_no01}"
-											style="text-decoration: none" returnfalse; >삭제</a>
+											style="text-decoration: none"returnfalse; >삭제</a>
 									</button>
 								</c:if>
 								<br> <br>
@@ -319,7 +355,7 @@ a {
 				</div>
 
 			</form>
-	</div>
+		</div>
 
 	</main>
 
@@ -345,6 +381,10 @@ a {
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(function() {
+			
+			
+			
+			
 
 			$(".writeAnser").on("click", function() {
 				$("form[class]").hide();
@@ -402,7 +442,7 @@ a {
 												});
 							})
 
-			$(".deletearticle").click(function() {
+			$("#deletearticle").click(function() {
 				if (confirm("삭제하시곘습니까?")) {
 					location.href = "/board01/delete/${content.b_no01}"
 				} else {
