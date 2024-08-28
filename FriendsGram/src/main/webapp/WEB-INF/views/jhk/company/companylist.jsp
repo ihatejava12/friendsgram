@@ -263,13 +263,13 @@ table td a:hover {
 								<td><a href="/adminpage/contentc/${clist.id}">${clist.company}</a></td>
 								<td>${clist.business_number}</td>
 
-								<c:if test="${clist.company_consent == 0}">
+								<c:if test="${clist.r_consent == 0}">
 									<td>확인중</td>
 								</c:if>
-								<c:if test="${clist.company_consent == 1}">
+								<c:if test="${clist.r_consent == 1}">
 									<td>등록완료</td>
 								</c:if>
-								<c:if test="${clist.company_consent == 2}">
+								<c:if test="${clist.r_consent == 2}">
 									<td>등록거절</td>
 								</c:if>
 							</tr>

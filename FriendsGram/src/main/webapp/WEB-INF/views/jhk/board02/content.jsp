@@ -254,7 +254,7 @@ fieldset div {
             <td>중요 코드</td>
             <td>
                 <c:forEach items="${clist}" var="codelist">
-                    ${codelist.code}, 
+                    ${codelist.code} &nbsp;&nbsp;
                 </c:forEach>
             </td>
         </tr>

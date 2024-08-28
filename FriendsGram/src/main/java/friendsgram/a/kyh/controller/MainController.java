@@ -29,6 +29,7 @@ public class MainController {
 	
 	@GetMapping("/main")
     public String showMainPage(Model model) {
+		System.out.println("main이동");
         List<NoticeDto> recentNotices = mservice.getRecentMainNotices();
         List<Board04Dto> b04 = mservice.getRecentMainBoard04();
         model.addAttribute("b04", b04);
