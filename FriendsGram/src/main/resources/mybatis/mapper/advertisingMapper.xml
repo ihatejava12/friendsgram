@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="friendsgram.a.pth.advertising.dao.AdvertisingDao">
+
+	<insert id="addAdvertisingQuestion" parameterType="friendsgram.advertising.dto.AdvertisingDto">
+		insert into advertising(company, title, add_file, content, date, email, company_number, request, id, filename)
+		values(#{company}, #{title}, #{add_file}, #{content}, now(), #{email}, #{company_number},0,#{id}
+		, #{filename} )
+	</insert>
+	
+	
+</mapper>

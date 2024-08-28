@@ -4,9 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="friendsgram.a.skw.dao.MemberDao">
 
-	<insert id="insertMem" parameterType="friendsgram.member.dto.MemberDto">
+	<!-- <insert id="insertMem" parameterType="friendsgram.member.dto.MemberDto">
 		insert into member values(#{id},#{password},#{name},#{email},#{birth},#{gender},#{phone},#{consent},0,0,0)
-	</insert>
+	</insert> -->
+	
+	<insert id="insertMem" parameterType="friendsgram.member.dto.MemberDto">
+    insert into member (id, password, name, email, birth, gender, phone, consent, r_consent, sanction, role)
+    values (
+        #{id},
+        #{password},
+        TRIM(#{name}),
+        #{email},
+        #{birth},
+        #{gender},
+        #{phone},
+        #{consent},
+        0,
+        0,
+        0
+    )
+</insert>
 	
 	<update id="updateMem" parameterType="friendsgram.member.dto.MemberDto">
 	update member

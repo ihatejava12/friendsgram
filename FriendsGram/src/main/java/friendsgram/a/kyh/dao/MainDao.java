@@ -11,7 +11,7 @@ import friendsgram.board04.dto.Board04Dto;
 @Mapper
 public interface MainDao {
 	
-	@Select("SELECT n_no AS nNo, title, content, date, id FROM notice ORDER BY date DESC LIMIT 6")
+	@Select("SELECT n_no , title, content, date, id FROM notice ORDER BY date DESC LIMIT 6")
     List<NoticeDto> mainnotice();
 
 	 @Select("SELECT * FROM board04 ORDER BY date DESC LIMIT 2")

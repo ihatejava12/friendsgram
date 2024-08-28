@@ -7,151 +7,359 @@
 <title>글 수정</title>
 <style>
 * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .header {
-	position: fixed; /* 헤더를 화면에 고정 */
-	top: 0; /* 화면 상단에 위치 */
-	left: 0; /* 화면 왼쪽에 위치 */
-	width: 100%; /* 화면 너비에 맞게 설정 */
-	z-index: 1000; /* 다른 요소 위에 보이도록 설정 */
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 20px;
-	background-color: #fff;
-	box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
 }
 
 html, body {
-	height: 100%;
-	margin: 0;
+  height: 100%;
+  margin: 0;
 }
 
 body {
-	margin-top: 80px; /* 헤더 높이만큼의 여백 추가 */
+  margin-top: 80px;
 }
 
 .logo img {
-	height: 50px;
-	width: auto;
+  height: 50px;
+  width: auto;
 }
 
 .navigation a {
-	margin-right: 15px;
-	color: #565E6C;
-	font-weight: bold;
-	text-decoration: none;
+  margin-right: 15px;
+  color: #565E6C;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .actions a {
-	margin-left: 10px;
-	color: #0C9200;
-	font-weight: bold;
-	text-decoration: none;
+  margin-left: 10px;
+  color: #0C9200;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 main {
-	font-family: 'Inter', sans-serif;
-	font-size: 14px;
-	line-height: 1.6;
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh; /* Ensures full viewport height is covered */
-	margin: 0;
-	overflow-x: hidden; /* Prevents horizontal scrolling */
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 10px;
+  max-width: 480px; /* 메인 컨텐츠 영역의 최대 너비를 줄였습니다 */
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 .footer {
-	background-color: rgba(30, 33, 40, 0.68);
-	color: white;
-	padding: 30px 20px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	flex-wrap: wrap;
-	width: 100%;
-	margin-top: auto; /* 푸터가 페이지의 끝에 위치하도록 설정 */
-	position: relative; /* 포지션 속성을 고정하지 않음 */
+  background-color: rgba(30, 33, 40, 0.68);
+  color: white;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: auto;
+  position: relative;
 }
 
 .footer-links a {
-	margin-right: 15px;
-	color: white;
-	text-decoration: none;
-	font-weight: bold;
+  margin-right: 15px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .company-info p {
-	margin-top: 10px;
-	font-size: 14px;
+  margin-top: 10px;
+  font-size: 14px;
 }
 
-.hero-image img {
-	margin-top: 20px;
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+    width: calc(100% - 60px); /* 단위를 입력칸 옆에 배치할 수 있도록 너비 조정 */
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+.radio-group,
+.checkbox-group {
+    margin-bottom: 12px;
+}
+
+.radio-group label,
+.checkbox-group label {
+    margin-right: 15px;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+}
+
+.radio-group input[type="radio"] {
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 8px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.unit-label {
+    margin-left: 10px; /* 단위를 입력 필드와 더 떨어지게 조정 */
+    font-weight: normal;
+    color: #333;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.flex-container input[type="text"] {
+    width: 80px; /* 입력 칸 크기 조정 */
+}
+</style><style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 20px;
-	background-color: #fff;
-	box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  margin-top: 80px;
 }
 
 .logo img {
-	height: 50px; /* Adjust this value as needed */
-	width: auto;
+  height: 50px;
+  width: auto;
 }
 
 .navigation a {
-	margin-right: 15px;
-	color: #565E6C;
-	font-weight: bold;
-	text-decoration: none;
+  margin-right: 15px;
+  color: #565E6C;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .actions a {
-	margin-left: 10px;
-	color: #0C9200;
-	font-weight: bold;
-	text-decoration: none;
+  margin-left: 10px;
+  color: #0C9200;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-table {
-	border: 1px solid black;
-	width: 700px;
-	border-collapse: collapse;
+main {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 10px;
+  max-width: 480px; /* 메인 컨텐츠 영역의 최대 너비를 줄였습니다 */
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-th {
-	border: 1px solid black;
-	background-color: lightgray;
-	width: 150px;
+.footer {
+  background-color: rgba(30, 33, 40, 0.68);
+  color: white;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: auto;
+  position: relative;
 }
 
-td {
-	border: 1px solid black;
+.footer-links a {
+  margin-right: 15px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-#allcontent {
-	margin: auto 15%
+.company-info p {
+  margin-top: 10px;
+  font-size: 14px;
 }
 
-#headcontent {
-	background-color: lightgreen;
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+    width: calc(100% - 60px); /* 단위를 입력칸 옆에 배치할 수 있도록 너비 조정 */
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+.radio-group,
+.checkbox-group {
+    margin-bottom: 12px;
+}
+
+.radio-group label,
+.checkbox-group label {
+    margin-right: 15px;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+}
+
+.radio-group input[type="radio"] {
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 8px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.unit-label {
+    margin-left: 10px; /* 단위를 입력 필드와 더 떨어지게 조정 */
+    font-weight: normal;
+    color: #333;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.flex-container input[type="text"] {
+    width: 80px; /* 입력 칸 크기 조정 */
+}
+
+/* 수정하기 버튼 스타일 */
+.edit-button {
+    padding: 10px 18px;
+    background-color: #28a745; /* 초록색 */
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.edit-button:hover {
+    background-color: #218838; /* 더 진한 초록색 */
+    transform: translateY(-2px);
 }
 </style>
 </head>
 <body>
 	<header class="header">
 		<div class="logo">
-			<a href="/main"> <img src="/images/logo.png" alt="프렌즈그램 로고"
-				class="logo-image" />
+			<a href="/main"> <img src="/images/logo.png" alt="프렌즈그램 로고" class="logo-image" />
 			</a>
 		</div>
 		<nav class="navigation">
@@ -175,62 +383,73 @@ td {
 
 	<main>
 		<form method="post" id="updateform" action="/board04/update/${dto.b_no04}">
-			
-			<label for="title">제목 : </label>
-			<input type="text" id="title" name="title" value="${dto.title}" required><br> 
-				
-			<label for="work_type">근무 형태 : </label>
-			<div class="work-type-options">
-				<input type="radio" id="out" name="work_type" value="true"
-					<c:if test="${dto.work_type == true}">checked</c:if>> 
-				<label for="out">원격</label> 
-				<input type="radio" id="in" name="work_type" value="false" 
-				<c:if test="${dto.work_type == false}">checked</c:if>>
-				<label for="in">상주</label>
-			</div>
+        
+        <label for="title">제목</label>
+        <input type="text" id="title" name="title" value="${dto.title}" required>
 
-			<div id="code">
-				언어 : <label><input type="checkbox" name="code" value="java">JAVA</label><br>
-				<label><input type="checkbox" name="code" value="python">PYTHON</label><br>
-			</div>
+		<div class="radio-group">
+        <label for="work_type">근무 형태</label>
+        
+            <input type="radio" id="out" name="work_type" value="true" <c:if test="${dto.work_type == true}">checked</c:if>>
+            <label for="out">원격</label>
+            <input type="radio" id="in" name="work_type" value="false" <c:if test="${dto.work_type == false}">checked</c:if>>
+            <label for="in">상주</label>
+        </div>
 
-			<label for="salary">급여 : </label> 
-			<input type="text" id="salary"name="salary" value="${dto.salary}" required> 
-			<span>원</span>
-			<br> 
-			
-			<label for="career_period">경력 기간 : </label> 
-			<input type="text" id="career_period" name="career_period" value="${dto.career_period}" required><br>
-			 <span>년</span>
+        <div id="programming_language">언어:
+		<label><input type="checkbox" name="programming_language" value="JAVA"> JAVA</label><br>
+    <label><input type="checkbox" name="programming_language" value="PYTHON"> PYTHON</label><br>
+    <label><input type="checkbox" name="programming_language" value="HTML"> HTML</label><br>
+    <label><input type="checkbox" name="programming_language" value="C"> C</label><br>
+    <label><input type="checkbox" name="programming_language" value="DATABASE"> DATABASE</label><br>
+    <label><input type="checkbox" name="other" id="other-checkbox" value="other"> 기타</label><br>
+    <input type="text" id="other-input" name="programming_language" placeholder="Enter other language" style="display: none;"><br>
+</div>
+		
+		<div class="flex-container">
+            <label for="salary">급여</label>
+            <input type="text" id="salary" name="salary" value="${dto.salary}" required>
+            <span class="unit-label">원</span>
+        </div>
+        
+		<div class="flex-container">
+            <label for="career_period">경력 기간</label>
+            <input type="text" id="career_period" name="career_period" value="${dto.career_period}" required>
+            <span class="unit-label">년</span>
+        </div>
 
-			<label for="content">내용 : </label>
-			<textarea id="content" name="content" required>${dto.content}</textarea><br> 
-			
-			<label for="join_date">모집기간</label> 
-			<input type="text" id="join_date" name="join_date" value="${dto.join_date}" required><br> 
-				
-			<label for="join02">모집상태</label> 
-			<input type="radio" id="Recruiting" name="join02" value="true"> 
-			<label for="out">모집중</label> 
-			<input type="radio" id="Recruitment completed" name="join02" value="false">
-			<label for="in">모집완</label><br> 
-			
-			<label for="volunteer">모집자수</label>
-			<input type="text" id="volunteer" name="volunteer" value="${dto.volunteer}" required><br>
 
-			<label for="employment_date">기간</label> 
-			<input type="text" id="employment_date" name="employment_date" value="${dto.employment_date}" required><br> 
-			
-			<label for="employment_start">시작일</label> 
-			<input type="text" id="employment_start" name="employment_start" value="${dto.employment_start}" required><br>
+        
 
-			<button type="submit">수정하기</button>
-		</form>
+        <label for="content">내용</label>
+        <textarea id="content" name="content" required>${dto.content}</textarea>
+
+        <label for="join_date">모집 기간</label>
+        <input type="text" id="join_date" name="join_date" value="${dto.join_date}" placeholder="YYYY-MM-DD" required>
+
+        <div class="radio-group">
+            <label>모집상태</label>
+            <input type="radio" id="Recruiting" name="join02" value="true">
+            <label for="Recruiting">모집중</label>
+            <input type="radio" id="Recruitment_completed" name="join02" value="false">
+            <label for="Recruitment_completed">모집완</label>
+        </div>
+
+        <label for="volunteer">모집자수</label>
+        <input type="text" id="volunteer" name="volunteer" value="${dto.volunteer}" required>
+
+        <label for="employment_date">기간</label>
+        <input type="text" id="employment_date" name="employment_date" value="${dto.employment_date}" placeholder="YYYY-MM-DD" required>
+
+        <label for="employment_start">시작일</label>
+        <input type="text" id="employment_start" name="employment_start" value="${dto.employment_start}" placeholder="YYYY-MM-DD" required>
+
+        <button type="submit" class="edit-button">수정하기</button>
+    </form>
 	</main>
 	<footer class="footer">
 		<div class="footer-links">
-			<a href="#">프리랜서 이용약관</a> <a href="#">고객센터</a> <a href="#">개인정보
-				처리방침</a> <a href="#">광고문의</a>
+			<a href="#">프리랜서 이용약관</a> <a href="#">고객센터</a> <a href="#">개인정보 처리방침</a> <a href="#">광고문의</a>
 			<c:if test="${user != null && user.role == 2 || user.role == 1}">
 				<a href="/adminpage/board01">관리자</a>
 			</c:if>

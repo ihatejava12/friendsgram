@@ -13,7 +13,7 @@ import friendsgram.question.dto.Question_AnswerDto;
 @Mapper
 public interface QuestionDao {
 
-    @Insert("insert into question (title, content, date, question_type, id) values (#{title}, #{content}, #{date}, #{question_type}, #{id})")
+    @Insert("insert into question (title, content, date, question_type,request, id) values (#{title}, #{content}, #{date}, #{question_type}, False ,#{id})")
     int qinsert(QuestionDto qdto);
 
     @Select("select * from question where id = #{id} ORDER BY q_no DESC")

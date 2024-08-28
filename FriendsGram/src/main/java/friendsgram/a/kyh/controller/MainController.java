@@ -36,13 +36,6 @@ public class MainController {
         model.addAttribute("notices", recentNotices);
         return "kyh/main/main"; // JSP 파일의 경로
     }
-	@RequestMapping("/aa")
-	public String main(@ModelAttribute("user") MemberDto dto) {
-		if(dto.getId() != null) {
-			return "mem/main";
-		}else {
-			return "/kyh/login/login";
-		}
-	}
+	
 
 }

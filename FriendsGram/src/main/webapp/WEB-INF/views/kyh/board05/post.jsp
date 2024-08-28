@@ -8,9 +8,9 @@
 <link href="/css/kyh/post.css" rel="stylesheet">
 </head>
 <body>
-	<header class="header">
+   <header class="header">
 		<div class="logo">
-			<a href="/main"> <img src="/images/logo.png" alt="프렌즈그램 로고"
+			<a href="/main"> <img src="images/logo.png" alt="프렌즈그램 로고"
 				class="logo-image" />
 			</a>
 		</div>
@@ -30,24 +30,24 @@
 			<a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
 		</div>
 	</header>
-	
-	<main>
-	<form action="/board05/post/${b_no05}" method="post">
-	    <h2>이력서 전송</h2>
-	
-	    <div>
-	        <label for="return_man">받는 사람:</label>
-	        <input type="text" id="return_man" name="return_man" value="${cpdto.id}" readonly>
-	    </div>
-	    
-	    <div>
-	        <label for="title">제목:</label>
-	        <input type="text" id="title" name="title" value="${dto.name}의 이력서 입니다." readonly>
-	    </div>
-	
-	    <div>
-	        <label for="content">내용:</label>
-	        <textarea id="content" name="content" rows="10" cols="30" readonly>
+   
+   <main>
+   <form action="/board05/post/${b_no05}" method="post">
+       <h2>이력서 전송</h2>
+   
+       <div>
+           <label for="return_man">받는 사람:</label>
+           <input type="text" id="return_man" name="return_man" value="${cpdto.id}" readonly>
+       </div>
+       
+       <div>
+           <label for="title">제목:</label>
+           <input type="text" id="title" name="title" value="${dto.name}의 이력서 입니다." readonly>
+       </div>
+   
+       <div>
+           <label for="content">내용:</label>
+           <textarea id="content" name="content" rows="10" cols="30" readonly>
 이력서
 이름: ${dto.name}
 생년월일: ${dto.birth}
@@ -66,23 +66,23 @@ email: ${dto.email}
 경력 담당업무: ${dto.career_role}
 자격증 이름: ${dto.certificate_name}
 자격증 취득일자: ${dto.certificate_date}
-			</textarea>
-	    </div>
-	
-	    <div>
-	        <label for="id">보낸 사람:</label>
-	        <input type="text" id="id" name="id" value="${dto.id}" readonly>
-	    </div>
-	
-	    <button type="submit">이력서 전송</button>
-	</form>
-	
-	</main>
-	
-	<footer class="footer">
+         </textarea>
+       </div>
+   
+       <div>
+           <label for="id">보낸 사람:</label>
+           <input type="text" id="id" name="id" value="${dto.id}" readonly>
+       </div>
+   
+       <button type="submit">이력서 전송</button>
+   </form>
+   
+   </main>
+   
+   <footer class="footer">
 		<div class="footer-links">
 			<a href="#">프리랜서 이용약관</a> <a href="/question">고객센터</a> <a href="#">개인정보
-				처리방침</a> <a href="#">광고문의</a><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
+				처리방침</a><c:if test="${user.role == 3 }"><a href="/advertising/question">광고문의</a></c:if><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
 		</div>
 		<div class="company-info">
 			<p>(주)프렌즈그램(대표이사: 전재민)</p>

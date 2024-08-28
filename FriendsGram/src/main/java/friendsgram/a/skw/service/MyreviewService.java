@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import friendsgram.a.skw.dao.MyreviewDao;
-import friendsgram.admin.dto.ReportDto;
 import friendsgram.member.dto.Member_ReviewDto;
 
 @Service
@@ -20,9 +19,10 @@ public class MyreviewService {
         return reviewDao.avgScore(subjects);
     }
 
-    //리뷰 ID로 특정 리뷰 가져오기 
+    // 리뷰 ID로 특정 리뷰 가져오기 
     public Member_ReviewDto getReviewById(int mr_no) {
-    	 return reviewDao.getReviewById(mr_no); }
+        return reviewDao.getReviewById(mr_no);
+    }
 
     // 리뷰 업데이트
     public void updateReview(int mr_no, int score, String content) {
@@ -33,21 +33,57 @@ public class MyreviewService {
         reviewDao.updateReview(review);
     }
 
-    // 특정 subjects에 대한 모든 리뷰 가져오기
-    public List<Member_ReviewDto> reviewList(String subjects) {
-        return reviewDao.reviewList(subjects);
-    }
-    
-    // 특정 사용자가 작성한 리뷰 가져오기
-    public List<Member_ReviewDto> writereviewList(String id) {
-        return reviewDao.writereviewList(id);
+    // subjects에 대한 리뷰 개수 카운트
+    public int countReviews(String subjects) {
+        return reviewDao.countReviews(subjects);
     }
 
+    // 사용자가 작성한 리뷰 개수 카운트
+    public int countWrittenReviews(String id) {
+        return reviewDao.countWrittenReviews(id);
+    }
+    
+    // 특정 subjects에 대한 모든 리뷰 가져오기 (페이징 포함)
+    public List<Member_ReviewDto> reviewList(String subjects, int limit, int offset) {
+        return reviewDao.reviewList(subjects, limit, offset);
+    }
+    
+    // 특정 사용자가 작성한 리뷰 가져오기 (페이징 포함)
+    public List<Member_ReviewDto> writereviewList(String id, int limit, int offset) {
+        return reviewDao.writereviewList(id, limit, offset);
+    }
 
     @Transactional
     public void deleteReview(int mr_no) {
         reviewDao.deleteReview(mr_no);
     }
+
+	
+}
+	
+	/*
+	 * @Autowired private MyreviewDao reviewDao;
+	 * 
+	 * public int avgScore(String subjects) { return reviewDao.avgScore(subjects); }
+	 * 
+	 * //리뷰 ID로 특정 리뷰 가져오기 public Member_ReviewDto getReviewById(int mr_no) { return
+	 * reviewDao.getReviewById(mr_no); }
+	 * 
+	 * // 리뷰 업데이트 public void updateReview(int mr_no, int score, String content) {
+	 * Member_ReviewDto review = new Member_ReviewDto(); review.setMr_no(mr_no);
+	 * review.setScore(score); review.setContent(content);
+	 * reviewDao.updateReview(review); }
+	 * 
+	 * // 특정 subjects에 대한 모든 리뷰 가져오기 public List<Member_ReviewDto> reviewList(String
+	 * subjects) { return reviewDao.reviewList(subjects); }
+	 * 
+	 * // 특정 사용자가 작성한 리뷰 가져오기 public List<Member_ReviewDto> writereviewList(String
+	 * id) { return reviewDao.writereviewList(id); }
+	 * 
+	 * 
+	 * @Transactional public void deleteReview(int mr_no) {
+	 * reviewDao.deleteReview(mr_no); }
+	 */
 
 /*
  * @Transactional public void reportReview(int mrNo, String reportContent,
@@ -58,7 +94,7 @@ public class MyreviewService {
  * 
  * ReportDto.insertReport(reportDto); }
  */
-} 
+
 /*
  * package friendsgram.a.skw.service;
  * 
