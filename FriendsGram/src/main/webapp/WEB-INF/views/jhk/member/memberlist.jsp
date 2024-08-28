@@ -267,10 +267,10 @@ table td a:hover {
 									<td>${member.name}</td>
 									<td>${member.sanction}</td>
 
-									<c:if test="${member.r_consent == false}">
+									<c:if test="${member.r_consent == 0}">
 										<td>사용 불가</td>
 									</c:if>
-									<c:if test="${member.r_consent == true}">
+									<c:if test="${member.r_consent == 1}">
 										<td>사용 가능</td>
 									</c:if>
 

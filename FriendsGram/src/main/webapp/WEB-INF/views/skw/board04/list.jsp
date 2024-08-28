@@ -13,7 +13,7 @@
   margin: 0;
   padding: 0;
 }
-
+  
 .header {
   position: fixed; /* 헤더를 화면에 고정 */
   top: 0; /* 화면 상단에 위치 */

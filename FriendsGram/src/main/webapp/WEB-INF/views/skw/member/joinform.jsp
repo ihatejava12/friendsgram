@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>회원 가입을 환영합니다.</h3>
+	<h3>회원 가입을 환영합니다.</h3> 
 <form action="insert" method="post" id="joinform">
    <table>
       <tr><td>아이디</td><td><input name="id" id="id">
