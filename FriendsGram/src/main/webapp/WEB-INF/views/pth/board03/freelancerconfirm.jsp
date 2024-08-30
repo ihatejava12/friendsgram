@@ -5,6 +5,96 @@
 <title>FreindsGram</title>
 <style>
 
+#allcontent {
+  width: 40%;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+input[class='normal'] {
+width: 100%; /* select 박스의 너비를 200px로 설정 */
+    height: 35px; /* select 박스의 높이를 35px로 설정 */
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    color: black;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+}
+
+input[class='normal2'] {
+width: 85%; /* select 박스의 너비를 200px로 설정 */
+    height: 35px; /* select 박스의 높이를 35px로 설정 */
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    color: black;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+}
+
+textarea[class='normal3'] {
+width: 100%; /* select 박스의 너비를 200px로 설정 */
+    height: 400px; /* select 박스의 높이를 35px로 설정 */
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    color: black;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+    resize:vertical;
+}
+
+select {
+width: 100%; /* select 박스의 너비를 200px로 설정 */
+    height: 35px; /* select 박스의 높이를 35px로 설정 */
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    color: black;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+button[class="button1"]{
+margin-bottom: 15px;
+	padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button[class='href']{
+	margin-bottom: 15px;
+	padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+a {
+	text-decoration: none;
+}
+
+
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -165,19 +255,48 @@ main {
  
 </div>
 
-<div id="headcontent" style="height: 200px; padding: 40px;">
-<h1 style="color: black;" align="center">프리랜서 등록 </h1>
-<h3 style="color: black;" align="center"> 프리랜서로 등록하고 딱맞는 프로젝트/의뢰를 받아보세요.</h3>
+<div id="headcontent" style="height: 170px; padding: 40px; background-color:#E0F2F1;">
+
+<div style="margin-bottom: 15px;"><h1 style="color: black;" align="center">프리랜서 등록 완료!</h1></div>
+<h3 style="color: black;" align="center">새로운 도전을 시작한 것을 축하드립니다!</h3>
+
+
+
+
+
+</div>
+
+
+<main>
+<div id="allcontent" align="center">
+<div style="margin-bottom: 10px;"><font size="4"><b>
+협업 제의가 오면 메시지가 도착합니다.  
+</b></font></div>
+<div style="margin-bottom: 10px;"><font size="4"><b>
+당신의 능력과 열정으로 멋진 성과를 이루길 바랍니다.
+</b></font></div>
+
 <br>
+<div align="center" style="margin-top:10px; margin-bottom:20px;">
+	<button class='href'><a href="/board03/main"><font color="white">목록으로</font></a></button>
 </div>
 
 
-<div>
-	<h3>프리랜서 등록을 축하합니다!</h3>
+<div align="center">
+	 <button id="mainbutton" style="border:none;"><img src="/images/logo.png" alt="프렌즈그램 로고" class="logo-image" 
+	  style="width:160px; height: 60px;"/></button>
+				
+
 </div>
 
 
-<footer class="footer">
+
+</div>
+</main>
+
+
+
+  <footer class="footer">
       <div class="footer-links">
          <a href="#">프리랜서 이용약관</a> <a href="#">고객센터</a> <a href="#">개인정보
             처리방침</a> <a href="#">광고문의</a><c:if test="${ user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
@@ -188,6 +307,20 @@ main {
       </div>
    </footer>
 
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script>
+    
+    $(function(){
+    	$("#mainbutton").on("click",function(){
+    		location.href = "/main";
+    	})
+    })
+    
+    
+  </script>
 
 </body>
 </html>
