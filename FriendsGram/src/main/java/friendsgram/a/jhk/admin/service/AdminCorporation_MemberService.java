@@ -25,6 +25,7 @@ public class AdminCorporation_MemberService {
 	}
 	
 	public List<Corporation_MemberDto> selectCompany(int searchn, String company, int start){
+		System.out.println("company="+company);
 		Map<String,Object> m = new HashMap<String, Object>();
 		m.put("searchn",searchn);
 		m.put("company", company);
