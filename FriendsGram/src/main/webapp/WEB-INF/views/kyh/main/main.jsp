@@ -72,7 +72,7 @@
                             <p>시작 예정일: ${b04.employment_start}</p>
                             <p>예상 기간: ${b04.employment_date}</p>
                             <p>상주, 원격: ${b04.work_type ? "상주" : "원격"}</p>
-                            <p>사용 언어: ${b04.b_no04}</p>
+                            <p>사용 언어: 5</p>
                             <p>${b04.join02 ? "모집중" : "모집완료"}</p>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
 		            if ($(this).attr('href').includes('/question') || $(this).attr('href').includes('/logout')) {
 		                return;  // 이 경우 기본 동작을 허용
 		            }
-	
+	 
 		            // 기본 동작을 막음
 		            event.preventDefault();
 		        });
