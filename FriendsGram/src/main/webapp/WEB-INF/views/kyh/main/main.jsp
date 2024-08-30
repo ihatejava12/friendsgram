@@ -102,7 +102,7 @@
 		            if ($(this).attr('href').includes('/question') || $(this).attr('href').includes('/logout')) {
 		                return;  // 이 경우 기본 동작을 허용
 		            }
-	
+	 
 		            // 기본 동작을 막음
 		            event.preventDefault();
 		        });
