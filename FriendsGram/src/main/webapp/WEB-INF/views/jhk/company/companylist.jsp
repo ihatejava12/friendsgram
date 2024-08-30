@@ -283,11 +283,11 @@ table td a:hover {
 					</c:if>
 					<c:forEach begin="${begin }" end="${end}" var="i">
 						<a
-							href="consent?p=${begin-1}&company=${company}&searchn=${searchn}">${i}</a>
+							href="consent?p=${i}&company=${company}&searchn=${searchn}">${i}</a>
 					</c:forEach>
 					<c:if test="${end < totalPages }">
 						<a
-							href="consent?p=${begin-1}&company=${company}&searchn=${searchn}">[다음]</a>
+							href="consent?p=${end+1}&company=${company}&searchn=${searchn}">[다음]</a>
 					</c:if>
 				</div>
 			</main>

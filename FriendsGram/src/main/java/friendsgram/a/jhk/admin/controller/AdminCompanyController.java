@@ -40,7 +40,7 @@ public class AdminCompanyController {
 		
 		int perPage = 10; // 한 페이지에 보일 글의 갯수
 		int startRow = (page - 1) * perPage;
-		int endRow = page * perPage;
+		//int endRow = page * perPage;
 		
 		List<Corporation_MemberDto> comlist = service.selectCompany(searchn, company, startRow);
 		m.addAttribute("comlist", comlist);
