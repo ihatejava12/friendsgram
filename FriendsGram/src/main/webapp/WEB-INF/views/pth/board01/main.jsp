@@ -451,6 +451,7 @@ tr {
 				if ($("#selectskil").val() == 'other') {
 					$("#addskil").show();
 				}else{
+					$("#addskil").val("");
 					$("#addskil").hide();
 				}
 			})

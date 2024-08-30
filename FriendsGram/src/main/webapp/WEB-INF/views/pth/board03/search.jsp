@@ -148,6 +148,8 @@ main {
 
 .free {
 	margin: 20px;
+	sbox-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 #skils button {
@@ -207,7 +209,9 @@ main {
 				<div class="search-container"
 					style="display: flex; flex-wrap: nowrap; justify-content: center;">
 					<div class="filter-group" style="margin: 10px;">
-						<label for="selectwork1"><font size="3">근무 형태</font></label><br> 
+						<div style="margin-bottom: 10px;">
+						<label for="selectwork1"><font size="3">근무 형태</font></label>
+						</div>
 						<select 
 							id="selectwork1" class="work1" name="work_type">
 							<option value="-1" ${work_type == -1?"selected":"" }>전체</option>
@@ -217,7 +221,10 @@ main {
 					</div>
 
 					<div class="filter-group" style="margin: 10px;">
-						<label for="selectskil1"><font size="3">개발 언어</font></label><br> <select
+						<div style="margin-bottom: 10px;">
+						<label for="selectskil1"><font size="3">개발 언어</font></label>
+						</div>
+						 <select
 							id="selectskil1" class="skil1 selectskil" name="skil">
 							<option value="all" ${skil == 'all'?"selected":"" }>전체</option>
 							<option value="java" ${skil == 'java'?"selected":"" }>JAVA</option>
@@ -231,7 +238,10 @@ main {
 					</div>
 
 					<div class="filter-group" style="margin: 10px;">
-						<label for="selectcareer1"><font size="3">경력 기간</font></label><br> <select
+						<div style="margin-bottom: 10px;">
+						<label for="selectcareer1"><font size="3">경력 기간</font></label>
+						</div>
+						 <select
 							id="selectcareer1" class="career1" name="career">
 							<option value="-2" ${career == -2?"selected":"" }>전체</option>
 							<option value="-1" ${career == -1?"selected":"" }>경력 없음</option>
@@ -247,10 +257,10 @@ main {
 						</select>
 					</div>
 					
-					
+					<div style="margin-top:22px;">
 					<button class="notnull" style="height: 30px; margin-top: 20px; margin-left:20px;">
 				프리랜서 찾기</button>
-					
+					</div>
 				</div>
 			</form>
 		
