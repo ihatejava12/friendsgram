@@ -245,7 +245,8 @@ table td a:hover {
 							<option value="0">전체</option>
 							<option value="1">아이디</option>
 							<option value="2">이름</option>
-						</select> <input type="text" placeholder="아이디 혹은 이름을 입려하세요" name="search">
+						</select> 
+						<input style="width:250px;" type="text" placeholder="아이디 혹은 이름을 입려하세요" name="search">
 						<input type="submit" value="검색">
 					</form>
 

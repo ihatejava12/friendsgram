@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -23,10 +24,21 @@ public interface AdminAdvertisingDao {
 	@Select("select * from advertising where a_no = #{a_no}")
 	AdvertisingDto advertisingContent(int a_no);
 	
-	@Select("select * from advertising order by request limit #{start} , #{count}")
+	@Select({"<script>",
+				"select * from advertising",
+					"<where>",
+						"company like concat('%',#{search},'%')",
+					"</where>",
+				"order by request limit #{start} , #{count}",
+			 "</script>"})
 	List<AdvertisingDto> advertisingList(Map<String, Object> m);
 	
-	@Select("select count(*) from advertising")
-	int count();
+	@Select({"<script>",
+				"select count(*) from advertising",
+					"<where>",
+						"company like concat('%',#{search},'%')",
+					"</where>",
+			 "</script>"})
+	int count(@Param("search") String search);
 	
 }

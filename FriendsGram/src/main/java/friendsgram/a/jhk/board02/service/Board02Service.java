@@ -10,17 +10,29 @@ import org.springframework.stereotype.Service;
 
 import friendsgram.a.jhk.board02.dao.Board02Dao;
 import friendsgram.admin.dto.ReportDto;
+import friendsgram.admin.dto.WordDto;
 import friendsgram.board02.dto.Board02Dto;
 import friendsgram.board02.dto.Board02_CodeDto;
 import friendsgram.board02.dto.Board02_JoinDto;
 import friendsgram.board02.dto.Board02_TeamDto;
-import friendsgram.member.dto.MemberDto;
 
 @Service
 public class Board02Service {
 
 	@Autowired
 	Board02Dao dao;
+	
+	public List<Board02_TeamDto> teList(String id){
+		return dao.teList(id);
+	}
+	
+	public List<WordDto> wordList(){
+		return dao.wordlist();
+	}
+	
+	public int deleteCode(int b_no02) {
+		return dao.deleteCdoe(b_no02);
+	}
 	
 	public String id(int b_no02) {
 		return dao.id(b_no02);
@@ -125,7 +137,7 @@ public class Board02Service {
 		m.put("searchn",searchn);
 		m.put("search", search);
 		m.put("start", start);
-		m.put("count", 10);
+		m.put("count", 13);
 		return dao.board02List(m);
 	}
 	

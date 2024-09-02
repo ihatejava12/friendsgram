@@ -328,11 +328,11 @@ a {
 							<form class="${coment.c_no01} " style="display: none;"
 								action="/board01/coment/write">
 
-								<input name="id" value="${user.id }" type="hidden" /> <input
-									name="b_no01" value="${content.b_no01 }" type="hidden" /> <input
-									name="ref_level" value="1" type="hidden" /> <input name="ref"
-									value="${coment.ref}" type="hidden" /> <input
-									class="${coment.c_no01} " name="coment" type="text"
+								<input name="id" value="${user.id }" type="hidden" />
+								<input name="b_no01" value="${content.b_no01 }" type="hidden" /> 
+								<input name="ref_level" value="1" type="hidden" /> 
+								<input name="ref" value="${coment.ref}" type="hidden" /> 
+								<input class="${coment.c_no01} " name="coment" type="text"
 									style="width: 700px; height: 80px; display: none;" />
 								<button class="${coment.c_no01} " style="display: none;">등록</button>
 
