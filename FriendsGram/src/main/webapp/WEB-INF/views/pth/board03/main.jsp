@@ -358,8 +358,8 @@ main {
 
 					<div style="float: left;">
 						
-						<div style="width: 300px; height: 130px; border-left: 1px solid #e0e0e0;
-						 background-color:white;">
+						<div style="width: 350px; height: 130px; border-left: 1px solid #e0e0e0;
+						 background-color:white; padding-left:20px;">
 							<font size="2">${freelancer.content } </font></div>
 					</div>
 
