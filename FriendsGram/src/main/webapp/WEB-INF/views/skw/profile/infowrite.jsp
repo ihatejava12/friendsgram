@@ -286,6 +286,7 @@
     <a href="/info">이력서</a>
     <a href="/review/${user.id}">나의 리뷰</a>
     <a href="/myquestion">문의 사항 보기</a>
+    <a href="/board03/freelancer">프리랜서 등록</a>
 
 <form action="insertInfo" method="post" id="infowrite">
     <h3>이력서 작성중</h3>

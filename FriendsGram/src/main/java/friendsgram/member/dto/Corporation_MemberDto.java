@@ -24,5 +24,7 @@ public class Corporation_MemberDto {
 	private int company_consent;
 	private int role;
 	private String detail_address;
-
+	private String birth;
+	private String gender;
+	private String phone;
 }

@@ -108,7 +108,7 @@ public class MyreviewController {
                                @RequestParam("score") int score,
                                @RequestParam("content") String content) {
         reviewService.updateReview(mr_no, score, content);
-        return "redirect:/myprofile";
+        return "/jhk/board02/close";
     }
 
     // 리뷰 삭제 처리

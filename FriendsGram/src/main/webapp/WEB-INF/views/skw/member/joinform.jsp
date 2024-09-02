@@ -55,15 +55,21 @@
     td:last-child {
         text-align: left;
         width: 70%;
+        display: flex;
+        align-items: center;
     }
 
     input[type="text"], input[type="password"], textarea {
-        width: calc(100% - 20px);
-        padding: 10px;
+        width: calc(100% - 120px); /* 버튼 옆으로 공간을 확보 */
+        padding: 8px;
         border-radius: 5px;
         border: 1px solid #ccc;
         margin-bottom: 15px;
         font-size: 1em;
+    }
+
+    input[type="password"], input[type="text"][name="phone"] {
+        width: calc(100% - 150px); /* 비밀번호와 전화번호 입력창 크기 더 작게 조정 */
     }
 
     input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
@@ -74,12 +80,13 @@
     input[type="button"], input[type="submit"] {
         background-color: #4CAF50; /* 초록색 버튼 */
         color: white;
-        padding: 10px 20px;
+        padding: 5px 10px; /* 버튼 크기 조정 */
         border: none;
         border-radius: 5px;
         cursor: pointer;
         transition: background-color 0.3s ease, transform 0.3s ease;
-        font-size: 1em;
+        font-size: 0.9em; /* 버튼 글자 크기 조정 */
+        margin-left: 10px; /* 버튼 간의 간격 확보 */
     }
 
     input[type="button"]:hover, input[type="submit"]:hover {
@@ -95,17 +102,26 @@
     #id_msg, #emailresult, #result {
         color: #f44336;
         font-weight: bold;
+        margin-left: 10px; /* 메시지와 입력창 간의 간격 확보 */
     }
 
     label {
         font-weight: bold;
         color: #333;
     }
+
+    /* 가입 버튼을 중앙에 배치 */
+    .submit-container {
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
 </style>
 </head>
 <body>
-    <h3>회원 가입을 환영합니다.</h3>
     <form action="insert" method="post" id="joinform">
+        <h3>회원 가입을 환영합니다.</h3>
         <table>
             <tr>
                 <td>아이디</td>
@@ -127,17 +143,15 @@
                 <td>email</td>
                 <td>
                     <input name="email" id="email">
-                    <div id="emailresult"></div>
                     <input type="button" id="mail_ck" value="메일 인증">
+                    <div id="emailresult"></div>
                 </td>
             </tr>
             <tr>
-                <td>인증번호 입력 공간</td>
+                <td>인증번호</td>
                 <td>
-                    <div id="input">
-                        <input id="ck_num"> 
-                        <input type="button" id="ck_b" value="인증 확인">
-                    </div>
+                    <input id="ck_num">
+                    <input type="button" id="ck_b" value="인증 확인">
                     <div id="result"></div>
                 </td>
             </tr>
@@ -164,7 +178,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" align="center">
+                <td colspan="2" class="submit-container">
                     <input type="submit" value="가입">
                 </td>
             </tr>

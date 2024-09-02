@@ -19,7 +19,7 @@ public interface CorporationDao {
 	int insertCor(Corporation_MemberDto dto);
 	
 	Corporation_MemberDto corlogin(LoginDto dto);
-	int updateCor(Corporation_MemberDto dto);
+	
 	int delete_Cor(String id);
 	
 	@Select("select * from Corporation_Member")
@@ -34,16 +34,14 @@ public interface CorporationDao {
 	@Select("select * from Corporation_Member where id=#{id} and password=#{password}")
 	List<Corporation_MemberDto> corlogin();
 	
-	//@Insert("insert into member values(#{id},#{password}, #{name}, #{email}, #{birth}, #{gender}, #{phone}")
-	//List<MemberDto> insertMem();
-	
-	@Update("update Corporation_Member set password=#{password}, \r\n"
-			+ "name=#{name}, company=#{company}, scale=#{scale},\r\n"
-			+ "business_number=#{business_number}, boss_name=#{boss_name}, address=#{address},\r\n"
-			+ "email=#{email}, company_number=#{company_number}, consent=#{consent},\r\n"
-			+ "company_consent=#{company_consent}"
-			+ "where id=#{id} ")
-	List<Corporation_MemberDto> updateCor();
+	@Update("UPDATE Corporation_Member SET "
+	        + "password=#{password}, "
+	        + "name=#{name}, company=#{company}, scale=#{scale}, "
+	        + "business_number=#{business_number}, boss_name=#{boss_name}, address=#{address}, "
+	        + "email=#{email}, company_number=#{company_number}, consent=#{consent}, "
+	        + "company_consent=#{company_consent} "
+	        + "WHERE id=#{id}")
+	int updateCor(Corporation_MemberDto corporationMember);
 	
 	@Delete("delete from Corporation_Member where id = #{id}")
 	int deleteCor(@Param("id") String id);
