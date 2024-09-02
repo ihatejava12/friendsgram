@@ -37,5 +37,10 @@ public class MainController {
         return "kyh/main/main"; // JSP 파일의 경로
     }
 	
+	@GetMapping("/")
+	public String host() {
+		return "redirect:/main";
+	}
+	
 
 }
