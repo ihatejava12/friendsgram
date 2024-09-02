@@ -8,6 +8,81 @@
 
 <style>
 
+#allcontent {
+	width: 60%;
+	margin: 20px auto;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 40px;
+	padding-right: 40px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+}
+
+#headcontent h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+button[class='href']{
+	margin-bottom: 15px;
+	padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+select {
+width: 100%; /* select 박스의 너비를 200px로 설정 */
+    height: 35px; /* select 박스의 높이를 35px로 설정 */
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    color: black;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+#addskil, #title {
+width: 100%; /* select 박스의 너비를 200px로 설정 */
+    height: 35px; /* select 박스의 높이를 35px로 설정 */
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    color: black;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+#smarteditor {
+	border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+}
+
+#save {
+margin-bottom: 15px;
+	padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
 
 
 * {
@@ -146,20 +221,17 @@ td {
 	border: 1px solid black;
 }
 
-#allcontent {
-	margin: auto 15%;
-}
 
-#headcontent{
-	background-color: lightgreen;
-}
+
+
+
 
 a {
 	text-decoration: none;
 }
 
-
 </style>
+
 
 </head>
 <body>
@@ -189,34 +261,36 @@ a {
    </header>
  
 </div>
-<hr>
 
+
+<main>
 
 <div id="allcontent">
 <div id="headcontent" align="center" style="height:80px;">
-	<h2>코딩 게시판</h2>
+	<h2 align="center">코딩 게시판</h2>
 	
 	
 	
 </div>
 
-<hr>
 
-<main>
+
+
 <div align="right">
-	<button><a href="/board01/main">목록</a></button>
+	<button class='href'><a href="/board01/main"><font color="white">목록</font></a></button>
 </div>
 
-<hr>
+
 
 <!--  oneArticle 라는 이름으로 글정보 Dto 1개 받아옴  -->
 <form method="post" id="writeform" action="/board01/update/article">
 	<div class="head">
 		<input type="hidden" name="id" value="${oneArticle.id}"/>
 		<input type="hidden" name="b_no01" value="${oneArticle.b_no01}"/>
-		
+		<div style="margin-bottom: 15px; ">
+		<div style="margin-bottom: 7px;"><font size="3"><b>개발 언어</b></font></div> 
 		<select id="selectskil" name="code">
-			<option value="all" ${oneArticle.code == 'all'?"selected":"" }>개발 언어:전체</option>
+			<option value="all" ${oneArticle.code == 'all'?"selected":"" }>전체</option>
 			<option value="java" ${oneArticle.code == 'java'?"selected":"" }>JAVA</option>
 			<option value="python" ${oneArticle.code == 'python'?"selected":"" }>PYTHON</option>
 			<option value="html" ${oneArticle.code == 'html'?"selected":"" }>HTML</option>
@@ -225,11 +299,15 @@ a {
 		</select>
 		<input id="addskil" name="addskil" style="display: none;"
 								size="10" />
-	
-		<span>제목</span> <input type="text" name="title" id="title" value="${oneArticle.title }"/>
+		
+		</div>
+		<div style="margin-bottom: 15px;">
+		<div style="margin-bottom:7px;"><font size="3"><b>제목</b></font></div>
+		<input type="text" name="title" id="title" value="${oneArticle.title }"/>
+		</div>
 	</div>
-	<hr>
 	
+	<div style="margin-bottom:7px;"><font size="3"><b>내용</b></font></div>
 	 <div class="content" id="smarteditor">
  		<textarea id="editorTxt" name="content" cols="40" rows="10"
 			placeholder="내용을 입력해주세요" style="width:100%; height:400px;">
@@ -237,7 +315,7 @@ a {
 			</textarea>
  	</div>
 
-	<input type="submit" value="작성 완료" id="save"/>
+	<input type="submit" value="글 수정" id="save"/>
 </form>
 
 </div>

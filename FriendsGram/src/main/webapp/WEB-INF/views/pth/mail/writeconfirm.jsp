@@ -5,22 +5,113 @@
 <html>
 <head>
 <title>Insert title here</title>
+
+<style>
+
+
+.mailmain {
+	width:750px; 
+	height:450px; 
+	
+	background-color: #ffffff;
+ 	 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+ 	 border-radius: 8px;
+ 	 padding: 5px;
+}
+
+.mailleft {
+	border:2px solid lightgreen; 
+	float:left; 
+	width: 23%;
+	height:94%;
+	margin-right: 14px;
+	background-color: #ffffff;
+ 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  	border-radius: 8px;
+  	padding: 10px;
+}
+
+.mailright {
+	float: left;
+	border:2px solid lightgreen; 
+	width: 68%;
+	height:94%; 
+	
+	background-color: #ffffff;
+ 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  	border-radius: 8px;
+	padding: 10px;
+}
+
+#allcontent {
+  
+  margin: 10px auto;
+  padding: 20px;
+  position: relative;
+  height: 70%;
+}
+
+
+a[class='main']{
+	text-decoration: none;
+	color:black;
+}
+
+a[class='title']{
+	text-decoration: none;
+	color:gray;
+}
+
+a[class="title"]:link{
+	text-decoration: none;
+	color:blue;
+}
+
+a[class="page"]{
+	text-decoration: none;
+	color:black;
+}
+
+li {
+	margin-bottom:7px;
+}
+
+
+#page {
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center; /* 페이징을 가운데 정렬 */
+    
+}
+
+
+
+
+</style>
+
+
 </head>
 <body>
-	<div class="mailmain" style="width:750px; height:450px; border:1px solid black;">
-		<div class="mailleft" style="border:1px dashed lightgreen; float:left; width:23%; height:98%;
-		 margin: 5px;">
-			<h3>쪽지함</h3>
+	<div class="mailmain">
+		<div class="mailleft" >
+			<div style="padding-left:18px; margin-bottom: 20px;"><h3>쪽지함</h3></div>
 			<ul>
-				<li><a href="/mail/write">쪽지 보내기</a></li>
-				<li><a href="/mail">받은 쪽지함</a></li>
-				<li><a href="/mail/sendlist">보낸 쪽지함</a></li>
+				<li><a class="main" href="/mail/write">쪽지 보내기</a></li>
+				<li><a class="main" href="/mail">받은 쪽지함</a></li>
+				<li><a class="main" href="/mail/sendlist">보낸 쪽지함</a></li>
 			</ul>
 		</div>
 		
-		<div class="mailright" style="border:1px dashed lightgreen; width:98%; height:98%; margin: 5px;">
-				
-				쪽지를 보냈습니다.
+		<div class="mailright">
+			
+			<br>
+			<div id="allcontent">
+			 <div>쪽지를 보냈습니다.</div>
+			</div>
+			
+		</div>
 	
 	</div> 
 </body>
