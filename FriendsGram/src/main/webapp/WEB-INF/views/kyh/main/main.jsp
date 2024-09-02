@@ -34,14 +34,14 @@
 	</header>
 
 	<main class="main-content">
-		<section class="hero-section">
-			<div class="hero-text">
-				<h1>원하는 프리랜서를 찾아보세요!</h1>
-				<button class="cta-button"><a href="board03/main">프리랜서 찾아보기</a></button>
-			</div>
-			<div class="hero-image">
-				<img src="images/hero.png" alt="프리랜서 이미지">
-			</div>
+		<<section class="hero-section">
+		  <div class="hero-text">
+		    <h1>원하는 프리랜서를 찾아보세요!</h1>
+		    <button class="cta-button"><a href="board03/main">프리랜서 찾아보기</a></button>
+		  </div>
+		  <div class="hero-image">
+		    <img src="images/hero.png" alt="프리랜서 이미지">
+		  </div>
 		</section>
 
 		<section class="notice-section">
