@@ -26,7 +26,6 @@ public class CorporationInfoController {
     // Corporation_MemberDto를 업데이트하고 메인 페이지로 리다이렉트
     @PutMapping("/updatecor")
     public String updateCor(@ModelAttribute("user") Corporation_MemberDto dto) {
-    	System.out.println(dto.getPassword());
         cservice.updateCor(dto);
         return "redirect:/corporationprofile";
     }
