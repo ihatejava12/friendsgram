@@ -325,7 +325,7 @@ input[type="button"]:hover, button:hover {
 	</script>
 	<script>
 		$(function(){
-			
+
 		    $("#join_date").on("change", function() {
 		        let currentDate = $("#currentDate").val();
 		        let joinDate = $(this).val();

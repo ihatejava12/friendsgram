@@ -131,6 +131,8 @@ public class MemberController {
 	@PostMapping("/login")
 	public String login(@ModelAttribute("command") @Validated LoginDto dto, BindingResult error, Model m,
 			@RequestParam("type") int type) {
+		System.out.println("dto="+dto);
+		System.out.println(type);
 
 		if (type == 0) {// 일반회원
 			MemberDto resultDto = service.login(dto);
@@ -143,6 +145,7 @@ public class MemberController {
 			}
 		} else if (type == 1) {// 기업회원
 			Corporation_MemberDto resultDto = cservice.corlogin(dto);
+			System.out.println(dto);
 			if (resultDto == null) {
 				error.reject("nocode", "로그인 실패: 아이디나 비밀번호가 틀림");
 				return "skw/member/loginform";

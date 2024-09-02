@@ -28,7 +28,7 @@ public interface AdminReportMemberDao {
 		      				"<when test=\"searchn == 2\"> name like concat('%',#{search},'%') </when>",
 						"</choose>",
 					"</where>",
-				"order by sanction desc limit #{start}, #{count}",
+				"order by r_consent desc, sanction desc limit #{start}, #{count}",
 			 "</script>"})
 	List<MemberDto> memberList(Map<String, Object> m);
 	

@@ -23,7 +23,7 @@ public interface AdminCorporation_MemberDao {
 						"</choose>",
 					"and company like concat('%',#{company},'%')",
 				"</where>",
-				"order by r_consent desc limit #{start} , #{count}",
+				"order by r_consent limit #{start} , #{count}",
 			"</script>"})
 	List<Corporation_MemberDto> selectCompany(Map<String, Object> m);
 	

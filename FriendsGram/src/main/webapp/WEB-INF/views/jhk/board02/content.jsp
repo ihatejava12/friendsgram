@@ -221,7 +221,7 @@ fieldset div {
         </tr>
         <tr>
             <td>작성자</td>
-            <td><a href="/viewreview/${dto.id}" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">${name}</a></td>
+            <td><a href="/viewreview/${dto.id}" onclick="window.open(this.href, '_blank', 'width=480, height=300'); return false;">${name} [${dto.id}]</a></td>
         </tr>
         <tr>
             <td>모집 기간</td>

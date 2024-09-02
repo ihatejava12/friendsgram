@@ -95,31 +95,31 @@
 	</footer>
 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
-		$(document).ready(function(){
-			if(${user.role} != 3){
-		    if (${user.r_consent} == 0) {  // 'user.r_consent'가 false인 경우에만
-		        $("a").click(function(event){
-		            // 특정 조건에 따라 예외 처리
-		            if ($(this).attr('href').includes('/question') || $(this).attr('href').includes('/logout')) {
-		                return;  // 이 경우 기본 동작을 허용
-		            }
-	 
-		            // 기본 동작을 막음
-		            event.preventDefault();
-		        });
-		    } else if (${user.id} == "") {  // user.id가 비어 있는 경우
-		        $("a").click(function(event){
-		            // 특정 조건에 따라 예외 처리
-		            if (!$(this).attr('href').includes('/login')) {
-		                event.preventDefault();  // 로그인 페이지가 아닌 경우 기본 동작을 막음
-		            }
-		        });
-		    }}
-		});
+      $(document).ready(function(){
+         if(${user.role} != 3){
+          if (${user.r_consent} == 0) {  // 'user.r_consent'가 false인 경우에만
+              $("a").click(function(event){
+                  // 특정 조건에 따라 예외 처리
+                  if ($(this).attr('href').includes('/question') || $(this).attr('href').includes('/logout')) {
+                      return;  // 이 경우 기본 동작을 허용
+                  }
+    
+                  // 기본 동작을 막음
+                  event.preventDefault();
+              });
+          } else if (${user.id} == "") {  // user.id가 비어 있는 경우
+              $("a").click(function(event){
+                  // 특정 조건에 따라 예외 처리
+                  if (!$(this).attr('href').includes('/login')) {
+                      event.preventDefault();  // 로그인 페이지가 아닌 경우 기본 동작을 막음
+                  }
+              });
+          }}
+      });
 
 
-	
-	</script>
+   
+   </script>
 	
 	
 </body>

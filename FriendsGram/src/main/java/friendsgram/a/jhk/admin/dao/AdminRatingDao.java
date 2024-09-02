@@ -19,10 +19,27 @@ public interface AdminRatingDao {
 	@Select("select * from member where id = #{id}")
 	MemberDto adminContent(String id);
 	
-	@Select("select * from member order by role limit #{start} , #{count}")
+	@Select({"<script>",
+				"select * from member",
+					"<where>",
+						"<choose>",
+							"<when test=\"searchn == 0\"> name like concat('%',#{search},'%') </when>",
+							"<when test=\"searchn == 1\"> id like concat('%',#{search},'%') </when>",
+						"</choose>",
+					"</where>",
+				"order by role limit #{start} , #{count}",
+			 "</script>"})
 	List<MemberDto> adminList(Map<String, Object> m);
 	
-	@Select("select count(*) from member")
-	int count();
+	@Select({"<script>",
+		"select count(*) from member",
+			"<where>",
+				"<choose>",
+					"<when test=\"searchn == 0\"> name like concat('%',#{search},'%') </when>",
+					"<when test=\"searchn == 1\"> id like concat('%',#{search},'%') </when>",
+				"</choose>",
+			"</where>",
+	 "</script>"})
+	int count(@Param("searchn") int searchn, @Param("search") String search);
 	
 }
