@@ -22,7 +22,7 @@ public interface CorporationDao {
 	Corporation_MemberDto corlogin(LoginDto dto);
 	
 
-	int updateCor(Corporation_MemberDto dto);
+
 
 	int delete_Cor(String id);
 	
