@@ -184,5 +184,9 @@
 		where path = #{path}
 	</select>
 	
+	<select id="maxFreelancerNumber" resultType="int">
+		select max(b_no03) from board03
+	</select>
+	
 	
 </mapper>

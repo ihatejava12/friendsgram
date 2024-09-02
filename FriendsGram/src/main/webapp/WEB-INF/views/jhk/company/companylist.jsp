@@ -263,13 +263,13 @@ table td a:hover {
 								<td><a href="/adminpage/contentc/${clist.id}">${clist.company}</a></td>
 								<td>${clist.business_number}</td>
 
-								<c:if test="${clist.company_consent == 0}">
+								<c:if test="${clist.r_consent == 0}">
 									<td>확인중</td>
 								</c:if>
-								<c:if test="${clist.company_consent == 1}">
+								<c:if test="${clist.r_consent == 1}">
 									<td>등록완료</td>
 								</c:if>
-								<c:if test="${clist.company_consent == 2}">
+								<c:if test="${clist.r_consent == 2}">
 									<td>등록거절</td>
 								</c:if>
 							</tr>
@@ -283,11 +283,11 @@ table td a:hover {
 					</c:if>
 					<c:forEach begin="${begin }" end="${end}" var="i">
 						<a
-							href="consent?p=${begin-1}&company=${company}&searchn=${searchn}">${i}</a>
+							href="consent?p=${i}&company=${company}&searchn=${searchn}">${i}</a>
 					</c:forEach>
 					<c:if test="${end < totalPages }">
 						<a
-							href="consent?p=${begin-1}&company=${company}&searchn=${searchn}">[다음]</a>
+							href="consent?p=${end+1}&company=${company}&searchn=${searchn}">[다음]</a>
 					</c:if>
 				</div>
 			</main>

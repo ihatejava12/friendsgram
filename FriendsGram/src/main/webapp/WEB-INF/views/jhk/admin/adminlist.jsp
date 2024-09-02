@@ -18,55 +18,56 @@ body {
 }
 
 header {
-	background-color: #f8f9fa; /* 부드러운 회색 배경 */
-	padding: 20px 40px; /* 패딩을 늘려서 높이 증가 */
+	background-color: #f8f9fa;
+	padding: 20px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	text-align: center; /* 중앙 정렬 */
-	margin-bottom: 20px; /* main과 footer 간격을 조정 */
+	text-align: center;
+	margin-bottom: 20px; /* 사이드바와의 간격 추가 */
+	position: relative;
+	z-index: 1;
 }
 
 header h1 {
 	margin: 0;
-	font-size: 28px; /* 글씨 크기 증가 */
-	color: #343a40; /* 짙은 회색 텍스트 */
+	font-size: 28px;
+	color: #343a40;
 }
 
 header nav {
-	margin-top: 10px; /* h1 태그와 a 태그 사이의 간격 */
+	margin-top: 10px;
 	display: flex;
 	justify-content: center;
-	gap: 15px; /* 각 a 태그 사이의 간격 */
+	gap: 15px;
 }
 
 header nav a {
 	text-decoration: none;
-	color: #495057; /* 회색 텍스트 */
+	color: #495057;
 	font-weight: bold;
 }
 
 header nav a:hover {
-	color: #007bff; /* 링크에 마우스를 올렸을 때의 색상 */
+	color: #007bff;
 }
 
 .container-main {
 	display: flex;
 	flex-grow: 1;
-	margin-bottom: 40px; /* main과 footer 사이의 간격을 40px로 설정 */
 }
 
 aside {
-	background-color: #343a40; /* 짙은 회색 배경 */
+	background-color: #343a40;
 	padding: 20px;
 	color: #fff;
 	width: 200px;
 	flex-shrink: 0;
 	display: flex;
 	flex-direction: column;
-	align-items: center; /* 중앙 정렬 */
-	text-align: center; /* 중앙 정렬 */
-	height: calc(100vh - 40px); /* header와 맞닿도록 높이 조정 */
-	margin-top: -20px; /* header와 맞닿게 상단 여백 제거 */
-	margin-bottom: -40px; /* footer와 맞닿게 하단 여백 제거 */
+	align-items: center;
+	text-align: center;
+	height: calc(100vh - 60px); /* 전체 높이에서 헤더 높이 제외 */
+	margin: -20px 0px -20px; /* 헤더와 사이드바 간격 추가 */
+	box-sizing: border-box;
 }
 
 aside ul {
@@ -80,56 +81,65 @@ aside ul li {
 }
 
 aside ul li a {
-	color: #adb5bd; /* 연한 회색 텍스트 */
+	color: #adb5bd;
 	text-decoration: none;
 	display: block;
 	font-weight: bold;
 }
 
 aside ul li a:hover {
-	color: #007bff; /* 링크에 마우스를 올렸을 때의 색상 */
+	color: #007bff;
 }
 
 main {
 	flex-grow: 1;
 	padding: 20px;
-	background-color: #ffffff; /* 화이트 배경 */
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
-	border-radius: 8px; /* 둥근 모서리 */
-	margin: 0 20px; /* 사이드바와의 간격 추가 */
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	margin: 0 20px;
 }
 
 .filter-bar {
 	display: flex;
-	justify-content: center; /* 중앙 정렬 */
-	gap: 10px; /* 버튼 사이 간격 */
-	margin-bottom: 20px; /* 버튼과 표 사이의 간격 */
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 20px;
 }
 
-.filter-bar input[type="submit"], .filter-bar input[type="button"] {
-	padding: 10px 20px;
+.filter-bar select, .filter-bar input {
+	padding: 10px;
 	font-size: 14px;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+}
+
+.filter-bar input[type="submit"] {
+	padding: 10px 20px;
+	background-color: #007bff;
+	color: #fff;
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
 	font-weight: bold;
 }
 
-.filter-bar input[type="submit"] {
-	background-color: #007bff;
-	color: #fff;
-}
-
 .filter-bar input[type="submit"]:hover {
 	background-color: #0056b3;
 }
 
-.filter-bar input[type="button"] {
+#delete {
+	margin-bottom: 20px;
 	background-color: #dc3545;
 	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: bold;
 }
 
-.filter-bar input[type="button"]:hover {
+#delete:hover {
 	background-color: #c82333;
 }
 
@@ -146,13 +156,13 @@ table th, table td {
 }
 
 table th {
-	background-color: #e9ecef; /* 부드러운 회색 배경 */
+	background-color: #e9ecef;
 	color: #495057;
 	font-weight: bold;
 }
 
 table td a {
-	color: #007bff; /* 링크 텍스트 색상 */
+	color: #007bff;
 	text-decoration: none;
 }
 
@@ -186,6 +196,7 @@ table td a:hover {
 	justify-content: space-between;
 	align-items: center;
 	flex-wrap: wrap;
+	margin-top: 20px; /* 상단 여백 추가 */
 }
 
 .footer-links a {
@@ -226,6 +237,18 @@ table td a:hover {
 				</ul>
 			</aside>
 			<main>
+			<div class="filter-bar">
+				<form action="/adminpage/adminlist">
+					<select name="searchn">
+						<option value="3">전체</option>
+						<option value="0">이름</option>
+						<option value="1">아이디</option>
+					</select>
+					<input style="width:250px;" type="text" name="search" placeholder="아이디 혹은 이름을 입력하세요">
+					<input type="submit" value="검색">
+				</form>
+			</div>
+			
 				<table>
 					<thead>
 						<tr>
@@ -241,7 +264,7 @@ table td a:hover {
 									<td><a href="/adminpage/admincontent/${admin.id}">${admin.id}</a></td>
 									<td>${admin.email}</td>
 
-									<c:if test="${admin.role== 0}">
+									<c:if test="${admin.role == 0}">
 										<td>일반 회원</td>
 									</c:if>
 									<c:if test="${admin.role == 1}">
@@ -256,7 +279,7 @@ table td a:hover {
 					<c:if test="${begin > pageNum }">
 						<a href="adminlist?p=${begin-1 }">[이전]</a>
 					</c:if>
-					<c:forEach begin="${begin }" end="${end}" var="i">
+					<c:forEach begin="${begin}" end="${end}" var="i">
 						<a href="adminlist?p=${i}">${i}</a>
 					</c:forEach>
 					<c:if test="${end < totalPages }">

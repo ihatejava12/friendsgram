@@ -251,7 +251,7 @@ input[type="button"]:hover, button:hover {
       </nav>
       <div class="actions">
          <a class="login" href="/loginform">로그인</a> <a class="profile" href="/myprofile">프로필</a>
-         <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+         <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
       </div>
    </header>
 	</div>
@@ -276,7 +276,7 @@ input[type="button"]:hover, button:hover {
 					<tr>
 						<td>내용</td>
 						<td>
-			        	<textarea name="content" id="editorTxt" rows="20" cols="80" placeholder="내용을 입력해주세요"></textarea>
+			        	<textarea name="content" id="editorTxt" rows="20" cols="80" placeholder="욕설 포함시 작성해 놓은 모든 내용이 초기화됩니다."></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -325,7 +325,7 @@ input[type="button"]:hover, button:hover {
 	</script>
 	<script>
 		$(function(){
-			
+
 		    $("#join_date").on("change", function() {
 		        let currentDate = $("#currentDate").val();
 		        let joinDate = $(this).val();

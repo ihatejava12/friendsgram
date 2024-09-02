@@ -257,28 +257,36 @@ input[type="submit"]:active {
 </style>
 </head>
 <body>
-<header class="header">
-    <div class="logo">
-        <a href="/main">
-            <img src="../img/logo.png" alt="프렌즈그램 로고" class="logo-image"/>
-        </a>
-    </div>
-    <nav class="navigation">
-        <a href="/board01/main">코딩 게시판</a>  
-        <a href="/board02/main">팀 모집</a> 
-        <a href="/board03/main">프리랜서 검색</a>
-        <a href="/list">프리랜서 공고</a> 
-        <a href="/board05">취업 공고</a>
-    </nav>
-    <div class="actions">
-        <c:if test="${user.id != null }">
-        <a class="login" href="/logout">로그아웃</a>
-        </c:if>
-        <c:if test="${user.id == null }">
-        <a class="login" href="/loginform">로그인</a>
-        </c:if>
-        <a class="profile" href="/myprofile">프로필</a>
-        <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+
+ <header class="header">
+        <div class="logo">
+            <a href="/main">
+                <img src="../img/logo.png" alt="프렌즈그램 로고" class="logo-image"/>
+            </a>
+        </div>
+        <nav class="navigation">
+			<a href="/board01/main">코딩 게시판</a>  <a href="/board02/main">팀 모집</a> <a href="/board03/main">프리랜서 검색</a>
+			<a href="/list">프리랜서 공고</a> <a href="/board05">취업 공고</a>
+        </nav>
+        <div class="actions">
+			<c:if test="${user.id != null }">
+			<a class="login" href="/logout">로그아웃</a>
+			</c:if>
+			<c:if test="${user.id == null }">
+			<a class="login" href="/loginform">로그인</a>
+			</c:if>
+			<a class="profile" href="/myprofile">프로필</a>
+            <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
+        </div>
+    </header>
+ <main>
+    <div id="center">
+        <h1>개인페이지 작성중</h1>
+        <a href="/myprofile">나의 정보</a>
+        <a href="/info">이력서</a>
+        <a href="/review/${user.id}">나의 리뷰</a>
+        <a href="/myquestion">문의 사항 보기</a>
+
     </div>
 </header>
 <main>

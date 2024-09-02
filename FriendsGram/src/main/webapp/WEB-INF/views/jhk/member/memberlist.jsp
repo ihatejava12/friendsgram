@@ -245,7 +245,8 @@ table td a:hover {
 							<option value="0">전체</option>
 							<option value="1">아이디</option>
 							<option value="2">이름</option>
-						</select> <input type="text" placeholder="아이디 혹은 이름을 입려하세요" name="search">
+						</select> 
+						<input style="width:250px;" type="text" placeholder="아이디 혹은 이름을 입려하세요" name="search">
 						<input type="submit" value="검색">
 					</form>
 
@@ -263,14 +264,14 @@ table td a:hover {
 					<tbody>
 							<c:forEach items="${mlist}" var="member">
 								<tr>
-									<td><a href="/adminpage/membrcontent/${member.id}">${member.id}</a></td>
+									<td><a href="/adminpage/membercontent/${member.id}">${member.id}</a></td>
 									<td>${member.name}</td>
 									<td>${member.sanction}</td>
 
-									<c:if test="${member.r_consent == false}">
+									<c:if test="${member.r_consent == 0}">
 										<td>사용 불가</td>
 									</c:if>
-									<c:if test="${member.r_consent == true}">
+									<c:if test="${member.r_consent == 1}">
 										<td>사용 가능</td>
 									</c:if>
 

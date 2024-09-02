@@ -333,13 +333,27 @@ public class Board01Controller {
 		return "pth/board01/report";
 	}
 	
-	
 	@PostMapping("/board01/report/confirm")
 	public String board01ReportConfirm(ReportDto report) {
 		board01service.reportboard01(report);
 		int no =report.getR_no();
 		return "pth/board01/selfclose";
 	}
+	
+	@GetMapping("board01/coment_report/{no}")
+	public String board01ComentReport(@PathVariable("no")int no, Model m) {
+		Board01_ComentDto content = board01service.selectOneComent(no);
+		m.addAttribute("content",content);
+		return "pth/board01/coment_report";
+	}
+	
+	@PostMapping("/board01/coment_report/confirm")
+	public String board01ComentReportConfirm(ReportDto report) {
+		board01service.reportComentboard01(report);
+		
+		return "pth/board01/selfclose";
+	}
+	
 	
 	
 	@GetMapping("/board01/searchcontent")
@@ -351,6 +365,7 @@ public class Board01Controller {
 		// 검색 버튼 클릭시, 개발언어, (작성자,제목,내용) 등 정보 가져와서 그걸로 검색한 글 목록 표시
 		if(skil.equals("other")) {// 기타를 눌러서 직접 입력했을 경우 
 			skil = addskil;		
+		
 		}
 		
 		int count = board01service.countSearchBoard01(skil, category, search);
@@ -376,7 +391,12 @@ public class Board01Controller {
 			 m.addAttribute("end", end);
 			 m.addAttribute("pageNum", pageNum);
 			 m.addAttribute("totalPages", totalPages);
-		
+			 
+			 m.addAttribute("skil", skil);
+			 m.addAttribute("category", category);
+			 m.addAttribute("search", search);
+			 m.addAttribute("addskil", addskil);
+			 
 		}
 		
 		return "pth/board01/search";

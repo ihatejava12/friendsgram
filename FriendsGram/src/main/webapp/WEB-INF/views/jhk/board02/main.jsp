@@ -133,6 +133,8 @@ button:hover {
   background-color: #45a049;
 }
 
+
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -140,7 +142,7 @@ table {
 }
 
 table, th, td {
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
 
 th, td {
@@ -157,6 +159,10 @@ th {
 td a {
   color: #333;
   text-decoration: none;
+}
+
+td a:hover {
+  text-decoration: underline;
 }
 
 td a:hover {
@@ -226,7 +232,7 @@ td a:hover {
 			</c:if>
 			
 			 <a class="profile" href="/myprofile">프로필</a>
-			<a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+			<a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
 		</div>
 	</header>
    <main>
@@ -255,32 +261,36 @@ td a:hover {
 			</div>
 		</div>
 		<div>
-			<table border="1">
+			<table>
 				<tr>
-					<th>제목</th>
-					<th>모집기간</th>
-					<th>작성일</th>
-					<th>모집자 수</th>
-					<th>모집 상태</th>
-					<th>확정 팀원</th>
+					<th style="width: 20%;">제목</th>
+					<th style="width: 15%;">모집기간</th>
+					<th style="width: 7%;">작성일</th>
+					<th style="width: 7%;">작성자</th>
+					<th style="width: 10%;">모집자 수</th>
+					<th style="width: 10%;">모집 상태</th>
+					<th style="width: 7%;">확정 팀원</th>
 				</tr>
 				<c:forEach items="${blist}" var="list">
 					<tr>
-						<td><a href="/board02content/${list.b_no02}">${list.title}</a></td>
-						<td><fmt:formatDate value="${list.date}" dateStyle="short"/> ~ ${list.join_date}</td>
-						<td><fmt:formatDate value="${list.date}" dateStyle="short"/></td>
-						<td>${list.volunteer}</td>
+						<td style="text-align: center;"><a href="/board02content/${list.b_no02}">${list.title}</a></td>
+						<td style="text-align: center;"><fmt:formatDate value="${list.date}" dateStyle="short"/> ~ ${list.join_date}</td>
+						<td style="text-align: center;"><fmt:formatDate value="${list.date}" dateStyle="short"/></td>
+						<td><a href="/viewreview/${list.id}" onclick="window.open(this.href, '_blank', 'width=480, height=300'); return false;">${list.id}</a></td>
+						<td style="text-align: center;">${list.volunteer}</td>
 						
 						<c:if test="${list.join01 == false}">
-							<td>모집 중</td>
+							<td style="text-align: center;">모집 중</td>
 						</c:if>
 						<c:if test="${list.join01 == true}">
-							<td>모집 완료</td>
+							<td style="text-align: center;">모집 완료</td>
+							<c:forEach items="${tlist}" var="team">
+								<c:if test="${team.b_no02 == list.b_no02}">
+									<td style="text-align: center;"><button onclick="window.open('/reviewteam/${list.b_no02}', '_blank', 'width=600, height=450, top=50, left=50, scrollbars=yes')">보기</button></td>
+								</c:if>
+							</c:forEach>
 						</c:if>
 						
-						<c:if test="${list.join01 == true}">
-							<td><button onclick="window.open('/reviewteam/${list.b_no02}', '_blank', 'width=500, height=450, top=50, left=50, scrollbars=yes')">보기</button></td>
-						</c:if>
 					</tr>
 				</c:forEach>
 			</table>

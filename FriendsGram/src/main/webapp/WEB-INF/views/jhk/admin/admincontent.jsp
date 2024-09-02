@@ -1,13 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html>    
 <head>
 <style>
-body {
+body {   
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f4f4f4;   
 }
 
 .container {
@@ -99,7 +99,7 @@ main {
 }
 
 table {
-    width: 100%;
+    width: 100%;   
     border-collapse: collapse;
     margin-bottom: 20px;
 }

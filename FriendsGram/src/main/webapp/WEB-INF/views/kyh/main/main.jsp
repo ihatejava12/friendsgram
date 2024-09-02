@@ -29,19 +29,19 @@
 			</c:if>
 			
 			 <a class="profile" href="/myprofile">프로필</a>
-			<a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+			<a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
 		</div>
 	</header>
 
 	<main class="main-content">
-		<section class="hero-section">
-			<div class="hero-text">
-				<h1>원하는 프리랜서를 찾아보세요!</h1>
-				<button class="cta-button"><a href="board03/main">프리랜서 찾아보기</a></button>
-			</div>
-			<div class="hero-image">
-				<img src="images/hero.png" alt="프리랜서 이미지">
-			</div>
+		<<section class="hero-section">
+		  <div class="hero-text">
+		    <h1>원하는 프리랜서를 찾아보세요!</h1>
+		    <button class="cta-button"><a href="board03/main">프리랜서 찾아보기</a></button>
+		  </div>
+		  <div class="hero-image">
+		    <img src="images/hero.png" alt="프리랜서 이미지">
+		  </div>
 		</section>
 
 		<section class="notice-section">
@@ -72,7 +72,7 @@
                             <p>시작 예정일: ${b04.employment_start}</p>
                             <p>예상 기간: ${b04.employment_date}</p>
                             <p>상주, 원격: ${b04.work_type ? "상주" : "원격"}</p>
-                            <p>사용 언어: ${b04.b_no04}</p>
+                            <p>사용 언어: 5</p>
                             <p>${b04.join02 ? "모집중" : "모집완료"}</p>
                         </div>
                     </div>
@@ -81,17 +81,47 @@
 			</div>
 		</section>
 	</main>
+	
 
 	<footer class="footer">
 		<div class="footer-links">
 			<a href="#">프리랜서 이용약관</a> <a href="/question">고객센터</a> <a href="#">개인정보
-				처리방침</a> <a href="/advertising/question">광고문의</a><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
+				처리방침</a><c:if test="${user.role == 3 }"><a href="/advertising/question">광고문의</a></c:if><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
 		</div>
 		<div class="company-info">
 			<p>(주)프렌즈그램(대표이사: 전재민)</p>
 			<p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
 		</div>
 	</footer>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+      $(document).ready(function(){
+         if(${user.role} != 3){
+          if (${user.r_consent} == 0) {  // 'user.r_consent'가 false인 경우에만
+              $("a").click(function(event){
+                  // 특정 조건에 따라 예외 처리
+                  if ($(this).attr('href').includes('/question') || $(this).attr('href').includes('/logout')) {
+                      return;  // 이 경우 기본 동작을 허용
+                  }
+    
+                  // 기본 동작을 막음
+                  event.preventDefault();
+              });
+          } else if (${user.id} == "") {  // user.id가 비어 있는 경우
+              $("a").click(function(event){
+                  // 특정 조건에 따라 예외 처리
+                  if (!$(this).attr('href').includes('/login')) {
+                      event.preventDefault();  // 로그인 페이지가 아닌 경우 기본 동작을 막음
+                  }
+              });
+          }}
+      });
+
+
+   
+   </script>
+	
+	
 </body>
 
 

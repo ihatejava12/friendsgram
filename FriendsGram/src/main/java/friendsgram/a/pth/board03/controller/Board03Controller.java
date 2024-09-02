@@ -105,7 +105,7 @@ public class Board03Controller {
 		freelancer.setId(id);
 		
 		// 현재 등록된 프리랜서 수 확인
-		int count = board03service.countFreelancer();
+		int count = board03service.maxFreelancerNumber();
 		int b_no03 = count + 1;
 		freelancer.setB_no03(b_no03);
 		

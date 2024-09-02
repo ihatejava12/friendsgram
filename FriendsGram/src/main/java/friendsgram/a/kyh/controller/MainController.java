@@ -29,12 +29,18 @@ public class MainController {
 	
 	@GetMapping("/main")
     public String showMainPage(Model model) {
+		System.out.println("main이동");
         List<NoticeDto> recentNotices = mservice.getRecentMainNotices();
         List<Board04Dto> b04 = mservice.getRecentMainBoard04();
         model.addAttribute("b04", b04);
         model.addAttribute("notices", recentNotices);
         return "kyh/main/main"; // JSP 파일의 경로
     }
+	
+	@GetMapping("/")
+	public String host() {
+		return "redirect:/main";
+	}
 	
 
 }

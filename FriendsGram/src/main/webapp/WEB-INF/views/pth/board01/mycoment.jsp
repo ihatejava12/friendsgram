@@ -7,6 +7,54 @@
 <title>FriendsGram</title>
 
 <style>
+
+select {
+  border: none;
+  background: none;
+  appearance: none; /* 기본 드롭다운 화살표 제거 */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  font-family: 'Courier New', monospace; /* 모노스페이스 폰트 사용 */
+  font-size: 14px;
+  font-weight: bold;
+  color:#B5CEA8;
+  padding-left: 5px; /* 옵션 텍스트와 괄호 간의 간격 */
+  width: auto;
+}
+
+select:focus {
+  outline: none;
+}
+
+label {
+  font-family: 'Arial', sans-serif;
+  
+}
+
+
+#allcontent {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+
+#headcontent h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+
+
+
+
+
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -127,27 +175,74 @@ a {
 	text-decoration: none;
 }
 
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table, th, td {
+  border-bottom: 1px solid #ccc;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+td[class='tdtitle']{
+  text-align: left;
+}
+
+th {
+  background-color: #4CAF50;
+  color: #fff;
+  font-weight: bold;
+}
+
+td a {
+  color: #333;
+  text-decoration: none;
+}
+
+td a:hover {
+  text-decoration: underline;
+}
+
+
+button[class='href']{
+	padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+/*
 table {
 	border: none;
 	width: 100%;
+	height: 100%;
 	border-collapse: collapse;
 }
 
 th {
 	text-align: center;
+	height: 30px;
 }
 
 tr {
 	border-bottom: 1px solid #ddd;
+	height: 25px;
 }
 
-#allcontent {
-	margin: 30px auto;
-}
+*/
 
-#headcontent {
-	background-color: lightgreen;
-}
+
 </style>
 
 </head>
@@ -175,7 +270,7 @@ tr {
 
 				<a class="profile" href="/myprofile">프로필</a> <a class="messages"
 					href="/mail"
-					onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+					onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
 			</div>
 		</header>
 
@@ -184,75 +279,106 @@ tr {
 
 	<main>
 
-		<div id="headcontent" align="center"
-			style="height: 200px; padding: 40px;">
-			<h1>코딩 게시판</h1>
-			<br> <br>
+		<div id="allcontent" style="width:80%; height:100%;">
+		
+		
+		
+		<div id="headcontent" align="left"
+			style="width:100%; height: 180px; padding-left:30px;   
+			margin-left:auto; margin-right:auto;
+			">
+			
+			<h2 align="center">코딩 게시판</h2>
+			
 			<form method="get" action="/board01/searchcontent">
-				<div class="search-container"
-					style="display: flex; flex-wrap: nowrap; justify-content: center;">
-
-					<div class="filter-group" style="margin: 10px;">
-						<label for="selectskil">개발언어</label><br> <select
-							id="selectskil" name="skil">
-							<option value="all">전체</option>
-							<option value="java">JAVA</option>
-							<option value="python">PYTHON</option>
-							<option value="html">HTML</option>
-							<option value="database">DATABASE</option>
-							<option value="other">직접 입력</option>
-						</select> <input id="addskil" name="addskil" style="display: none;"
-							size="10" />
-					</div>
-
-					<div class="filter-group" style="margin: 10px;">
-						<label for="selectcategory">검색 기준</label><br> <select
-							id="selectcategory" name="category">
-							<option value="title">제목</option>
-							<option value="content">내용</option>
-							<option value="all">제목+내용</option>
-						</select>
-					</div>
-					<br>
-
-					<div style="margin: 31px 10px;">
-						<input name="search" type="text" placeholder="검색어를 입력해주세요">
+				<div class="search-container" style="width:700px; height:40%; margin-left:auto; margin-right:auto;
+				border: 1px solid #0078D4; padding-left: 20px; background-color:#1e1e1e; 
+				box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;">
+					
+					<div style="float:left; margin-right:20px;">
+						<div class="filter-group" style="margin: 10px;  ">
+							<label for="selectskil"><font color="#9CDCFE ">개발 언어</font>
+							<font color="white"> =</font> <font color="yellow">[</font></font></label> 
+							<select
+								id="selectskil" name="skil">
+								<option value="all">전체</option>
+								<option value="java">JAVA</option>
+								<option value="python">PYTHON</option>
+								<option value="html">HTML</option>
+								<option value="database">DATABASE</option>
+								<option value="other">직접 입력</option>
+							</select> <input id="addskil" name="addskil" style="display: none;"
+								size="10" />
+								<label for="selectskil"><font color="yellow">]</font></label>
+								&nbsp;&nbsp;<button class="removebutton" type="button" style="border:none; background-color:#1e1e1e; ">
+								<img src="/images/VS_removeIcon.png"/></button>
+						</div>
+						</div>
+						
+						<div class="filter-group" style="margin: 10px;">
+							<label for="selectcategory"><font color="#9CDCFE ">검색 기준</font>
+							<font color="white">=</font>
+							<font color="yellow">[</font>
+							</label> 
+							<select
+								id="selectcategory" name="category">
+								<option value="title">제목</option>
+								<option value="content">내용</option>
+								<option value="all">제목+내용</option>
+							</select>
+							<label for="selectcategory"><font color="yellow">]</font></label>
+							&nbsp;&nbsp;<button class="removebutton2" type="button" style="border:none; background-color:#1e1e1e; ">
+								<img src="/images/VS_removeIcon.png"/></button>
+						</div>
+						
+						
+					<div style="margin: 10px;">
+					<font color="#9CDCFE ">검색어</font><font color="white">=</font>	
+					<b><font  size="3" color="#CE9178">"</font></b>
+					<input name="search" type="text" placeholder="검색어를 입력해주세요">
+					<b><font size="3" color="#CE9178">"</font></b>
+						&nbsp;
 						<input type="submit" value="검색" />
 					</div>
 				</div>
 			</form>
 		</div>
+		
+		
+		
 
-		<hr>
-
-		<div id="allcontent" style="width: 80%; height: 100%;">
-			<div align="right">
-				<button>
-					<a href="/board01/main">목록</a>
+		
+		
+		<div style="margin-bottom:10px;">
+		<div align="left" style="float:left;">
+				<button class="href">
+					<a href="/board01/main"><font color="white">전체</font></a>
 				</button>
-				<button>
-					<a href="/board01/write">글쓰기</a>
+				<button class="href">
+					<a href="/board01/myarticle"><font color="white">내 글</font></a>
+				</button>
+				<button class="href">
+					<a href="/board01/mycoment"><font color="white">내 댓글</font></a>
 				</button>
 			</div>
-
-			<hr>
-
-			<div align="left">
-				<button>
-					<a href="/board01/main">전체</a>
+		
+			<div align="right" >
+				<button class="href">
+					<a href="/board01/main"><font color="white">목록</font></a>
 				</button>
-				<button>
-					<a href="/board01/myarticle">내 글</a>
+				<button class="href">
+					<a href="/board01/write"><font color="white">새글 쓰기</font></a>
 				</button>
-				<button>
-					<a href="/board01/mycoment">내 댓글</a>
-				</button>
-			</div>
-			<hr>
+		</div>
+			
+		</div>
+			
+			
 
 			<div>
 				<c:if test="${count != 0}">
-					<table style="width: 100%;">
+					<table>
 						<tr>
 							<th style="width: 10%;">번호</th>
 							<th style="width: 15%;">개발언어</th>
@@ -265,7 +391,7 @@ tr {
 							<tr>
 								<td style="text-align: center;">${board.b_no01 }</td>
 								<td style="text-align: center;">${board.code }</td>
-								<td><a href="content/${board.b_no01}">${board.title }</a></td>
+								<td class="tdtitle"><a href="content/${board.b_no01}">&nbsp;&nbsp;${board.title }</a></td>
 								<td style="text-align: center;">${board.id }</td>
 								<td style="text-align: center;"><fmt:formatDate
 										value="${board.date }" dateStyle="short" /></td>

@@ -5,6 +5,84 @@
 <title>FreindsGram</title>
 <style>
 
+#allcontent {
+  width: 40%;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+input[class='normal'] {
+width: 100%; /* select 박스의 너비를 200px로 설정 */
+    height: 35px; /* select 박스의 높이를 35px로 설정 */
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    color: black;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+}
+
+input[class='normal2'] {
+width: 85%; /* select 박스의 너비를 200px로 설정 */
+    height: 35px; /* select 박스의 높이를 35px로 설정 */
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    color: black;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+}
+
+textarea[class='normal3'] {
+width: 100%; /* select 박스의 너비를 200px로 설정 */
+    height: 400px; /* select 박스의 높이를 35px로 설정 */
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    color: black;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+    resize:vertical;
+}
+
+select {
+width: 100%; /* select 박스의 너비를 200px로 설정 */
+    height: 35px; /* select 박스의 높이를 35px로 설정 */
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    color: black;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+button[class="button1"]{
+margin-bottom: 15px;
+	padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+
+
+
+
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -159,39 +237,47 @@ main {
          </c:if>
          
           <a class="profile" href="/myprofile">프로필</a>
-         <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+         <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
       </div>
    </header>
  
 </div>
 
-<div id="headcontent" style="height: 200px; padding: 40px;">
-<h1 style="color: black;" align="center">프리랜서 등록 </h1>
+<div id="headcontent" style="height: 170px; padding: 40px; background-color:#E0F2F1;">
+<div style="margin-bottom:10px;"><h1 style="color: black;" align="center">프리랜서 등록 </h1></div>
 <h3 style="color: black;" align="center"> 프리랜서로 등록하고 딱맞는 프로젝트/의뢰를 받아보세요.</h3>
 <br>
 </div>
 
 
 <main>
+<div id="allcontent">
 <form method="post" enctype="multipart/form-data">
 
 		<input type="hidden" name="id" value="${user.id}"/>
 		<!--   로그인 완성되면, value 에 {user.id} 이런식으로 들어갈 예정 -->
 		
-	<div align="center">
-		이름 : <input name="name"/><br>
-		이메일 : <input type="text" name="email"/><br>
-		연락처 : <input name="phone"/><br>
-		근무형태 : 
+	<div>
+		<div style="margin-bottom: 7px;"><font size="3"><b>이름</b></font></div> 
+		<div><input class="normal" name="name"/></div>
+		<div style="margin-bottom: 7px;"><font size="3"><b>이메일</b></font></div> 
+		<input class="normal" type="text" name="email"/>
+		<div style="margin-bottom: 7px;"><font size="3"><b>연락처</b></font></div>
+		<input class="normal" name="phone"/>
+		<div style="margin-bottom: 7px;"><font size="3"><b>근무 형태</b></font></div>
+			<div style="margin-bottom: 10px;">
 			<label><input type="radio" name="work_type" value="0"/>원격</label>
 			<label><input type="radio" name="work_type" value="1"/>상주</label>
 			<label><input type="radio" name="work_type" value="2"/>모두 가능</label>
-			<br>
-		사용 가능한 개발 언어 <input type="text" id="skil"/> <button class="add" onclick="return false;">추가</button>
-		<div id="manyskil"></div><br>
-		<br>
+			</div>
+		<div style="margin-bottom: 7px;"><font size="3"><b>사용 가능한 개발 언어</b></font></div> 
+		<input class="normal2" type="text" id="skil"/> 
+		<button class="button1" id="add" onclick="return false;">추가</button>
+		<div id="manyskil" style="margin-bottom:20px; display:flex; flex-wrap:wrap;"></div>
 		
-		경력: <select name="career">
+		
+		<div style="margin-bottom: 7px;"><font size="3"><b>경력</b></font></div> 
+		<select name="career" style="margin-bottom:10px;">
 				<option value="-1">경력 없음</option>
 				<option value="0">1년 이하</option>
 				<option value="1">1년</option>
@@ -202,22 +288,25 @@ main {
 				<option value="6">6년</option>
 				<option value="7">7년</option>
 				<option value="8">8년 이상</option>
-			</select> <br>
-		프로젝트 시작 가능일 : <input type="date" name="work_date"/>
+			</select> 
+			
+		<div style="margin-bottom: 7px;"><font size="3"><b>프로젝트 시작 가능일</b></font></div>  
+		<input class="normal" type="date" name="work_date"/>
+		
+		<div style="margin-bottom: 7px;"><font size="3"><b>상세 소개</b></font></div> 
+		<textarea class="normal3" name="content"></textarea>
+		
+		
+		
+		<div style="margin-bottom: 7px;"><font size="3"><b>포트폴리오 및 이력서</b></font></div> 
+		<input class="normal" name="file" type="file"/>
 		<br>
-		자기소개: <textarea name="content"></textarea><br>
-		
-		
-		
-		포트폴리오 
-		<input name="file" type="file"/>
-		<br>
-		<button type="submit">프리랜서 등록하기</button>
+		<button class="button1" type="submit">프리랜서 등록하기</button>
 	</div>
 
 </form>	
 
-
+</div>
 </main>
 
 
@@ -238,11 +327,24 @@ main {
 <script>
 
 	$(function(){
-		$(".add").click(function(){
+		$("#add").click(function(){
 			var skil = $("#skil").val();
 			if(skil == ""){return false;}
-			$("#manyskil").append(`<span class="\${skil}" style="border: 1px solid black; margin: 2px;"><input name="skil" value="\${skil}"/>
+			$("#manyskil").append(
+			`<span class="\${skil}" style="padding: 10px 15px;
+			margin-right: 10px;
+			margin-bottom: 15px;
+  background-color: #E0F2F1;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+			
+			">
+			<input style="border:none; width:90px; background-color: #E0F2F1;" name="skil" value="\${skil}" readonly/>
 			<button type="button" class="delete" id="\${skil}" >X</button></span>`);
+			
 			$("#skil").val("");
 		})
 

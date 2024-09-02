@@ -18,7 +18,7 @@ public interface MemberDao {
 	
 
 	@Select("select * from member where id=#{id} and password=#{password}")
-	 MemberDto login(LoginDto dto);
+	MemberDto login(LoginDto dto);
 	
 	
 	int updateMem(MemberDto dto);

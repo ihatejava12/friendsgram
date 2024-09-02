@@ -115,4 +115,12 @@ public class Board03Service {
 		return board03dao.fileOneportfolio(path);
 	}
 	
+	// 지금 가장 마지막 프리랜서 번호 1개 가져옴
+	public	int maxFreelancerNumber() {
+		return board03dao.maxFreelancerNumber();
+	}
+	
+	
+	
+	
 }

@@ -181,13 +181,13 @@ a {
 
 				<a class="profile" href="/myprofile">프로필</a> <a class="messages"
 					href="/mail"
-					onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+					onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
 			</div>
 		</header>
 
 	</div>
 
-	<div id="headcontent" style="height: 200px; padding: 40px;">
+	<div id="headcontent" style="height: 200px; padding: 40px; background-color:#E0F2F1;">
 		<h1 style="color: black;" align="center">동료처럼 믿고 맡길 수 있는</h1>
 		<h1 style="color: black;" align="center">우수 프리랜서를 만나보세요</h1>
 		<br>
@@ -356,7 +356,7 @@ a {
 		
 		function buttonclick(){
 			var url = $("button[class]").attr("class");
-			window.open(url, '_blank', 'width=780, height=480')
+			window.open(url, '_blank', 'width=780, height=480,left=600,top=200')
 		}
 	</script>
 

@@ -7,6 +7,13 @@
 <title>FreindsGram</title>
 <style>
 
+/*
+#headcontent{
+background-image: url("/images/board03_image.png");
+}
+*/
+
+
 .filter-group label {
   margin-bottom: 10px;
   font-weight: bold;
@@ -19,11 +26,14 @@
   padding: 5px;
   width: 150px;
   height: 35px;
+  
 }
 
 
 .free {
-	border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+	
 }
 
 * {
@@ -194,13 +204,13 @@ main {
 
 				<a class="profile" href="/myprofile">프로필</a> <a class="messages"
 					href="/mail"
-					onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+					onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
 			</div>
 		</header>
 
 	</div>
 
-	<div id="headcontent" style="height: 240px; padding: 30px;">
+	<div id="headcontent" style="height: 240px; padding: 30px; background-color:#E0F2F1;">
 		<h1 style="color: black;" align="center">동료처럼 믿고 맡길 수 있는</h1>
 		<h1 style="color: black;" align="center">우수 프리랜서를 만나보세요</h1>
 		<br>
@@ -211,7 +221,10 @@ main {
 			<div class="search-container"
 				style="display: flex; flex-wrap: nowrap; justify-content: center;">
 				<div class="filter-group" style="margin: 10px;">
-					<label for="selectwork1"><font size="2">근무 형태</font></label><br> <select
+					<div style="margin-bottom: 10px;">
+					<label for="selectwork1"><font size="3">근무 형태</font></label>
+					</div>
+					 <select
 						id="selectwork1" class="work1" name="work_type">
 						<option value="-1">전체</option>
 						<option value="0">원격</option>
@@ -220,7 +233,10 @@ main {
 				</div>
 
 				<div class="filter-group" style="margin: 10px;">
-					<label for="selectskil1"><font size="2">개발 언어</font></label><br> <select
+					<div style="margin-bottom: 10px;">
+					<label for="selectskil1"><font size="3">개발 언어</font></label>
+					</div>
+					 <select
 						id="selectskil1" class="skil1 selectskil" name="skil">
 						<option value="all">전체</option>
 						<option value="java">JAVA</option>
@@ -233,7 +249,10 @@ main {
 				</div>
 
 				<div class="filter-group" style="margin: 10px;">
-					<label for="selectcareer1"><font size="2">경력 기간</font></label><br> <select
+					<div style="margin-bottom: 10px;">
+					<label for="selectcareer1"><font size="3">경력 기간</font></label>
+					</div>
+					<select
 						id="selectcareer1" class="career1" name="career">
 						<option value="-2">전체</option>
 						<option value="-1">경력 없음</option>
@@ -249,10 +268,11 @@ main {
 					</select>
 				</div>
 
-
+				<div style="margin-top:22px;">
 				<button class="notnull" style="height: 30px; margin-top: 20px; margin-left:20px;">
 				프리랜서 찾기</button>
-
+				</div>
+				
 			</div>
 		</form>
 
@@ -269,7 +289,7 @@ main {
 
 				<div id="${freelancer.b_no03 }" onclick="content(this)" class="free"
 					id="${freelancer.b_no03 }"
-					style="border: thin solid #e0e0e0; border-radius:10px; height: 180px; 
+					style="border: thin solid #e0e0e0; border-radius:10px; height: 180px; width:900px;
 					padding: 20px; display: flex; background-color:white; ">
 
 
@@ -277,7 +297,7 @@ main {
 					<div style="float: left; width: 10%; margin-right: 20px;">
 						<img src="/img/PTH.jpg" style="width: 50px">
 					</div>
-					<div style="float: left;" align="left">
+					<div style="float: left; width:370px;" align="left">
 						<span> <font size="4">${freelancer.name}</font></span>
 						<c:if test="${freelancer.work_type == 0}">
 			<font size="2">원격 가능</font>
@@ -338,8 +358,8 @@ main {
 
 					<div style="float: left;">
 						
-						<div style="width: 300px; height: 130px; border-left: 1px solid #e0e0e0;
-						 background-color:white;">
+						<div style="width: 350px; height: 130px; border-left: 1px solid #e0e0e0;
+						 background-color:white; padding-left:20px;">
 							<font size="2">${freelancer.content } </font></div>
 					</div>
 

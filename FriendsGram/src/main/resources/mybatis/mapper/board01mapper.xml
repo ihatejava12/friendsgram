@@ -30,8 +30,13 @@
 	
 	
 	<insert id="reportboard01" parameterType="friendsgram.admin.dto.ReportDto">
-		insert into report(report_content,r_no,num,id)
-		values(#{report_content},#{r_no},#{num},#{id})
+		insert into report(report_content,r_no,num,id,content, r_id)
+		values(#{report_content},#{r_no},#{num},#{id}, #{content}, #{r_id} )
+	</insert>
+	
+	<insert id="reportComentboard01" parameterType="friendsgram.admin.dto.ReportDto">
+		insert into report(report_content,num, id, co_no,content, r_id)
+		values(#{report_content},#{num},#{id}, #{co_no},#{content}, #{r_id} )
 	</insert>
 	
 	

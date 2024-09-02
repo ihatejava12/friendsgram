@@ -47,14 +47,90 @@ body {
 
 main {
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.8;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensures full viewport height is covered */
-  margin: 0;
-  overflow-x: hidden; /* Prevents horizontal scrolling */
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 800px; /* 중앙 정렬을 위한 최대 너비 */
+  background-color: #f8f9fa; /* 배경색 추가 */
+  border-radius: 8px; /* 부드러운 모서리 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 약간의 그림자 효과 */
 }
+
+form {
+  width: 100%; /* 폼이 최대 너비를 차지하도록 설정 */
+}
+
+label {
+  display: block; /* 레이블을 블록 요소로 변경 */
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #fff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"]:readonly,
+input[type="text"]:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+textarea {
+  height: 150px; /* 텍스트 영역의 기본 높이 설정 */
+  resize: vertical; /* 수직 크기 조정 허용 */
+}
+
+input[type="submit"],
+input[type="button"] {
+  width: 48%;
+  padding: 12px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+
+input[type="submit"] {
+  background-color: #0C9200;
+  margin-right: 4%; /* submit 버튼과 cancel 버튼 사이 간격 */
+}
+
+input[type="button"] {
+  background-color: #6c757d;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  background-color: #0056b3; /* 버튼에 마우스를 올렸을 때의 색상 */
+}
+
+a {
+  text-decoration: none;
+}
+
+input[type="checkbox"] {
+  margin-left: 8px; /* 비밀글 체크박스와 텍스트 사이의 간격 */
+}
+
 
 .footer {
   background-color: rgba(30, 33, 40, 0.68);

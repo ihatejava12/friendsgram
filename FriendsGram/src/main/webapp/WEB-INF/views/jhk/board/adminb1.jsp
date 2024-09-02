@@ -318,7 +318,6 @@ table td a:hover {
 				$.each($("[name='no']:checked"), function() {
 					dnums.push($(this).val())
 				})
-				console.log(dnums)
 
 				$.ajax({
 					url : "/adminpage/delete1",

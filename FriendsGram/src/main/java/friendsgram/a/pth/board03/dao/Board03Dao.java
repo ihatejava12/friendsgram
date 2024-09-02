@@ -45,5 +45,7 @@ public interface Board03Dao {
 	// path 받아와서 board03portfolio 객체 하나 받아옴
 	Board03PortfolioDto fileOneportfolio(String path);
 	
+	// 지금 가장 마지막 프리랜서 번호 1개 가져옴
+	int maxFreelancerNumber();
 	
 }

@@ -17,13 +17,13 @@ public interface AdminCorporation_MemberDao {
 				"select * from corporation_member ",
 					"<where>",
 						"<choose>",
-							"<when test=\"searchn == 0\"> company_consent = 0 </when>",
-							"<when test=\"searchn == 1\"> company_consent = 1 </when>",
-							"<when test=\"searchn == 2\"> company_consent = 2 </when>",
+							"<when test=\"searchn == 0\"> r_consent = 0 </when>",
+							"<when test=\"searchn == 1\"> r_consent = 1 </when>",
+							"<when test=\"searchn == 2\"> r_consent = 2 </when>",
 						"</choose>",
 					"and company like concat('%',#{company},'%')",
 				"</where>",
-				"order by company_consent desc limit #{start} , #{count}",
+				"order by r_consent limit #{start} , #{count}",
 			"</script>"})
 	List<Corporation_MemberDto> selectCompany(Map<String, Object> m);
 	
@@ -31,16 +31,16 @@ public interface AdminCorporation_MemberDao {
 		"select count(*) from corporation_member ",
 			"<where>",
 				"<choose>",
-					"<when test=\"searchn == 0\"> company_consent = 0 </when>",
-					"<when test=\"searchn == 1\"> company_consent = 1 </when>",
-					"<when test=\"searchn == 2\"> company_consent = 2 </when>",
+					"<when test=\"searchn == 0\"> r_consent = 0 </when>",
+					"<when test=\"searchn == 1\"> r_consent = 1 </when>",
+					"<when test=\"searchn == 2\"> r_consent = 2 </when>",
 				"</choose>",
 			"and company like concat('%',#{company},'%')",
 		"</where>",
 	"</script>"})
 	int countCompany(Map<String, Object> m);
 	
-	@Update("update corporation_member set company_consent = #{searchn} where id = #{id}")
+	@Update("update corporation_member set r_consent = #{searchn} where id = #{id}")
 	int updateConsent(@Param("searchn") int searchn, @Param("id") String id);
 	
 	@Select("select * from corporation_member where id = #{id}")
