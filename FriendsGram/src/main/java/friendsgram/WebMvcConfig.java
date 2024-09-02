@@ -15,7 +15,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**") // 모든 경로에 인터셉터 적용
 
 
-                .excludePathPatterns("/main", "/login", "/loginform", "/insert","/corporationinsert","/coridCheck","/insertCor","/corporationloginform","/error", "/css/**", "/js/**", "/images/**","/idCheck","/send"); // 로그인 페이지와 에러 페이지는 제외
+                .excludePathPatterns("/main", "/login", "/loginform", "/insert","/corporationinsert","/coridCheck","/insertCor","/corporationloginform","/error", "/css/**", "/js/**", "/images/**","/idCheck","/send","/findpw","/findpwresult","/cofindpw","/findcorpwresult"); // 로그인 페이지와 에러 페이지는 제외
 
 
     }

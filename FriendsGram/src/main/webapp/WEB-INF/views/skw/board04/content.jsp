@@ -34,6 +34,8 @@ html, body {
 
 body {
   margin-top: 80px;
+  font-family: 'Inter', sans-serif;
+  background-color: #f0f0f0;
 }
 
 .logo img {
@@ -46,6 +48,11 @@ body {
   color: #565E6C;
   font-weight: bold;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+  color: #ff5722;
 }
 
 .actions a {
@@ -53,21 +60,32 @@ body {
   color: #0C9200;
   font-weight: bold;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.actions a:hover {
+  color: #ff5722;
 }
 
 main {
-  font-family: 'Inter', sans-serif;
   font-size: 14px;
   line-height: 1.6;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 10px;
+  padding: 20px;
   max-width: 600px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+main:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
 }
 
 .footer {
@@ -80,7 +98,6 @@ main {
   flex-wrap: wrap;
   width: 100%;
   margin-top: auto;
-  position: relative;
 }
 
 .footer-links a {
@@ -88,6 +105,11 @@ main {
   color: white;
   text-decoration: none;
   font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ff5722;
 }
 
 .company-info p {
@@ -95,7 +117,7 @@ main {
   font-size: 14px;
 }
 
-table {
+.table {
   border: 1px solid black;
   width: 100%;
   border-collapse: collapse;
@@ -105,6 +127,9 @@ th {
   border: 1px solid black;
   background-color: lightgray;
   width: 150px;
+  background-image: linear-gradient(45deg, #f3ec78, #af4261);
+  color: #fff;
+  font-weight: bold;
 }
 
 td {
@@ -124,18 +149,23 @@ td {
   text-decoration: none;
   border-radius: 5px;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .action-buttons .button:hover {
   background-color: #45a049;
+  transform: scale(1.1);
 }
 
 .title {
-  font-size: 1.5em;
+  font-size: 1.8em;
   font-weight: bold;
   margin-bottom: 15px;
   color: #333;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .details dt {
@@ -186,12 +216,13 @@ td {
   border-radius: 5px;
   font-weight: bold;
   text-align: center;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   margin-top: 20px;
 }
 
 .button:hover {
   background-color: #45a049;
+  transform: scale(1.05);
 }
 </style>
 </head>
@@ -300,15 +331,17 @@ td {
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(function(){
-    $("a.delete-btn").click(function(){
+$(function() {
+    $("a.delete-btn").click(function() {
         let b_no04 = $(this).attr("id"); 
         $.ajax({
             url: "/board04/delete/" + b_no04,
             method: "DELETE",
             success: function(response) {
-                if(response === 1) {
+                if (response === 1) {
                     alert("삭제되었습니다.");
                     location.href = "/list";
                 } else {
@@ -333,48 +366,137 @@ $(function(){
             id: userId
         });
 
-        var data = {
-            b_no04: boardNo,
-            id: userId
-        };
-
         $.ajax({
-            url: '/board04/join?b_no04='+boardNo+'&id='+userId,
-            type: 'get',
+            url: '/board04/joinAndSendResume?b_no04=' + boardNo,
+            type: 'POST',
             contentType: 'application/json',
+            data: JSON.stringify({
+                b_no04: boardNo,
+                return_man: "${dto.id}",
+                title: "${dto.title}의 이력서 입니다.",
+                content: `이력서 내용:
+                이름: ${memberInfo.name}
+                생년월일: ${memberInfo.birth}
+                나이: ${memberInfo.age}
+                성별: ${memberInfo.gender}
+                전화번호: ${memberInfo.phone}
+                이메일: ${memberInfo.email}
+                주소: ${memberInfo.address}
+                나머지 주소: ${memberInfo.detail_address}
+                자기소개서: ${memberInfo.content}
+                학교명: ${memberInfo.school_name}
+                학교 기간: ${memberInfo.school_period}
+                학교 전공: ${memberInfo.school_major}
+                경력 회사명: ${memberInfo.career_nme}
+                경력 기간: ${memberInfo.career_period}
+                경력 담당업무: ${memberInfo.career_role}
+                자격증 이름: ${memberInfo.certificate_name}
+                자격증 취득일자: ${memberInfo.certificate_date}`,
+                id: userId
+            }),
             success: function(response) {
-                alert(response.message); // 서버로부터 받은 메시지 표시
-
-                // 지원 성공 시 이력서 전송
-                sendResume();
+                alert("지원 및 이력서 전송이 성공적으로 완료되었습니다.");
             },
             error: function(xhr, status, error) {
-                alert("지원에 실패했습니다.");
+                alert("지원 및 이력서 전송에 실패했습니다.");
             }
         });
     });
-
-    function sendResume() {
-        $.ajax({
-            url: '/board04/post/' + ${dto.b_no04}, // 이력서 전송 URL
-            type: 'post',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                b_no04: ${dto.b_no04},
-                return_man: "${dto.id}",
-                title: "${dto.title}의 이력서 입니다.",
-                content: "이력서 내용: ...", // 필요한 이력서 내용으로 대체
-                id: "${user.id}"
-            }),
-            success: function(response) {
-                alert("이력서가 성공적으로 전송되었습니다.");
-            },
-            error: function(xhr, status, error) {
-                alert("이력서 전송에 실패했습니다.");
-            }
-        });
-    }
 });
+
+/*$(function(){
+$("a.delete-btn").click(function(){
+    let b_no04 = $(this).attr("id"); 
+    $.ajax({
+        url: "/board04/delete/" + b_no04,
+        method: "DELETE",
+        success: function(response) {
+            if(response === 1) {
+                alert("삭제되었습니다.");
+                location.href = "/list";
+            } else {
+                alert("삭제에 실패했습니다.");
+            }
+        },
+        error: function() {
+            alert("오류가 발생했습니다.");
+        }
+    });
+    return false; 
+});*/
+
+/*    $('#join-btn').click(function(e) {
+    e.preventDefault(); // 기본 링크 클릭 동작 방지
+    
+    var boardNo = ${dto.b_no04}; // 현재 게시글 번호
+    var userId = "${user.id}"; // 세션에서 사용자 ID 가져오기
+
+    console.log("AJAX 요청 데이터:", {
+        b_no04: boardNo,
+        id: userId
+    });
+
+    var data = {
+        b_no04: boardNo,
+        id: userId
+    };
+
+    $.ajax({
+        url: '/board04/join?b_no04='+boardNo+'&id='+userId,
+        type: 'get',
+        contentType: 'application/json',
+        success: function(response) {
+            alert(response.message); // 서버로부터 받은 메시지 표시
+
+            // 지원 성공 시 이력서 전송
+            sendResume();
+        },
+        error: function(xhr, status, error) {
+            alert("지원에 실패했습니다.");
+        }
+    });
+});
+
+function sendResume() {
+    $.ajax({
+        url: '/board04/post/' + ${dto.b_no04}, // 이력서 전송 URL
+        type: 'post',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            b_no04: ${dto.b_no04},
+            return_man: "${dto.id}",
+            title: "${dto.title}의 이력서 입니다.",
+            content: "이력서 내용: 
+            이름: ${user.name}
+            생년월일: ${user.birth}
+            나이: ${minfo.age}
+            성별: ${user.gender}
+            전화번호: ${user.phone}
+            email: ${user.email}
+            주소: ${minfo.address}
+
+            자기소개서: ${minfo.content}
+            학교명: ${minfo.school_name}
+            학교 기간: ${minfo.school_period}
+            학교 전공: ${minfo.school_major}
+            경력 회사명: ${minfo.career_nme}
+            경력 기간: ${minfo.career_period}
+            경력 담당업무: ${minfo.career_role}
+            자격증 이름: ${minfo.certificate_name}
+            자격증 취득일자: ${minfo.certificate_date}", // 필요한 이력서 내용으로 대체
+            id: "${user.id}"
+        }),
+        success: function(response) {
+            alert("이력서가 성공적으로 전송되었습니다.");
+        },
+        error: function(xhr, status, error) {
+            alert("이력서 전송에 실패했습니다.");
+        }
+    });
+} */
+
 </script>
+
+
 </body>
 </html>

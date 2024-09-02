@@ -7,43 +7,19 @@
 <head>
 <!--  bList begin end count pageNum totalPages -->
 <title>마이페이지</title>
-<style>
-#center {
-	width: 700px;
-	margin-left: auto;
-	margin-right: auto;
-}
 
-table {
-	border: 1px solid black;
-	width: 700px;
-	border-collapse: collapse;
-}
 
-th {border: 1px solid black;
-	background-color: orange;
-	width: 150px;
-}
-td{border: 1px solid black;}
-a {
-	margin: 10px auto;
-}
 
-#page {
-	text-align: center;
-}
-</style>
-</head>
-<body>
 
 <style>
-
+/* 전체 박스 모델과 여백 설정 */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* 헤더 설정 */
 .header {
   position: fixed; /* 헤더를 화면에 고정 */
   top: 0; /* 화면 상단에 위치 */
@@ -58,19 +34,30 @@ a {
   box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
 }
 
+/* HTML과 BODY 설정 */
 html, body {
   height: 100%;
   margin: 0;
 }
+
+/* BODY 설정 */
 body {
-    margin-top: 80px; /* 헤더 높이만큼의 여백 추가 */
+  margin-top: 80px; /* 헤더 높이만큼의 여백 추가 */
+  font-family: 'Inter', sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+/* 로고 이미지 설정 */
 .logo img {
   height: 50px;
   width: auto;
 }
 
+/* 네비게이션 링크 설정 */
 .navigation a {
   margin-right: 15px;
   color: #565E6C;
@@ -78,6 +65,7 @@ body {
   text-decoration: none;
 }
 
+/* 액션 버튼 설정 */
 .actions a {
   margin-left: 10px;
   color: #0C9200;
@@ -85,17 +73,22 @@ body {
   text-decoration: none;
 }
 
+/* 메인 컨텐츠 설정 */
 main {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ensures full viewport height is covered */
-  margin: 0;
-  overflow-x: hidden; /* Prevents horizontal scrolling */
+    max-width: 600px; /* 메인의 크기 설정 */
+    margin: 100px auto; /* 위쪽 마진을 30px로 설정 */
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 컨텐츠를 중앙으로 정렬 */
+
 }
 
+/* 푸터 설정 */
 .footer {
   background-color: rgba(30, 33, 40, 0.68);
   color: white;
@@ -105,10 +98,10 @@ main {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: auto; /* 푸터가 페이지의 끝에 위치하도록 설정 */
-  position: relative; /* 포지션 속성을 고정하지 않음 */
+  margin-top: auto; /* 푸터가 페이지 끝에 위치하도록 설정 */
 }
 
+/* 푸터 링크 설정 */
 .footer-links a {
   margin-right: 15px;
   color: white;
@@ -116,177 +109,155 @@ main {
   font-weight: bold;
 }
 
+/* 회사 정보 설정 */
 .company-info p {
   margin-top: 10px;
   font-size: 14px;
 }
 
+/* 중앙 컨텐츠 설정 */
+#center {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
-
-
-
-
- .hero-image img {
-    margin-top: 20px;
-  }
-
-.header {
+#center h1 {
+  font-size: 2.5em;
+  color: #4CAF50;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 0;
+}
+/* 버튼을 평행하게 나열하기 위한 설정 */
+#button-group {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between; /* 버튼 사이에 간격을 둠 */
+  gap: 10px; /* 버튼 사이의 간격 */
+}
+
+#button-group a {
+  flex: 1; /* 버튼이 균등한 크기로 확장되도록 함 */
+  margin: 0 5px; /* 좌우 간격 조정 */
   padding: 10px 20px;
-  background-color: #fff;
-  box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
-}
-
-.logo img {
-  height: 50px; /* Adjust this value as needed */
-  width: auto;
-}
-
-.navigation a {
-  margin-right: 15px;
-  color: #565E6C;
-  font-weight: bold;
+  background-color: #4CAF50;
+  color: #fff;
   text-decoration: none;
-}
-
-.actions a {
-  margin-left: 10px;
-  color: #0C9200;
+  border-radius: 5px;
+  text-align: center;
   font-weight: bold;
-  text-decoration: none;
+  font-size: 0.8em; /* 글씨 크기를 작게 조정 */
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+#button-group a:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+#button-group a:active {
+  background-color: #3e8e41;
+  transform: scale(1);
+}
+
+/* 밑의 버튼에 대한 기존 스타일 유지 */
+input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+input[type="submit"]:active {
+  background-color: #3e8e41;
+  transform: scale(1);
+}
+#center a {
+  display: inline-block;
+  margin: 10px 15px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#center a:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* 테이블 설정 */
 table {
-	border: 1px solid black;
-	width: 700px;
-	border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-th {
-	border: 1px solid black;
-	background-color: lightgray;
-	width: 150px;
+table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
 }
 
-td {
-	border: 1px solid black;
+table td:first-child {
+  text-align: right;
+  font-weight: bold;
+  color: #666;
 }
 
-#allcontent {
-	margin: auto 15% 
+table td:last-child {
+  text-align: left;
 }
 
-#headcontent{
-	background-color: lightgreen;
+/* 텍스트 입력 필드 설정 */
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1em;
 }
 
-   body {
-        font-family: 'Inter', sans-serif;
-        background-color: #f0f0f0;
-        color: #333;
-        margin: 0;
-        padding: 0;
-    }
+/* 제출 버튼 설정 */
+input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
-    main {
-        max-width: 800px;
-        margin: 50px auto;
-        padding: 20px;
-        background-color: #fff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-        text-align: center;
-    }
+input[type="submit"]:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
 
-    #center {
-        margin-bottom: 30px;
-    }
-
-    #center h1 {
-        font-size: 2.5em;
-        margin-bottom: 20px;
-        color: #4CAF50;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    #center a {
-        display: inline-block;
-        margin: 10px 15px;
-        padding: 10px 20px;
-        background-color: #4CAF50;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    #center a:hover {
-        background-color: #45a049;
-        transform: scale(1.05);
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-    }
-
-    table td {
-        padding: 12px 15px;
-        border-bottom: 1px solid #ddd;
-    }
-
-    table td:first-child {
-        text-align: right;
-        font-weight: bold;
-        color: #666;
-    }
-
-    table td:last-child {
-        text-align: left;
-    }
-
-    input[type="text"], input[type="password"] {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        margin-bottom: 15px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        font-size: 1em;
-    }
-
-    input[type="submit"] {
-        width: 100%;
-        padding: 12px;
-        background-color: #4CAF50;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        font-size: 1.2em;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    input[type="submit"]:hover {
-        background-color: #45a049;
-        transform: scale(1.05);
-    }
-
-    input[type="submit"]:active {
-        background-color: #3e8e41;
-        transform: scale(1);
-    }
-
-
+input[type="submit"]:active {
+  background-color: #3e8e41;
+  transform: scale(1);
+}
 </style>
-
 </head>
 <body>
+
  <header class="header">
         <div class="logo">
             <a href="/main">
@@ -315,7 +286,20 @@ td {
         <a href="/info">이력서</a>
         <a href="/review/${user.id}">나의 리뷰</a>
         <a href="/myquestion">문의 사항 보기</a>
+
     </div>
+</header>
+<main>
+    <div id="center">
+  <h1>나의 정보</h1>
+  <div id="button-group">
+    <a href="/myprofile">나의 정보</a>
+    <a href="/info">이력서</a>
+    <a href="/review/${user.id}">나의 리뷰</a>
+    <a href="/myquestion">문의 사항 보기</a>
+    <a href="/board03/freelancer">프리랜서 등록</a>
+  </div>
+</div>
 
     <form action="update" method="post" id="myprofile">
         <input type="hidden" name="_method" value="put">
@@ -323,12 +307,13 @@ td {
         
         <table>
             <tr><td>아이디:</td><td>${user.id}</td></tr>
-            <tr><td>이름:</td><td>${user.name}</td></tr>
-            <tr><td>비밀번호:</td><td><input name="password" type="password" id="password"></td></tr>
+            <tr><td>이름:</td><td><input name="name" id="name" value="${user.name}"></td></tr>
+            <tr><td>변경할 비밀번호:</td><td><input type="password" name="password"></td></tr>            
             <tr><td>이메일:</td><td><input name="email" id="email" value="${user.email}"></td></tr>
             <tr><td>생년월일:</td><td>${user.birth}</td></tr>
             <tr><td>성별:</td><td>${user.gender}</td></tr>
             <tr><td>휴대폰:</td><td><input name="phone" id="phone" value="${user.phone}"></td></tr>
+            <tr><td>현재 비밀번호:</td><td><input type="password" id="password"></td></tr>
             <tr><td colspan="2"><input type="submit" value="수정"></td></tr>
         </table>
     </form>
@@ -364,16 +349,20 @@ td {
     });
 </script>
 	
-	<footer class="footer">
-		<div class="footer-links">
-			<a href="#">프리랜서 이용약관</a> <a href="#">고객센터</a> <a href="#">개인정보
-				처리방침</a> <a href="#">광고문의</a><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
-		</div>
-		<div class="company-info">
-			<p>(주)프렌즈그램(대표이사: 전재민)</p>
-			<p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
-		</div>
-	</footer>
-	
+<footer class="footer">
+    <div class="footer-links">
+        <a href="#">프리랜서 이용약관</a> 
+        <a href="#">고객센터</a> 
+        <a href="#">개인정보 처리방침</a> 
+        <a href="#">광고문의</a>
+        <c:if test="${user != null && user.role == 2 || user.role == 1}">
+            <a href="/adminpage/board01">관리자</a>
+        </c:if>
+    </div>
+    <div class="company-info">
+        <p>(주)프렌즈그램(대표이사: 전재민)</p>
+        <p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
+    </div>
+</footer>
 </body>
 </html>

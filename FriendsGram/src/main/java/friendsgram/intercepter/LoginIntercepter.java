@@ -16,7 +16,7 @@ public class LoginIntercepter implements HandlerInterceptor{
 	
 	public List<String> loginEssential = Arrays.asList("/**");
 	
-	public List<String> loginInessential = Arrays.asList("/main","/login","/loginform","/corporationinsert","/coridCheck","/insertCor","/corporationloginform","/insert","/idCheck","/send");
+	public List<String> loginInessential = Arrays.asList("/main","/login","/loginform","/corporationinsert","/coridCheck","/insertCor","/corporationloginform","/insert","/idCheck","/send","/findpw","/findpwresult","/cofindpw","/findcorpwresult");
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -36,7 +36,7 @@ public class LoginIntercepter implements HandlerInterceptor{
 	    }
 
 	    // 로그인되지 않은 경우
-	    response.sendRedirect("/loginform");
+	    response.sendRedirect("/main");
 	    return false;
 	}
 }

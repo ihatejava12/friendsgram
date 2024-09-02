@@ -27,7 +27,7 @@
 	
 	<update id="updateMem" parameterType="friendsgram.member.dto.MemberDto">
 	update member
-	set email = #{email}, phone = #{phone}
+	set name = #{name}, email = #{email}, phone = #{phone}, password = #{password}
 	where id=#{id} 
 	</update>
 </mapper>

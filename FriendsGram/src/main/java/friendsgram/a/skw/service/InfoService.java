@@ -1,11 +1,11 @@
 package friendsgram.a.skw.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import friendsgram.a.skw.dao.InfoDao;
 import friendsgram.member.dto.Member_InfoDto;
@@ -35,7 +35,11 @@ public class InfoService {
         }
     }
     
-    public Member_InfoDto midto() {
-    	return dao.midto();
+    public Member_InfoDto midto(String id) {
+    	return dao.midto(id);
     }
+
+    public int updateinfo(Member_InfoDto dto) {
+		return dao.updateinfo(dto);
+	}
 }

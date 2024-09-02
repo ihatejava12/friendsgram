@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -71,7 +70,7 @@ public class MemberController {
 			e.setContent(content);
 
 			try {
-				// emailService.sendMail(e);
+				 emailService.sendMail(e);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -164,15 +163,6 @@ public class MemberController {
 		return "redirect:/main";
 	}
 
-	/*
-	 * @GetMapping("/update") public String updateform() { return
-	 * "skw/member/updateform"; }
-	 */
-
-	/*
-	 * @PutMapping("/update") public String update(@ModelAttribute("user") MemberDto
-	 * dto) { service.updateMem(dto); return "redirect:/main"; }
-	 */
 
 	@GetMapping("/delete")
 	public String deleteform(@RequestParam(value = "result", required = false) String result, Model m) {
