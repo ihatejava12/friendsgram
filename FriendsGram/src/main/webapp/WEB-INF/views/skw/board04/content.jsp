@@ -215,7 +215,7 @@ td {
             <a class="login" href="/loginform">로그인</a>
         </c:if>
         <a class="profile" href="/myprofile">프로필</a>
-        <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+        <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
     </div>
 </header>
 
