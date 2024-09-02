@@ -276,7 +276,7 @@ input[type="button"]:hover, button:hover {
 					<tr>
 						<td>내용</td>
 						<td>
-			        	<textarea name="content" id="editorTxt" rows="20" cols="80" placeholder="내용을 입력해주세요"></textarea>
+			        	<textarea name="content" id="editorTxt" rows="20" cols="80" placeholder="욕설 포함시 작성해 놓은 모든 내용이 초기화됩니다."></textarea>
 						</td>
 					</tr>
 					<tr>

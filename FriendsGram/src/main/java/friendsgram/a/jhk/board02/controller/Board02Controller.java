@@ -133,6 +133,9 @@ public class Board02Controller {
 		m.addAttribute("commlist", commlist);
 		String id = service.id(b_no02);
 		
+		List<WordDto> wlist = service.wordList();
+		m.addAttribute("wlist", wlist);
+		
 		String name = service.idName(id);
 		int length = name.length();
 		if (length > 2) {
@@ -173,6 +176,14 @@ public class Board02Controller {
 		String[] colist = content.split(" ");
 		List<String> clist = Arrays.asList(colist);
 		
+		for(int i = 0; i < wolist.size(); i++) {
+			for(int j = 0; j < clist.size(); j++) {
+				if(clist.get(j).contains(wolist.get(i).toString())) {
+					return "redirect:/newboard02";
+				}
+			}
+		}
+		
 		
 		return "redirect:/board02/main";
 		
@@ -184,6 +195,8 @@ public class Board02Controller {
 		m.addAttribute("b_no02", b_no02);
 		List<Board02_CodeDto> clist = service.codeList(b_no02);
 		m.addAttribute("clist", clist);
+		List<WordDto> wolist = service.wordList();
+		m.addAttribute("wlist", wolist);
 		
 		return "/jhk/board02/newboard02";
 	}

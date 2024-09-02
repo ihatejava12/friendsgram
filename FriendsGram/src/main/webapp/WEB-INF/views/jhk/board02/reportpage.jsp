@@ -79,6 +79,7 @@
         <input type="hidden" name="num" value="${list.num}" /> 
         <input type="hidden" name="id" value="${user.id}" />
         <input type="hidden" name="content" value="${list.content}" />
+        <input type="hidden" name="r_id" value="${list.id}">
 
         <p><span>글 제목 : ${list.title}</span></p>
         <p><span>신고자 : ${user.id}</span></p>
