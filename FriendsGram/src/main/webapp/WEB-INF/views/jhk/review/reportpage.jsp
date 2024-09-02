@@ -77,7 +77,8 @@
       	<input type="hidden" name="content" value="${review.content}">
         <input type="hidden" name="r_no" value="${review.b_no02}" /> 
         <input type="hidden" name="num" value="${review.num}" /> 
-        <input type="hidden" name="id" value="${review.id}" />
+        <input type="hidden" name="id" value="${user.id}" />
+        <input type="hidden" name="r_id" value="${review.id}">
 
         <p><span>내용 : ${review.content}</span></p>
         <p><span>신고자 : ${user.id}</span></p>

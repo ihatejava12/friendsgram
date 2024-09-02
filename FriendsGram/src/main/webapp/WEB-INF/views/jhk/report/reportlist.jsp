@@ -263,7 +263,7 @@ button:focus {
                     <thead>
                         <tr>
                             <th>신고 내용</th>
-                            <th>신고자</th>
+                            <th>작성자</th>
                             <th>해당 글보기</th>
                         </tr>
                     </thead>
@@ -271,7 +271,7 @@ button:focus {
                         <c:forEach items="${rlist}" var="list">
                             <tr>
                                 <td>${list.report_content}</td>
-                                <td>${list.id}</td>
+                                <td><a href="/adminpage/membercontent/${list.id}">${list.r_id}</a></td>
                                 <td><button
                                         onclick="window.open('/adminreportboard/${list.num}/${list.co_no}/${list.report_num}', '_blank', 'width=500,height=400, top=50, left=50, scrollbars=yes')">바로가기</button></td>
                             </tr>

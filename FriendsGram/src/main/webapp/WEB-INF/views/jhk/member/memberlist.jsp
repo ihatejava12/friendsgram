@@ -264,7 +264,7 @@ table td a:hover {
 					<tbody>
 							<c:forEach items="${mlist}" var="member">
 								<tr>
-									<td><a href="/adminpage/membrcontent/${member.id}">${member.id}</a></td>
+									<td><a href="/adminpage/membercontent/${member.id}">${member.id}</a></td>
 									<td>${member.name}</td>
 									<td>${member.sanction}</td>
 

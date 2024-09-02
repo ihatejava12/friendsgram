@@ -52,7 +52,8 @@
       <div>
         <h3>코딩 게시판 신고글</h3>
         <p><span>글 내용 : ${b1.content}</span></p>
-        <p><span>작성자 : ${b1.id}</span></p>
+        <p><span>작성자 : ${b1.r_id}</span></p>
+        <p><span>신고자 : ${b1.id}</span></p>
       </div>
     </fieldset>
   </c:if>
@@ -62,7 +63,8 @@
       <div>
         <h3>모집 게시판 신고글</h3>
         <p><span>글 내용 : ${b2.content}</span></p>
-        <p><span>작성자 : ${b2.id}</span></p>
+        <p><span>작성자 : ${b2.r_id}</span></p>
+        <p><span>신고자 : ${b2.id}</span></p>
       </div>
     </fieldset>
   </c:if>
@@ -72,7 +74,8 @@
       <div>
         <h3>코딩 게시판 댓글 신고글</h3>
         <p><span>글 내용 : ${bc1.content}</span></p>
-        <p><span>작성자 : ${bc1.id}</span></p>
+        <p><span>작성자 : ${bc1.r_id}</span></p>
+        <p><span>신고자 : ${bc1.id}</span></p>
       </div>
     </fieldset>
   </c:if>
@@ -82,7 +85,8 @@
       <div>
         <h3>모집 게시판 댓글 신고글</h3>
         <p><span>글 내용 : ${bc2.content}</span></p>
-        <p><span>작성자 : ${bc2.id}</span></p>
+        <p><span>작성자 : ${bc2.r_id}</span></p>
+        <p><span>신고자 : ${bc2.id}</span></p>
       </div>
     </fieldset>
   </c:if>
@@ -92,7 +96,8 @@
       <div>
         <h3>리뷰글 신고글</h3>
         <p><span>글 내용 : ${R.content}</span></p>
-        <p><span>작성자 : ${R.id}</span></p>
+        <p><span>작성자 : ${R.r_id}</span></p>
+        <p><span>신고자 : ${R.id}</span></p>
       </div>
     </fieldset>
   </c:if>
