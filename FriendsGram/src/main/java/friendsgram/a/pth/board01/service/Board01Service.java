@@ -54,6 +54,10 @@ public class Board01Service {
 		return board01dao.reportboard01(report);
 	}
 	
+	public int reportComentboard01(ReportDto report) {
+		return board01dao.reportComentboard01(report);
+	}
+	
 	
 	public int countSearchBoard01(String skil, String category, String search) {
 		Map<String,Object> m = new HashMap<>();

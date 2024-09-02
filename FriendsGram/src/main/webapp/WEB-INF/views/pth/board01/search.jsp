@@ -301,14 +301,14 @@ tr {
 							<font color="white"> =</font> <font color="yellow">[</font></font></label> 
 							<select
 								id="selectskil" name="skil">
-								<option value="all">전체</option>
-								<option value="java">JAVA</option>
-								<option value="python">PYTHON</option>
-								<option value="html">HTML</option>
-								<option value="database">DATABASE</option>
-								<option value="other">직접 입력</option>
+								<option value="all" ${skil == 'all'?"selected":""}>전체</option>
+								<option value="java" ${skil == 'java'?"selected":""}>JAVA</option>
+								<option value="python" ${skil == 'python'?"selected":""}>PYTHON</option>
+								<option value="html" ${skil == 'html'?"selected":""}>HTML</option>
+								<option value="database" ${skil == 'database'?"selected":""}>DATABASE</option>
+								<option value="other" ${addskil == skil?"selected":""}>직접 입력</option>
 							</select> <input id="addskil" name="addskil" style="display: none;"
-								size="10" />
+								size="10" value="${skil }" />
 								<label for="selectskil"><font color="yellow">]</font></label>
 								&nbsp;&nbsp;<button class="removebutton" type="button" style="border:none; background-color:#1e1e1e; ">
 								<img src="/images/VS_removeIcon.png"/></button>
@@ -322,9 +322,9 @@ tr {
 							</label> 
 							<select
 								id="selectcategory" name="category">
-								<option value="title">제목</option>
-								<option value="content">내용</option>
-								<option value="all">제목+내용</option>
+								<option value="title" ${category == 'title'?"selected":""}>제목</option>
+								<option value="content" ${category == 'content'?"selected":""}>내용</option>
+								<option value="all" ${category == 'all'?"selected":""}>제목+내용</option>
 							</select>
 							<label for="selectcategory"><font color="yellow">]</font></label>
 							&nbsp;&nbsp;<button class="removebutton2" type="button" style="border:none; background-color:#1e1e1e; ">
@@ -335,7 +335,8 @@ tr {
 					<div style="margin: 10px;">
 					<font color="#9CDCFE ">검색어</font><font color="white">=</font>	
 					<b><font  size="3" color="#CE9178">"</font></b>
-					<input name="search" type="text" placeholder="검색어를 입력해주세요">
+					<input name="search" type="text" placeholder="검색어를 입력해주세요"
+					 value="${search}">
 					<b><font size="3" color="#CE9178">"</font></b>
 						&nbsp;
 						<input type="submit" value="검색" />
@@ -405,7 +406,7 @@ tr {
 							<a href=#>[이전]</a>
 						</c:if>
 						<c:forEach begin="${begin }" end="${end}" var="i">
-							<a href="/board01/main?p=${i }">${i}</a>
+							<a href="/board01/searchcontent?p=${i }&skil=${skil}&category=${category}&search=${search}&addskil=${addskil}">${i}</a>
 						</c:forEach>
 						<c:if test="${end < totalPages }">
 							<a href=#>[다음]</a>
@@ -444,13 +445,31 @@ tr {
 
 	<script>
 		$(function() {
+			
+			if($("#selectskil").val() == 'other'){
+				$("#addskil").show();
+			}
+			
 
 			$("#selectskil").change(function() {
 				if ($("#selectskil").val() == 'other') {
 					$("#addskil").show();
+				}else{
+					$("#addskil").val("");
+					$("#addskil").hide();
 				}
 			})
 
+			$(".removebutton").on("click",function(){
+				$("#selectskil").val("all");
+				$("#addskil").hide();
+			})
+			
+			$(".removebutton2").on("click",function(){
+				$("#selectcategory").val("title");
+			})
+			
+			
 		})
 	</script>
 

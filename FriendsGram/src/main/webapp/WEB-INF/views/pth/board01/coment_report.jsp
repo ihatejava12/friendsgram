@@ -82,14 +82,14 @@
 <div>
 	<h3>신고하기</h3>
 	
-	<form method="post" action="/board01/report/confirm">
-		<input type="hidden" name="r_no" value="${content.b_no01 }"/>
+	<form method="post" action="/board01/coment_report/confirm">
+		<input type="hidden" name="co_no" value="${content.c_no01 }"/>
 		<input type="hidden" name="num" value="${content.num }"/>
 		<input type="hidden" name="id" value="${user.id }"/>
 		<input type="hidden" name="r_id" value="${content.id }"/>
-		<input type="hidden" name="content" value="${content.content }"/>
+		<input type="hidden" name="content" value="${content.coment }"/>
 		
-		<p><span>글 제목 : ${content.title}</span></p>
+		<p><span>댓글 내용 : ${content.coment}</span></p>
         <p><span>신고자 : ${user.id}</span></p>
 		
 		<p>신고사유</p>

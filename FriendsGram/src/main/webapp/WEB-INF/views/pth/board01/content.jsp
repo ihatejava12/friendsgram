@@ -8,6 +8,53 @@
 
 <style>
 
+.boxtype_content {
+ /* select 박스의 너비를 200px로 설정 */
+    height: 39px; /* select 박스의 높이를 35px로 설정 */
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+  	padding-left: 6px;
+    color: black;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 6px;
+}
+
+.boxtype_content2 {
+ /* select 박스의 너비를 200px로 설정 */
+     /* select 박스의 높이를 35px로 설정 */
+    min-height: 200px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+  	padding-left: 7px;
+  	padding-top:9px;
+    color: black;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 6px;
+    position: relative;
+}
+
+.comentcontent {
+	border-radius: 5px;
+    background-color: #ffffff;
+    min-height: 100px;
+    border-bottom: 1px solid #ddd;
+  	padding-left: 9px;
+  	padding-top:9px;
+  	
+    color: black;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 6px;
+}
+
+
+
+
+
 button[class='href']{
 	margin-bottom: 15px;
 	padding: 10px 20px;
@@ -25,8 +72,8 @@ button[class='href']{
 	margin: 20px auto;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	padding-left: 40px;
-	padding-right: 40px;
+	padding-left: 50px;
+	padding-right: 50px;
 	background-color: #ffffff;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
@@ -173,6 +220,12 @@ td {
 
 a {
 	text-decoration: none;
+	color:black;
+}
+
+a[class='report'] {
+	text-decoration: none;
+	color:red;
 }
 </style>
 
@@ -240,9 +293,10 @@ a {
 			</div>
 
 			<!--  content 라는 이름으로 글 1개 정보 보냈음 -->
-			<div class="articlehead">
-			<h2>${content.title }</h2>
-			<hr>
+			<div class="articlehead" style="margin-bottom: 20px;">
+			
+			<div class="boxtype_content"> <h2>${content.title }</h2> </div>
+			
 				<span><b><font size="3">${content.id}</font></b></span> <span><fmt:formatDate
 						value="${content.date }" type="both" dateStyle="short"
 						timeStyle="default" /></span> <span>조회 : ${content.readcount }</span>
@@ -251,20 +305,26 @@ a {
 
 
 
-
+			<div class="boxtype_content2">
 			<div class="articlemain">
 				
-				<br> <br> <br> <span>
-					${content.content } </span><br> <br> <br>
+				<span>
+					${content.content } </span>
 			</div>
+			
+			
+			</div>
+			
 			<div align="right">
-				<button>
+				<button style="padding:1px;">
 					<a class="report" href="/board01/report/${content.b_no01}"
-						onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">신고하기</a>
+						onclick="window.open(this.href, '_blank', 'width=480, height=500'); return false;">신고하기</a>
 				</button>
 			</div>
+			
+			
 			<br>
-			<hr><br>
+			<br>
 
 			<div class="articlecoment">
 				<b>댓글</b>
@@ -273,13 +333,13 @@ a {
 
 					<c:if test="${coment.coment == '삭제된 댓글입니다.' }">
 						<div
-							style="width: 100%; height: 40px; border-bottom: 1px solid gray;">
+							style="width: 100%; height: 40px;">
 							${coment.coment }</div>
 					</c:if>
 
 					<c:if test="${coment.coment != '삭제된 댓글입니다.' }">
-						<div style="border-bottom: 1px solid gray;">
-							<br>
+						<div class="comentcontent">
+							
 
 							<c:if test="${coment.ref_level > 0 }">
 								<!-- 지금 꺼내온 댓글이 대댓글 이라면  -->
@@ -290,8 +350,10 @@ a {
 									</span>
 								</div>
 							</c:if>
-							<div class="comentcontent">
+							
+							<div style="margin-bottom:10px;">
 								<div>
+								
 								<div style="float:left;">
 								<b><font size="3">${coment.id }</font></b>
 									<font size="2">
@@ -305,26 +367,36 @@ a {
 
 									
 								</div>
+								
 									<div align="right">
 									<c:if test="${coment.comentlike >= 1 }">
 										<span class="icon"><img src="/img/hot.gif" alt="추천댓글" /></span>
 									</c:if>
-									<button class="like">${coment.comentlike}추천</button>
-									<button	>신고</button>
+									<button class="like" style="padding:1px;"><font color="blue">${coment.comentlike} 추천</font></button>
+									<button style="padding:1px;">
+									<a class="report" href="/board01/coment_report/${coment.c_no01}"
+						onclick="window.open(this.href, '_blank', 'width=480, height=500'); return false;">신고하기</a>
+									</button>
 									</div>
 								</div>
-								<br> <span>${coment.coment }</span> <span><button
-										class="writeAnser" id="${coment.c_no01}">답글</button></span>
+								<br>
+								
+								<div align="letf">
+								 <span>${coment.coment }</span>
+								 &nbsp;
+								  <span><button
+										class="writeAnser" id="${coment.c_no01}" style="padding:1px;">답글</button></span>
 								<c:if test="${coment.id == user.id }">
-									<button>
+									<button style="padding:1px;">
 										<a
 											href="/board01/coment/delete/${coment.c_no01}/${coment.b_no01}"
 											style="text-decoration: none"returnfalse; >삭제</a>
 									</button>
 								</c:if>
-								<br> <br>
+								</div>
 							</div>
 
+							<div style="margin-bottom:10px;">
 							<form class="${coment.c_no01} " style="display: none;"
 								action="/board01/coment/write">
 
@@ -334,9 +406,10 @@ a {
 								<input name="ref" value="${coment.ref}" type="hidden" /> 
 								<input class="${coment.c_no01} " name="coment" type="text"
 									style="width: 700px; height: 80px; display: none;" />
-								<button class="${coment.c_no01} " style="display: none;">등록</button>
+								<button class="${coment.c_no01} " style="display: none; padding:1px;">등록</button>
 
 							</form>
+							</div>
 						</div>
 
 					</c:if>
@@ -345,13 +418,13 @@ a {
 			<br>
 
 			<form action="/board01/coment/write" class="newcoment">
-				<div class="comentwrite">
+				<div class="comentwrite" style="padding-left: 9px;">
 					<input name="id" value="${user.id }" type="hidden" /> <input
 						name="b_no01" value="${content.b_no01 }" type="hidden" /> <input
 						name="ref_level" value="0" type="hidden" />
-					<p>${user.name }</p>
+					<div style="margin-bottom:5px;">${user.name }</div>
 					<input name="coment" type="text" style="width: 90%; height: 80px;" />
-					<button>등록</button>
+					<button style="padding:1px;">등록</button>
 				</div>
 
 			</form>

@@ -20,7 +20,7 @@
 }
 
 .mailleft {
-	border:1px solid lightgreen; 
+	border:2px solid lightgreen; 
 	float:left; 
 	width: 23%;
 	height:94%;
@@ -33,7 +33,7 @@
 
 .mailright {
 	float: left;
-	border:1px solid lightgreen; 
+	border:2px solid lightgreen; 
 	width: 68%;
 	height:94%; 
 	
@@ -67,9 +67,29 @@ th[class='date'],td[class='date'] {
 	text-align:center;
 }
 
-a {
+
+
+a[class='main']{
 	text-decoration: none;
+	color:black;
 }
+
+a[class='title']{
+	text-decoration: none;
+	color:gray;
+}
+
+a[class="title"]:link{
+	text-decoration: none;
+	color:blue;
+}
+
+a[class="page"]{
+	text-decoration: none;
+	color:black;
+}
+
+
 
 li {
 	margin-bottom:7px;
@@ -97,9 +117,9 @@ li {
 		<div class="mailleft" >
 			<div style="padding-left:18px; margin-bottom: 20px;"><h3>쪽지함</h3></div>
 			<ul>
-				<li><a href="/mail/write">쪽지 보내기</a></li>
-				<li><a href="/mail">받은 쪽지함</a></li>
-				<li><a href="/mail/sendlist">보낸 쪽지함</a></li>
+				<li><a class="main" href="/mail/write">쪽지 보내기</a></li>
+				<li><a class="main" href="/mail">받은 쪽지함</a></li>
+				<li><a class="main" href="/mail/sendlist">보낸 쪽지함</a></li>
 			</ul>
 		</div>
 		
@@ -119,7 +139,7 @@ li {
 				<c:forEach items="${maillist }" var="mail">
 					<tr> 
 					<td class="choice"><input type="checkbox"/></td>
-					<td class="title"><a href="/mail/content/${mail.m_no }">&nbsp;${mail.title }</a></td>
+					<td class="title"><a class="title" href="/mail/content/${mail.m_no }">&nbsp;<font size="2">${mail.title }</font></a></td>
 					<td class="send">${mail.id }</td>
 					<td class="date"><fmt:formatDate value="${ mail.date}" type="both" dateStyle="short" timeStyle="short"/></td> 
 					</tr> 
@@ -129,14 +149,14 @@ li {
 			
 				<div id="page" align="center">
 				<c:if test="${begin > pageNum }">
-					<a href="/mail?p=${begin-1 }">[이전]</a>
+					<a class="page" href="/mail/sendlist?p=${begin-1 }">[이전]</a>
 				</c:if>
 				<c:forEach begin="${begin }" end="${end}" var="i">
-					<a href="/mail?p=${i}">${i}</a>
+					<a class="page" href="/mail/sendlist?p=${i}">${i}</a>
 				
 				</c:forEach>
 				<c:if test="${end < totalPages }">
-					<a href="/mail?p=${end+1}">[다음]</a>
+					<a class="page" href="/mail?sendlistp=${end+1}">[다음]</a>
 				</c:if>
 				</div>
 				
