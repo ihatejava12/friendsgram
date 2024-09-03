@@ -193,6 +193,15 @@ input[type="submit"]:hover {
         </c:if>
         <a class="profile" href="/myprofile">프로필</a>
         <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
+    
+    	<c:if test="${user.id != null }">
+				<div style="position:relative; display:inline-block; top:7px;">
+					<img style="width: 25px; height:25px;" src="/images/message_icon.png" alt="메세지"/>
+					<div id="numberOfMessage" style="position:absolute; top: 10px; left:15px; background-color:red; color:white;
+					padding: 1px 6px; border-radius:50%; font-size:13px;"></div>
+				</div>
+				</c:if>
+    
     </div>
 </header>
 
@@ -260,6 +269,8 @@ input[type="submit"]:hover {
         <input type="submit" value="확인">
     </form>
 </main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
     document.getElementById('other-checkbox').addEventListener('change', function() {
         var otherInput = document.getElementById('other-input');
@@ -270,7 +281,29 @@ input[type="submit"]:hover {
             otherInput.value = ''; // 입력된 값을 초기화
         }
     });
+    
+    $(function(){
+		var id = '${user.id}';
+		if(id != null){
+			$.ajax({
+				url:"/mail/numberofmail",
+				data: "id="+id,
+				method:"post",
+				datatype:"text"
+			}).done(function(data){
+				// 안읽은 메일의 개수 를 String으로 받아온걸 data 에 저장함
+				if(data == '0'){
+					$("#numberOfMessage").hide();
+				}else{
+					$("#numberOfMessage").text(data);
+				}
+			})
+		}
+	})
+    
 </script>
+
+
 
 <footer class="footer">
     <div class="footer-links">
