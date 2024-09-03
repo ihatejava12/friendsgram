@@ -1,6 +1,8 @@
 package friendsgram.a.pth.mail.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +61,12 @@ public class MailService {
 		return maildao.updateMailReadorNot(no);
 	}
 	
+	
+	// 삭제할 mail 번호가 담긴 List<integer> 받아서, mailham 에서 해당 메일들 삭제
+	public	int deleteChoicesMail(List<Integer> int_choi) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("choices", int_choi);
+		return maildao.deleteChoicesMail(m);
+	}
 	
 }

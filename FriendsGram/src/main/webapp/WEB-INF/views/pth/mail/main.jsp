@@ -130,6 +130,7 @@ li {
 				받은 쪽지가 없습니다.
 			</c:if>
 			<c:if test="${comentcount != 0 }">
+			<form action="/mail/delete/choices" onsubmit="return validateForm()">
 			<button>삭제</button> <br><hr>
 			
 			<table class="maillist" style="width:100%; border-spacing: 0px 10px;">
@@ -137,7 +138,7 @@ li {
 				<!--  maillist 라는 이름으로 메일 list 가져옴 -->
 				<c:forEach items="${maillist }" var="mail">
 					<tr> 
-					<td class="choice"><input type="checkbox"/></td>
+					<td class="choice"><input type="checkbox" name="choices" value="${mail.m_no}"/></td>
 					<td class="title"><a class="title" href="/mail/content/${mail.m_no }">&nbsp;<font size="2">${mail.title }</font></a></td>
 					<td class="send">${mail.id }</td>
 					<td class="date"><fmt:formatDate value="${ mail.date}" type="both" dateStyle="short" timeStyle="short"/></td> 
@@ -145,6 +146,7 @@ li {
 				</c:forEach>
 				
 			</table>
+			</form>
 			
 				<div id="page" align="center">
 				<c:if test="${begin > pageNum }">
@@ -160,6 +162,7 @@ li {
 				</div>
 				
 			</c:if>
+			
 			</div>
 			
 		</div>
@@ -184,6 +187,17 @@ li {
 			})
 		}
 	})
+	
+	function validateForm() {
+    const checkboxes = document.querySelectorAll('input[name="choices"]:checked');
+    if (checkboxes.length === 0) {
+        alert("삭제할 쪽지를 선택하세요.");
+        return false; // 폼 제출을 막습니다.
+    }
+    return true; // 폼이 제출됩니다.
+	}
+	
+	
 	
 	</script>
 	

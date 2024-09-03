@@ -343,7 +343,7 @@ background-color: #f0f0f0; /* 버튼 스타일 추가 */
 				</div>
 		
 				<div style="margin:15px;">
-				<c:if test="${user.role == 3 }">
+				<c:if test="${user.role != -1 }">
 						<div>
 							<button class="info"><a href="/infock/${freelancer.id}">이력서 보기</a></button>
 						</div>
