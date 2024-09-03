@@ -6,6 +6,19 @@
 <head>
 <title>FreindsGram</title>
 <style>
+
+#workwith {
+	padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -302,7 +315,7 @@ a {
 
 
 
-					<div onclick="portfolio(this)" id="${freelancer.portfolio }" 
+					<div id="${freelancer.portfolio }" 
 						style="width:150px; height:80px; background-image: url(${freelancer.portfolio});
 			background-size: cover;
 			background-position:center;">
@@ -323,10 +336,9 @@ a {
 			border: thin solid #e0e0e0; border-radius:10px; background-color:white;">
 				<font size="4"><b>이 프리랜서와 함께 일하고 싶다면!</b></font><br>
 				<div style="margin-top:20px; margin-bottom:40px;">
-					메시지를 통해 협업 의사를 전달해보세요.<br>
-					메시지와 함께 프리랜서에게 알람이 전달됩니다.
+					메시지를 통해 협업 의사를 전달해보세요.<br><br>
 				</div>
-				<button style="width:300px; height:40px;" class="/mail/writeTofreelancer/${freelancer.id}"
+				<button id="workwith" style="width:300px; height:40px;" class="/mail/writeTofreelancer/${freelancer.id}"
 				onclick="buttonclick()">
 					협업 제의하기</a>
 				</button>

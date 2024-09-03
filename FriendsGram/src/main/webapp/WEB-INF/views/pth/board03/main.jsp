@@ -14,6 +14,9 @@ background-image: url("/images/board03_image.png");
 */
 
 
+
+
+
 .filter-group label {
   margin-bottom: 10px;
   font-weight: bold;
@@ -278,7 +281,7 @@ main {
 				</div>
 
 				<div style="margin-top:22px;">
-				<button class="notnull" style="height: 30px; margin-top: 20px; margin-left:20px;">
+				<button class="notnull" style="height: 30px; margin-top: 20px; margin-left:20px; padding: 2px 5px;">
 				프리랜서 찾기</button>
 				</div>
 				
