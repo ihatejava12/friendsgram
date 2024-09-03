@@ -38,6 +38,14 @@
          </c:if>
 
          <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+         
+         <c:if test="${user.id != null }">
+            <div style="position:relative; display:inline-block; top:7px;">
+               <img style="width: 25px; height:25px;" src="/images/message_icon.png" alt="메세지"/>
+               <div id="numberOfMessage" style="position:absolute; top: 10px; left:15px; background-color:red; color:white;
+               padding: 1px 6px; border-radius:50%; font-size:13px;"></div>
+            </div>
+            </c:if>
       </div>
    </header>
     
