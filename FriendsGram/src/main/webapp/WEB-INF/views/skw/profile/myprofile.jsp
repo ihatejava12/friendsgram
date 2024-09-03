@@ -261,6 +261,7 @@ input[type="submit"]:active {
 <body>
 
  <header class="header">
+
       <div class="logo">
          <a href="/main"> <img src="../images/logo.png" alt="프렌즈그램 로고"
             class="logo-image" />
@@ -305,6 +306,7 @@ input[type="submit"]:active {
             </c:if>
       </div>
    </header>
+
 <main>
     <div id="center">
   <h1>나의 정보</h1>
@@ -363,6 +365,27 @@ input[type="submit"]:active {
             });
         });
     });
+    
+	$(function(){
+		var id = '${user.id}';
+		if(id != null){
+			$.ajax({
+				url:"/mail/numberofmail",
+				data: "id="+id,
+				method:"post",
+				datatype:"text"
+			}).done(function(data){
+				// 안읽은 메일의 개수 를 String으로 받아온걸 data 에 저장함
+				if(data == '0'){
+					$("#numberOfMessage").hide();
+				}else{
+					$("#numberOfMessage").text(data);
+				}
+			})
+		}
+	})
+    
+    
 </script>
 	
 <footer class="footer">

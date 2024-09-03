@@ -288,6 +288,7 @@
          </c:if>
          <c:if test="${user.id == null }">
             <a class="login" href="/loginform">로그인</a>
+
          </c:if>
 
          <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
@@ -300,6 +301,7 @@
             </c:if>
       </div>
    </header>
+
 <main>
 <div id="center">
     <h1>이력서 작성</h1>
@@ -382,6 +384,26 @@
             // 검색 레이어를 화면에 표시
             document.getElementById('postcodeLayer').style.display = 'block';
         }
+        
+		$(function(){
+			var id = '${user.id}';
+			if(id != null){
+				$.ajax({
+					url:"/mail/numberofmail",
+					data: "id="+id,
+					method:"post",
+					datatype:"text"
+				}).done(function(data){
+					// 안읽은 메일의 개수 를 String으로 받아온걸 data 에 저장함
+					if(data == '0'){
+						$("#numberOfMessage").hide();
+					}else{
+						$("#numberOfMessage").text(data);
+					}
+				})
+			}
+		})
+        
     </script>
 
 <footer class="footer">

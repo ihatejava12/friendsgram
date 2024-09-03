@@ -36,4 +36,19 @@
 	</insert>
 	
 	
+	<select id="numberOfNotreadMail" parameterType="String" resultType="int">
+		select count(*) from mailham 
+		where return_man = #{id} and readornot = 0
+	</select>
+	
+	<update id="updateMailReadorNot" parameterType="int">
+		update mailham
+		set readornot = 1
+		where m_no = #{no}
+	</update>
+	
+	
+	
+	
+	
 </mapper>

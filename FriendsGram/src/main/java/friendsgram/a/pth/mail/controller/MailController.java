@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -159,8 +160,10 @@ public class MailController {
 	
 	@GetMapping("/mail/content/{no}")
 	public String mailContent(@PathVariable("no")int no,Model m) {
-		// mail 번호 받아와서 메일 1개 정보 꺼내와서 출력
+		// mail 번호 받아서, 해당 메일의 readornot 1로 업데이트 먼저
+		mailservice.updateMailReadorNot(no);
 		
+		// mail 번호 받아와서 메일 1개 정보 꺼내와서 출력
 		MailhamDto onemail = mailservice.oneMailContent(no);
 		m.addAttribute("onemail",onemail);
 		return "pth/mail/content";
@@ -171,6 +174,20 @@ public class MailController {
 	public String mailDelete(@PathVariable("no")int no) {
 		int i = mailservice.mailDelete(no);
 		return i+"";
+	}
+	
+	@ResponseBody
+	@PostMapping("/mail/numberofmail")
+	public String numberOfNotreadMail(@RequestParam("id")String id) {
+		int number = mailservice.numberOfNotreadMail(id);
+		System.out.println(number);
+		return number+"";
+	}
+	
+	@GetMapping("/mail/writeAnwser/{id}")
+	public String writeAnwserMail(@PathVariable("id")String id, Model m) {
+		m.addAttribute("anwserid",id);
+		return "pth/mail/writeanwser";
 	}
 	
 }

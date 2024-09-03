@@ -9,6 +9,7 @@
 </head>
 <body>
 	<header class="header">
+
       <div class="logo">
          <a href="/main"> <img src="../images/logo.png" alt="프렌즈그램 로고"
             class="logo-image" />
@@ -53,6 +54,7 @@
             </c:if>
       </div>
    </header>
+
 	
 	<main>
 	<pre>${minfo}</pre>
@@ -113,5 +115,29 @@ email: ${dto.email}
 			<p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
 		</div>
 	</footer>
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+	$(function(){
+		var id = '${user.id}';
+		if(id != null){
+			$.ajax({
+				url:"/mail/numberofmail",
+				data: "id="+id,
+				method:"post",
+				datatype:"text"
+			}).done(function(data){
+				// 안읽은 메일의 개수 를 String으로 받아온걸 data 에 저장함
+				if(data == '0'){
+					$("#numberOfMessage").hide();
+				}else{
+					$("#numberOfMessage").text(data);
+				}
+			})
+		}
+	})
+	</script>
+	
+	
 </body>
 </html>

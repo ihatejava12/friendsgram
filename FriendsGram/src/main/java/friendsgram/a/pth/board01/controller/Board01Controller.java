@@ -402,4 +402,15 @@ public class Board01Controller {
 		return "pth/board01/search";
 	}
 	
+	@ResponseBody
+	@GetMapping("/board01/numberofcoments/{no}")
+	public String board01NumberOfComents(@PathVariable("no")int no) {
+		// 글번호 1개 가져가서, 해당 글에 달린 댓글의 개수 가져와야함
+		int numberOfComent = board01service.board01NumberOfComents(no);
+		
+		return numberOfComent+"";
+	}
+	
+	
+	
 }

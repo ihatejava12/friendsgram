@@ -249,6 +249,7 @@ button:active {
          </c:if>
          <c:if test="${user.id == null }">
             <a class="login" href="/loginform">로그인</a>
+
          </c:if>
 
          <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
@@ -261,6 +262,7 @@ button:active {
             </c:if>
       </div>
    </header>
+
   
 	<div id="center">
 		<h1>나의 문의 사항</h1>     
@@ -326,5 +328,29 @@ button:active {
 			<p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
 		</div>
 	</footer>
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+	$(function(){
+		var id = '${user.id}';
+		if(id != null){
+			$.ajax({
+				url:"/mail/numberofmail",
+				data: "id="+id,
+				method:"post",
+				datatype:"text"
+			}).done(function(data){
+				// 안읽은 메일의 개수 를 String으로 받아온걸 data 에 저장함
+				if(data == '0'){
+					$("#numberOfMessage").hide();
+				}else{
+					$("#numberOfMessage").text(data);
+				}
+			})
+		}
+	})
+	</script>
+	
+	
 </body>
 </html>

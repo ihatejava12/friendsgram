@@ -272,10 +272,10 @@ input[type="submit"]#save:focus {
 			</main>
 		</div>
 
-		<footer>
+		<footer class="footer">
 			<div class="footer-links">
 				<a href="#">프리랜서 이용약관</a> <a href="#">고객센터</a> <a href="#">개인정보
-					처리방침</a> <a href="#">광고문의</a>
+					처리방침</a> <a href="/advertising/question">광고문의</a><a href="/main">메인화면</a>
 			</div>
 			<div class="company-info">
 				<p>(주)프렌즈그램(대표이사: 전재민)</p>

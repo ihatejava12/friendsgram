@@ -6,6 +6,18 @@
 <head>
 <title>FreindsGram</title>
 <style>
+
+button[class='href']{
+	padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
 .free {
 	border-radius: 10px;
 }
@@ -216,7 +228,7 @@ main {
 				style="resize:none; "></textarea>
 			</div>
 			
-			<button>문의 하기</button>
+			<div><button class="href">문의 하기</button></div>
 			
 			</form>
 		</div>
@@ -233,11 +245,8 @@ main {
 
 	<footer class="footer">
 		<div class="footer-links">
-			<a href="#">프리랜서 이용약관</a> <a href="#">고객센터</a> <a href="#">개인정보
-				처리방침</a> <a href="#">광고문의</a>
-			<c:if test="${ user.role == 2 || user.role == 1}">
-				<a href="/adminpage/board01">관리자</a>
-			</c:if>
+			<a href="#">프리랜서 이용약관</a> <a href="/question">고객센터</a> <a href="#">개인정보
+				처리방침</a><c:if test="${user.role == 3 }"><a href="/advertising/question">광고문의</a></c:if><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
 		</div>
 		<div class="company-info">
 			<p>(주)프렌즈그램(대표이사: 전재민)</p>

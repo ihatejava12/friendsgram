@@ -206,6 +206,7 @@ input[type="submit"]:hover {
          </c:if>
          <c:if test="${user.id == null }">
             <a class="login" href="/loginform">로그인</a>
+
          </c:if>
 
          <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
@@ -218,6 +219,7 @@ input[type="submit"]:hover {
             </c:if>
       </div>
    </header>
+
 
 <main>
     <form action="/board04/write" method="post">
@@ -283,6 +285,8 @@ input[type="submit"]:hover {
         <input type="submit" value="확인">
     </form>
 </main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
     document.getElementById('other-checkbox').addEventListener('change', function() {
         var otherInput = document.getElementById('other-input');
@@ -293,7 +297,29 @@ input[type="submit"]:hover {
             otherInput.value = ''; // 입력된 값을 초기화
         }
     });
+    
+    $(function(){
+		var id = '${user.id}';
+		if(id != null){
+			$.ajax({
+				url:"/mail/numberofmail",
+				data: "id="+id,
+				method:"post",
+				datatype:"text"
+			}).done(function(data){
+				// 안읽은 메일의 개수 를 String으로 받아온걸 data 에 저장함
+				if(data == '0'){
+					$("#numberOfMessage").hide();
+				}else{
+					$("#numberOfMessage").text(data);
+				}
+			})
+		}
+	})
+    
 </script>
+
+
 
 <footer class="footer">
 		<div class="footer-links">

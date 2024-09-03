@@ -12,7 +12,7 @@ public class MailhamDto {
 	private String content;
 	private Date date;
 	private String id;
-
+	private int readornot;
 
 	
 }

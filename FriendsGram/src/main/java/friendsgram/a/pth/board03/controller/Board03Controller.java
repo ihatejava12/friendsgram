@@ -283,7 +283,7 @@ public class Board03Controller {
 		 m.addAttribute("work_type",work_type);
 		 m.addAttribute("skil",skil);
 		 m.addAttribute("career",career);
-		
+		 m.addAttribute("addskil",addskil);
 		
 		return "pth/board03/search";
 	}
