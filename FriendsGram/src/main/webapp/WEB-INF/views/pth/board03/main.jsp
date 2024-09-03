@@ -371,7 +371,7 @@ main {
 					<div style="float: left;">
 						
 						<div style="width: 350px; height: 130px; border-left: 1px solid #e0e0e0;
-						 background-color:white; padding-left:20px;">
+						 background-color:white; padding-left:20px; overflow:hidden; text-overflow:ellipsis;">
 							<font size="2">${freelancer.content } </font></div>
 					</div>
 
