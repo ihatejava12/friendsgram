@@ -47,7 +47,13 @@
 		where m_no = #{no}
 	</update>
 	
-	
+	<delete id="deleteChoicesMail" parameterType="map">
+		delete from mailham
+		where m_no in 
+		<foreach collection='choices' index='index' item='no' open='(' close=')' separator=','>
+				#{no}
+			</foreach>
+	</delete>
 	
 	
 	

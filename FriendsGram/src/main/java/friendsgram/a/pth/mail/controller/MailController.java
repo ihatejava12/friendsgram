@@ -1,5 +1,6 @@
 package friendsgram.a.pth.mail.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -175,6 +176,21 @@ public class MailController {
 		int i = mailservice.mailDelete(no);
 		return i+"";
 	}
+	
+	@GetMapping("/mail/delete/choices")
+	public String mailDeleteChoices(@RequestParam("choices")List<String> choices) {
+		List<Integer> int_choi = new ArrayList<Integer>();
+		for(String choi :choices) {
+				int_choi.add(Integer.parseInt(choi));
+		}
+		
+		mailservice.deleteChoicesMail(int_choi);
+		
+		return "redirect:/mail";
+	}
+	
+	
+	
 	
 	@ResponseBody
 	@PostMapping("/mail/numberofmail")

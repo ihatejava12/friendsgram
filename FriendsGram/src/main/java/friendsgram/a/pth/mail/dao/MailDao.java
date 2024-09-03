@@ -1,6 +1,7 @@
 package friendsgram.a.pth.mail.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -31,5 +32,9 @@ public interface MailDao {
 	
 	// mail 번호 1개 받아와서, 해당 메일 클릭했을때, readofnot 을 0 에서 1로 업데이트
 	int updateMailReadorNot(int no);
+	
+	// 삭제할 mail 번호가 담긴 List<integer> 받아서, mailham 에서 해당 메일들 삭제
+	int deleteChoicesMail(Map<String, Object> m);
+	
 	
 }
