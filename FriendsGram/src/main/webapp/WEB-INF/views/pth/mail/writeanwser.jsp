@@ -6,23 +6,7 @@
 <head>
 <title>Insert title here</title>
 
-
-
 <style>
-
-div[class='normal5'] {
-	width: 70%; /* select 박스의 너비를 200px로 설정 */
-    height: 20px; /* select 박스의 높이를 35px로 설정 */
-    border-radius: 5px;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    padding: 5px 10px;
-    color: black;
-    font-size: 14px;
-    font-family: Arial, sans-serif;
-    margin-bottom: 10px;
-    float:left;
-}
 
 
 .mailmain {
@@ -52,7 +36,7 @@ div[class='normal5'] {
 	border:2px solid lightgreen; 
 	width: 68%;
 	height:94%; 
-	position:relative;
+	
 	background-color: #ffffff;
  	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   	border-radius: 8px;
@@ -62,14 +46,10 @@ div[class='normal5'] {
 #allcontent {
   
   margin: 10px auto;
-  padding-right: 20px;
-  padding-left: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 20px;
   position: relative;
   height: 70%;
 }
-
 
 
 a[class='main']{
@@ -88,11 +68,6 @@ a[class="title"]:link{
 }
 
 a[class="page"]{
-	text-decoration: none;
-	color:black;
-}
-
-a[class="answer"]{
 	text-decoration: none;
 	color:black;
 }
@@ -121,12 +96,12 @@ width: 70%; /* select 박스의 너비를 200px로 설정 */
     color: black;
     font-size: 14px;
     font-family: Arial, sans-serif;
-    margin-bottom: 4px;
+    margin-bottom: 10px;
 }
 
 textarea[class='normal3'] {
 width: 70%; /* select 박스의 너비를 200px로 설정 */
-    height: 170px; /* select 박스의 높이를 35px로 설정 */
+    height: 190px; /* select 박스의 높이를 35px로 설정 */
     border-radius: 5px;
     background-color: #ffffff;
     border: 1px solid #ddd;
@@ -145,8 +120,6 @@ width: 70%; /* select 박스의 너비를 200px로 설정 */
 </style>
 
 
-
-
 </head>
 <body>
 	<div class="mailmain">
@@ -160,74 +133,38 @@ width: 70%; /* select 박스의 너비를 200px로 설정 */
 		</div>
 		
 		<div class="mailright">
-			
-			<!--  onemail 라는 이름으로 mail 1개 정보 가져옴 -->
-			
-
-			<div id="allcontent">
-			
+			<div style="margin-bottom: 1px; padding-left:20px; padding-top:10px;">${user.name} 님의 새 쪽지 쓰기입니다.</div>
+		
+		<div id="allcontent">
+			<form action="/mail/write/newmail">
 			<!--  return_man     title     content -->
 			<div style="margin-bottom: 7px;">
-			
-			<c:if test="${onemail.return_man == user.id }">
-			<div style="float:left; width: 80px;"><font size="3"><b>보낸 사람</b></font></div>		
-			<input class="normal" name="return_man" value="${onemail.id }" readonly/>
-			</c:if>
-			<c:if test="${onemail.id == user.id }">
-			<div style="float:left; width: 80px;"><font size="3"><b>받는 사람</b></font></div>		
-			<input class="normal" name="return_man" value="${onemail.return_man }" readonly/>
-			</c:if>
-			
-			</div>
-			
-			<div style="margin-bottom: 7px;">
-			<div style="float:left; width: 80px;"><font size="3"><b>날짜</b></font></div>
-			<div class="normal5"><fmt:formatDate value="${onemail.date }" type="both" 
-				dateStyle="default" timeStyle="short"/></div>
+			<div style="float:left; width: 80px;"><font size="3"><b>받는 사람</b></font></div>
+			<input class="normal" name="return_man" value="${anwserid}" readonly/>
 			</div>
 			
 			<div style="margin-bottom: 7px;">
 			<div style="float:left; width: 80px;"><font size="3"><b>제목</b></font></div>
-			<input class="normal" name="title" value="${onemail.title }" readonly/>
+			<input class="normal" name="title" required/>
 			</div>
 			
 			<div style="margin-bottom: 7px;">
 			<div style="float:left; width: 80px;"><font size="3"><b>내용</b></font></div>
-			<textarea class="normal3" name="content" readonly>${onemail.content }</textarea>
+			<textarea class="normal3" name="content" required></textarea>
 			</div> 
 			
-			
-			
+			<input type="hidden" name="id" value="${user.id }"/>
+			<div align="center"><button>쪽지보내기</button></div>
+			</form>
 		</div>
-			<c:if test="${onemail.return_man == user.id }">
-				<div align="center" style="position:absolute; bottom:20px; left:40%;"><button class="answer">
-				<a class="answer" href="/mail/writeAnwser/${onemail.id}">답장</a></button></div>
-			</c:if>
-			<div align="center" style="position:absolute; bottom:20px; left:50%;"><button class="maildelete" id="${onemail.m_no }">삭제</button></div>
+		
 		</div>
 	
 	</div> 
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-		
-	
-	
-	
-	
-		$(function(){
-			$(".maildelete").click(function(){
-				if(confirm("삭제하시겠습니까?")){
-					let no = $(this).attr("id");
-					$.ajax({
-						url:"/mail/delete/"+no,
-						method:"get"
-					})
-				}else{return false;}
-			})
-		})
-		
-		$(function(){
+	$(function(){
 		var id = '${user.id}';
 		if(id != null){
 			$.ajax({
