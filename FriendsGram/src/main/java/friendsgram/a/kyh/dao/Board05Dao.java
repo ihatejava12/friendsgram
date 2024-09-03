@@ -155,13 +155,13 @@ public interface Board05Dao {
     );
     
     
-    @Insert("insert into Mailham (return_man, title, content, date, id) values (#{return_man}, #{title}, #{content}, NOW(), #{id})")
+    @Insert("insert into mailham (return_man, title, content, date, id) values (#{return_man}, #{title}, #{content}, NOW(), #{id})")
     int b_05post(MailhamDto mdto);
     
-    @Select("select * from Member_Info where id = #{id}")
+    @Select("select * from member_info where id = #{id}")
     Member_InfoDto minfo(String id);
     
-    @Select("select * from Board05 where b_no05 = #{b_no05}")
+    @Select("select * from board05 where b_no05 = #{b_no05}")
     Board05Dto cpdto(int b_no05);
     
 }
