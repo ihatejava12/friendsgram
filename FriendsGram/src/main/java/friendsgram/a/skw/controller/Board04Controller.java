@@ -121,6 +121,7 @@ public class Board04Controller {
 		@PostMapping("/board04/update/{b_no04}")
 		public String update(@PathVariable("b_no04") int b_no04, @ModelAttribute Board04Dto dto, @RequestParam("programming_language") List<String> programmingLanguages) {
 			 dto.setB_no04(b_no04);
+			 
 		        service.updateBoard(dto, programmingLanguages);
 			return "redirect:/list";
 			// "reditect:/board/content/"+dto.getNo();

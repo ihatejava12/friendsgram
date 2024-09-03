@@ -153,6 +153,7 @@ input[type="submit"]:active {
   transform: scale(1);
 }
 
+/* 푸터 설정 */
 .footer {
   background-color: rgba(30, 33, 40, 0.68);
   color: white;
@@ -162,10 +163,10 @@ input[type="submit"]:active {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  position: relative;
-  margin-top: auto; /* Footer를 화면 하단에 고정 */
+  margin-top: auto; /* 푸터가 페이지 끝에 위치하도록 설정 */
 }
 
+/* 푸터 링크 설정 */
 .footer-links a {
   margin-right: 15px;
   color: white;
@@ -173,6 +174,7 @@ input[type="submit"]:active {
   font-weight: bold;
 }
 
+/* 회사 정보 설정 */
 .company-info p {
   margin-top: 10px;
   font-size: 14px;
@@ -185,35 +187,52 @@ input[type="submit"]:active {
   <main>
 
  <header class="header">
-        <div class="logo">
-            <a href="/main">
-                <img src="../img/logo.png" alt="프렌즈그램 로고" class="logo-image"/>
-            </a>
-        </div>
-        <nav class="navigation">
-			<a href="/board01/main">코딩 게시판</a>  <a href="/board02/main">팀 모집</a> <a href="/board03/main">프리랜서 검색</a>
-			<a href="/list">프리랜서 공고</a> <a href="/board05">취업 공고</a>
-        </nav>
-        <div class="actions">
-			<c:if test="${user.id != null }">
-			<a class="login" href="/logout">로그아웃</a>
-			</c:if>
-			<c:if test="${user.id == null }">
-			<a class="login" href="/loginform">로그인</a>
-			</c:if>
-			<a class="profile" href="/myprofile">프로필</a>
-            <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
-        
-        	<c:if test="${user.id != null }">
-				<div style="position:relative; display:inline-block; top:7px;">
-					<img style="width: 25px; height:25px;" src="/images/message_icon.png" alt="메세지"/>
-					<div id="numberOfMessage" style="position:absolute; top: 10px; left:15px; background-color:red; color:white;
-					padding: 1px 6px; border-radius:50%; font-size:13px;"></div>
-				</div>
-				</c:if>
-        
-        </div>
-    </header>
+
+      <div class="logo">
+         <a href="/main"> <img src="../images/logo.png" alt="프렌즈그램 로고"
+            class="logo-image" />
+         </a>
+      </div>
+      <nav class="navigation">
+      <c:if test="${user.role != 3}">
+         <a href="board01/main">코딩 게시판</a> 
+         <a href="board02/main">팀 모집</a> 
+      </c:if> 
+      <c:if test="${user.role == 3}">
+         <a href="#">코딩 게시판</a> 
+         <a href="#">팀 모집</a> 
+      </c:if>  
+         <a href="board03/main">프리랜서 검색</a> 
+         <a href="/list">프리랜서 공고</a> 
+         <a href="/board05">취업 공고</a>
+      </nav>
+      <div class="actions">
+         <c:if test="${user.id != null }">
+            <a class="login" href="/logout">로그아웃</a>
+            <c:choose>
+                    <c:when test="${user.role != 3}">
+                        <a class="profile" href="/myprofile">프로필</a>
+                     </c:when>
+                     <c:when test="${user.role == 3}">
+                         <a class="corporationprofile" href="/corporationprofile">기업 페이지</a>
+                     </c:when>
+              </c:choose>
+         </c:if>
+         <c:if test="${user.id == null }">
+            <a class="login" href="/loginform">로그인</a>
+         </c:if>
+
+         <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+         <c:if test="${user.id != null }">
+            <div style="position:relative; display:inline-block; top:7px;">
+               <img style="width: 25px; height:25px;" src="/images/message_icon.png" alt="메세지"/>
+               <div id="numberOfMessage" style="position:absolute; top: 10px; left:15px; background-color:red; color:white;
+               padding: 1px 6px; border-radius:50%; font-size:13px;"></div>
+            </div>
+            </c:if>
+      </div>
+   </header>
+
  <main>
 
     <div id="center">
@@ -258,21 +277,16 @@ input[type="submit"]:active {
     </form>
   </main>
 
-  <footer class="footer">
-    <div class="footer-links">
-        <a href="#">프리랜서 이용약관</a> 
-        <a href="#">고객센터</a> 
-        <a href="#">개인정보 처리방침</a> 
-        <a href="#">광고문의</a>
-        <c:if test="${user != null && (user.role == 2 || user.role == 1)}">
-            <a href="/adminpage/board01">관리자</a>
-        </c:if>
-    </div>
-    <div class="company-info">
-        <p>(주)프렌즈그램(대표이사: 전재민)</p>
-        <p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
-    </div>
-  </footer>
+ <footer class="footer">
+		<div class="footer-links">
+			<a href="#">프리랜서 이용약관</a> <a href="/question">고객센터</a> <a href="#">개인정보
+				처리방침</a><c:if test="${user.role == 3 }"><a href="/advertising/question">광고문의</a></c:if><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
+		</div>
+		<div class="company-info">
+			<p>(주)프렌즈그램(대표이사: 전재민)</p>
+			<p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
+		</div>
+	</footer>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

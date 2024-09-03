@@ -13,19 +13,7 @@
   padding: 0;
 }
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #fff;
-  box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
-}
+
 
 html, body {
   height: 100%;
@@ -38,6 +26,21 @@ body {
   background-color: #f0f0f0;
 }
 
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px; /* 헤더와 푸터의 패딩 크기 */
+  background: #ffffff; /* 헤더 배경색을 흰색으로 변경 */
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* 그림자를 연하게 */
+  transition: all 0.3s ease;
+}
+
 .logo img {
   height: 50px;
   width: auto;
@@ -45,26 +48,40 @@ body {
 
 .navigation a {
   margin-right: 15px;
-  color: #565E6C;
+  color: #333333;
   font-weight: bold;
   text-decoration: none;
-  transition: color 0.3s ease;
+  position: relative;
 }
 
-.navigation a:hover {
-  color: #ff5722;
+.navigation a::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 50%;
+  background-color: #333333;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.navigation a:hover::before {
+  visibility: visible;
+  width: 100%;
+  left: 0;
 }
 
 .actions a {
   margin-left: 10px;
-  color: #0C9200;
+  color: #28a745; /* 초록색 */
   font-weight: bold;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .actions a:hover {
-  color: #ff5722;
+  color: #218838; /* 초록색을 더 어둡게 */
 }
 
 main {
@@ -228,36 +245,52 @@ td {
 </head>
 <body>
 <header class="header">
-    <div class="logo">
-        <a href="/main"> <img src="/images/logo.png" alt="프렌즈그램 로고" class="logo-image" /></a>
-    </div>
-    <nav class="navigation">
-        <a href="/board01/main">코딩 게시판</a>
-        <a href="/board02/main">팀 모집</a>
-        <a href="/board03/main">프리랜서 검색</a>
-        <a href="/list">프리랜서 공고</a>
-        <a href="/board05">취업 공고</a>
-    </nav>
-    <div class="actions">
-        <c:if test="${user.id != null }">
+      <div class="logo">
+         <a href="/main"> <img src="/images/logo.png" alt="프렌즈그램 로고"
+            class="logo-image" />
+         </a>
+      </div>
+      <nav class="navigation">
+      <c:if test="${user.role != 3}">
+         <a href="board01/main">코딩 게시판</a> 
+         <a href="board02/main">팀 모집</a> 
+      </c:if> 
+      <c:if test="${user.role == 3}">
+         <a href="#">코딩 게시판</a> 
+         <a href="#">팀 모집</a> 
+      </c:if>  
+         <a href="board03/main">프리랜서 검색</a> 
+         <a href="/list">프리랜서 공고</a> 
+         <a href="/board05">취업 공고</a>
+      </nav>
+      <div class="actions">
+         <c:if test="${user.id != null }">
             <a class="login" href="/logout">로그아웃</a>
-        </c:if>
-        <c:if test="${user.id == null }">
+            <c:choose>
+                    <c:when test="${user.role != 3}">
+                        <a class="profile" href="/myprofile">프로필</a>
+                     </c:when>
+                     <c:when test="${user.role == 3}">
+                         <a class="corporationprofile" href="/corporationprofile">기업 페이지</a>
+                     </c:when>
+              </c:choose>
+         </c:if>
+         <c:if test="${user.id == null }">
             <a class="login" href="/loginform">로그인</a>
-        </c:if>
-        <a class="profile" href="/myprofile">프로필</a>
-        <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
-    	
-    	<c:if test="${user.id != null }">
-				<div style="position:relative; display:inline-block; top:7px;">
-					<img style="width: 25px; height:25px;" src="/images/message_icon.png" alt="메세지"/>
-					<div id="numberOfMessage" style="position:absolute; top: 10px; left:15px; background-color:red; color:white;
-					padding: 1px 6px; border-radius:50%; font-size:13px;"></div>
-				</div>
-				</c:if>
-    
-    </div>
-</header>
+
+         </c:if>
+
+         <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+         <c:if test="${user.id != null }">
+            <div style="position:relative; display:inline-block; top:7px;">
+               <img style="width: 25px; height:25px;" src="/images/message_icon.png" alt="메세지"/>
+               <div id="numberOfMessage" style="position:absolute; top: 10px; left:15px; background-color:red; color:white;
+               padding: 1px 6px; border-radius:50%; font-size:13px;"></div>
+            </div>
+            </c:if>
+      </div>
+   </header>
+
 
 <main>
     <div class="main-container">
@@ -324,20 +357,15 @@ td {
 </main>
 
 <footer class="footer">
-    <div class="footer-links">
-        <a href="#">프리랜서 이용약관</a>
-        <a href="#">고객센터</a>
-        <a href="#">개인정보 처리방침</a>
-        <a href="#">광고문의</a>
-        <c:if test="${user != null && (user.role == 2 || user.role == 1)}">
-            <a href="/adminpage/board01">관리자</a>
-        </c:if>
-    </div>
-    <div class="company-info">
-        <p>(주)프렌즈그램(대표이사: 전재민)</p>
-        <p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
-    </div>
-</footer>
+		<div class="footer-links">
+			<a href="#">프리랜서 이용약관</a> <a href="/question">고객센터</a> <a href="#">개인정보
+				처리방침</a><c:if test="${user.role == 3 }"><a href="/advertising/question">광고문의</a></c:if><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
+		</div>
+		<div class="company-info">
+			<p>(주)프렌즈그램(대표이사: 전재민)</p>
+			<p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
+		</div>
+	</footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -413,6 +441,7 @@ $(function() {
     });
 });
 
+
 $(function(){
 	var id = '${user.id}';
 	if(id != null){
@@ -433,96 +462,8 @@ $(function(){
 })
 
 
-/*$(function(){
-$("a.delete-btn").click(function(){
-    let b_no04 = $(this).attr("id"); 
-    $.ajax({
-        url: "/board04/delete/" + b_no04,
-        method: "DELETE",
-        success: function(response) {
-            if(response === 1) {
-                alert("삭제되었습니다.");
-                location.href = "/list";
-            } else {
-                alert("삭제에 실패했습니다.");
-            }
-        },
-        error: function() {
-            alert("오류가 발생했습니다.");
-        }
-    });
-    return false; 
-});*/
 
-/*    $('#join-btn').click(function(e) {
-    e.preventDefault(); // 기본 링크 클릭 동작 방지
-    
-    var boardNo = ${dto.b_no04}; // 현재 게시글 번호
-    var userId = "${user.id}"; // 세션에서 사용자 ID 가져오기
 
-    console.log("AJAX 요청 데이터:", {
-        b_no04: boardNo,
-        id: userId
-    });
-
-    var data = {
-        b_no04: boardNo,
-        id: userId
-    };
-
-    $.ajax({
-        url: '/board04/join?b_no04='+boardNo+'&id='+userId,
-        type: 'get',
-        contentType: 'application/json',
-        success: function(response) {
-            alert(response.message); // 서버로부터 받은 메시지 표시
-
-            // 지원 성공 시 이력서 전송
-            sendResume();
-        },
-        error: function(xhr, status, error) {
-            alert("지원에 실패했습니다.");
-        }
-    });
-});
-
-function sendResume() {
-    $.ajax({
-        url: '/board04/post/' + ${dto.b_no04}, // 이력서 전송 URL
-        type: 'post',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            b_no04: ${dto.b_no04},
-            return_man: "${dto.id}",
-            title: "${dto.title}의 이력서 입니다.",
-            content: "이력서 내용: 
-            이름: ${user.name}
-            생년월일: ${user.birth}
-            나이: ${minfo.age}
-            성별: ${user.gender}
-            전화번호: ${user.phone}
-            email: ${user.email}
-            주소: ${minfo.address}
-
-            자기소개서: ${minfo.content}
-            학교명: ${minfo.school_name}
-            학교 기간: ${minfo.school_period}
-            학교 전공: ${minfo.school_major}
-            경력 회사명: ${minfo.career_nme}
-            경력 기간: ${minfo.career_period}
-            경력 담당업무: ${minfo.career_role}
-            자격증 이름: ${minfo.certificate_name}
-            자격증 취득일자: ${minfo.certificate_date}", // 필요한 이력서 내용으로 대체
-            id: "${user.id}"
-        }),
-        success: function(response) {
-            alert("이력서가 성공적으로 전송되었습니다.");
-        },
-        error: function(xhr, status, error) {
-            alert("이력서 전송에 실패했습니다.");
-        }
-    });
-} */
 
 </script>
 

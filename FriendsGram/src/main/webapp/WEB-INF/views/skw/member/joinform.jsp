@@ -55,8 +55,7 @@
     td:last-child {
         text-align: left;
         width: 70%;
-        display: flex;
-        align-items: center;
+        position: relative;
     }
 
     input[type="text"], input[type="password"], textarea {
@@ -64,7 +63,7 @@
         padding: 8px;
         border-radius: 5px;
         border: 1px solid #ccc;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         font-size: 1em;
     }
 
@@ -134,18 +133,24 @@
       </tr>
       <tr>
         <td>비밀번호</td>
-        <td><input name="password" type="password" id="password"></td>
+        <td>
+            <input name="password" type="password" id="password">
+            <span id="password_msg"></span>
+        </td>
       </tr>
       <tr>
         <td>이름</td>
-        <td><input name="name" id="name"></td>
+        <td>
+            <input name="name" id="name">
+            <span id="name_msg"></span>
+        </td>
       </tr>
       <tr>
         <td>email</td>
         <td>
             <input name="email" id="email">
-            <div id="emailresult"></div>
             <input type="button" id="mail_ck" value="메일 인증">
+            <span id="emailresult"></span>
         </td>
       </tr>
       <tr>
@@ -155,12 +160,15 @@
                 <input id="ck_num"> 
                 <input type="button" id="ck_b" value="인증 확인">
             </div>
-            <div id="result"></div>
+            <span id="result"></span>
         </td>
       </tr>
       <tr>
         <td>생년월일</td>
-        <td><input name="birth" placeholder="yyyyMMdd"></td>
+        <td>
+            <input name="birth" placeholder="yyyyMMdd">
+            <span id="birth_msg"></span>
+        </td>
       </tr>
       <tr>
         <td>성별</td>
@@ -171,7 +179,10 @@
       </tr>
       <tr>
         <td>전화번호</td>
-        <td><input type="text" name="phone"></td>
+        <td>
+            <input type="text" name="phone">
+            <span id="phone_msg"></span>
+        </td>
       </tr>
       <tr>
         <td>동의</td>
