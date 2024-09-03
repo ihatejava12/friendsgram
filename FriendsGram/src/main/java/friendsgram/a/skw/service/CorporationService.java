@@ -40,7 +40,5 @@ public class CorporationService {
 	public List<Corporation_MemberDto> corsInfo(){
 		return dao.corsInfo();
 	}
-	
-	
 }
 

@@ -75,7 +75,7 @@ body {
 
 /* 메인 컨텐츠 설정 */
 main {
-    max-width: 600px; /* 메인의 크기 설정 */
+    max-width: 1000px; /* 메인의 크기 설정 */
     margin: 100px auto; /* 위쪽 마진을 30px로 설정 */
     padding: 20px;
     background-color: #fff;
@@ -85,7 +85,6 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center; /* 컨텐츠를 중앙으로 정렬 */
-
 }
 
 /* 푸터 설정 */
@@ -127,6 +126,7 @@ main {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   margin-top: 0;
 }
+
 /* 버튼을 평행하게 나열하기 위한 설정 */
 #button-group {
   display: flex;
@@ -135,16 +135,16 @@ main {
 }
 
 #button-group a {
-  flex: 1; /* 버튼이 균등한 크기로 확장되도록 함 */
+   width: 30%; /* 각 버튼의 너비를 설정 */
   margin: 0 5px; /* 좌우 간격 조정 */
-  padding: 10px 20px;
+  padding: 15px 25px; /* 내부 여백을 키움 */
   background-color: #4CAF50;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
   text-align: center;
   font-weight: bold;
-  font-size: 0.8em; /* 글씨 크기를 작게 조정 */
+  font-size: 1em; /* 글씨 크기를 조정하여 크기를 늘림 */
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -181,6 +181,7 @@ input[type="submit"]:active {
   background-color: #3e8e41;
   transform: scale(1);
 }
+
 #center a {
   display: inline-block;
   margin: 10px 15px;
@@ -255,6 +256,7 @@ input[type="submit"]:active {
   transform: scale(1);
 }
 </style>
+
 </head>
 <body>
 
@@ -279,16 +281,7 @@ input[type="submit"]:active {
             <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
         </div>
     </header>
- <main>
-    <div id="center">
-        <h1>개인페이지 작성중</h1>
-        <a href="/myprofile">나의 정보</a>
-        <a href="/info">이력서</a>
-        <a href="/review/${user.id}">나의 리뷰</a>
-        <a href="/myquestion">문의 사항 보기</a>
 
-    </div>
-</header>
 <main>
     <div id="center">
   <h1>나의 정보</h1>

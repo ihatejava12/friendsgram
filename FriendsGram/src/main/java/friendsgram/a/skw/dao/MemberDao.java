@@ -16,10 +16,8 @@ public interface MemberDao {
 	
 	int insertMem(MemberDto dto);
 	
-
 	@Select("select * from member where id=#{id} and password=#{password}")
 	MemberDto login(LoginDto dto);
-	
 	
 	int updateMem(MemberDto dto);
 	
@@ -37,27 +35,7 @@ public interface MemberDao {
 	
 	List<MemberDto> login();
 	
-	//@Insert("insert into member values(#{id},#{password}, #{name}, #{email}, #{birth}, #{gender}, #{phone}")
-	//List<MemberDto> insertMem();
-	
-	//@Update("update member set password=#{password}, \r\n"
-	//		+ "name=#{name}, birth = #{birth},address=#{address}\r\n"
-	//		+ "where id=#{id} ")
-	// List<MemberDto> updateMem();
-	
 	@Delete("delete from member where id = #{id}")
 	int deleteMem(@Param("id") String id);
-
-
-//	@Select("select * from member where id=#{id} and password=#{password}")
-//	MemberDto login(MemberDto dto);
-	
-	/*
-	 * @Select("select * from member where id=#{id} and password=#{password}")
-	 * MemberDto login(LoginDto dto);
-	 */
-
-// String id_Check(String id);
-
 
 }

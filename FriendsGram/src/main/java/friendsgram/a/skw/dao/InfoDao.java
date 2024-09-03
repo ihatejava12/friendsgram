@@ -15,24 +15,23 @@ public interface InfoDao {
 	
 	@Select("select * from member_info WHERE id = #{id} LIMIT 1")
 	Member_InfoDto midto(String id);
+	  
+	@Update("UPDATE Member_info SET " +
+	        "name = #{name}, " +
+	        "phone = #{phone}, " +
+	        "email = #{email}, " +
+	        "address = #{address}, " +
+	        "detail_address = #{detail_address}, " +  // 이 줄이 수정되었습니다.
+	        "school_name = #{school_name}, " +
+	        "school_period = #{school_period}, " +
+	        "school_major = #{school_major}, " +
+	        "career_nme = #{career_nme}, " +  // career_nme를 career_name으로 수정했습니다.
+	        "career_period = #{career_period}, " +
+	        "career_role = #{career_role}, " +
+	        "certificate_name = #{certificate_name}, " +
+	        "certificate_date = #{certificate_date} " +  // 마지막 쉼표 제거
+	        "WHERE id = #{id}")
+	int updateinfo(Member_InfoDto dto);
 
-	  @Update("UPDATE Member " +
-	            "SET name = #{name}, " +
-	            "email = #{email}, " +
-	            "phone = #{phone}, " +
-	            "address = #{address}, " +
-	            "detail_address = #{detail_address}, " +
-	            "birth = #{birth}, " +
-	            "gender = #{gender}, " +
-	            "school_name = #{school_name}, " +
-	            "school_period = #{school_period}, " +
-	            "school_major = #{school_major}, " +
-	            "career_nme = #{career_nme}, " +
-	            "career_period = #{career_period}, " +
-	            "career_role = #{career_role}, " +
-	            "certificate_name = #{certificate_name}, " +
-	            "certificate_date = #{certificate_date} " +
-	            "WHERE id = #{id}")
-	    int updateinfo(Member_InfoDto dto);
 	}
 
