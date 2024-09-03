@@ -182,7 +182,7 @@ public class MemberController {
 			return "redirect:/main";
 		}
 	}
-
+	
 	@RequestMapping("/mainlogin")
 	public String main(@ModelAttribute("user") MemberDto dto) {
 		if (dto.getId() != null) {

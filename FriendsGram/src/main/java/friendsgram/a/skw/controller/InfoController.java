@@ -82,9 +82,10 @@ public class InfoController {
         model.addAttribute("memberInfo", memberInfo);
         return "skw/profile/infock";
     }
-    @PutMapping("/update/info")
-    public String update(@ModelAttribute("user") Member_InfoDto dto) {
-    	System.out.println(dto.getId());
+    
+    @PutMapping("/updateinfo")
+    public String update(Member_InfoDto dto) {
+    	System.out.println(dto);
         service.updateinfo(dto);
         return "redirect:/myprofile";
     }

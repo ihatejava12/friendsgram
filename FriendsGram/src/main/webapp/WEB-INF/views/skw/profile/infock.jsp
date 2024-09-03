@@ -286,9 +286,9 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 		    <a href="/myquestion">문의 사항 보기</a>
 		    <a href="/board03/freelancer">프리랜서 등록</a>
 		 </div>
-		<form action="updateinfo" method="post" id="infock">
+		<form action="/updateinfo" method="post" id="infock">
 			<input type="hidden" name="_method" value="put">
-			
+			<input type="hidden" name="id" value="${user.id}">
 		    <h1>이력서 정보 확인</h1>
 		    <table>
 		        <tr><td>이름 :</td><td><input name="name" id="name" value="${memberInfo.name}"></td></tr>

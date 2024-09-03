@@ -19,7 +19,7 @@
         #{gender},
         #{phone},
         #{consent},
-        0,
+        1,
         0,
         0
     )

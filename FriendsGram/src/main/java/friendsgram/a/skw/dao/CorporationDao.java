@@ -21,9 +21,6 @@ public interface CorporationDao {
 	@Select("select * from corporation_member where id=#{id} and password=#{password}")
 	Corporation_MemberDto corlogin(LoginDto dto);
 	
-
-
-
 	int delete_Cor(String id);
 	
 	@Select("select * from corporation_member")
@@ -35,10 +32,6 @@ public interface CorporationDao {
 	@Select("select id from corporation_member where id=#{id}")
 	String coridCheck(@Param("id") String id);
 	
-	//@Select("select * from Corporation_Member where id=#{id} and password=#{password}")
-	//List<Corporation_MemberDto> corlogin();
-	
-
 	@Update("UPDATE Corporation_Member SET "
 	        + "password=#{password}, "
 	        + "name=#{name}, company=#{company}, scale=#{scale}, "
@@ -48,19 +41,6 @@ public interface CorporationDao {
 	        + "WHERE id=#{id}")
 	int updateCor(Corporation_MemberDto corporationMember);
 
-	//@Insert("insert into member values(#{id},#{password}, #{name}, #{email}, #{birth}, #{gender}, #{phone}")
-	//List<MemberDto> insertMem();
-	
-	@Update("update corporation_member set password=#{password}, \r\n"
-			+ "name=#{name}, company=#{company}, scale=#{scale},\r\n"
-			+ "business_number=#{business_number}, boss_name=#{boss_name}, address=#{address},\r\n"
-			+ "email=#{email}, company_number=#{company_number}, consent=#{consent},\r\n"
-			+ "company_consent=#{company_consent}"
-			+ "where id=#{id} ")
-	List<Corporation_MemberDto> updateCor();
-
-	
 	@Delete("delete from corporation_member where id = #{id}")
 	int deleteCor(@Param("id") String id);
-
 }
