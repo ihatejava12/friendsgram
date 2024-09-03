@@ -105,4 +105,7 @@ public interface Board01Dao {
 	// 게시글 Dto 1개 받아와서, 해당 글 update
 	int updateBoard01Article(Board01Dto article);
 	
+	// 글번호 1개 받아와서, 해당 글에 달린 댓글의 개수 리턴
+	int board01NumberOfComents(int no);
+	
 }

@@ -402,7 +402,9 @@ tr {
 							<tr>
 								<td style="text-align: center;">${board.b_no01 }</td>
 								<td style="text-align: center;">${board.code }</td>
-								<td class="tdtitle"><a href="content/${board.b_no01}">&nbsp;&nbsp;${board.title }</a></td>
+								<td class="tdtitle"><a id="${board.b_no01 }" 
+								href="content/${board.b_no01}">&nbsp;&nbsp;${board.title }</a>
+								<font color="#F08080"></font></td>
 								<td style="text-align: center;">${board.id }</td>
 								<td style="text-align: center;"><fmt:formatDate
 										value="${board.date }" dateStyle="short" /></td>
@@ -496,6 +498,25 @@ tr {
 			})
 			
 		})
+		
+		$(function(){
+			$(".tdtitle").each(function(){
+				var no = $(this).find('a').attr("id");
+				var tdtitle = $(this);
+				console.log(no);
+				$.ajax({
+					url:"/board01/numberofcoments/"+no,
+					method:"get",
+					datatype: "text"
+				}).done(function(data){
+					if(data != '0'){
+						tdtitle.find("font").text(" ( "+data+" )");
+					}
+				})
+			})
+		})
+		
+		
 	</script>
 
 

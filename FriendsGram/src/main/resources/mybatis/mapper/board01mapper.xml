@@ -261,5 +261,12 @@
 		where b_no01 = #{b_no01}
 	</update>
 	
+	<select id="board01NumberOfComents" parameterType="int" resultType="int">
+		select count(*) from board01_coment
+		where b_no01 = #{no}
+	</select>
+	
+	
+	
 	
 </mapper>
