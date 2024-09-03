@@ -229,4 +229,12 @@ public class Board01Service {
 	}
 	
 	
+	// 글번호 1개 받아와서, 해당 글에 달린 댓글의 개수 리턴
+	public	int board01NumberOfComents(int no) {
+		return board01dao.board01NumberOfComents(no);
+	}
+	
+	
+	
+	
 }
