@@ -6,6 +6,18 @@
 <head>
 <title>FreindsGram</title>
 <style>
+
+button[class='href']{
+	padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
 .free {
 	border-radius: 10px;
 }
@@ -216,7 +228,7 @@ main {
 				style="resize:none; "></textarea>
 			</div>
 			
-			<button>문의 하기</button>
+			<div><button class="href">문의 하기</button></div>
 			
 			</form>
 		</div>

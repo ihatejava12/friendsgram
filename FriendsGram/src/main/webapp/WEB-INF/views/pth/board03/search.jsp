@@ -267,7 +267,7 @@ main {
 					</div>
 					
 					<div style="margin-top:22px;">
-					<button class="notnull" style="height: 30px; margin-top: 20px; margin-left:20px;">
+					<button class="notnull" style="height: 30px; margin-top: 20px; margin-left:20px; padding: 2px 5px;">
 				프리랜서 찾기</button>
 					</div>
 				</div>
@@ -371,7 +371,7 @@ main {
 				<a href=#>[이전]</a>
 			</c:if>
 			<c:forEach begin="${begin }" end="${end}" var="i">
-				<a href="/board03/main?p=${i }">${i}</a>
+				<a href="/board03/search?p=${i }&work_type=${work_type}&skil=${skil}&career=${career}&addskil=${addskil}">${i}</a>
 			</c:forEach>
 			<c:if test="${end < totalPages }">
 				<a href=#>[다음]</a>
