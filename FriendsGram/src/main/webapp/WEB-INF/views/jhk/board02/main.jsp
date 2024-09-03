@@ -222,15 +222,15 @@ td a:hover {
       <nav class="navigation">
       
       <c:if test="${user.role != 3}">
-         <a href="board01/main">코딩 게시판</a> 
-         <a href="board02/main">팀 모집</a> 
+         <a href="/board01/main">코딩 게시판</a> 
+         <a href="/board02/main">팀 모집</a> 
       </c:if> 
       <c:if test="${user.role == 3}">
          <a href="#">코딩 게시판</a> 
          <a href="#">팀 모집</a> 
       </c:if>  
       
-         <a href="board03/main">프리랜서 검색</a> 
+         <a href="/board03/main">프리랜서 검색</a> 
          <a href="/list">프리랜서 공고</a> 
          <a href="/board05">취업 공고</a>
       </nav>
