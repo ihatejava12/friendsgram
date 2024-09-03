@@ -57,6 +57,7 @@
         width: 70%;
         display: flex;
         align-items: center;
+        flex-wrap: wrap; /* 이 부분이 세로 정렬 방지 */
     }
 
     input[type="text"], input[type="password"], select {
@@ -99,6 +100,7 @@
         color: #f44336;
         font-weight: bold;
         margin-left: 10px; /* 메시지와 입력창 간의 간격 확보 */
+        display: inline-block; /* 가로 정렬을 유지 */
     }
 
     label {
@@ -121,15 +123,24 @@
             </tr>
             <tr>
                 <td>비밀번호</td>
-                <td><input name="password" type="password" id="password"></td>
+                <td>
+                    <input name="password" type="password" id="password">
+                    <span id="password_msg"></span>
+                </td>
             </tr>
             <tr>
                 <td>이름</td>
-                <td><input name="name" id="name"></td>
+                <td>
+                    <input name="name" id="name">
+                    <span id="name_msg"></span>
+                </td>
             </tr>
             <tr>
                 <td>회사</td>
-                <td><input name="company" id="company"></td>
+                <td>
+                    <input name="company" id="company">
+                    <span id="company_msg"></span>
+                </td>
             </tr>
             <tr>
                 <td>기업형태</td>
@@ -140,29 +151,41 @@
                         <option value="3">중소기업</option>
                         <option value="4">대기업</option>
                     </select>
+                    <span id="scale_msg"></span>
                 </td>
             </tr>
             <tr>
                 <td>사업자등록번호</td>
-                <td><input name="business_number" id="business_number"></td>
+                <td>
+                    <input name="business_number" id="business_number">
+                    <span id="business_number_msg"></span>
+                </td>
             </tr>
             <tr>
                 <td>대표자명</td>
-                <td><input name="boss_name" id="boss_name"></td>
+                <td>
+                    <input name="boss_name" id="boss_name">
+                    <span id="boss_name_msg"></span>
+                </td>
             </tr>
             <tr>
                 <td>회사주소</td>
                 <td>
                     <input name="address" id="address">
                     <input type="button" id="addbtn" value="우편번호 검색" onclick="addPost()">
+                    <span id="address_msg"></span>
                 </td>
+            </tr>
+            <tr>
+                <td>나머지 주소</td>
+                <td><input name="detail_address" id="detail_address" value="${detail_address != null ? detail_address : ''}"></td>
             </tr>
             <tr>
                 <td>email</td>
                 <td>
                     <input name="email" id="email">
                     <input type="button" id="mail_ck" value="메일 인증">
-                    <div id="emailresult"></div>
+                    <span id="emailresult"></span>
                 </td>
             </tr>
             <tr>
@@ -170,27 +193,32 @@
                 <td>
                     <input id="ck_num"> 
                     <input type="button" id="ck_b" value="인증 확인">
-                    <div id="result"></div>
+                    <span id="result"></span>
                 </td>
             </tr>
             <tr>
                 <td>전화번호</td>
-                <td><input type="text" name="company_number"></td>
+                <td>
+                    <input type="text" name="company_number">
+                    <span id="company_number_msg"></span>
+                </td>
             </tr>
             <tr>
                 <td>동의여부</td>
                 <td>
                     <label><input type="radio" name="consent" value="1">동의</label>
                     <label><input type="radio" name="consent" value="0">거부</label>
+                    <span id="consent_msg"></span>
                 </td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td>기업인증여부</td>
                 <td>
                     <label><input type="radio" name="company_consent" value="1">동의</label>
                     <label><input type="radio" name="company_consent" value="0">거부</label>
+                    <span id="company_consent_msg"></span>
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <td colspan="2" align="center">
                     <input type="submit" value="가입">

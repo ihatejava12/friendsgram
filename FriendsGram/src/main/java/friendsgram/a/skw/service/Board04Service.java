@@ -68,11 +68,11 @@ public class Board04Service {
 	}
 	public int updateBoard(Board04Dto dto, List<String> programmingLanguages) {
 		int result = dao.updateBoard(dto);
-		if (result > 0) {
-            // 기존 코드를 삭제하고 새로운 코드 목록을 삽입합니다.
-            dao.deleteCodes(dto.getB_no04());
-            saveProgrammingLanguages(dto.getB_no04(), programmingLanguages);
-        }
+		
+		  if (result > 0) { // 기존 코드를 삭제하고 새로운 코드 목록을 삽입합니다.
+		  dao.deleteCodes(dto.getB_no04()); saveProgrammingLanguages(dto.getB_no04(),
+		  programmingLanguages); }
+		 
         return result;
 	}
 	public int deleteBoard(int b_no04) {
