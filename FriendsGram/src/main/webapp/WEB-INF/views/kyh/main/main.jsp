@@ -109,7 +109,10 @@
 		        $("a").click(function(event){
 		            // 특정 조건에 따라 예외 처리
 		            if ($(this).attr('href').includes('/question') || $(this).attr('href').includes('/logout')) {
+		            	
 		                return;  // 이 경우 기본 동작을 허용
+		            } else {
+		            	alert("제재된 회원입니다");
 		            }
 	 
 		            // 기본 동작을 막음
