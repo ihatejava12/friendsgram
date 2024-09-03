@@ -184,6 +184,10 @@ public class MailController {
 		return number+"";
 	}
 	
-	
+	@GetMapping("/mail/writeAnwser/{id}")
+	public String writeAnwserMail(@PathVariable("id")String id, Model m) {
+		m.addAttribute("anwserid",id);
+		return "pth/mail/writeanwser";
+	}
 	
 }
