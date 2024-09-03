@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -90,5 +91,12 @@ public class InfoController {
         return "redirect:/myprofile";
     }
     
-    
+    @GetMapping("/infock/{id}")
+    public String infockfreelancer(@PathVariable("id")String id, Model model) {
+        // Model에서 데이터를 받아서 JSP로 전달
+        Member_InfoDto memberInfo = service.midto(id);
+       
+        model.addAttribute("memberInfo", memberInfo);
+        return "skw/profile/infock";
+    }
 }

@@ -151,6 +151,7 @@ main {
 
 a {
 	text-decoration: none;
+	color:black;
 }
 
 
@@ -167,6 +168,18 @@ a {
 #skils button:hover {
 	background-color: #e0e0e0;
 }
+
+button[class='info'] {
+background-color: #f0f0f0; /* 버튼 스타일 추가 */
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 5px 10px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+
 
 
 </style>
@@ -311,27 +324,35 @@ a {
 				<br>
 
 				<div style="margin: 15px;">
-					<font size="3"><b>이력서 및 포트폴리오</b></font>
-
+					<div style="margin-bottom:10px;">
+					<font size="3"><b>포트폴리오 및 이력서</b></font>
+					</div>
 
 
 					<div id="${freelancer.portfolio }" 
 						style="width:150px; height:80px; background-image: url(${freelancer.portfolio});
 			background-size: cover;
-			background-position:center;">
+			background-position:center; margin-bottom:4px;">
 					</div>
 					<c:if test="${freelancer.portfolio != '' }">
-						<a
+						<button class="info"><a
 							href="/board03/portfolio/download?path=${freelancer.portfolio }">포트폴리오
-							다운로드</a>
+							다운로드</a></button>
 					</c:if>
-
+	
 				</div>
-
+		
+				<div style="margin:15px;">
+				<c:if test="${user.role == 3 }">
+						<div>
+							<button class="info"><a href="/infock/${freelancer.id}">이력서 보기</a></button>
+						</div>
+				</c:if>
+				</div>
 
 			</div>
 
-
+			<c:if test="${user.role == 3 }">
 			<div class="sub" style="float: left; margin: 15px; width: 400px; height: 300px; padding: 30px;
 			border: thin solid #e0e0e0; border-radius:10px; background-color:white;">
 				<font size="4"><b>이 프리랜서와 함께 일하고 싶다면!</b></font><br>
@@ -343,7 +364,8 @@ a {
 					협업 제의하기</a>
 				</button>
 			</div>
-
+			</c:if>	
+			
 		</div>
 
 
