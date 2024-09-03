@@ -204,7 +204,7 @@ main {
 
 				<a class="profile" href="/myprofile">프로필</a> <a class="messages"
 					href="/mail"
-					onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+					onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
 			</div>
 		</header>
 
@@ -358,8 +358,8 @@ main {
 
 					<div style="float: left;">
 						
-						<div style="width: 300px; height: 130px; border-left: 1px solid #e0e0e0;
-						 background-color:white;">
+						<div style="width: 350px; height: 130px; border-left: 1px solid #e0e0e0;
+						 background-color:white; padding-left:20px;">
 							<font size="2">${freelancer.content } </font></div>
 					</div>
 

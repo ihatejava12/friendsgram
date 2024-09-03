@@ -336,13 +336,17 @@ table td a:hover {
             $("#insert").on("click", function(){
                 let a = $("#newword").val();
                 
-                $.ajax({url:"/insertword",
-                        data:"word="+a,
-                        method:"post",
-                        dataType:"json"
-                }).always(function(){
-                    location.reload();
-                })
+                if(a != ""){
+	                $.ajax({url:"/insertword",
+	                        data:"word="+a,
+	                        method:"post",
+	                        dataType:"json"
+	                }).always(function(){
+	                    location.reload();
+	                })
+                } else {
+                	alert("입력창이 비어있습니다!");
+                }
             })
             
             $("#delete").click(function(){

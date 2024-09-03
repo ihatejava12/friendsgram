@@ -20,7 +20,7 @@
 }
 
 .mailleft {
-	border:1px solid lightgreen; 
+	border:2px solid lightgreen; 
 	float:left; 
 	width: 23%;
 	height:94%;
@@ -33,7 +33,7 @@
 
 .mailright {
 	float: left;
-	border:1px solid lightgreen; 
+	border:2px solid lightgreen; 
 	width: 68%;
 	height:94%; 
 	
@@ -51,24 +51,25 @@
   height: 70%;
 }
 
-th[class='choice'],td[class='choice'] {
-	width: 10%;
-	text-align:center;
-}
-th[class='title'],td[class='title'] {
-	width: 30%;
-}
-th[class='send'],td[class='send'] {
-	width: 20%;
-	text-align:center;
-}
-th[class='date'],td[class='date'] {
-	width: 40%;
-	text-align:center;
+
+a[class='main']{
+	text-decoration: none;
+	color:black;
 }
 
-a {
+a[class='title']{
 	text-decoration: none;
+	color:gray;
+}
+
+a[class="title"]:link{
+	text-decoration: none;
+	color:blue;
+}
+
+a[class="page"]{
+	text-decoration: none;
+	color:black;
 }
 
 li {
@@ -125,9 +126,9 @@ width: 70%; /* select 박스의 너비를 200px로 설정 */
 		<div class="mailleft">
 			<div style="padding-left:18px; margin-bottom: 20px;"><h3>쪽지함</h3></div>
 			<ul>
-				<li><a href="/mail/write">쪽지 보내기</a></li>
-				<li><a href="/mail">받은 쪽지함</a></li>
-				<li><a href="/mail/sendlist">보낸 쪽지함</a></li>
+				<li><a class="main" href="/mail/write">쪽지 보내기</a></li>
+				<li><a class="main" href="/mail">받은 쪽지함</a></li>
+				<li><a class="main" href="/mail/sendlist">보낸 쪽지함</a></li>
 			</ul>
 		</div>
 		
@@ -156,6 +157,7 @@ width: 70%; /* select 박스의 너비를 200px로 설정 */
 			<div align="center"><button>쪽지보내기</button></div>
 			</form>
 		</div>
+		
 		</div>
 	
 	</div> 

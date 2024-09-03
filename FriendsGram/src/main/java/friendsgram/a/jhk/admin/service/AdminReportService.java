@@ -1,6 +1,8 @@
 package friendsgram.a.jhk.admin.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,10 @@ public class AdminReportService {
 	@Autowired
 	AdminReportDao dao;
 	
+	public ReportDto selectR(int report_num) {
+		return dao.selectR(report_num);
+	}
+	
 	public ReportDto selectBC2(int report_num) {
 		return dao.selectBC2(report_num);
 	}
@@ -34,8 +40,15 @@ public class AdminReportService {
 		return dao.selectB1(report_num);
 	}
 	
-	public List<ReportDto> reportList() {
-		return dao.reportList();
+	public List<ReportDto> reportList(int start) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("start", start);
+		m.put("count", 9);
+		return dao.reportList(m);
+	}
+	
+	public int reportCount() {
+		return dao.reportCount();
 	}
 
 }

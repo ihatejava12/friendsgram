@@ -11,14 +11,23 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import friendsgram.admin.dto.ReportDto;
+import friendsgram.admin.dto.WordDto;
 import friendsgram.board02.dto.Board02Dto;
 import friendsgram.board02.dto.Board02_CodeDto;
 import friendsgram.board02.dto.Board02_JoinDto;
 import friendsgram.board02.dto.Board02_TeamDto;
-import friendsgram.member.dto.MemberDto;
 
 @Mapper
 public interface Board02Dao {
+	
+	@Select("select * from board02_team where id = #{id}")
+	List<Board02_TeamDto> teList(String id);
+	
+	@Select("select * from word")
+	List<WordDto> wordlist();
+	
+	@Delete("delete from board02_code where b_no02 = #{b_no02}")
+	int deleteCdoe(int b_no02);
 	
 	@Select("select id from board02 where b_no02 = #{b_no02}")
 	String id(int b_no02);
@@ -40,7 +49,7 @@ public interface Board02Dao {
 	int insertCode(@Param("code") String code, @Param("b_no02") int b_no02);
 	
 	// 신고
-	@Insert("insert into report (report_content, r_no, num, id, co_no, content) values (#{report_content}, #{r_no}, #{num}, #{id}, #{co_no}, #{content})")
+	@Insert("insert into report (report_content, r_no, num, id, co_no, content, r_id) values (#{report_content}, #{r_no}, #{num}, #{id}, #{co_no}, #{content}, #{r_id})")
 	int board02Report(ReportDto dto);
 	
 	// 글 삭제

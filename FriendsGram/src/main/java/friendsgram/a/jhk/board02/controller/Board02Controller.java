@@ -1,5 +1,6 @@
 package friendsgram.a.jhk.board02.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import friendsgram.a.jhk.board02.service.Board02CommService;
 import friendsgram.a.jhk.board02.service.Board02Service;
 import friendsgram.admin.dto.ReportDto;
+import friendsgram.admin.dto.WordDto;
 import friendsgram.board02.dto.Board02Dto;
 import friendsgram.board02.dto.Board02_CodeDto;
 import friendsgram.board02.dto.Board02_ComentDto;
 import friendsgram.board02.dto.Board02_JoinDto;
+import friendsgram.board02.dto.Board02_TeamDto;
 import friendsgram.member.dto.MemberDto;
 
 @Controller
@@ -35,7 +38,8 @@ public class Board02Controller {
 	
 	@GetMapping("/reviewteam/{b_no02}")
 	public String reviewTeam(@PathVariable("b_no02") int b_no02, Model m) {
-		m.addAttribute("tlist", service.tList(b_no02));
+		List<Board02_TeamDto> tlist = service.tList(b_no02);
+		m.addAttribute("tlist", tlist);
 		
 		return "/jhk/review/teamlist";
 	}
@@ -67,6 +71,7 @@ public class Board02Controller {
 	@DeleteMapping("/deletecontent02/{b_no02}")
 	public String deleteContent(@PathVariable("b_no02") int b_no02) {
 		service.deleteContent(b_no02);
+		service.deleteCode(b_no02);
 		
 		return "redirect:/board02/main";
 	}
@@ -128,6 +133,9 @@ public class Board02Controller {
 		m.addAttribute("commlist", commlist);
 		String id = service.id(b_no02);
 		
+		List<WordDto> wlist = service.wordList();
+		m.addAttribute("wlist", wlist);
+		
 		String name = service.idName(id);
 		int length = name.length();
 		if (length > 2) {
@@ -158,13 +166,27 @@ public class Board02Controller {
 	public String writeBoard02(@RequestParam("title") String title, @RequestParam("join_date") String join_date, 
 							   @RequestParam("content") String content, @RequestParam("volunteer") int volunteer, 
 							   @RequestParam("id") String id, @RequestParam("b_no02") int b_no02, 
-							   @RequestParam("code") List<String> code) {
-		System.out.println(code);
+							   @RequestParam("code") List<String> code, Model m) {
 		service.writeBoard02(title, join_date, content, volunteer, id);
 		service.insertTeam(id, b_no02);
 		service.insertCode(code, b_no02);
 		
+		List<WordDto> wolist = service.wordList();
+		
+		String[] colist = content.split(" ");
+		List<String> clist = Arrays.asList(colist);
+		
+		for(int i = 0; i < wolist.size(); i++) {
+			for(int j = 0; j < clist.size(); j++) {
+				if(clist.get(j).contains(wolist.get(i).toString())) {
+					return "redirect:/newboard02";
+				}
+			}
+		}
+		
+		
 		return "redirect:/board02/main";
+		
 	}
 	
 	@GetMapping("/newboard02")
@@ -173,18 +195,24 @@ public class Board02Controller {
 		m.addAttribute("b_no02", b_no02);
 		List<Board02_CodeDto> clist = service.codeList(b_no02);
 		m.addAttribute("clist", clist);
+		List<WordDto> wolist = service.wordList();
+		m.addAttribute("wlist", wolist);
 		
 		return "/jhk/board02/newboard02";
 	}
 	
 	@GetMapping("/board02/main")
-	public String board03Main(@RequestParam(value="searchn", defaultValue ="0", required = false) int searchn,@RequestParam(value="search", defaultValue="", required = false) String search,@RequestParam(name="p", defaultValue = "1") int page, Model m) {
+	public String board03Main(@ModelAttribute("user") MemberDto dto, @RequestParam(value="searchn", defaultValue ="0", required = false) int searchn,@RequestParam(value="search", defaultValue="", required = false) String search,@RequestParam(name="p", defaultValue = "1") int page, Model m) {
 		int count = service.board02Count(searchn,search);
 		if(count > 0) {
 		
-		int perPage = 10; // 한 페이지에 보일 글의 갯수
+		int perPage = 13; // 한 페이지에 보일 글의 갯수
 		int startRow = (page - 1) * perPage;
 		int endRow = page * perPage;
+		
+		String id = dto.getId();
+		List<Board02_TeamDto> tlist = service.teList(id);
+		m.addAttribute("tlist", tlist);
 		
 		List<Board02Dto> blist = service.board02List(searchn, search,startRow);
 		m.addAttribute("blist", blist);

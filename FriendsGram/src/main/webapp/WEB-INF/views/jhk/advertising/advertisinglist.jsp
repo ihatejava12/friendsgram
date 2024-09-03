@@ -238,7 +238,13 @@ table td a:hover {
 				</ul>
 			</aside>
 			<main>
-
+				<div class="filter-bar">
+					<form action="/adminpage/advertisinglist">
+						<input name="search" placeholder="회사명을 입력하세요.">
+						<input type="submit" value="검색">
+					</form>
+				</div>
+				
 
 				<table>
 					<thead>

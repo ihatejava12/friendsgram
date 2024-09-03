@@ -25,7 +25,7 @@ public class AdminReportMemberController {
 		return "";
 	}
 	
-	@GetMapping("/adminpage/membrcontent/{id}")
+	@GetMapping("/adminpage/membercontent/{id}")
 	public String memberContent(@PathVariable("id") String id, Model m) {
 		MemberDto memlist = reservice.oneMember(id);
 		m.addAttribute("memlist", memlist);

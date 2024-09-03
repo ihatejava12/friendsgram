@@ -34,7 +34,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 20px; /* 헤더와 푸터의 패딩 크기 */
   background: #ffffff; /* 헤더 배경색을 흰색으로 변경 */
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* 그림자를 연하게 */
   transition: all 0.3s ease;
@@ -84,12 +84,14 @@ body {
 }
 
 .container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 20px;
+  max-width: 800px; /* 너비를 줄여 메인을 작게 중앙에 위치시킴 */
+  margin: 0 auto; /* 자동으로 중앙 정렬 */
+  padding: 20px; /* 패딩 크기를 20px로 줄여 헤더, 푸터와 맞춤 */
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 100px; /* 상단 여백 추가 */
+  margin-bottom: 100px; /* 하단 여백 추가 */
 }
 
 .search-container {
@@ -268,7 +270,7 @@ body {
 .footer {
   background-color: #333333; /* 다크 그레이 */
   color: white;
-  padding: 30px 20px;
+  padding: 10px 20px; /* 헤더와 동일한 패딩 크기 */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -310,14 +312,24 @@ body {
 		<div class="actions">
 			<c:if test="${user.id != null }">
 				<a class="login" href="/logout">로그아웃</a>
+				<c:choose>
+          			 <c:when test="${user.role != 3}">
+             		     <a class="profile" href="/myprofile">프로필</a>
+           			 </c:when>
+           			 <c:when test="${user.role == 3}">
+               			 <a class="corporationprofile" href="/corporationprofile">기업 페이지</a>
+           			 </c:when>
+        		</c:choose>
 			</c:if>
 			<c:if test="${user.id == null }">
 				<a class="login" href="/loginform">로그인</a>
 			</c:if>
 
+
 			<a class="profile" href="/myprofile">프로필</a> <a class="messages"
 				href="/mail"
-				onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+				onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
+
 		</div>
 	</header>
 

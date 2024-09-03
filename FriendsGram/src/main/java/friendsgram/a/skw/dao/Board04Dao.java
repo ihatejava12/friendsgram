@@ -146,13 +146,13 @@ public interface Board04Dao {
     );
     
     
-    @Insert("insert into Mailham (return_man, title, content, date, id) values (#{return_man}, #{title}, #{content}, NOW(), #{id})")
+    @Insert("insert into mailham (return_man, title, content, date, id) values (#{return_man}, #{title}, #{content}, NOW(), #{id})")
     int b_04post(MailhamDto mdto);
     
-    @Select("select * from Member_Info where id = #{id}")
+    @Select("select * from member_info where id = #{id}")
     Member_InfoDto memberinfo(String id);
     
-    @Select("select * from Board04 where b_no04 = #{b_no04}")
+    @Select("select * from board04 where b_no04 = #{b_no04}")
     Board04Dto cpdto(int b_no04);
 }
 

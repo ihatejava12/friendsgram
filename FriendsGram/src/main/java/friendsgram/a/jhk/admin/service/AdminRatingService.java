@@ -24,15 +24,17 @@ public class AdminRatingService {
 		return dao.adminContent(id);
 	}
 	
-	public List<MemberDto> adminList(int start){
-		Map<String, Object> m = new HashMap<String, Object>();
+	public List<MemberDto> adminList(int searchn, String search, int start){
+		Map<String,Object> m = new HashMap<String, Object>();
+		m.put("searchn",searchn);
+		m.put("search", search);
 		m.put("start", start);
 		m.put("count", 10);
 		return dao.adminList(m);
 	}
 	
-	public int count() {
-		return dao.count();
+	public int count(int searchn, String search) {
+		return dao.count(searchn, search);
 	}
 	
 }

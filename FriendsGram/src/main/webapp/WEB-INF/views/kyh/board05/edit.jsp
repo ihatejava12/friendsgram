@@ -29,7 +29,7 @@
 			</c:if>
 			
 			 <a class="profile" href="/myprofile">프로필</a>
-			<a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+			<a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
 			
 			<c:if test="${user.id != null }">
             <div style="position:relative; display:inline-block; top:7px;">
@@ -38,6 +38,7 @@
                padding: 1px 6px; border-radius:50%; font-size:13px;"></div>
             </div>
             </c:if>
+			
 		</div>
 	</header>
     

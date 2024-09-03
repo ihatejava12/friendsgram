@@ -29,15 +29,16 @@ public class AdminAdvertisingService {
 		return dao.advertisingContent(a_no);
 	}
 	
-	public List<AdvertisingDto> advertisingList(int start){
+	public List<AdvertisingDto> advertisingList(String search, int start){
 		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("search", search);
 		m.put("start", start);
 		m.put("count", 10);
 		return dao.advertisingList(m);
 	}
 	
-	public int count() {
-		return dao.count();
+	public int count(String search) {
+		return dao.count(search);
 	}
 	
 }

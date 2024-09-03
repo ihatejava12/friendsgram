@@ -3,13 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<!--  bList begin end count pageNum totalPages -->
 <title>이력서 확인</title>
 <style>
-
-/* 기본 스타일 */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -17,11 +14,11 @@
 }
 
 .header {
-  position: fixed; /* 헤더를 화면에 고정 */
-  top: 0; /* 화면 상단에 위치 */
-  left: 0; /* 화면 왼쪽에 위치 */
-  width: 100%; /* 화면 너비에 맞게 설정 */
-  z-index: 1000; /* 다른 요소 위에 보이도록 설정 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,13 +33,16 @@ body {
   color: #333;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .header, .footer {
   background-color: #fff;
   box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
-  margin: 0; /* 헤더의 마진 제거 */
-  padding: 10px 20px; /* 필요한 패딩만 남김 */
+  margin: 0;
+  padding: 10px 20px;
 }
 
 .navigation a {
@@ -53,8 +53,8 @@ body {
 }
 
 .logo img {
-  height: 40px; /* 로고 이미지의 높이를 40px로 설정 */
-  width: auto; /* 너비는 자동 조정 */
+  height: 40px;
+  width: auto;
 }
 
 .actions a {
@@ -65,12 +65,13 @@ body {
 }
 
 main {
-  max-width: 900px;
-  margin: 0 auto; /* 메인의 마진 제거, 가운데 정렬 */
+  max-width: 900px; /* 메인의 너비를 900px로 넓힘 */
+  margin: 60px auto;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
 }
 
 #center {
@@ -82,7 +83,8 @@ main {
   font-size: 2.5em;
   color: #4CAF50;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  margin-top: 50px; /* 제목을 아래로 내리기 위해 여백 추가 */
+  margin-top: 0;
+  text-align: center; /* 제목을 가운데 정렬 */
 }
 
 #center a {
@@ -100,6 +102,36 @@ main {
 #center a:hover {
   background-color: #45a049;
   transform: scale(1.05);
+}
+
+/* 버튼을 평행하게 나열하기 위한 스타일 */
+#button-group {
+  display: flex;
+  justify-content: space-around; /* 버튼을 균등하게 나열 */
+  margin-top: 20px;
+}
+
+#button-group a {
+  flex: 1; /* 버튼이 균등한 크기로 확장되도록 함 */
+  margin: 0 10px; /* 버튼 간 간격 */
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#button-group a:hover {
+  background-color: #0069d9;
+  transform: scale(1.05);
+}
+
+#button-group a:active {
+  background-color: #0056b3;
+  transform: scale(1);
 }
 
 form {
@@ -153,8 +185,16 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
   box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
 }
 
-/* 버튼 스타일 */
-button {
+/* 밑의 수정하기, 뒤로가기 버튼 스타일 */
+#form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#form-buttons button[type="submit"] {
+  background-color: #4CAF50;
+  color: #fff;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -162,43 +202,30 @@ button {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 48%; /* 버튼들이 평행하게 나열되도록 */
 }
 
-button[type="submit"] {
-  background-color: #4CAF50;
-  color: #fff;
-}
-
-button[type="submit"]:hover {
+#form-buttons button[type="submit"]:hover {
   background-color: #45a049;
   transform: scale(1.05);
 }
 
-button[type="button"] {
+#form-buttons button[type="button"] {
   background-color: #f44336;
   color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 48%; /* 버튼들이 평행하게 나열되도록 */
 }
 
-button[type="button"]:hover {
+#form-buttons button[type="button"]:hover {
   background-color: #e53935;
   transform: scale(1.05);
-}
-
-/* 우편번호 검색 버튼 스타일 */
-input[type="button"][value="우편번호 검색"] {
-  background-color: #008CBA;
-  color: #fff;
-  margin-left: 10px;
-}
-
-input[type="button"][value="우편번호 검색"]:hover {
-  background-color: #007BB5;
-  transform: scale(1.05);
-}
-
-input[type="button"][value="우편번호 검색"]:active {
-  background-color: #005F8C;
-  transform: scale(1);
 }
 
 .footer {
@@ -248,51 +275,57 @@ input[type="button"][value="우편번호 검색"]:active {
 			<a class="login" href="/loginform">로그인</a>
 			</c:if>
 			<a class="profile" href="/myprofile">프로필</a>
-			<a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+			<a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
 		</div>
 	</header>
 	<main>
-		<div id="center">
-			<h1>이력서 확인</h1>
-			<a href="/myprofile">나의 정보</a>
-			<a href="/info">이력서</a>
-			<a href="/review/${user.id}">나의 리뷰</a>
-			<a href="/myquestion">문의 사항 보기</a>
-		</div>
-		<form action="update" method="post" id="infock">
+		<div id="button-group">
+		    <a href="/myprofile">나의 정보</a>
+		    <a href="/info">이력서</a>
+		    <a href="/review/${user.id}">나의 리뷰</a>
+		    <a href="/myquestion">문의 사항 보기</a>
+		    <a href="/board03/freelancer">프리랜서 등록</a>
+		 </div>
+		<form action="updateinfo" method="post" id="infock">
 			<input type="hidden" name="_method" value="put">
-			<div class="container">
-    <h1>이력서 정보 확인</h1>
-    <table>
-        <tr><td>이름 :</td><td>${memberInfo.name}</td></tr>
-<tr><td>생년월일 :</td><td>${memberInfo.birth}</td></tr>
-<tr><td>나이 :</td><td>${memberInfo.age}</td></tr>
-<tr><td>성별 :</td><td>${memberInfo.gender}</td></tr>
-<tr><td>휴대폰 :</td><td>${memberInfo.phone}</td></tr>
-<tr><td>Email :</td><td>${memberInfo.email}</td></tr>
-<tr><td>주소 :</td><td>${memberInfo.address}</td></tr>
-<tr><td>나머지 주소 :</td><td>${memberInfo.detail_address}</td></tr>
-<tr><td>자기소개서 :</td><td>${memberInfo.content}</td></tr>
-<tr><td>학교명 :</td><td>${memberInfo.school_name}</td></tr>
-<tr><td>학교 기간 :</td><td>${memberInfo.school_period}</td></tr>
-<tr><td>학교 전공 :</td><td>${memberInfo.school_major}</td></tr>
-<tr><td>경력 회사명 :</td><td>${memberInfo.career_nme}</td></tr>
-<tr><td>경력 기간 :</td><td>${memberInfo.career_period}</td></tr>
-<tr><td>경력 담당업무 :</td><td>${memberInfo.career_role}</td></tr>
-<tr><td>자격증 이름 :</td><td>${memberInfo.certificate_name}</td></tr>
-<tr><td>자격증 취득일자 :</td><td>${memberInfo.certificate_date}</td></tr>
-    </table>
-    <a href="infowrite.jsp">다시 작성하기</a>
-			<div style="text-align: center; margin-top: 20px;">
-				<button type="submit">수정하기</button>
-				<button type="button" onclick="history.back()">뒤로가기</button>
-			</div>
+			
+		    <h1>이력서 정보 확인</h1>
+		    <table>
+		        <tr><td>이름 :</td><td><input name="name" id="name" value="${memberInfo.name}"></td></tr>
+		        <tr><td>생년월일 :</td><td>${memberInfo.birth}</td></tr>
+		        <tr><td>나이 :</td><td>${memberInfo.age}</td></tr>
+		        <tr><td>성별 :</td><td>${memberInfo.gender}</td></tr>
+		        <tr><td>휴대폰 :</td><td><input name="phone" id="phone" value="${memberInfo.phone}"></td></tr>
+		        <tr><td>Email :</td><td><input name="email" id="email" value="${memberInfo.email}"></td></tr>
+		        <tr><td>주소 :</td><td><input name="address" id="address" value="${memberInfo.address}">
+		        <input type="button" id="addbtn" value="우편번호 검색" onclick="openPostcodeSearch()"></td></tr>
+		        <tr><td>나머지 주소 :</td><td><input name="detail_address" id="detail_address" value="${memberInfo.detail_address}"></td></tr>
+		        <tr><td>자기소개서 :</td><td>${memberInfo.content}</td></tr>
+		        <tr><td>학교명 :</td><td><input name="school_name" id="school_name" value="${memberInfo.school_name}"></td></tr>
+		        <tr><td>학교 기간 :</td><td><input name="school_period" id="school_period" value="${memberInfo.school_period}"></td></tr>
+		        <tr><td>학교 전공 :</td><td><input name="school_major" id="school_major" value="${memberInfo.school_major}"></td></tr>
+		        <tr><td>경력 회사명 :</td><td><input name="career_nme" id="career_nme" value="${memberInfo.career_nme}"></td></tr>
+		        <tr><td>경력 기간 :</td><td><input name="career_period" id="career_period" value="${memberInfo.career_period}"></td></tr>
+		        <tr><td>경력 담당업무 :</td><td><input name="career_role" id="career_role" value="${memberInfo.career_role}"></td></tr>
+		        <tr><td>자격증 이름 :</td><td><input name="certificate_name" id="certificate_name" value="${memberInfo.certificate_name}"></td></tr>
+		        <tr><td>자격증 취득일자 :</td><td><input name="certificate_date" id="certificate_date" value="${memberInfo.certificate_date}"></td></tr>
+		    </table>
+    
+		    <div id="form-buttons">
+                <button type="submit">수정하기</button>
+                <button type="button" onclick="history.back()">뒤로가기</button>
+            </div>
 		</form>
 	</main>
 	<footer class="footer">
 		<div class="footer-links">
-			<a href="#">프리랜서 이용약관</a> <a href="#">고객센터</a> <a href="#">개인정보 처리방침</a> <a href="#">광고문의</a>
-			<c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
+			<a href="#">프리랜서 이용약관</a> 
+			<a href="#">고객센터</a> 
+			<a href="#">개인정보 처리방침</a> 
+			<a href="#">광고문의</a>
+			<c:if test="${user != null && user.role == 2 || user.role == 1}">
+			    <a href="/adminpage/board01">관리자</a>
+			</c:if>
 		</div>
 		<div class="company-info">
 			<p>(주)프렌즈그램(대표이사: 전재민)</p>
@@ -302,15 +335,24 @@ input[type="button"][value="우편번호 검색"]:active {
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-		function addPost(){
-			new daum.Postcode({
-				oncomplete: function(data) {
-					document.querySelector("#address").value = data.address;
-					document.querySelector("#detailed_address").focus();
-					alert("나머지 주소를 입력해 주세요.");
-				}
-			}).open();
-		}
+	    function openPostcodeSearch() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 주소 필드에 선택된 주소를 입력
+	                document.querySelector("#address").value = data.address;
+	                // 나머지 주소 필드에 포커스를 설정
+	                document.querySelector("#detail_address").focus();
+	            }
+	        }).open({
+	            popupName: 'postcodePopup', // 팝업 창 이름 지정
+	            left: (window.screen.width / 2) - (500 / 2), // 화면 중앙에 위치
+	            top: (window.screen.height / 2) - (600 / 2),
+	            width: '500px',
+	            height: '600px',
+	            scrollbars: 'yes',
+	            resizable: 'yes'
+	        });
+	    }
 	</script>
 </body>
 </html>

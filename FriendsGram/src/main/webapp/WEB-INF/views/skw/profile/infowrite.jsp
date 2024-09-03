@@ -276,7 +276,7 @@
             <a class="login" href="/loginform">로그인</a>
         </c:if>
         <a class="profile" href="/myprofile">프로필</a>
-        <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+        <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
     </div>
 </header>
 <main>
@@ -286,6 +286,7 @@
     <a href="/info">이력서</a>
     <a href="/review/${user.id}">나의 리뷰</a>
     <a href="/myquestion">문의 사항 보기</a>
+    <a href="/board03/freelancer">프리랜서 등록</a>
 
 <form action="insertInfo" method="post" id="infowrite">
     <h3>이력서 작성중</h3>

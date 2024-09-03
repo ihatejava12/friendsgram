@@ -37,19 +37,19 @@ public class Corporationcontroller {
 		return new Corporation_MemberDto();
 	}
 	
-	@GetMapping("/findCorpw")
+	@GetMapping("/cofindpw")
 	public String findpw() {
-		return "skw/corporation/findpw";
+		return "skw/corporation/cofindpw";
 	}
-	@GetMapping("/findCorpwresult")
-	public String findpwresult(@ModelAttribute("command") Corporation_MemberDto dto, BindingResult errors, @RequestParam("email") String email) {
+	@GetMapping("/findcorpwresult")
+	public String findcorpwresult(@ModelAttribute("command") Corporation_MemberDto dto, BindingResult errors, @RequestParam("email") String email) {
 		
 		String nwPw = createNewPassword(); //새로운 비번 생성
 		int count = service.updatePw(dto, nwPw);
 		
 		if(count == 0) { //id 또는 name 틀림
 			errors.reject("nocode", "아이디나 이름이 틀렸습니다.");
-			return "skw/corporation/findpw";
+			return "skw/corporation/cofindpw";
 		}else { // 이메일 전송, loginform으로 이동
 			EmailVO e = new EmailVO();
 			
@@ -64,13 +64,13 @@ public class Corporationcontroller {
 			e.setContent(content);
 
 			try {
-				//emailService.sendMail(e);
+				emailService.sendMail(e);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		}
 		
-		return "skw/corporation/coporationloginform";
+		return "skw/member/loginform";
 	}
 	
 	private String createNewPassword() {

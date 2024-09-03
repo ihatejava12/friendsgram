@@ -22,7 +22,7 @@
         text-align: center;
         color: #4CAF50; /* 초록색 텍스트 */
         font-size: 2.5em;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
     form {
@@ -55,11 +55,13 @@
     td:last-child {
         text-align: left;
         width: 70%;
+        display: flex;
+        align-items: center;
     }
 
     input[type="text"], input[type="password"], select {
-        width: calc(100% - 20px);
-        padding: 10px;
+        width: calc(100% - 120px); /* 버튼 옆으로 공간을 확보 */
+        padding: 8px;
         border-radius: 5px;
         border: 1px solid #ccc;
         margin-bottom: 15px;
@@ -74,12 +76,13 @@
     input[type="button"], input[type="submit"] {
         background-color: #4CAF50; /* 초록색 버튼 */
         color: white;
-        padding: 10px 20px;
+        padding: 5px 10px; /* 버튼 크기 조정 */
         border: none;
         border-radius: 5px;
         cursor: pointer;
         transition: background-color 0.3s ease, transform 0.3s ease;
-        font-size: 1em;
+        font-size: 0.9em; /* 버튼 글자 크기 조정 */
+        margin-left: 10px; /* 버튼 간의 간격 확보 */
     }
 
     input[type="button"]:hover, input[type="submit"]:hover {
@@ -95,6 +98,7 @@
     #id_msg, #emailresult, #result {
         color: #f44336;
         font-weight: bold;
+        margin-left: 10px; /* 메시지와 입력창 간의 간격 확보 */
     }
 
     label {
@@ -104,8 +108,8 @@
 </style>
 </head>
 <body>
-    <h3>기업 회원 가입을 환영합니다.</h3>
     <form action="/insertCor" method="post" id="joinform">
+        <h3>기업 회원 가입을 환영합니다.</h3>
         <table>
             <tr>
                 <td>아이디</td>
@@ -157,17 +161,15 @@
                 <td>email</td>
                 <td>
                     <input name="email" id="email">
-                    <div id="emailresult"></div>
                     <input type="button" id="mail_ck" value="메일 인증">
+                    <div id="emailresult"></div>
                 </td>
             </tr>
             <tr>
                 <td>인증번호 입력 공간</td>
                 <td>
-                    <div id="input">
-                        <input id="ck_num"> 
-                        <input type="button" id="ck_b" value="인증 확인">
-                    </div>
+                    <input id="ck_num"> 
+                    <input type="button" id="ck_b" value="인증 확인">
                     <div id="result"></div>
                 </td>
             </tr>

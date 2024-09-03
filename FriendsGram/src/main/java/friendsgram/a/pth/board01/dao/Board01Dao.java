@@ -22,6 +22,8 @@ public interface Board01Dao {
 	
 	int reportboard01(ReportDto report);
 	
+	int reportComentboard01(ReportDto report);
+	
 	
 	int countSearchBoard01(Map<String,Object> m);
 	

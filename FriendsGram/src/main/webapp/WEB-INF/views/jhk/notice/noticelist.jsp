@@ -261,13 +261,13 @@ table td a:hover {
 
 				<div id="page" class="pagination">
 					<c:if test="${begin > pageNum }">
-						<a href="board01?p=${begin-1}&search=${search}&searchn=${searchn}">[이전]</a>
+						<a href="notice?p=${begin-1}">[이전]</a>
 					</c:if>
 					<c:forEach begin="${begin }" end="${end}" var="i">
-						<a href="board01?p=${i}&search=${search}&searchn=${searchn}">${i}</a>
+						<a href="notice?p=${i}">${i}</a>
 					</c:forEach>
 					<c:if test="${end < totalPages }">
-						<a href="board01?p=${end+1}&search=${search}&searchn=${searchn}">[다음]</a>
+						<a href="notice?p=${end+1}">[다음]</a>
 					</c:if>
 				</div>
 			</main>

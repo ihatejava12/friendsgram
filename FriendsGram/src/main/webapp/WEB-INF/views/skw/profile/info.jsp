@@ -8,36 +8,6 @@
 <!--  bList begin end count pageNum totalPages -->
 <title>나의 이력서</title>
 <style>
-#center {
-	width: 700px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-table {
-	border: 1px solid black;
-	width: 700px;
-	border-collapse: collapse;
-}
-
-th {border: 1px solid black;
-	background-color: orange;
-	width: 150px;
-}
-td{border: 1px solid black;}
-a {
-	margin: 10px auto;
-}
-
-#page {
-	text-align: center;
-}
-</style>
-</head>
-<body>
-
-<style>
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -45,11 +15,11 @@ a {
 }
 
 .header {
-  position: fixed; /* 헤더를 화면에 고정 */
-  top: 0; /* 화면 상단에 위치 */
-  left: 0; /* 화면 왼쪽에 위치 */
-  width: 100%; /* 화면 너비에 맞게 설정 */
-  z-index: 1000; /* 다른 요소 위에 보이도록 설정 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -63,7 +33,7 @@ html, body {
   margin: 0;
 }
 body {
-    margin-top: 80px; /* 헤더 높이만큼의 여백 추가 */
+    margin-top: 80px;
 }
 
 .logo img {
@@ -86,14 +56,72 @@ body {
 }
 
 main {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ensures full viewport height is covered */
-  margin: 0;
-  overflow-x: hidden; /* Prevents horizontal scrolling */
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+    justify-content: flex-start; /* 수직 정렬을 상단으로 */
+    min-height: calc(100vh - 160px); /* 화면 전체 높이에서 헤더와 푸터를 제외한 높이 */
+    margin: 0 auto; /* 가로 중앙 정렬 */
+    max-width: 1000px; /* 메인의 최대 너비를 넓힘 */
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 20px; /* 위쪽 패딩 추가 */
+}
+
+#center h1 {
+    font-size: 2.5em;
+    color: #4CAF50;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+#center a {
+    display: inline-block;
+    margin: 10px 15px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#center a:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between; /* 버튼을 균등하게 배치 */
+    flex-wrap: wrap; /* 버튼이 줄어들 때 다음 줄로 넘어가도록 함 */
+    gap: 10px; /* 버튼 사이의 간격 */
+    margin-top: 20px;
+    width: 100%; /* 버튼 컨테이너의 너비를 전체로 설정 */
+}
+
+.buttons-container a {
+    flex: 1; /* 모든 버튼이 동일한 너비를 가지도록 설정 */
+    padding: 10px 0; /* 버튼 높이를 동일하게 유지 */
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center; /* 텍스트를 가운데 정렬 */
+}
+
+.buttons-container a:hover {
+    background-color: #0069d9;
+    transform: scale(1.05);
 }
 
 .footer {
@@ -105,8 +133,8 @@ main {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: auto; /* 푸터가 페이지의 끝에 위치하도록 설정 */
-  position: relative; /* 포지션 속성을 고정하지 않음 */
+  margin-top: auto;
+  position: relative;
 }
 
 .footer-links a {
@@ -120,137 +148,6 @@ main {
   margin-top: 10px;
   font-size: 14px;
 }
-
-
-
-
-
-
- .hero-image img {
-    margin-top: 20px;
-  }
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #fff;
-  box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
-}
-
-.logo img {
-  height: 50px; /* Adjust this value as needed */
-  width: auto;
-}
-
-.navigation a {
-  margin-right: 15px;
-  color: #565E6C;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.actions a {
-  margin-left: 10px;
-  color: #0C9200;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-table {
-	border: 1px solid black;
-	width: 700px;
-	border-collapse: collapse;
-}
-
-th {
-	border: 1px solid black;
-	background-color: lightgray;
-	width: 150px;
-}
-
-td {
-	border: 1px solid black;
-}
-
-#allcontent {
-	margin: auto 15% 
-}
-
-#headcontent{
-	background-color: lightgreen;
-}
-
-/* 메인 컨텐츠 스타일 */
-main {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    text-align: center;
-}
-
-/* 헤더 제목 스타일 */
-#center h1 {
-    font-size: 3em;
-    color: #4CAF50;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-    margin-bottom: 30px;
-}
-
-/* 링크 스타일 */
-#center a {
-    display: inline-block;
-    margin: 15px 20px;
-    padding: 15px 30px;
-    background-color: #4CAF50;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-#center a:hover {
-    background-color: #45a049;
-    transform: scale(1.1);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-#center a:active {
-    background-color: #3e8e41;
-    transform: scale(1.05);
-}
-
-/* 추가된 이력서 작성 및 확인 버튼 스타일 */
-main a {
-    display: inline-block;
-    margin: 20px;
-    padding: 15px 30px;
-    background-color: #007BFF;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-main a:hover {
-    background-color: #0069d9;
-    transform: scale(1.1);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-main a:active {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
-
 </style>
 
 </head>
@@ -273,7 +170,7 @@ main a:active {
 			<a class="login" href="/loginform">로그인</a>
 			</c:if>
 			<a class="profile" href="/myprofile">프로필</a>
-            <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+            <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
         </div>
     </header>
     <main>
@@ -283,10 +180,13 @@ main a:active {
         <a href="/info">이력서</a>
         <a href="/review/${user.id}">나의 리뷰</a>
         <a href="/myquestion">문의 사항 보기</a>
+        <a href="/board03/freelancer">프리랜서 등록</a>
     </div>
 
+   <div class="buttons-container">
     <a href="/infowrite">이력서 작성</a>
     <a href="/infock">이력서 확인</a>
+</div>
 </main>
 			<footer class="footer">
 		<div class="footer-links">
@@ -299,5 +199,4 @@ main a:active {
 		</div>
 	</footer>
 </body>
-			
 </html>

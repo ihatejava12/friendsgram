@@ -221,7 +221,7 @@ fieldset div {
         </tr>
         <tr>
             <td>작성자</td>
-            <td><a href="/viewreview/${dto.id}" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">${name}</a></td>
+            <td><a href="/viewreview/${dto.id}" onclick="window.open(this.href, '_blank', 'width=480, height=300'); return false;">${name} [${dto.id}]</a></td>
         </tr>
         <tr>
             <td>모집 기간</td>
@@ -341,6 +341,7 @@ fieldset div {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(function(){
+        	
             $("#add_comm").on('click', function(){
                 let coment = $("#comm").val();
                 let id = "${user.id}";
@@ -351,13 +352,21 @@ fieldset div {
                     $.ajax({
                         url: "/insertcomm02",
                         data: "coment=" + coment + "&id=" + id + "&b_no02=" + b_no02,
-                        method: "post"
-                    }).always(function(){
-                        location.reload();
-                    });
-                }
+                        method: "post",	
+						dataType:"text"
+                    }).done(function(comlist){
+                    	
+						if(comlist != '') {
+							alert("욕설이 포함되었습니다.")
+							$("#comm").val("");
+						} else {
+							location.reload();
+						}
+                    })
+                 }
             });
 
+            
             $(".delete").click(function(){
                 let ref_level = $(this).attr("name");
                 let c_no02 = $(this).attr("id");
@@ -378,6 +387,7 @@ fieldset div {
                 }
             });
 
+            
             $(".comm_comm").one('click', function(){
                 let ref_level = $(this).attr("id");
                 if (ref_level == 0) {
@@ -389,6 +399,7 @@ fieldset div {
                 }
             });
 
+            
             $("fieldset").on('click', '.add_coment', function(){
                 let id = "${user.id}";
                 let b_no02 = ${dto.b_no02};
@@ -397,11 +408,18 @@ fieldset div {
                 $.ajax({
                     url: "/insert/comm2",
                     data: "id=" + id + "&b_no02=" + b_no02 + "&ref=" + ref + "&coment=" + coment,
-                    method: "post"
-                }).always(function(){
-                    location.reload();
-                });
+                    method: "post",
+                    dataType: "text"
+                }).done(function(comlist){
+                	if(comlist != '') {
+						alert("욕설이 포함되었습니다.")
+						$("[name='coment']").val("");
+					} else {
+						location.reload();
+					}
+                })
             });
+            
         });
     </script>
 </body>

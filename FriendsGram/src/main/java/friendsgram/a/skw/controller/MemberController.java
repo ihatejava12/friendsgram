@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -71,7 +70,7 @@ public class MemberController {
 			e.setContent(content);
 
 			try {
-				// emailService.sendMail(e);
+				 emailService.sendMail(e);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -131,6 +130,8 @@ public class MemberController {
 	@PostMapping("/login")
 	public String login(@ModelAttribute("command") @Validated LoginDto dto, BindingResult error, Model m,
 			@RequestParam("type") int type) {
+		System.out.println("dto="+dto);
+		System.out.println(type);
 
 		if (type == 0) {// 일반회원
 			MemberDto resultDto = service.login(dto);
@@ -143,6 +144,7 @@ public class MemberController {
 			}
 		} else if (type == 1) {// 기업회원
 			Corporation_MemberDto resultDto = cservice.corlogin(dto);
+			System.out.println(dto);
 			if (resultDto == null) {
 				error.reject("nocode", "로그인 실패: 아이디나 비밀번호가 틀림");
 				return "skw/member/loginform";
@@ -161,15 +163,6 @@ public class MemberController {
 		return "redirect:/main";
 	}
 
-	/*
-	 * @GetMapping("/update") public String updateform() { return
-	 * "skw/member/updateform"; }
-	 */
-
-	/*
-	 * @PutMapping("/update") public String update(@ModelAttribute("user") MemberDto
-	 * dto) { service.updateMem(dto); return "redirect:/main"; }
-	 */
 
 	@GetMapping("/delete")
 	public String deleteform(@RequestParam(value = "result", required = false) String result, Model m) {

@@ -8,35 +8,6 @@
 <!--  bList begin end count pageNum totalPages -->
 <title>문의사항 리스트</title>
 <style>
-#center {
-	width: 700px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-table {
-	border: 1px solid black;
-	width: 700px;
-	border-collapse: collapse;
-}
-
-th {border: 1px solid black;
-	background-color: orange;
-	width: 150px;
-}
-td{border: 1px solid black;}
-a {
-	margin: 10px auto;
-}
-
-#page {
-	text-align: center;
-}
-</style>
-</head>
-<body>
-
-<style>
 
 * {
   box-sizing: border-box;
@@ -91,9 +62,10 @@ main {
   line-height: 1.6;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensures full viewport height is covered */
+  min-height: 80vh; /* 전체 높이의 80%를 채우도록 설정 */
   margin: 0;
-  overflow-x: hidden; /* Prevents horizontal scrolling */
+  overflow-x: hidden; /* 가로 스크롤을 방지합니다 */
+  padding: 20px 0; /* 위아래 여백을 줄였습니다 */
 }
 
 .footer {
@@ -105,8 +77,8 @@ main {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: auto; /* 푸터가 페이지의 끝에 위치하도록 설정 */
-  position: relative; /* 포지션 속성을 고정하지 않음 */
+  margin-top: auto; /* 푸터를 페이지 끝에 위치시킵니다 */
+  position: relative; /* 포지션을 고정하지 않음 */
 }
 
 .footer-links a {
@@ -121,72 +93,11 @@ main {
   font-size: 14px;
 }
 
-
-
-
-
-
- .hero-image img {
-    margin-top: 20px;
-  }
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #fff;
-  box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
-}
-
-.logo img {
-  height: 50px; /* Adjust this value as needed */
-  width: auto;
-}
-
-.navigation a {
-  margin-right: 15px;
-  color: #565E6C;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.actions a {
-  margin-left: 10px;
-  color: #0C9200;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-table {
-	border: 1px solid black;
-	width: 700px;
-	border-collapse: collapse;
-}
-
-th {
-	border: 1px solid black;
-	background-color: lightgray;
-	width: 150px;
-}
-
-td {
-	border: 1px solid black;
-}
-
-#allcontent {
-	margin: auto 15% 
-}
-
-#headcontent{
-	background-color: lightgreen;
-}
-
 /* 메인 컨텐츠 스타일 */
 main {
-    max-width: 900px;
-    margin: 50px auto;
-    padding: 20px;
+    max-width: 600px; /* 메인 컨텐츠의 최대 너비를 줄였습니다 */
+    margin: 20px auto; /* 위아래 여백을 더 줄였습니다 */
+    padding: 10px; /* 패딩을 줄였습니다 */
     background-color: #f9f9f9;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
@@ -195,20 +106,20 @@ main {
 
 #center {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px; /* 아래쪽 여백을 줄였습니다 */
 }
 
 #center h1 {
-    font-size: 3em;
+    font-size: 2.5em; /* 글꼴 크기를 줄였습니다 */
     color: #4CAF50;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-    margin-bottom: 30px;
+    margin-bottom: 20px; /* 제목 아래쪽 여백을 줄였습니다 */
 }
 
 #center a {
     display: inline-block;
-    margin: 0 10px; /* 좌우 간격 조절 */
-    padding: 15px 30px;
+    margin: 0 10px; /* 좌우 간격 조정 */
+    padding: 8px 15px; /* 패딩을 줄였습니다 */
     background-color: #4CAF50;
     color: #fff;
     text-decoration: none;
@@ -233,7 +144,7 @@ main {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 30px;
+    margin-bottom: 20px; /* 테이블 아래 여백을 줄였습니다 */
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -241,24 +152,22 @@ table {
 }
 
 th, td {
-    padding: 15px;
+    padding: 10px; /* 셀 패딩을 줄였습니다 */
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
 th {
-    background-color: #4CAF50;
+    background-color: #4CAF50; /* 기본 색상 유지 */
     color: white;
     font-weight: bold;
-}
-
-td {
-    color: #333;
+    border: 1px solid black;
+    width: 150px;
 }
 
 /* 답변 보기 버튼 스타일 */
 button {
-    padding: 10px 20px;
+    padding: 8px 15px; /* 버튼 패딩을 줄였습니다 */
     border: none;
     border-radius: 5px;
     font-size: 1em;
@@ -283,7 +192,7 @@ button:active {
 #page a {
     display: inline-block;
     margin: 10px;
-    padding: 10px 15px;
+    padding: 8px 12px; /* 네비게이션 버튼 패딩을 줄였습니다 */
     background-color: #4CAF50;
     color: #fff;
     text-decoration: none;
@@ -303,6 +212,7 @@ button:active {
 }
 
 </style>
+
 
 </head>
 <body>
@@ -324,7 +234,7 @@ button:active {
 			<a class="login" href="/loginform">로그인</a>
 			</c:if>
 			<a class="profile" href="/myprofile">프로필</a>
-            <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+            <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
         </div>
     </header>
 	<div id="center">
@@ -333,6 +243,7 @@ button:active {
 		<a href="/info">이력서</a>
 		<a href="/review/${user.id}">나의 리뷰</a>
 		<a href="/myquestion">문의 사항 보기</a>
+		<a href="/board03/freelancer">프리랜서 등록</a>
 	</div>
 <body>
 	<main>
