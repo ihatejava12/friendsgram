@@ -238,6 +238,15 @@ main {
          
           <a class="profile" href="/myprofile">프로필</a>
          <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480,left=600,top=200'); return false;">메시지</a>
+      
+      	<c:if test="${user.id != null }">
+				<div style="position:relative; display:inline-block; top:7px;">
+					<img style="width: 25px; height:25px;" src="/images/message_icon.png" alt="메세지"/>
+					<div id="numberOfMessage" style="position:absolute; top: 10px; left:15px; background-color:red; color:white;
+					padding: 1px 6px; border-radius:50%; font-size:13px;"></div>
+				</div>
+				</c:if>
+      
       </div>
    </header>
  
@@ -312,15 +321,15 @@ main {
 
 
   <footer class="footer">
-      <div class="footer-links">
-         <a href="#">프리랜서 이용약관</a> <a href="#">고객센터</a> <a href="#">개인정보
-            처리방침</a> <a href="#">광고문의</a><c:if test="${ user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
-      </div>
-      <div class="company-info">
-         <p>(주)프렌즈그램(대표이사: 전재민)</p>
-         <p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
-      </div>
-   </footer>
+		<div class="footer-links">
+			<a href="#">프리랜서 이용약관</a> <a href="/question">고객센터</a> <a href="#">개인정보
+				처리방침</a><c:if test="${user.role == 3 }"><a href="/advertising/question">광고문의</a></c:if><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
+		</div>
+		<div class="company-info">
+			<p>(주)프렌즈그램(대표이사: 전재민)</p>
+			<p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
+		</div>
+	</footer>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -355,6 +364,26 @@ main {
 			$("."+id).remove();
 		})
 	})
+	
+	
+			$(function(){
+			var id = '${user.id}';
+			if(id != null){
+				$.ajax({
+					url:"/mail/numberofmail",
+					data: "id="+id,
+					method:"post",
+					datatype:"text"
+				}).done(function(data){
+					// 안읽은 메일의 개수 를 String으로 받아온걸 data 에 저장함
+					if(data == '0'){
+						$("#numberOfMessage").hide();
+					}else{
+						$("#numberOfMessage").text(data);
+					}
+				})
+			}
+		})
 </script>
 
 </body>

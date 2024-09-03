@@ -25,5 +25,11 @@ public interface MailDao {
 	int sendNewMail(MailhamDto mail);
 	
 	
+	// id 받아와서 메일 중에 받는 사람이 id 인 메일중에, readornot 이 0인 메일의 개수
+	int numberOfNotreadMail(String id);
+	
+	
+	// mail 번호 1개 받아와서, 해당 메일 클릭했을때, readofnot 을 0 에서 1로 업데이트
+	int updateMailReadorNot(int no);
 	
 }

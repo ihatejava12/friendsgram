@@ -150,7 +150,7 @@ width: 70%; /* select 박스의 너비를 200px로 설정 */
 			<div style="padding-left:18px; margin-bottom: 20px;"><h3>쪽지함</h3></div>
 			<ul>
 				<li><a class="main" href="/mail/write">쪽지 보내기</a></li>
-				<li><a class="main" href="/mail">받은 쪽지함</a></li>
+				<li><a class="main" href="/mail">받은 쪽지함</a><font class="numbermail" size="2"></font></li>
 				<li><a class="main" href="/mail/sendlist">보낸 쪽지함</a></li>
 			</ul>
 		</div>
@@ -215,6 +215,23 @@ width: 70%; /* select 박스의 너비를 200px로 설정 */
 				}else{return false;}
 			})
 		})
+		
+		$(function(){
+		var id = '${user.id}';
+		if(id != null){
+			$.ajax({
+				url:"/mail/numberofmail",
+				data: "id="+id,
+				method:"post",
+				datatype:"text"
+			}).done(function(data){
+				// 안읽은 메일의 개수 를 String으로 받아온걸 data 에 저장함
+				if(data != '0'){
+					$(".numbermail").text("( "+data+" )");
+				}
+			})
+		}
+	})
 	
 	</script>
 	
