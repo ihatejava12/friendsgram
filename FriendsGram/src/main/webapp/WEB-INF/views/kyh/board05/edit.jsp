@@ -12,7 +12,7 @@
 <body>
 	<header class="header">
       <div class="logo">
-         <a href="/main"> <img src="../images/logo.png" alt="프렌즈그램 로고"
+         <a href="/main"> <img src="/images/logo.png" alt="프렌즈그램 로고"
             class="logo-image" />
          </a>
       </div>
