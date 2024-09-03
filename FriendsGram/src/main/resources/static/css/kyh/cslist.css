@@ -174,7 +174,7 @@ td a:hover {
 }
 
 .footer {
-  background-color: #333333;
+  background-color: rgba(30, 33, 40, 0.68);
   color: white;
   padding: 30px 20px;
   display: flex;
@@ -182,19 +182,15 @@ td a:hover {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: auto;
+  margin-top: auto; /* 푸터가 페이지의 끝에 위치하도록 설정 */
+  position: relative; /* 포지션 속성을 고정하지 않음 */
 }
 
 .footer-links a {
-  margin-right: 20px;
+  margin-right: 15px;
   color: white;
   text-decoration: none;
   font-weight: bold;
-  transition: text-decoration 0.3s ease;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
 }
 
 .company-info p {
