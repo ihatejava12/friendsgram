@@ -58,7 +58,7 @@
 				<option value="2">기타 문의</option>
 			</select><br>
 			<label>제목</label>
-			<input type="text" id="title" name="title" /><input type="checkbox" value="hide">비밀글</input><br>
+			<input type="text" id="title" name="title" /><br>
 			<label>작성자</label>
 			<input type="text" id="name" name="name" value="${user.name }" disabled><br>
 			<label for="content">내용:</label>
