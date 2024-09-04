@@ -352,7 +352,7 @@ background-color: #f0f0f0; /* 버튼 스타일 추가 */
 
 			</div>
 
-			<c:if test="${user.role == 3 }">
+			
 			<div class="sub" style="float: left; margin: 15px; width: 400px; height: 300px; padding: 30px;
 			border: thin solid #e0e0e0; border-radius:10px; background-color:white;">
 				<font size="4"><b>이 프리랜서와 함께 일하고 싶다면!</b></font><br>
@@ -364,7 +364,7 @@ background-color: #f0f0f0; /* 버튼 스타일 추가 */
 					협업 제의하기</a>
 				</button>
 			</div>
-			</c:if>	
+				
 			
 		</div>
 
