@@ -8,6 +8,14 @@
 
 <style>
 
+.font {
+	width: 130px;
+	display: inline-block;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 .mailmain {
 	width:750px; 
@@ -140,7 +148,7 @@ li {
 				<c:forEach items="${maillist }" var="mail">
 					<tr> 
 					<td class="choice"><input type="checkbox" name="choices" value="${mail.m_no}"/></td>
-					<td class="title"><a class="title" href="/mail/content/${mail.m_no }">&nbsp;<font size="2">${mail.title }</font></a></td>
+					<td class="title"><a class="title" href="/mail/content/${mail.m_no }">&nbsp;<font class="font" size="2">${mail.title }</font></a></td>
 					<td class="send">${mail.id }</td>
 					<td class="date"><fmt:formatDate value="${ mail.date}" type="both" dateStyle="short" timeStyle="short"/></td> 
 					</tr> 
