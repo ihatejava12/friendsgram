@@ -263,7 +263,7 @@ button:focus {
                     <thead>
                         <tr>
                             <th>신고 내용</th>
-                            <th>작성자</th>
+                            <th>제재 대상자</th>
                             <th>해당 글보기</th>
                         </tr>
                     </thead>

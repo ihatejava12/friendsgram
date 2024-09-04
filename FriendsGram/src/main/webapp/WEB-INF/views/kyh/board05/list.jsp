@@ -107,7 +107,7 @@
 					</div>
 					<div class="job-description">
 						<p>
-							<a href="board05/content/${board.b_no05}" style="text-decoration: none;">${board.title}</a>
+							<a href="/board05/content/${board.b_no05}" style="text-decoration: none;">${board.title}</a>
 						</p>
 					</div>
 
