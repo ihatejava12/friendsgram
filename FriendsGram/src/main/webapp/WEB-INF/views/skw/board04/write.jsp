@@ -45,6 +45,11 @@ body {
   color: #565E6C;
   font-weight: bold;
   text-decoration: none;
+  position: relative;
+}
+
+.navigation a::before {
+  content: none; /* 가로선 없애기 */
 }
 
 .actions a {
@@ -174,55 +179,52 @@ input[type="submit"]:hover {
 </head>
 <body>
 <header class="header">
-      <div class="logo">
-         <a href="/main"> <img src="../images/logo.png" alt="프렌즈그램 로고"
-            class="logo-image" />
-         </a>
-      </div>
-      <nav class="navigation">
-      <c:if test="${user.role != 3}">
-         <a href="board01/main">코딩 게시판</a> 
-         <a href="board02/main">팀 모집</a> 
-      </c:if> 
-      <c:if test="${user.role == 3}">
-         <a href="#">코딩 게시판</a> 
-         <a href="#">팀 모집</a> 
-      </c:if>  
-         <a href="board03/main">프리랜서 검색</a> 
-         <a href="/list">프리랜서 공고</a> 
-         <a href="/board05">취업 공고</a>
-      </nav>
-      <div class="actions">
-         <c:if test="${user.id != null }">
+    <div class="logo">
+        <a href="/main"> 
+            <img src="../images/logo.png" alt="프렌즈그램 로고" class="logo-image" />
+        </a>
+    </div>
+    <nav class="navigation">
+        <c:if test="${user.role != 3}">
+            <a href="/board01/main">코딩 게시판</a> 
+            <a href="/board02/main">팀 모집</a> 
+        </c:if> 
+        <c:if test="${user.role == 3}">
+            <a href="#">코딩 게시판</a> 
+            <a href="#">팀 모집</a> 
+        </c:if>  
+        <a href="/board03/main">프리랜서 검색</a> 
+        <a href="/list">프리랜서 공고</a> 
+        <a href="/board05">취업 공고</a>
+    </nav>
+    <div class="actions">
+        <c:if test="${user.id != null }">
             <a class="login" href="/logout">로그아웃</a>
             <c:choose>
-                    <c:when test="${user.role != 3}">
-                        <a class="profile" href="/myprofile">프로필</a>
-                     </c:when>
-                     <c:when test="${user.role == 3}">
-                         <a class="corporationprofile" href="/corporationprofile">기업 페이지</a>
-                     </c:when>
-              </c:choose>
-         </c:if>
-         <c:if test="${user.id == null }">
+                <c:when test="${user.role != 3}">
+                    <a class="profile" href="/myprofile">프로필</a>
+                </c:when>
+                <c:when test="${user.role == 3}">
+                    <a class="corporationprofile" href="/corporationprofile">기업 페이지</a>
+                </c:when>
+            </c:choose>
+        </c:if>
+        <c:if test="${user.id == null }">
             <a class="login" href="/loginform">로그인</a>
-
-         </c:if>
-
-         <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
-         <c:if test="${user.id != null }">
+        </c:if>
+        <a class="messages" href="/mail" onclick="window.open(this.href, '_blank', 'width=780, height=480'); return false;">메시지</a>
+        <c:if test="${user.id != null }">
             <div style="position:relative; display:inline-block; top:7px;">
-               <img style="width: 25px; height:25px;" src="/images/message_icon.png" alt="메세지"/>
-               <div id="numberOfMessage" style="position:absolute; top: 10px; left:15px; background-color:red; color:white;
-               padding: 1px 6px; border-radius:50%; font-size:13px;"></div>
+                <img style="width: 25px; height:25px;" src="/images/message_icon.png" alt="메세지"/>
+                <div id="numberOfMessage" style="position:absolute; top: 10px; left:15px; background-color:red; color:white;
+                    padding: 1px 6px; border-radius:50%; font-size:13px;"></div>
             </div>
-            </c:if>
-      </div>
-   </header>
-
+        </c:if>
+    </div>
+</header>
 
 <main>
-    <form action="/board04/write" method="post">
+    <form action="/board03/main" method="post">
         <label for="id">아이디</label>
         <input type="text" id="id" name="id" value="${user.id}" readonly>
 
@@ -235,18 +237,18 @@ input[type="submit"]:hover {
             <label for="out">원격</label>
             <input type="radio" id="in" name="work_type" value="false">
             <label for="in">상주</label>
-            </div>
-        <div id="programming_language">언어:
-		<label><input type="checkbox" name="programming_language" value="JAVA"> JAVA</label><br>
-    <label><input type="checkbox" name="programming_language" value="PYTHON"> PYTHON</label><br>
-    <label><input type="checkbox" name="programming_language" value="HTML"> HTML</label><br>
-    <label><input type="checkbox" name="programming_language" value="C"> C</label><br>
-    <label><input type="checkbox" name="programming_language" value="DATABASE"> DATABASE</label><br>
-    <label><input type="checkbox" name="other" id="other-checkbox" value="other"> 기타</label><br>
-    <input type="text" id="other-input" name="programming_language" placeholder="Enter other language" style="display: none;"><br>
-</div>
-       
+        </div>
 
+        <div id="programming_language">언어:
+            <label><input type="checkbox" name="programming_language" value="JAVA"> JAVA</label><br>
+            <label><input type="checkbox" name="programming_language" value="PYTHON"> PYTHON</label><br>
+            <label><input type="checkbox" name="programming_language" value="HTML"> HTML</label><br>
+            <label><input type="checkbox" name="programming_language" value="C"> C</label><br>
+            <label><input type="checkbox" name="programming_language" value="DATABASE"> DATABASE</label><br>
+            <label><input type="checkbox" name="other" id="other-checkbox" value="other"> 기타</label><br>
+            <input type="text" id="other-input" name="programming_language" placeholder="Enter other language" style="display: none;"><br>
+        </div>
+       
         <div class="flex-container">
             <label for="salary">급여</label>
             <input type="text" id="salary" name="salary" placeholder="0">
@@ -256,7 +258,6 @@ input[type="submit"]:hover {
         <div class="flex-container">
             <label for="career_period">경력 기간</label>
             <input type="text" id="career_period" name="career_period" placeholder="0">
-            <span class="unit-label"></span>
         </div>
 
         <label for="content">내용</label>
@@ -287,7 +288,7 @@ input[type="submit"]:hover {
 </main>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
+<script>
     document.getElementById('other-checkbox').addEventListener('change', function() {
         var otherInput = document.getElementById('other-input');
         if (this.checked) {
@@ -297,39 +298,40 @@ input[type="submit"]:hover {
             otherInput.value = ''; // 입력된 값을 초기화
         }
     });
-    
+
     $(function(){
-		var id = '${user.id}';
-		if(id != null){
-			$.ajax({
-				url:"/mail/numberofmail",
-				data: "id="+id,
-				method:"post",
-				datatype:"text"
-			}).done(function(data){
-				// 안읽은 메일의 개수 를 String으로 받아온걸 data 에 저장함
-				if(data == '0'){
-					$("#numberOfMessage").hide();
-				}else{
-					$("#numberOfMessage").text(data);
-				}
-			})
-		}
-	})
-    
+        var id = '${user.id}';
+        if(id != null){
+            $.ajax({
+                url:"/mail/numberofmail",
+                data: "id="+id,
+                method:"post",
+                datatype:"text"
+            }).done(function(data){
+                if(data == '0'){
+                    $("#numberOfMessage").hide();
+                }else{
+                    $("#numberOfMessage").text(data);
+                }
+            })
+        }
+    });
 </script>
 
-
-
 <footer class="footer">
-		<div class="footer-links">
-			<a href="#">프리랜서 이용약관</a> <a href="/question">고객센터</a> <a href="#">개인정보
-				처리방침</a><c:if test="${user.role == 3 }"><a href="/advertising/question">광고문의</a></c:if><c:if test="${user != null && user.role == 2 || user.role == 1}"><a href="/adminpage/board01">관리자</a></c:if>
-		</div>
-		<div class="company-info">
-			<p>(주)프렌즈그램(대표이사: 전재민)</p>
-			<p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
-		</div>
-	</footer>
-</body>
-</html>
+    <div class="footer-links">
+        <a href="#">프리랜서 이용약관</a> 
+        <a href="/question">고객센터</a> 
+        <a href="#">개인정보 처리방침</a>
+        <c:if test="${user.role == 3 }">
+            <a href="/advertising/question">광고문의</a>
+        </c:if>
+        <c:if test="${user != null && (user.role == 2 || user.role == 1)}">
+            <a href="/adminpage/board01">관리자</a>
+        </c:if>
+    </div>
+    <div class="company-info">
+        <p>(주)프렌즈그램(대표이사: 전재민)</p>
+        <p>서울 특별시 종로구 종로 12길 15 코아빌딩</p>
+    </div>
+</footer>

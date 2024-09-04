@@ -34,10 +34,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px; /* 헤더와 푸터의 패딩 크기 */
-  background: #ffffff; /* 헤더 배경색을 흰색으로 변경 */
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* 그림자를 연하게 */
-  transition: all 0.3s ease;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0px 3px 6px rgba(18, 18, 18, 0.1);
 }
 
 .logo img {
@@ -47,28 +46,14 @@ body {
 
 .navigation a {
   margin-right: 15px;
-  color: #333333;
+  color: #565E6C;
   font-weight: bold;
   text-decoration: none;
   position: relative;
 }
 
 .navigation a::before {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -5px;
-  left: 50%;
-  background-color: #333333;
-  visibility: hidden;
-  transition: all 0.3s ease-in-out;
-}
-
-.navigation a:hover::before {
-  visibility: visible;
-  width: 100%;
-  left: 0;
+  content: none; /* 가로선 없애기 */
 }
 
 .actions a {
@@ -276,7 +261,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: auto; /* 푸터를 페이지 끝에 위치시킵니다 */
+  margin-top: auto; /* 푸터를 페이지 끝에 위치시킴 */
   position: relative; /* 포지션을 고정하지 않음 */
 }
 
@@ -285,34 +270,6 @@ body {
   color: white;
   text-decoration: none;
   font-weight: bold;
-}
-
-.company-info p {
-  margin-top: 10px;
-  font-size: 14px;
-}.footer {
-  background-color: rgba(30, 33, 40, 0.68);
-  color: white;
-  padding: 30px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-top: auto; /* 푸터를 페이지 끝에 위치시킵니다 */
-  position: relative; /* 포지션을 고정하지 않음 */
-}
-
-.footer-links a {
-  margin-right: 15px;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.company-info p {
-  margin-top: 10px;
-  font-size: 14px;
 }
 
 .company-info p {

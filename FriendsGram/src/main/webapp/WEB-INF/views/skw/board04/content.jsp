@@ -48,29 +48,17 @@ body {
 
 .navigation a {
   margin-right: 15px;
-  color: #333333;
+  color: #565E6C;
   font-weight: bold;
   text-decoration: none;
   position: relative;
 }
 
 .navigation a::before {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -5px;
-  left: 50%;
-  background-color: #333333;
-  visibility: hidden;
-  transition: all 0.3s ease-in-out;
+  content: none; /* 가로선 없애기 */
 }
 
-.navigation a:hover::before {
-  visibility: visible;
-  width: 100%;
-  left: 0;
-}
+
 
 .actions a {
   margin-left: 10px;
